@@ -1,0 +1,19 @@
+uuid: 590560f1-9133-4dc2-8416-a70d3c66adcf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_email
+    - node.type.rebuttal
+id: node.rebuttal.field_email
+field_name: field_email
+entity_type: node
+bundle: rebuttal
+label: Email
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

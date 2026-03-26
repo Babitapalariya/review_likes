@@ -1,0 +1,36 @@
+uuid: 621d0e40-abdb-47ff-8ebc-793202657460
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_camera_requirements
+field_name: field_camera_requirements
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: smartphone
+      label: Smartphone
+    -
+      value: dslr_mirrorless
+      label: DSLR/Mirrorless
+    -
+      value: 4k_resolution
+      label: '4K Resolution'
+    -
+      value: 60_fps
+      label: '60 FPS'
+    -
+      value: if_yes_smartphone_specs
+      label: 'If Yes, Smartphone Specs:'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 7
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

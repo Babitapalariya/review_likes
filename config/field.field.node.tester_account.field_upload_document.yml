@@ -1,0 +1,27 @@
+uuid: f6afb509-f131-4a16-b019-f5fa977e97dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_upload_document
+    - node.type.tester_account
+  module:
+    - file
+id: node.tester_account.field_upload_document
+field_name: field_upload_document
+entity_type: node
+bundle: tester_account
+label: 'Upload Document'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt mp4 mkv pdf'
+  max_filesize: ''
+  description_field: false
+field_type: file

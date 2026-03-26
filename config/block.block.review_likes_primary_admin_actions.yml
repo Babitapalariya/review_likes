@@ -1,0 +1,20 @@
+uuid: 1d3eb2a6-911e-425c-a091-a1d33e4fc5b0
+langcode: en
+status: false
+dependencies:
+  theme:
+    - review_likes
+_core:
+  default_config_hash: Q9_2whdOj1YIomfvsIfopROW4FT_X5pY0DjdOiOaQ5U
+id: review_likes_primary_admin_actions
+theme: review_likes
+region: header
+weight: -8
+provider: null
+plugin: local_actions_block
+settings:
+  id: local_actions_block
+  label: 'Primary admin actions'
+  label_display: '0'
+  provider: core
+visibility: {  }

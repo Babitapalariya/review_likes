@@ -1,0 +1,8 @@
+name: Merchant Dashboard
+description: Provides a dashboard for merchants to manage claims and gifts
+package: Custom
+type: module
+core_version_requirement: ^10
+dependencies:
+  - drupal:node
+  - drupal:user

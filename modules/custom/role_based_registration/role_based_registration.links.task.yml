@@ -1,0 +1,7 @@
+role_based_registration.business_form:
+  title: 'Business Registration'
+  route_name: role_based_registration.business_form
+  route_parameters:
+    user: user.uid
+  base_route: entity.user.canonical
+  weight: 100

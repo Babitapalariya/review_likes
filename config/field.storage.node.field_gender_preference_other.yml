@@ -1,0 +1,21 @@
+uuid: 0b23e83b-d1a2-4208-9110-402a25cb1c85
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_gender_preference_other
+field_name: field_gender_preference_other
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

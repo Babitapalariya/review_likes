@@ -1,0 +1,9 @@
+{
+    "name": "drupal/mobile_otp",
+    "description": "Provides mobile number OTP verification functionality.",
+    "type": "drupal-module",
+    "license": "GPL-2.0-or-later",
+    "require": {
+        "twilio/sdk": "^7.0"
+    }
+}

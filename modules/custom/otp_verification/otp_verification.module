@@ -1,0 +1,191 @@
+<?php
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\user\UserInterface;
+use Symfony\Component\HttpFoundation\RedirectResponse;
+
+/**
+ * Implements hook_form_FORM_ID_alter().
+ */
+function otp_verification_form_user_register_form_alter(&$form, FormStateInterface $form_state) {
+  // Add hidden fields to track OTP status
+  $form['otp_verified'] = [
+    '#type' => 'hidden',
+    '#value' => 0,
+  ];
+
+  $form['otp_sent'] = [
+    '#type' => 'hidden',
+    '#value' => 0,
+  ];
+
+  // Add OTP verification field (hidden initially)
+  $form['otp_container'] = [
+    '#type' => 'container',
+    '#attributes' => ['id' => 'otp-container', 'style' => 'display:none;'],
+  ];
+
+  $form['otp_container']['otp_code'] = [
+    '#type' => 'textfield',
+    '#title' => 'Verification Code',
+    '#description' => 'Enter the 6-digit OTP sent to your email.',
+    '#size' => 6,
+    '#maxlength' => 6,
+    '#required' => FALSE,
+  ];
+
+  // Modify submit handler
+  $form['#submit'][] = 'otp_verification_user_register_submit';
+  $form['#validate'][] = 'otp_verification_user_register_validate';
+  
+  // Attach our custom JS and CSS
+  $form['#attached']['library'][] = 'otp_verification/otp_popup';
+}
+
+/**
+ * Custom submit handler.
+ */
+function otp_verification_user_register_submit(array &$form, FormStateInterface $form_state) {
+  $email = $form_state->getValue('mail');
+  $otp_sent = $form_state->getValue('otp_sent');
+
+  if (!$otp_sent) {
+    // Generate and send OTP
+    $otp_service = \Drupal::service('otp_verification.service');
+    $otp_service->generateAndSendOtp($email);
+
+    // Mark OTP as sent
+    $form_state->setValue('otp_sent', 1);
+    $form_state->setRebuild();
+
+    \Drupal::messenger()->addStatus('OTP sent to your email. Please check and enter the code.');
+  }
+}
+
+/**
+ * Custom validation handler.
+ */
+function otp_verification_user_register_validate(array &$form, FormStateInterface $form_state) {
+  $email = $form_state->getValue('mail');
+  $otp_sent = $form_state->getValue('otp_sent');
+  $otp_code = $form_state->getValue('otp_code');
+  $otp_verified = $form_state->getValue('otp_verified');
+
+  // First submission (send OTP)
+  if (!$otp_sent) {
+    // Check if email is already registered
+    $users = \Drupal::entityTypeManager()
+      ->getStorage('user')
+      ->loadByProperties(['mail' => $email]);
+
+    if (!empty($users)) {
+      $form_state->setErrorByName('mail', 'This email is already registered.');
+    }
+    return;
+  }
+
+  // OTP verification phase
+  if (!$otp_verified) {
+    if (empty($otp_code)) {
+      $form_state->setErrorByName('otp_code', 'Please enter the OTP.');
+    } else {
+      $otp_service = \Drupal::service('otp_verification.service');
+      $result = $otp_service->verifyOtp($email, $otp_code);
+
+      if ($result === 'verified') {
+        $form_state->setValue('otp_verified', 1);
+      } elseif ($result === 'blocked') {
+        $form_state->setErrorByName('otp_code', 'Too many attempts. Account blocked.');
+        // Block the user
+        $user = \Drupal\user\Entity\User::load(\Drupal::currentUser()->id());
+        if ($user) {
+          $user->block();
+          $user->save();
+        }
+      } elseif ($result === 'expired') {
+        $form_state->setErrorByName('otp_code', 'OTP expired. Please request a new one.');
+      } else {
+        $form_state->setErrorByName('otp_code', 'Invalid OTP. Please try again.');
+      }
+    }
+  }
+}
+
+
+/**
+ * Implements hook_mail().
+ */
+function otp_verification_mail($key, &$message, $params) {
+  if ($key === 'otp_email') {
+    $message['subject'] = $params['subject'];
+    $message['body'] = $params['body'];
+  }
+}
+
+/**
+ * Implements hook_user_insert().
+ */
+function otp_verification_user_insert(\Drupal\user\UserInterface $account) {
+  // Generate OTP
+  $otp = rand(100000, 999999);
+
+
+  // Save in custom OTP table
+  \Drupal::database()->insert('otp_verification')
+    ->fields([
+      'id' => $account->id(),
+      'email' => $account->getEmail(),
+      'otp_code' => $otp,
+      'created' => REQUEST_TIME,
+      'expires' => REQUEST_TIME + 300, // 5 minutes
+    ])
+    ->execute();
+
+  // Block the user until they verify OTP
+  $account->set('status', 1);
+  $account->save();
+
+  \Drupal::messenger()->addMessage(t('Your account has been activated successfully.'));
+
+  // Send OTP email
+  \Drupal::service('plugin.manager.mail')->mail(
+    'otp_verification',
+    'otp_verification',
+    $account->getEmail(),
+    $account->getPreferredLangcode(),
+    ['otp' => $otp, 'user' => $account]
+  );
+}
+
+// In your module file (otp_verification.module)
+/**
+ * Implements hook_page_attachments_alter().
+ */
+function otp_verification_page_attachments_alter(array &$attachments) {
+  $route = \Drupal::routeMatch()->getRouteName();
+  
+  // Only show on registration complete page or OTP verification page
+  if ($route == 'user.register' || $route == 'otp_verification.form') {
+    $tempstore = \Drupal::service('tempstore.private')->get('otp_verification');
+    $email = $tempstore->get('pending_email');
+    
+    //if ($email) {
+      // Add our libraries
+      $attachments['#attached']['library'][] = 'otp_verification/otp_popup';
+      $attachments['#attached']['library'][] = 'core/drupal.dialog.ajax';
+      
+      // Add settings for JS
+      $attachments['#attached']['drupalSettings']['otpVerification'] = [
+        'email' => $email,
+        'expires' => \Drupal::time()->getRequestTime() + 3600, // 1 hour expiry
+      ];
+      
+      // Add the modal HTML via a theme hook
+    //}
+  }
+}
+
+function otp_verification_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'user_register_form') {
+    $form['#attached']['library'][] = 'otp_verification/otp_popup';
+  }
+}

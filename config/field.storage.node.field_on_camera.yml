@@ -1,0 +1,33 @@
+uuid: 57436832-3def-43d3-a786-83cd37ef557e
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_on_camera
+field_name: field_on_camera
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: face_visible
+      label: 'Face Visible'
+    -
+      value: voiceover_only
+      label: 'Voiceover Only'
+    -
+      value: scripted_dialogue
+      label: 'Scripted Dialogue'
+    -
+      value: no_speaking
+      label: 'No Speaking'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 6
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

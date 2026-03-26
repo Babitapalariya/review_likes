@@ -1,0 +1,81 @@
+uuid: 8c182056-6e85-4732-9160-82b57100a472
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.product_testing_video.field_challenges
+    - field.field.node.product_testing_video.field_external_id
+    - field.field.node.product_testing_video.field_product_url
+    - field.field.node.product_testing_video.field_product_variation
+    - field.field.node.product_testing_video.field_terms_and_conditions
+    - field.field.node.product_testing_video.field_testified_video
+    - node.type.product_testing_video
+  module:
+    - user
+id: node.product_testing_video.default
+targetEntityType: node
+bundle: product_testing_video
+mode: default
+content:
+  field_challenges:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 115
+    region: content
+  field_external_id:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 112
+    region: content
+  field_product_url:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 111
+    region: content
+  field_product_variation:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 114
+    region: content
+  field_terms_and_conditions:
+    type: boolean
+    label: above
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 116
+    region: content
+  field_testified_video:
+    type: boolean
+    label: above
+    settings:
+      format: yes-no
+      format_custom_false: 'No'
+      format_custom_true: 'Yes'
+    third_party_settings: {  }
+    weight: 113
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

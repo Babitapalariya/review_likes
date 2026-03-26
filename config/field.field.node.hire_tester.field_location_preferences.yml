@@ -1,0 +1,21 @@
+uuid: bcdaadf2-75d0-4940-a8f7-81de9a6776ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_location_preferences
+    - node.type.hire_tester
+  module:
+    - options
+id: node.hire_tester.field_location_preferences
+field_name: field_location_preferences
+entity_type: node
+bundle: hire_tester
+label: 'Location Preferences'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

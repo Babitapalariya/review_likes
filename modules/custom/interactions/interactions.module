@@ -1,0 +1,25 @@
+<?php
+
+use Drupal\node\NodeInterface;
+
+/**
+ * Returns total likes for a node.
+ */
+
+ /**
+ * Attach the AJAX Like JavaScript globally.
+ */
+function interactions_preprocess_page(array &$variables) {
+  $variables['#attached']['library'][] = 'interactions/like_ajax';
+}
+
+function interactions_count_likes(NodeInterface $node): int {
+  return \Drupal::entityTypeManager()
+    ->getStorage('interaction')
+    ->getQuery()
+    ->accessCheck(TRUE)
+    ->condition('node_id', $node->id())
+    ->condition('action', 'like')
+    ->count()
+    ->execute();
+}

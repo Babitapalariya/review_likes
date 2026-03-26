@@ -1,0 +1,9 @@
+uuid: 2c07f1cb-8427-44e7-bc61-8e9e99348074
+langcode: en
+status: true
+dependencies: {  }
+name: 'Tester Type Needed'
+vid: tester_type_needed
+description: null
+weight: 0
+new_revision: false

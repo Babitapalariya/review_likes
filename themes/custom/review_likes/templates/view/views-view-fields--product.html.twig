@@ -1,0 +1,93 @@
+<div class="card" id="myCard">
+  <h5 class="card-title pt-2">
+  </h5>
+  <div class="card-body">
+    <div class="row">
+      
+      {{ fields.field_images.content }}
+     
+      <div class="col-md-2 text-center socialmedia-icons">
+        <div class="iconsection mt-2">
+         
+          {% set likes = custom_likes_count ? custom_likes_count : 0 %}
+          <div class="interaction-buttons">
+            <a href="javascript:void(0)" data-nid="{{ fields.nid.content|striptags|trim|render }}" title="Likes"
+              class="like-btn">
+              {% if user_has_liked == true %}
+              <img src="/themes/custom/review_likes/images/like.svg" alt="rating">
+              {% else %}
+              <img src="/themes/custom/review_likes/images/unlike.svg" alt="rating">
+              {% endif %}
+              <br>
+              <span class="like-count">{{ likes }}</span>
+            </a>
+          </div>
+   
+        </div>
+
+       
+        <div class="iconsection mt-2">
+          <a href="javascript:void(0)" title="Comments">
+            <img src="/themes/custom/review_likes/images/comment.svg" alt="rating">
+          </a><br>
+          <span class="comments-count">{{ custom_comment_count ?? 0 }}</span>
+        </div>
+     
+
+        
+        <div class="iconsection mt-2">
+          <a href="javascript:void(0)" class="share-button" data-nid="{{ row.nid }}" title="Share">
+            <img src="/themes/custom/review_likes/images/share.svg" alt="rating">
+          </a><br>
+          <span id="share-count-{{ row.nid }}">{{ custom_share_count }}</span>
+
+          <!-- 🔽 Share Popup -->
+          <div class="share-popup" id="share-popup-{{ row.nid }}" style="display: none;">
+            <div class="popup-content p-3 bg-white border rounded shadow">
+              <p>Share this content:</p>
+              <div class="d-flex gap-2">
+                <a href="https://www.facebook.com/sharer/sharer.php?u={{ url('<current>') }}"
+                  target="_blank">Facebook</a>
+                <a href="https://twitter.com/intent/tweet?url={{ url('<current>') }}" target="_blank">Twitter</a>
+                <a href="https://wa.me/?text={{ url('<current>') }}" target="_blank">WhatsApp</a>
+              </div>
+              <button type="button" class="btn btn-sm btn-secondary mt-2 close-share-popup">Close</button>
+            </div>
+          </div>
+          <!-- 🔼 Share Popup -->
+        </div>
+  
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8 product-text">
+        {{fields.body.content}}
+      </div>
+      <div class="col-md-4 price">
+        <div class="pricesection">
+        {{ fields.field_prices.content }}
+       
+      </div>
+      </div>
+    </div>
+  </div>
+ 
+  <div class="my-4">
+    <div class="input-group commentbox">
+      <input type="text" class="form-control" id="comment{{ fields.nid.content|striptags|trim|render }}"
+        placeholder="Write a comment..." />
+      <button class="btn btn-default submit-comment" type="submit"
+        data-nid="{{ fields.nid.content|striptags|trim|render }}">
+        <i class="bi bi-send"></i>
+      </button>
+    </div>
+    <div class="comment-view-section mx-4 my-3 comments-section"
+      id="comments-section{{ fields.nid.content|striptags|trim|render }}">
+      <div class="cmnt">{{ latest_comment.comment }}</div>
+    </div>
+  </div>
+
+
+</div>
+ 

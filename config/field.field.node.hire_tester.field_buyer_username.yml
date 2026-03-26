@@ -1,0 +1,19 @@
+uuid: e268307e-e362-4695-8db9-570b904f2666
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_buyer_username
+    - node.type.hire_tester
+id: node.hire_tester.field_buyer_username
+field_name: field_buyer_username
+entity_type: node
+bundle: hire_tester
+label: 'Shoe Size'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

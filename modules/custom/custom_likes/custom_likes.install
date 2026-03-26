@@ -1,0 +1,69 @@
+use Drupal\Core\Database\SchemaObjectExistsException;
+
+/**
+ * Implements hook_schema().
+ */
+function custom_likes_schema() {
+  $schema = [];
+
+  // Define 'custom_likes' table.
+  $schema['custom_likes'] = [
+    'description' => 'Stores node likes by user.',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'not null' => TRUE,
+      ],
+      'uid' => [
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
+      'nid' => [
+        'type' => 'int',
+        'not null' => TRUE,
+      ],
+    ],
+    'primary key' => ['id'],
+    'unique keys' => [
+      'uid_nid' => ['uid', 'nid'],
+    ],
+  ];
+
+  // Define 'custom_shares' table.
+  $schema['custom_shares'] = [
+    'description' => 'Stores share records by users per node.',
+    'fields' => [
+      'id' => [
+        'description' => 'Primary Key: Unique share ID.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'uid' => [
+        'description' => 'User ID of the person who shared.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'nid' => [
+        'description' => 'Node ID that was shared.',
+        'type' => 'int',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'timestamp' => [
+        'description' => 'Time of the share.',
+        'type' => 'datetime',
+        'mysql_type' => 'datetime',
+        'not null' => TRUE,
+      ],
+    ],
+    'primary key' => ['id'],
+    'indexes' => [
+      'uid' => ['uid'],
+      'nid' => ['nid'],
+    ],
+  ];
+
+  return $schema;
+}

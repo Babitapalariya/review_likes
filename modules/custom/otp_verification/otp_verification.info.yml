@@ -1,0 +1,7 @@
+name: 'Otp Verification'
+type: module
+description: 'Custom user registration form with Email Verification.'
+core_version_requirement: ^10
+package: Custom
+dependencies:
+  - user

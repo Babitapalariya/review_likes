@@ -1,0 +1,21 @@
+uuid: b0209914-bfd2-48a3-9ac3-d105626c3d0e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_camera_requirements
+    - node.type.hire_tester
+  module:
+    - options
+id: node.hire_tester.field_camera_requirements
+field_name: field_camera_requirements
+entity_type: node
+bundle: hire_tester
+label: 'Camera Requirements'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

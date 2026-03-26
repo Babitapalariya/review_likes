@@ -1,0 +1,8 @@
+uuid: ec60b017-9460-4046-94f7-be9bdcdb9cfe
+langcode: en
+status: true
+dependencies: {  }
+id: merchants-dashboard
+label: 'Merchants Dashboard'
+description: ''
+locked: false

@@ -1,0 +1,25 @@
+uuid: e632339b-c8c3-4dc6-ac90-ccc2db3def38
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:d77d7669-64dd-43a2-bfb4-f403113c58fa'
+  module:
+    - block_content
+  theme:
+    - review_likes
+id: review_likes_countryandlanguage_2
+theme: review_likes
+region: country_and_sign_in
+weight: 0
+provider: null
+plugin: 'block_content:d77d7669-64dd-43a2-bfb4-f403113c58fa'
+settings:
+  id: 'block_content:d77d7669-64dd-43a2-bfb4-f403113c58fa'
+  label: 'country and language '
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

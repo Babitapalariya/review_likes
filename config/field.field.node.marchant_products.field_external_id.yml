@@ -1,0 +1,19 @@
+uuid: 95f2cae3-d413-4f2f-a4f1-a14789a38a0c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_external_id
+    - node.type.marchant_products
+id: node.marchant_products.field_external_id
+field_name: field_external_id
+entity_type: node
+bundle: marchant_products
+label: 'External Id'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,23 @@
+uuid: 8f182747-83cd-4f68-814a-c09d0f2ae749
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_price
+    - node.type.marchant_products
+id: node.marchant_products.field_price
+field_name: field_price
+entity_type: node
+bundle: marchant_products
+label: Price
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: decimal

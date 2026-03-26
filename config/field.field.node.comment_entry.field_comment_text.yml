@@ -1,0 +1,19 @@
+uuid: 2992f6da-b9b4-4200-8f6a-536611a3ccaf
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_comment_text
+    - node.type.comment_entry
+id: node.comment_entry.field_comment_text
+field_name: field_comment_text
+entity_type: node
+bundle: comment_entry
+label: 'Comment Text'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

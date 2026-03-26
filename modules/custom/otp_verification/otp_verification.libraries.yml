@@ -1,0 +1,14 @@
+otp_popup:  
+  css:
+    component:
+      css/otp-verification.css: {}  
+  js:
+    js/otp-popup.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.dialog
+    - core/drupal.ajax
+    - core/bootstrap
+
+  

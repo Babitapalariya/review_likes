@@ -1,0 +1,33 @@
+uuid: be716f1f-b609-475e-a429-ad71a6c121e8
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_safety_gear_needed
+field_name: field_safety_gear_needed
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: helmet
+      label: Helmet
+    -
+      value: gloves
+      label: Gloves
+    -
+      value: protective_clothing
+      label: 'Protective Clothing'
+    -
+      value: other
+      label: 'Other:'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 10
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

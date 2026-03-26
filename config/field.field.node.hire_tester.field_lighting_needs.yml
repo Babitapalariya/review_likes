@@ -1,0 +1,21 @@
+uuid: d517cdf4-a43d-401d-ab91-a03f484ff2f6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_lighting_needs
+    - node.type.hire_tester
+  module:
+    - options
+id: node.hire_tester.field_lighting_needs
+field_name: field_lighting_needs
+entity_type: node
+bundle: hire_tester
+label: 'Lighting Needs'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

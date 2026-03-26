@@ -1,0 +1,17 @@
+uuid: 60b4d678-f36d-4454-8ec6-b8320affe997
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Gift
+type: gift
+description: null
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: true

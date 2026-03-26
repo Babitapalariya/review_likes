@@ -1,0 +1,23 @@
+uuid: bb512a82-3633-4381-9b08-86731ecf3556
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_testified_video
+    - node.type.product_testing_video
+id: node.product_testing_video.field_testified_video
+field_name: field_testified_video
+entity_type: node
+bundle: product_testing_video
+label: 'AI Generated'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1
+default_value_callback: ''
+settings:
+  on_label: 'YES'
+  off_label: 'No'
+field_type: boolean

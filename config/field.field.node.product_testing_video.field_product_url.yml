@@ -1,0 +1,19 @@
+uuid: 9c796857-b287-4c6e-9128-75d659c101ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_product_url
+    - node.type.product_testing_video
+id: node.product_testing_video.field_product_url
+field_name: field_product_url
+entity_type: node
+bundle: product_testing_video
+label: 'Product Url'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

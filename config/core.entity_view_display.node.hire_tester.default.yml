@@ -1,0 +1,371 @@
+uuid: 57d4efaf-bc03-4038-a4de-7b134a0ee3e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.hire_tester.body
+    - field.field.node.hire_tester.field_age_range
+    - field.field.node.hire_tester.field_audio_stabilization
+    - field.field.node.hire_tester.field_budget_flexibility
+    - field.field.node.hire_tester.field_buyer_username
+    - field.field.node.hire_tester.field_camera_requirements
+    - field.field.node.hire_tester.field_comment_text
+    - field.field.node.hire_tester.field_content_style
+    - field.field.node.hire_tester.field_content_style_other
+    - field.field.node.hire_tester.field_e_commerce_platform
+    - field.field.node.hire_tester.field_editing_skills_required
+    - field.field.node.hire_tester.field_editing_software
+    - field.field.node.hire_tester.field_external_id
+    - field.field.node.hire_tester.field_filter
+    - field.field.node.hire_tester.field_gender_preference
+    - field.field.node.hire_tester.field_gender_preference_other
+    - field.field.node.hire_tester.field_image
+    - field.field.node.hire_tester.field_language
+    - field.field.node.hire_tester.field_languages_spoken_other
+    - field.field.node.hire_tester.field_legal_business_name
+    - field.field.node.hire_tester.field_licenses_certifications_re
+    - field.field.node.hire_tester.field_licenses_other
+    - field.field.node.hire_tester.field_lighting_needs
+    - field.field.node.hire_tester.field_location_preferences
+    - field.field.node.hire_tester.field_minimum_follower_count
+    - field.field.node.hire_tester.field_on_camera
+    - field.field.node.hire_tester.field_physical_abilities
+    - field.field.node.hire_tester.field_platform_other
+    - field.field.node.hire_tester.field_platform_preferences
+    - field.field.node.hire_tester.field_prices
+    - field.field.node.hire_tester.field_product_url
+    - field.field.node.hire_tester.field_safety_gear_needed
+    - field.field.node.hire_tester.field_safety_gear_other
+    - field.field.node.hire_tester.field_smartphone_specs
+    - field.field.node.hire_tester.field_sold_bys
+    - field.field.node.hire_tester.field_specific_regions
+    - field.field.node.hire_tester.field_sports_specification
+    - field.field.node.hire_tester.field_tester_type_needed
+    - field.field.node.hire_tester.field_testing_type_other
+    - field.field.node.hire_tester.field_urgency
+    - node.type.hire_tester
+  module:
+    - options
+    - svg_image
+    - text
+    - user
+id: node.hire_tester.default
+targetEntityType: node
+bundle: hire_tester
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_age_range:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 119
+    region: content
+  field_audio_stabilization:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 125
+    region: content
+  field_budget_flexibility:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 145
+    region: content
+  field_buyer_username:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_camera_requirements:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 124
+    region: content
+  field_comment_text:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 133
+    region: content
+  field_content_style:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 132
+    region: content
+  field_content_style_other:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 144
+    region: content
+  field_e_commerce_platform:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 116
+    region: content
+  field_editing_skills_required:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 123
+    region: content
+  field_editing_software:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 138
+    region: content
+  field_external_id:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 112
+    region: content
+  field_filter:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_gender_preference:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 118
+    region: content
+  field_gender_preference_other:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 135
+    region: content
+  field_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_language:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 120
+    region: content
+  field_languages_spoken_other:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 136
+    region: content
+  field_legal_business_name:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_licenses_certifications_re:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 129
+    region: content
+  field_licenses_other:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 142
+    region: content
+  field_lighting_needs:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 126
+    region: content
+  field_location_preferences:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 127
+    region: content
+  field_minimum_follower_count:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 131
+    region: content
+  field_on_camera:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 122
+    region: content
+  field_physical_abilities:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 121
+    region: content
+  field_platform_other:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 143
+    region: content
+  field_platform_preferences:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 130
+    region: content
+  field_prices:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_product_url:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 111
+    region: content
+  field_safety_gear_needed:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 128
+    region: content
+  field_safety_gear_other:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 141
+    region: content
+  field_smartphone_specs:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 139
+    region: content
+  field_sold_bys:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_specific_regions:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 140
+    region: content
+  field_sports_specification:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 137
+    region: content
+  field_tester_type_needed:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 117
+    region: content
+  field_testing_type_other:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 134
+    region: content
+  field_urgency:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 146
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

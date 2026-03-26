@@ -1,0 +1,24 @@
+uuid: e6d1d080-c05f-4cff-950a-b7c71b0925a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.admin_support
+  module:
+    - text
+id: node.admin_support.body
+field_name: body
+entity_type: node
+bundle: admin_support
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

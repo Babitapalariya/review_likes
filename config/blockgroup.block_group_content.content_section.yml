@@ -1,0 +1,6 @@
+uuid: e3515db8-aa62-4c5e-b060-db1d612ab5a7
+langcode: en
+status: true
+dependencies: {  }
+id: content_section
+label: 'content section'

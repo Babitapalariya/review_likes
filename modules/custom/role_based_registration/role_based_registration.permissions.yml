@@ -1,0 +1,11 @@
+access business registration:
+  title: 'Access business registration form'
+  description: 'Allow users to access the business registration form'
+
+access profile completion:
+  title: 'Access profile completion form'
+  description: 'Allow users to access the profile completion form'
+
+create product content:
+  title: 'Create product content'
+  description: 'Permission to create products through custom form'

@@ -1,0 +1,8 @@
+name: Tester Dashboard
+description: Provides a dashboard for tester to manage
+package: Custom
+type: module
+core_version_requirement: ^10
+dependencies:
+  - drupal:node
+  - drupal:user

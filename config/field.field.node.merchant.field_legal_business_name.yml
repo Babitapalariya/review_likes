@@ -1,0 +1,19 @@
+uuid: a29af423-4037-4369-bb3c-92ea18ec64a0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_legal_business_name
+    - node.type.merchant
+id: node.merchant.field_legal_business_name
+field_name: field_legal_business_name
+entity_type: node
+bundle: merchant
+label: 'Legal Business Name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

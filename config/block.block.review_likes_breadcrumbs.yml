@@ -1,0 +1,22 @@
+uuid: 07d5a4f5-084b-4095-9b07-8912030fcbfc
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - review_likes
+_core:
+  default_config_hash: VhBzWb7lMRtIOg9G7VSw_0uopi-7zXeHq4vXqqV1HFE
+id: review_likes_breadcrumbs
+theme: review_likes
+region: header
+weight: -2
+provider: null
+plugin: system_breadcrumb_block
+settings:
+  id: system_breadcrumb_block
+  label: Breadcrumbs
+  label_display: '0'
+  provider: system
+visibility: {  }

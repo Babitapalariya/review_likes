@@ -1,0 +1,21 @@
+uuid: 5cb04402-63f3-40bc-a44c-5e26429edb9d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_terms_and_conditions
+    - node.type.product_testing_video
+id: node.product_testing_video.field_terms_and_conditions
+field_name: field_terms_and_conditions
+entity_type: node
+bundle: product_testing_video
+label: 'Terms and Conditions'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

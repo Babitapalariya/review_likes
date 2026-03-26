@@ -1,0 +1,19 @@
+uuid: 7e878b6d-1e62-4333-aefe-0e76f7e605b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_rating
+    - paragraphs.paragraphs_type.platform_link
+id: paragraph.platform_link.field_rating
+field_name: field_rating
+entity_type: paragraph
+bundle: platform_link
+label: Rating
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,19 @@
+uuid: 38c262ac-b4bf-4e11-a066-596aa8274c76
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_email
+    - node.type.gift
+id: node.gift.field_email
+field_name: field_email
+entity_type: node
+bundle: gift
+label: Email
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: email

@@ -1,0 +1,21 @@
+uuid: dba2b73b-384a-40bf-8fdc-bf4d2b1d399a
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_sold_bys
+field_name: field_sold_bys
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

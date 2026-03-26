@@ -1,0 +1,27 @@
+uuid: 77a0feae-5409-425e-b5ef-455c20c62626
+langcode: en
+status: true
+dependencies:
+  config:
+    - blockgroup.block_group_content.user_login
+  module:
+    - blockgroup
+    - system
+  theme:
+    - review_likes
+id: review_likes_userlogin_2
+theme: review_likes
+region: content
+weight: -17
+provider: null
+plugin: 'block_group:user_login'
+settings:
+  id: 'block_group:user_login'
+  label: 'user login '
+  label_display: '0'
+  provider: blockgroup
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /sign-in

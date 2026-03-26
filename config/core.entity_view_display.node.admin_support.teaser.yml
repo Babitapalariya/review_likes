@@ -1,0 +1,34 @@
+uuid: 30780da1-528d-4664-a967-646e0c857376
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.admin_support.body
+    - field.field.node.admin_support.field_external_id
+    - field.field.node.admin_support.field_image
+    - node.type.admin_support
+  module:
+    - text
+    - user
+id: node.admin_support.teaser
+targetEntityType: node
+bundle: admin_support
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_external_id: true
+  field_image: true

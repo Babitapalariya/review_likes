@@ -1,0 +1,11 @@
+node_to_pdf.download_pdf:
+  path: '/node/{node}/download-pdf'
+  defaults:
+    _controller: '\Drupal\node_to_pdf\Controller\PdfDownloadController::download'
+    _title: 'Download Node as PDF'
+  requirements:
+    _permission: 'access content'
+  options:
+    parameters:
+      node:
+        type: entity:node

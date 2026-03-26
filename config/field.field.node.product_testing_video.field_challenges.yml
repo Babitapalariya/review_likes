@@ -1,0 +1,21 @@
+uuid: 63b63f16-e026-49ec-8e93-3469c76bbc76
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_challenges
+    - node.type.product_testing_video
+id: node.product_testing_video.field_challenges
+field_name: field_challenges
+entity_type: node
+bundle: product_testing_video
+label: Challenges
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

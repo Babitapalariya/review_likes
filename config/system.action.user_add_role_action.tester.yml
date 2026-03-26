@@ -1,0 +1,14 @@
+uuid: 00742991-a37c-4c67-92da-59980f342d00
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.tester
+  module:
+    - user
+id: user_add_role_action.tester
+label: 'Add the tester role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: tester

@@ -1,0 +1,21 @@
+uuid: 1b67c77f-8df6-4446-b1a3-d394a04ded65
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_product_variation
+    - node.type.product_testing_video
+id: node.product_testing_video.field_product_variation
+field_name: field_product_variation
+entity_type: node
+bundle: product_testing_video
+label: 'Benchmark vs Competitor Content'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'Yes'
+  off_label: 'No'
+field_type: boolean

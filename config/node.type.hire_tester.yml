@@ -1,0 +1,17 @@
+uuid: 049d7cc0-cf66-4cd1-af5e-0e4ae305db5d
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Hire Tester'
+type: hire_tester
+description: null
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: true

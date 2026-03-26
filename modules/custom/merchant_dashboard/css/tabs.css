@@ -1,0 +1,68 @@
+/* Hire Tester Form Styling */
+.section-fieldset {
+  border: 1px solid #ccc;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 4px;
+}
+
+.section-fieldset .fieldset-legend {
+  font-weight: bold;
+  font-size: 1.2em;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #0073b7;
+  padding-bottom: 10px;
+}
+
+.form-checkboxes .form-item {
+  margin-bottom: 8px;
+}
+
+.inline-input {
+  display: inline-block;
+  width: auto;
+  margin-left: 10px;
+}
+
+/* Two-column layout for checkboxes */
+.form-type-checkboxes .form-checkboxes {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.form-type-checkboxes .form-checkboxes > .form-item {
+  width: 50%;
+  box-sizing: border-box;
+  padding-right: 15px;
+}
+
+@media (max-width: 768px) {
+  .form-type-checkboxes .form-checkboxes > .form-item {
+    width: 100%;
+  }
+}
+
+.couponToggle {
+  display: none !important;
+}
+
+.form-item-product-category-other,
+.js-form-item-product-category-other {
+  display: none;
+}
+
+/* Hide all other fields by default */
+.form-item-product-category-other,
+.form-item-testing-type-other,
+.form-item-tester-type-other,
+.js-form-item-product-category-other, 
+.js-form-item-testing-type-other,
+.js-form-item-tester-type-other {
+  display: none;
+}
+/* Hide gender other field by default */
+.form-item-gender-preference-other,
+.js-form-item-gender-preference-other {
+  display: none;
+}
+

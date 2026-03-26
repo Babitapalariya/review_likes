@@ -1,0 +1,25 @@
+uuid: 17c86aa5-1889-4e72-b28e-2920e97dc794
+langcode: en
+status: false
+dependencies:
+  content:
+    - 'block_content:basic:cffde5eb-71b0-4551-a878-91c4ab4368a9'
+  module:
+    - block_content
+  theme:
+    - review_likes
+id: review_likes_sitebrand_2
+theme: review_likes
+region: header_menu_and_logo
+weight: -8
+provider: null
+plugin: 'block_content:cffde5eb-71b0-4551-a878-91c4ab4368a9'
+settings:
+  id: 'block_content:cffde5eb-71b0-4551-a878-91c4ab4368a9'
+  label: 'site brand'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

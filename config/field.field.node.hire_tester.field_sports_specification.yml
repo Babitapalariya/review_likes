@@ -1,0 +1,19 @@
+uuid: 7cfa8760-3004-4f02-b8b9-51b7ab1b7ea3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sports_specification
+    - node.type.hire_tester
+id: node.hire_tester.field_sports_specification
+field_name: field_sports_specification
+entity_type: node
+bundle: hire_tester
+label: 'Physical Sports Specification'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

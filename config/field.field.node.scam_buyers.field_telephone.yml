@@ -1,0 +1,21 @@
+uuid: 403f0e9f-b1c4-4ca2-82f1-0ead7b17fd60
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_telephone
+    - node.type.scam_buyers
+  module:
+    - telephone
+id: node.scam_buyers.field_telephone
+field_name: field_telephone
+entity_type: node
+bundle: scam_buyers
+label: 'Telephone '
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

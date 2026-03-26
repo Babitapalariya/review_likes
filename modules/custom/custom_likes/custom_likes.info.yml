@@ -1,0 +1,7 @@
+name: 'Custom Likes'
+type: module
+description: 'AJAX like/dislike system for nodes.'
+core_version_requirement: ^9 || ^10
+package: Custom
+dependencies:
+  - node

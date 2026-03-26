@@ -1,0 +1,41 @@
+uuid: a104f210-aa80-4dc4-b520-11dd0f0308ce
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.discount.field_buyer_username
+    - field.field.node.discount.field_comment_text
+    - field.field.node.discount.field_expiry_date
+    - field.field.node.discount.field_external_id
+    - field.field.node.discount.field_filter
+    - field.field.node.discount.field_legal_business_name
+    - field.field.node.discount.field_terms_and_conditions
+    - node.type.discount
+  module:
+    - user
+id: node.discount.full
+targetEntityType: node
+bundle: discount
+mode: full
+content:
+  field_filter:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_buyer_username: true
+  field_comment_text: true
+  field_expiry_date: true
+  field_external_id: true
+  field_legal_business_name: true
+  field_terms_and_conditions: true

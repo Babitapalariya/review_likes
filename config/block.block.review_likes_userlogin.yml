@@ -1,0 +1,25 @@
+uuid: 16243bd4-84ae-4145-9d3f-cbddd70b95ab
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+    - user
+  theme:
+    - review_likes
+id: review_likes_userlogin
+theme: review_likes
+region: user_login
+weight: -17
+provider: null
+plugin: user_login_block
+settings:
+  id: user_login_block
+  label: 'User login'
+  label_display: '0'
+  provider: user
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: /sign-in

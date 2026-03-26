@@ -1,0 +1,19 @@
+uuid: 1982cf0d-1631-476a-a90c-e305a0dcc688
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_buyer_username
+    - node.type.gift
+id: node.gift.field_buyer_username
+field_name: field_buyer_username
+entity_type: node
+bundle: gift
+label: 'Buyer Username'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

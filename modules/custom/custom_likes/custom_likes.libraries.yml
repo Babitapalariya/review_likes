@@ -1,0 +1,8 @@
+like:
+  version: 1.x
+  js:
+    js/like.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/jquery.once  # Add this line to make sure .once() is available.

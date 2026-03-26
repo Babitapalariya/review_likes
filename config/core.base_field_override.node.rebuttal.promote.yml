@@ -1,0 +1,22 @@
+uuid: 838b4fa7-3d8c-4d5c-a4db-711b7cdb5e10
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.rebuttal
+id: node.rebuttal.promote
+field_name: promote
+entity_type: node
+bundle: rebuttal
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

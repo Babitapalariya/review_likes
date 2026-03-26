@@ -1,0 +1,19 @@
+uuid: 7f357d0a-1434-434d-adb7-cd9063aa9ee7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_coupon_code
+    - paragraphs.paragraphs_type.business_social_media
+id: paragraph.business_social_media.field_coupon_code
+field_name: field_coupon_code
+entity_type: paragraph
+bundle: business_social_media
+label: 'Platform Name'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

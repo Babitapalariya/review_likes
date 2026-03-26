@@ -1,0 +1,18 @@
+uuid: 84e7dde0-aa94-42ca-b7d9-b063fedf0b47
+langcode: en
+status: false
+dependencies:
+  theme:
+    - review_likes
+id: review_likes_customcommentblock
+theme: review_likes
+region: content
+weight: 0
+provider: null
+plugin: comment_block
+settings:
+  id: comment_block
+  label: 'Custom Comment Block'
+  label_display: visible
+  provider: custom_comment_module
+visibility: {  }

@@ -1,0 +1,31 @@
+uuid: b98ccb38-9d70-4fe1-8f29-b121fa446c21
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_platform_link
+    - node.type.marchant_products
+    - paragraphs.paragraphs_type.platform_link
+  module:
+    - entity_reference_revisions
+id: node.marchant_products.field_platform_link
+field_name: field_platform_link
+entity_type: node
+bundle: marchant_products
+label: 'Platform Links'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      platform_link: platform_link
+    negate: 0
+    target_bundles_drag_drop:
+      platform_link:
+        weight: 2
+        enabled: true
+field_type: entity_reference_revisions

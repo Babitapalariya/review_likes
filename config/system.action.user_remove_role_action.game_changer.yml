@@ -1,0 +1,14 @@
+uuid: 66a40dff-5945-4ab6-9f33-266c2dafe2fb
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.game_changer
+  module:
+    - user
+id: user_remove_role_action.game_changer
+label: 'Remove the Game changer role from the selected user(s)'
+type: user
+plugin: user_remove_role_action
+configuration:
+  rid: game_changer

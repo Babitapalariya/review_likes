@@ -1,0 +1,9 @@
+services:
+  access_check.otp:
+    class: Drupal\mobile_otp\Access\OtpAccessCheck
+    tags:
+      - { name: access_check, applies_to: _otp_access }
+
+  mobile_otp.service:
+    class: Drupal\mobile_otp\Services\MobileOtpService
+    arguments: ['@database', '@datetime.time']

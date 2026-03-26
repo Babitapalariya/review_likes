@@ -1,0 +1,18 @@
+uuid: b2ca849f-c3d4-47ff-b4d3-26089a1cac67
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Comment Entry'
+type: comment_entry
+description: null
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

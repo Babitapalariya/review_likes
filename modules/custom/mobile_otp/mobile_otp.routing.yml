@@ -1,0 +1,34 @@
+mobile_otp.verify:
+  path: '/mobile-otp/verify/{mobile_number}/{form_id}'
+  defaults:
+    _title: 'Mobile OTP Verification'
+    _controller: '\Drupal\mobile_otp\Controller\MobileOtpController::verify'
+    form_id: 'default'
+  requirements:
+    _permission: 'access content'
+
+mobile_otp.settings:
+  path: '/admin/config/system/mobile-otp'
+  defaults:
+    _form: '\Drupal\mobile_otp\Form\MobileOtpSettingsForm'
+    _title: 'Mobile OTP Settings'
+  requirements:
+    _permission: 'administer site configuration'
+
+mobile_otp.generate:
+  path: '/mobile-otp/generate'
+  defaults:
+    _controller: '\Drupal\mobile_otp\Controller\MobileOtpController::generateOtp'
+  requirements:
+    _permission: 'access content'
+  options:
+    methods: [POST]
+
+mobile_otp.verify_api:
+  path: '/mobile-otp/verify'
+  defaults:
+    _controller: '\Drupal\mobile_otp\Controller\MobileOtpController::verifyOtp'
+  requirements:
+    _permission: 'access content'
+  options:
+    methods: [POST]

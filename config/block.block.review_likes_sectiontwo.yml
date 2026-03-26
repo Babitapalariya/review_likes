@@ -1,0 +1,30 @@
+uuid: a365ff7a-abc5-4e91-9bb5-8a744267ece4
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:3f983e2f-40e9-4435-82ea-88fd609cc5d8'
+  module:
+    - block_content
+    - system
+  theme:
+    - review_likes
+id: review_likes_sectiontwo
+theme: review_likes
+region: content
+weight: -19
+provider: null
+plugin: 'block_content:3f983e2f-40e9-4435-82ea-88fd609cc5d8'
+settings:
+  id: 'block_content:3f983e2f-40e9-4435-82ea-88fd609cc5d8'
+  label: 'section two'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

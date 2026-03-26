@@ -1,0 +1,29 @@
+uuid: de99b21b-1288-48db-8f60-6333b3443e43
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_filter
+    - node.type.hire_tester
+    - taxonomy.vocabulary.testing_type
+id: node.hire_tester.field_filter
+field_name: field_filter
+entity_type: node
+bundle: hire_tester
+label: 'Testing Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      testing_type: testing_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: categories
+field_type: entity_reference

@@ -1,0 +1,18 @@
+uuid: 4df7618f-466a-4c5e-b9d2-44884a15797d
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Product Testing Video'
+type: product_testing_video
+description: null
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: true

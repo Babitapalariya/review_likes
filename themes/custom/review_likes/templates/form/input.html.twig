@@ -1,0 +1,86 @@
+{#
+/**
+ * @file
+ * Default theme implementation for an 'input' #type form element.
+ *
+ * Available variables:
+ * - attributes: A list of HTML attributes for the input element.
+ * - children: Optional additional rendered elements.
+ *
+ * @see template_preprocess_input()
+ *
+ * @ingroup themeable
+ */
+#}
+ 
+
+ 	  {# {{ dump(element['#id']) }} #}
+{% set form_id = element['#id'] ?? '' %}
+{% if form_id == 'edit-submit-product' %}
+  {% set updated_attributes = attributes.addClass('btn btn-default').setAttribute('value', 'Search') %}
+  <input{{ updated_attributes }} />
+  {{ children }}
+
+{% elseif form_id starts with 'edit-role-fields-user-details-password-pass1' %}
+  {% set updated_attributes = attributes.addClass('form-control mb-3').setAttribute('placeholder', 'Password') %}
+  <input{{ updated_attributes }}/>
+  {{ children }}
+
+{% elseif form_id starts with 'edit-role-fields-user-details-password-pass2' %}
+  {% set updated_attributes = attributes.addClass('form-control mb-3').setAttribute('placeholder', 'Confirm Password') %}
+  <input{{ updated_attributes }}/>
+  {{ children }}
+{% elseif form_id == 'edit-platforms-wrapper-add' %}
+<div class="row ms-1 mt-2">
+ <input{{ attributes.addClass('btn addPlatformBtn mt-2') }}/>
+  {{ children }}
+</div>
+{% elseif form_id == 'edit-image-upload' or form_id == 'edit-image-upload-button' or form_id == 'edit-image-fids' %}
+  {# <div class="col-md-5 mb-3"> #}
+    <input{{ attributes.addClass('form-control') }} />
+    {{ children }}
+  {# </div> #}
+  {% elseif form_id == 'edit-submit' %}
+  <div class="col-md-12 text-center my-4">
+  <input{{ attributes.addClass('btn', 'btn-default') }} />
+    {{ children }}
+  </div>
+  {% elseif form_id == 'edit-testified-video-1' %}
+
+  <input{{ attributes.addClass('form-check-input') }} />
+    {{ children }}
+  {% elseif form_id == 'edit-testified-video-0' %}
+
+  <input{{ attributes.addClass('form-check-input') }} />
+    {{ children }}
+     {% elseif form_id == 'edit-product-variation-1' %}
+
+  <input{{ attributes.addClass('form-check-input') }} />
+    {{ children }}
+  {% elseif form_id == 'edit-product-variation-0' %}
+
+  <input{{ attributes.addClass('form-check-input') }} />
+    {{ children }}
+    {% elseif form_id == 'edit-benchmark-1' %}
+     <input{{ attributes }} />
+    {{ children }}
+    {% elseif form_id == 'edit-coupon-expiry-date' %}
+     <input{{ attributes.addClass('form-control') }} />
+    {{ children }}
+    {% elseif form_id == 'edit-bundle-expiry-date' %}
+     <input{{ attributes.addClass('form-control') }} />
+    {{ children }}
+    {% elseif form_id == 'edit-attach-file-upload' %}
+     <input{{ attributes.addClass('form-control') }} />
+    {{ children }}
+    
+
+    {% elseif form_id== 'edit-submit-all-products' %}
+  <button{{ attributes.removeAttribute('value').setAttribute('type', 'submit').addClass('btn btn-default') }}>
+    <i class="bi bi-search"></i>
+  </button>
+{% else %}
+{# {{ dump(element['#id']) }} #}
+  <input{{ attributes}}/>
+  {{ children }}
+{% endif %}

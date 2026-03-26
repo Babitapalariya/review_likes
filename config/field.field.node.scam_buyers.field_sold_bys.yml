@@ -1,0 +1,19 @@
+uuid: 71f397dc-bbe6-4e54-ae5c-9bce3bb185af
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sold_bys
+    - node.type.scam_buyers
+id: node.scam_buyers.field_sold_bys
+field_name: field_sold_bys
+entity_type: node
+bundle: scam_buyers
+label: Tracking
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

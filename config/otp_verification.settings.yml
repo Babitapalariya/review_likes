@@ -1,0 +1,4 @@
+_core:
+  default_config_hash: L9Rd5bEFtPdfpplhzCCe-gAqq5h5K6CJoEnDWXWuXXA
+otp_expiry: 3600
+max_attempts: 3

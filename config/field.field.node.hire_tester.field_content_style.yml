@@ -1,0 +1,21 @@
+uuid: 8def04b9-45e8-47f0-abff-0126b650d845
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content_style
+    - node.type.hire_tester
+  module:
+    - options
+id: node.hire_tester.field_content_style
+field_name: field_content_style
+entity_type: node
+bundle: hire_tester
+label: 'Content Style'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

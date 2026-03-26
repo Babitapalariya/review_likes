@@ -1,0 +1,19 @@
+uuid: 0666e2b1-cf54-4416-b675-6c7391ad12c5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_safety_gear_other
+    - node.type.hire_tester
+id: node.hire_tester.field_safety_gear_other
+field_name: field_safety_gear_other
+entity_type: node
+bundle: hire_tester
+label: 'Safety Gear Other'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

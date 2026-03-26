@@ -1,0 +1,24 @@
+uuid: 01976744-72a7-4ed0-a459-fa364727af65
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.hire_tester
+  module:
+    - text
+id: node.hire_tester.body
+field_name: body
+entity_type: node
+bundle: hire_tester
+label: 'Special Requests'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

@@ -1,0 +1,4 @@
+services:
+  otp_verification.otp_service:
+    class: Drupal\otp_verification\Services\OtpService
+    arguments: ['@database', '@plugin.manager.mail', '@datetime.time']

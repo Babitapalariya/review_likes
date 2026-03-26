@@ -1,0 +1,19 @@
+uuid: 76933bca-0d85-4990-b224-653b1e89c7cd
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sold_bys
+    - node.type.marchant_products
+id: node.marchant_products.field_sold_bys
+field_name: field_sold_bys
+entity_type: node
+bundle: marchant_products
+label: 'Sold By'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

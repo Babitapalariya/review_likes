@@ -1,0 +1,19 @@
+uuid: ccfa031e-f820-4687-ad2c-b7db16b8a646
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_comment_text
+    - node.type.discount
+id: node.discount.field_comment_text
+field_name: field_comment_text
+entity_type: node
+bundle: discount
+label: Now
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

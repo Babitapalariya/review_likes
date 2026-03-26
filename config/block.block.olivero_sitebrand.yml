@@ -1,0 +1,25 @@
+uuid: 70c5014a-3c57-4372-a66b-f18fb1650e60
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:cffde5eb-71b0-4551-a878-91c4ab4368a9'
+  module:
+    - block_content
+  theme:
+    - olivero
+id: olivero_sitebrand
+theme: olivero
+region: header
+weight: 0
+provider: null
+plugin: 'block_content:cffde5eb-71b0-4551-a878-91c4ab4368a9'
+settings:
+  id: 'block_content:cffde5eb-71b0-4551-a878-91c4ab4368a9'
+  label: 'site brand'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

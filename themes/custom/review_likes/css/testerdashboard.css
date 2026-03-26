@@ -1,0 +1,148 @@
+:root {
+	--sidebar: 270px;
+}
+
+body {
+	font-family: "Arima", serif;
+	overflow-x: hidden;
+}
+
+.app {
+	min-height: 100vh;
+	display: grid;
+	grid-template-columns: var(--sidebar) 1fr;
+	margin: 0 auto
+}
+
+.app label {
+	font-weight: 600;
+}
+
+aside {
+	top: 0;
+	/* height: 100vh; */
+	padding: 24px 0 24px 0;
+	background: #fbfbfc;
+	border-right: 1px solid #ffd69a;
+}
+
+.brand {
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	margin-bottom: 22px
+}
+
+.brand h1 {
+	font-size: 24px;
+	margin: 0
+}
+
+nav {
+	display: flex;
+	flex-direction: column;
+}
+
+.nav-btn {
+	width: 100%;
+	display: flex;
+	align-items: center;
+	gap: 10px;
+	padding: 10px 12px;
+	color: #111521;
+	border: 1px solid transparent;
+	background: transparent;
+	cursor: pointer;
+	font-size: 16px;
+	text-align: left;
+}
+
+
+.nav-btn.active,
+.nav-btn:hover {
+	background-color: #ffa92a;
+	color: #ffffff;
+	width: 100%;
+}
+
+#contentArea h2 {
+	font-weight: 600;
+	text-decoration: underline;
+}
+
+#contentArea label {
+	font-weight: 600;
+}
+
+#contentArea textarea.form-control {
+	resize: vertical;
+}
+
+#contentArea .required::after {
+	content: "*";
+	color: red;
+	margin-left: 4px;
+}
+
+#contentArea .hint {
+	font-size: 0.9rem;
+	color: #666;
+}
+
+#contentArea h5 {
+	text-decoration: underline;
+}
+
+#contentArea thead th {
+	background: #ffa92a;
+	color: #fff;
+	font-weight: 600;
+	font-size: 1rem;
+	text-align: center;
+	padding: 12px;
+}
+
+
+#testerJobs .btn-default {
+	background-color: #0d6efd;
+	color: #fff;
+	border: none;
+	padding: 10px 25px;
+}
+
+#testerJobs .btn-default:hover {
+	background-color: #0b5ed7;
+}
+
+#testerJobs .table td,
+.table th {
+	vertical-align: middle;
+}
+
+#testerJobs .nav-tabs .nav-link.active {
+	background-color: #0d6efd !important;
+	color: #fff !important;
+	border: none !important;
+}
+
+.border-radius {
+	border-radius: 0.5rem;
+	padding: 0.25rem 1rem;
+	font-size: 0.85rem;
+}
+
+/* .pagination-section .page-item.active .page-link {
+    background-color: #ffa92a !important;
+    border-color: #ffa92a !important;
+    color: #fff !important;
+} */
+
+.testerPerformance td a{
+	text-decoration: none;
+}
+
+.hinttxt{
+	color: red;
+	font-size: 12px;
+	display: inline-block;
+}

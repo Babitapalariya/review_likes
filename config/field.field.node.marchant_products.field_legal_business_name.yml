@@ -1,0 +1,19 @@
+uuid: 9241b51b-1e33-4c49-95e7-dbe3edb1cf7e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_legal_business_name
+    - node.type.marchant_products
+id: node.marchant_products.field_legal_business_name
+field_name: field_legal_business_name
+entity_type: node
+bundle: marchant_products
+label: 'Product ID'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

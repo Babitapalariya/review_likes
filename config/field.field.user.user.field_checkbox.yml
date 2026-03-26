@@ -1,0 +1,22 @@
+uuid: 12f16284-8537-465c-b0d3-3177e67c4af3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_checkbox
+  module:
+    - user
+id: user.user.field_checkbox
+field_name: field_checkbox
+entity_type: user
+bundle: user
+label: CheckBox
+description: ''
+required: true
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

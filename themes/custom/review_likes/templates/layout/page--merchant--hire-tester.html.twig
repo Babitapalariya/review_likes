@@ -1,0 +1,21 @@
+<header class="">{{ page.header }}</header>
+
+{% if 'merchant' in user.roles %}
+<div class="app" data-app="review-likes-dashboard">
+  <!-- Sidebar -->
+  {{ page.sidebar }}
+  <!-- Main Content -->
+  <main>
+    <section id="contentArea">
+      <!-- Add Product Form -->
+      <div class="view" id="add-products" style="display:block;">
+      <section class="container col-md-8 mt-5 hiretesterform">
+      {{ page.content }}
+      </section>
+      </div>
+    </section>
+  </main>
+</div>
+{% else %}
+  <p>You don’t have permission to see this data.</p>
+{% endif %}

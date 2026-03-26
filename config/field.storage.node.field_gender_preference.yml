@@ -1,0 +1,36 @@
+uuid: aff337f2-6aaf-48ac-8e1c-927cacc9447c
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_gender_preference
+field_name: field_gender_preference
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: no_preference
+      label: 'No Preference'
+    -
+      value: male
+      label: Male
+    -
+      value: female
+      label: Female
+    -
+      value: non_binary
+      label: Non-binary
+    -
+      value: other
+      label: Other
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 8
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

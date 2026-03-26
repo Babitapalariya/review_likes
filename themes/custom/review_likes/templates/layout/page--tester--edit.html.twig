@@ -1,0 +1,22 @@
+<header class="">{{ page.header }}</header>
+
+{% if 'tester' in user.roles %}
+	<div
+		class="app testerdashboard" data-app="review-likes-dashboard">
+		<!-- Sidebar -->
+		{{ page.sidebar }}
+		<main>
+
+			<section id="contentArea">
+				<!-- Add Product Form -->
+				<div class="view" id="add-products" style="display:block;">
+                <div class="container my-5">
+					{{ page.content }}
+                </div>
+                </div>
+            </section>
+        </main>
+    </div>
+{% else %}
+  <p>You don’t have permission to see this data.</p>
+{% endif %}

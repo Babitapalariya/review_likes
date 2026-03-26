@@ -1,0 +1,10 @@
+uuid: 845b7157-0f2a-4aab-940f-fcfd1d93d012
+langcode: en
+status: true
+dependencies: {  }
+id: business_social_media
+label: 'Business Social media'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

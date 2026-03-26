@@ -1,0 +1,22 @@
+uuid: 53c20733-d73a-45b1-9b28-e94276001c5b
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.comment_entry.field_comment_text
+    - node.type.comment_entry
+  module:
+    - user
+id: node.comment_entry.teaser
+targetEntityType: node
+bundle: comment_entry
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_comment_text: true

@@ -1,0 +1,25 @@
+uuid: f3877050-6e97-4bb4-9503-c52f8e0799b4
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:image_block:6fec825f-e6c4-4e9f-9ec2-4206469873dd'
+  module:
+    - block_content
+  theme:
+    - review_likes
+id: review_likes_signin_3
+theme: review_likes
+region: user_login
+weight: -18
+provider: null
+plugin: 'block_content:6fec825f-e6c4-4e9f-9ec2-4206469873dd'
+settings:
+  id: 'block_content:6fec825f-e6c4-4e9f-9ec2-4206469873dd'
+  label: 'sign in'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

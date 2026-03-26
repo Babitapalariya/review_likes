@@ -1,0 +1,31 @@
+otp_verification.verify:
+   path: '/otp/verify'
+   defaults:
+    _controller: '\Drupal\otp_verification\Controller\OtpController::verify'
+    _format: json
+   requirements:
+    _access: 'TRUE'
+    _format: json
+otp_verification.form:
+  path: '/otp/verification'
+  defaults:
+    _form: '\Drupal\otp_verification\Form\OtpForm'
+    _title: 'Verify OTP'
+  requirements:
+    _access: 'TRUE'
+
+otp_verification.resend:
+  path: '/otp/resend'
+  defaults:
+    _controller: '\Drupal\otp_verification\Controller\OtpController::resend'
+  requirements:
+    _access: 'TRUE'
+
+otp_verification.send:
+  path: '/otp/send'
+  defaults:
+    _controller: '\Drupal\otp_verification\Controller\OtpController::sendOtp'
+    _format: json
+  requirements:
+    _access: 'TRUE'
+    

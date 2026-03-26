@@ -1,0 +1,9 @@
+name: Role Based Registration
+type: module
+description: Custom role-based user registration with profile completion
+core_version_requirement: ^10
+package: Custom
+dependencies:
+  - telephone
+  - drupal:node
+  - drupal:file

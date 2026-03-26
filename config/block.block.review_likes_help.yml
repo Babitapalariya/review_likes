@@ -1,0 +1,22 @@
+uuid: 37d1f964-697c-43d4-bc61-5126d9c48f4e
+langcode: en
+status: false
+dependencies:
+  module:
+    - help
+  theme:
+    - review_likes
+_core:
+  default_config_hash: VfPFqqxfkomud5CO8DUijw85QIl9GIxh_nIxLOYESxg
+id: review_likes_help
+theme: review_likes
+region: header
+weight: -1
+provider: null
+plugin: help_block
+settings:
+  id: help_block
+  label: Help
+  label_display: '0'
+  provider: help
+visibility: {  }

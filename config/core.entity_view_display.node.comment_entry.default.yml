@@ -1,0 +1,21 @@
+uuid: 0c951dfd-b981-4958-ab55-ba47ced043d6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.comment_entry.field_comment_text
+    - node.type.comment_entry
+  module:
+    - user
+id: node.comment_entry.default
+targetEntityType: node
+bundle: comment_entry
+mode: default
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_comment_text: true

@@ -1,0 +1,7 @@
+uuid: 0016dc0c-ee16-40e0-85cf-e310dd25d10f
+langcode: en
+status: true
+dependencies: {  }
+name: col_md_5
+label: col-md-5
+effects: {  }

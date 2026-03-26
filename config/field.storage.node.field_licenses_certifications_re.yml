@@ -1,0 +1,33 @@
+uuid: 3099c60d-d3e3-487c-81bd-54e40a03bdff
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_licenses_certifications_re
+field_name: field_licenses_certifications_re
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: driver_s_license
+      label: "Driver's License"
+    -
+      value: commercial_license_cdl
+      label: 'Commercial License (CDL)'
+    -
+      value: drone_pilot
+      label: 'Drone Pilot'
+    -
+      value: other
+      label: 'Other:'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 10
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

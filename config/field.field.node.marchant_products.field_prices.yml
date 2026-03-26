@@ -1,0 +1,24 @@
+uuid: e392b5b0-0850-4aed-b624-e5a732312c77
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_prices
+    - filter.format.full_html
+    - node.type.marchant_products
+  module:
+    - text
+id: node.marchant_products.field_prices
+field_name: field_prices
+entity_type: node
+bundle: marchant_products
+label: keywords
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+field_type: text_long

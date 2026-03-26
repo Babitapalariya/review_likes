@@ -1,0 +1,82 @@
+{#
+  Custom select.html.twig override
+  This renders all <select> fields, and applies special logic for role dropdown
+#}
+
+{% set id = element['#id'] ?? '' %}
+{% set name = element['#name'] ?? '' %}
+{% set title = element['#title'] ?? 'Select Option' %}
+{% set is_multiple = element['#multiple'] is defined and element['#multiple'] %}
+{% set classes = element['#attributes'].class ?? ['mt-3', 'form-element--type-select-multiple'] %}
+{% set placeholder = element['#attributes']['data-placeholder'] ?? title %}
+
+
+{% if id == 'edit-select-user-role' %}
+<div class="col-md-4 mb-4">
+  <select
+    id="{{ id }}"
+    name="{{ name }}{{ is_multiple ? '[]' }}"
+    class="{{ classes|join(' ') }}"
+    data-search="true"
+    data-placeholder="{{ placeholder }}"
+    {% if is_multiple %}multiple{% endif %}
+  >
+    {% for option in options %}
+      {% if option.type == 'option' %}
+        <option value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }}>{{ option.label }}</option>
+      {% elseif option.type == 'optgroup' %}
+        <optgroup label="{{ option.label }}">
+          {% for sub_option in option.options %}
+            <option value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }}>{{ sub_option.label }}</option>
+          {% endfor %}
+        </optgroup>
+      {% endif %}
+    {% endfor %}
+  </select>
+</div>
+{% elseif id == 'edit-discount-type' %}
+<div class="col-12 col-md-4 mb-3">
+ <select
+    id="{{ id }}"
+    name="{{ name }}{{ is_multiple ? '[]' }}"
+    class="{{ classes|join(' ') }}"
+    data-search="true"
+    data-placeholder="{{ placeholder }}"
+    {% if is_multiple %}multiple{% endif %}
+  >
+    {% for option in options %}
+      {% if option.type == 'option' %}
+        <option value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }}>{{ option.label }}</option>
+      {% elseif option.type == 'optgroup' %}
+        <optgroup label="{{ option.label }}">
+          {% for sub_option in option.options %}
+            <option value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }}>{{ sub_option.label }}</option>
+          {% endfor %}
+        </optgroup>
+      {% endif %}
+    {% endfor %}
+  </select>
+</div>
+
+{% else %}
+  <select
+    id="{{ id }}"
+    name="{{ name }}{{ is_multiple ? '[]' }}"
+    class="{{ classes|join(' ') }}"
+    data-search="true"
+    data-placeholder="{{ placeholder }}"
+    {% if is_multiple %}multiple{% endif %}
+  >
+    {% for option in options %}
+      {% if option.type == 'option' %}
+        <option value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }}>{{ option.label }}</option>
+      {% elseif option.type == 'optgroup' %}
+        <optgroup label="{{ option.label }}">
+          {% for sub_option in option.options %}
+            <option value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }}>{{ sub_option.label }}</option>
+          {% endfor %}
+        </optgroup>
+      {% endif %}
+    {% endfor %}
+  </select>
+{% endif %}

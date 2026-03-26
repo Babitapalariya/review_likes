@@ -1,0 +1,19 @@
+uuid: 25e468e1-8784-4b92-ba3e-8b4fc0d18d6e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_testing_type_other
+    - node.type.hire_tester
+id: node.hire_tester.field_testing_type_other
+field_name: field_testing_type_other
+entity_type: node
+bundle: hire_tester
+label: 'Testing Type Other'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

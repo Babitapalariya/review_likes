@@ -1,0 +1,22 @@
+uuid: 0a58fe7f-1761-42ac-a221-13d90fa4d74c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.marchant_products
+    - node.type.tester_account
+    - node.type.tester_profile
+  module:
+    - node
+    - tester_dashboard
+id: tester
+label: Tester
+weight: 6
+is_admin: null
+permissions:
+  - 'access tester dashboard'
+  - 'delete any marchant_products content'
+  - 'delete any tester_account content'
+  - 'delete any tester_profile content'
+  - 'edit any tester_account content'
+  - 'edit any tester_profile content'

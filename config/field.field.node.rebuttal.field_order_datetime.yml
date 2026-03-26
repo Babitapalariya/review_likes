@@ -1,0 +1,21 @@
+uuid: 43c406a0-d98a-436e-bfd1-2a35403270dc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_order_datetime
+    - node.type.rebuttal
+id: node.rebuttal.field_order_datetime
+field_name: field_order_datetime
+entity_type: node
+bundle: rebuttal
+label: 'Order Datetime'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1758710728
+default_value_callback: ''
+settings: {  }
+field_type: timestamp

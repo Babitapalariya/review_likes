@@ -1,0 +1,19 @@
+uuid: 37679e6d-8e9d-4152-80cb-82b1eb65eb17
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_languages_spoken_other
+    - node.type.hire_tester
+id: node.hire_tester.field_languages_spoken_other
+field_name: field_languages_spoken_other
+entity_type: node
+bundle: hire_tester
+label: 'Languages Spoken Other'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

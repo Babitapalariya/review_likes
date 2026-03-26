@@ -1,0 +1,19 @@
+uuid: a5604430-8866-419a-95fc-e30df8891241
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_platform_other
+    - node.type.tester_profile
+id: node.tester_profile.field_platform_other
+field_name: field_platform_other
+entity_type: node
+bundle: tester_profile
+label: 'Other Language'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

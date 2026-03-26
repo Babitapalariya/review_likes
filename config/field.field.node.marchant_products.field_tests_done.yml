@@ -1,0 +1,23 @@
+uuid: aee7f457-55a9-45dc-926b-e96d9fb38e9a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tests_done
+    - node.type.marchant_products
+id: node.marchant_products.field_tests_done
+field_name: field_tests_done
+entity_type: node
+bundle: marchant_products
+label: 'Tests Done'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  prefix: ''
+  suffix: ''
+field_type: integer

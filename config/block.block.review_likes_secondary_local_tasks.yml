@@ -1,0 +1,22 @@
+uuid: 5b15f4ed-ba76-449e-b0e0-157537409d41
+langcode: en
+status: false
+dependencies:
+  theme:
+    - review_likes
+_core:
+  default_config_hash: ydSxdq7R66I8UMC460rOzlfzvlUL4VRbdwc6z9DWaUI
+id: review_likes_secondary_local_tasks
+theme: review_likes
+region: header
+weight: -3
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Secondary tabs'
+  label_display: '0'
+  provider: core
+  primary: false
+  secondary: true
+visibility: {  }

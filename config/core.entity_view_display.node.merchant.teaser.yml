@@ -1,0 +1,34 @@
+uuid: 8ac4c767-e219-4f5f-9811-e4720484c319
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.merchant.field_brand_name
+    - field.field.node.merchant.field_external_id
+    - field.field.node.merchant.field_legal_business_name
+    - field.field.node.merchant.field_platform_link
+    - field.field.node.merchant.field_platform_links
+    - field.field.node.merchant.field_product_url
+    - field.field.node.merchant.field_store_link
+    - node.type.merchant
+  module:
+    - user
+id: node.merchant.teaser
+targetEntityType: node
+bundle: merchant
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_brand_name: true
+  field_external_id: true
+  field_legal_business_name: true
+  field_platform_link: true
+  field_platform_links: true
+  field_product_url: true
+  field_store_link: true

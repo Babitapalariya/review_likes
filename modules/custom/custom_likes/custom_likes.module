@@ -1,0 +1,110 @@
+<?php
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\node\Entity\Node;
+use Drupal\Core\Url;
+use Symfony\Component\HttpFoundation\RequestStack;
+
+/**
+ * Implements hook_page_attachments().
+ */
+function custom_likes_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'custom_likes/like';
+}
+/**
+ * Implements hook_preprocess_HOOK() for views-view-fields templates.
+ */
+/**
+ * Implements hook_preprocess_HOOK() for views-view-fields templates.
+ */
+function custom_likes_preprocess_views_view_fields(array &$variables) {
+  
+  // Check if we are on the 'product' view and get the nid.
+  if ($variables['view']->id() == 'product') {
+    // Get the node id (nid) from the row being processed.
+    $nid = $variables['row']->nid;
+
+    // Query to get the like count for this node.
+    $count = \Drupal::database()->select('custom_likes', 'cl')
+      ->condition('nid', $nid)
+      ->countQuery()
+      ->execute()
+      ->fetchField();
+
+    // Add the like count to the template variables.
+    $variables['custom_likes_count'] = $count;
+
+    // Check if the user has liked this node.
+    $uid = \Drupal::currentUser()->id();
+    $liked = \Drupal::database()->select('custom_likes', 'cl')
+      ->fields('cl', ['id'])
+      ->condition('nid', $nid)
+      ->condition('uid', $uid)
+      ->execute()
+      ->fetchField();
+
+    // Add whether the current user has liked this node to the template variables.
+    $variables['user_has_liked'] = !empty($liked);
+ 
+    //latest comments
+      $query = \Drupal::database()->select('custom_comments', 'cc')
+    ->fields('cc', ['uid', 'comment', 'timestamp'])
+    ->condition('nid', $nid)  // Ensure to filter by node ID if needed
+    ->orderBy('timestamp', 'DESC') // Sort by timestamp in descending order
+    ->range(0, 1); // Limit to only the latest comment
+  
+    // Execute the query and fetch the result
+    $result = $query->execute()->fetchObject();
+
+    $variables['latest_comment'] = $result;
+
+
+
+    $count = \Drupal::database()->select('custom_comments', 'cl')
+      ->condition('nid', $nid)
+      ->countQuery()
+      ->execute()
+      ->fetchField();
+
+    // Add the like count to the template variables.
+    $variables['custom_comment_count'] = $count;
+
+    // Get share count
+$share_count = \Drupal::database()->select('custom_shares', 'cs')
+  ->condition('nid', $nid)
+  ->countQuery()
+  ->execute()
+  ->fetchField();
+
+$variables['custom_share_count'] = $share_count;
+
+
+  }
+}
+
+
+// function review_likes_preprocess_page(&$variables) {
+//   // Get the current path to redirect back to it after login
+//   $current_path = \Drupal::service('path.current')->getPath();
+//   $login_url = Url::fromRoute('user.login', [], [
+//     'query' => ['destination' => $current_path],
+//   ])->toString();
+
+//   $variables['#attached']['drupalSettings']['customLikes'] = [
+//     'isUserLoggedIn' => \Drupal::currentUser()->isAuthenticated(),
+//     'loginUrl' => $login_url,
+//   ];
+// }
+function custom_likes_preprocess_page(array &$variables) {
+$request = \Drupal::service('request_stack')->getCurrentRequest();
+$current_uri = $request->getRequestUri(); // This includes the alias like /products/some-product
+  $login_url = Url::fromRoute('user.login', [], [
+  'query' => ['destination' => $current_uri],
+])->toString();
+
+
+  $variables['#attached']['drupalSettings']['customLikes'] = [
+    'isUserLoggedIn' => \Drupal::currentUser()->isAuthenticated(),
+    'loginUrl' => $login_url,
+  ];
+}

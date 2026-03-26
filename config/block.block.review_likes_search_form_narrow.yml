@@ -1,0 +1,23 @@
+uuid: e3407fa0-d047-4761-9c14-f6a024ed2e52
+langcode: en
+status: false
+dependencies:
+  module:
+    - search
+  theme:
+    - review_likes
+_core:
+  default_config_hash: yEBET0cqDbk8dkWzaJw-8CKft0961VBflsISoSR6Lj8
+id: review_likes_search_form_narrow
+theme: review_likes
+region: primary_menu
+weight: -4
+provider: null
+plugin: search_form_block
+settings:
+  id: search_form_block
+  label: 'Search form (narrow)'
+  label_display: '0'
+  provider: search
+  page_id: ''
+visibility: {  }

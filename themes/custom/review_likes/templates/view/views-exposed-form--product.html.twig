@@ -1,0 +1,27 @@
+<!-- Top Row: Search + Button + Sort By (ALL inline) -->
+  <div class="row mb-5">
+    {{form.field_products_target_id}}
+ 
+
+  
+   <div class="col-md-8 search-section">
+    <div class="form-inline my-2 my-lg-0 d-flex">
+  {{ form.form_build_id }}
+  {{ form.form_token }}
+  {{ form.form_id }}
+
+  {# Remove label and set placeholder #}
+ 
+  <!-- Search Input -->
+  {{ form.search|without('#title') }}
+
+  <button class="btn btn-default" type="submit">Search</button>
+
+
+  <!-- Sort Dropdown -->
+
+</div>
+</div>
+</div>
+                     
+  {# Render only max field and hide it, we will control it via slider #}

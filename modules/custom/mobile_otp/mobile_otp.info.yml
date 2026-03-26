@@ -1,0 +1,7 @@
+name: 'Mobile OTP Verification'
+description: 'Provides mobile number OTP verification functionality.'
+package: 'Custom'
+type: module
+core_version_requirement: ^10
+dependencies:
+  - user

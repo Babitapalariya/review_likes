@@ -1,0 +1,64 @@
+<?php
+
+use Drupal\field\Entity\FieldStorageConfig;
+use Drupal\field\Entity\FieldConfig;
+
+/**
+ * Implements hook_install().
+ */
+function interactions_install() {
+  // Define fields for the 'interaction' entity.
+
+  // Add 'user_id' field (reference to user).
+  if (!FieldStorageConfig::loadByName('interaction', 'user_id')) {
+    FieldStorageConfig::create([
+      'field_name' => 'user_id',
+      'entity_type' => 'interaction',
+      'type' => 'entity_reference',
+      'settings' => [
+        'target_type' => 'user',
+      ],
+      'cardinality' => 1,
+    ])->save();
+  }
+
+  // Add 'node_id' field (reference to node).
+  if (!FieldStorageConfig::loadByName('interaction', 'node_id')) {
+    FieldStorageConfig::create([
+      'field_name' => 'node_id',
+      'entity_type' => 'interaction',
+      'type' => 'entity_reference',
+      'settings' => [
+        'target_type' => 'node',
+      ],
+      'cardinality' => 1,
+    ])->save();
+  }
+
+  // Add 'action' field (list of actions: like, comment, share).
+  if (!FieldStorageConfig::loadByName('interaction', 'action')) {
+    FieldStorageConfig::create([
+      'field_name' => 'action',
+      'entity_type' => 'interaction',
+      'type' => 'list_string',
+      'settings' => [
+        'allowed_values' => [
+          'like' => 'Like',
+          'comment' => 'Comment',
+          'share' => 'Share',
+        ],
+      ],
+      'cardinality' => 1,
+    ])->save();
+  }
+
+  // Optionally add 'created' timestamp field.
+  if (!FieldStorageConfig::loadByName('interaction', 'created')) {
+    FieldStorageConfig::create([
+      'field_name' => 'created',
+      'entity_type' => 'interaction',
+      'type' => 'created',
+    ])->save();
+  }
+}
+

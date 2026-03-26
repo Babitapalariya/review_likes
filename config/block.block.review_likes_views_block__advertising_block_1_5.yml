@@ -1,0 +1,24 @@
+uuid: d7fca6ee-2622-4a35-b75d-665b248e602f
+langcode: en
+status: true
+dependencies:
+  config:
+    - views.view.advertising
+  module:
+    - views
+  theme:
+    - review_likes
+id: review_likes_views_block__advertising_block_1_5
+theme: review_likes
+region: content_section
+weight: -17
+provider: null
+plugin: 'views_block:advertising-block_1'
+settings:
+  id: 'views_block:advertising-block_1'
+  label: ''
+  label_display: '0'
+  provider: views
+  views_label: ''
+  items_per_page: none
+visibility: {  }

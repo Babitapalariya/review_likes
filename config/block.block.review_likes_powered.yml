@@ -1,0 +1,22 @@
+uuid: 0065094b-937a-43af-b1a7-69ee981b4df7
+langcode: en
+status: false
+dependencies:
+  module:
+    - system
+  theme:
+    - review_likes
+_core:
+  default_config_hash: eYL19CLDyinGTWYQfBD1DswWzglEotE_kHnHx3AxTXM
+id: review_likes_powered
+theme: review_likes
+region: header
+weight: 0
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

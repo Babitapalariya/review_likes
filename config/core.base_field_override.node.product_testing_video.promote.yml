@@ -1,0 +1,22 @@
+uuid: 01680809-d285-4a80-ac8d-888b1e96f2d2
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.product_testing_video
+id: node.product_testing_video.promote
+field_name: promote
+entity_type: node
+bundle: product_testing_video
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

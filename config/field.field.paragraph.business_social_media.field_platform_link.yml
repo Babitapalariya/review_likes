@@ -1,0 +1,19 @@
+uuid: 6ec1626b-618e-484d-8583-eac593bc6e00
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_platform_link
+    - paragraphs.paragraphs_type.business_social_media
+id: paragraph.business_social_media.field_platform_link
+field_name: field_platform_link
+entity_type: paragraph
+bundle: business_social_media
+label: 'Platform Link'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

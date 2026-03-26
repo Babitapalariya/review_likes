@@ -1,0 +1,294 @@
+<header class="">{{ page.header }}</header>
+
+{% if 'merchant' in user.roles %}
+<div class="app" data-app="review-likes-dashboard">
+  <!-- Sidebar -->
+ {{ page.sidebar }}
+  <!-- Main Content -->
+  <main>
+
+  <section id="contentArea">
+      <!-- Add Product Form -->
+      <div class="view" id="add-products" style="display:block;">
+  {{ page.content }}
+    
+        {# <form action="">
+          <h3 class="mb-4 text-center">Extract Product Details From Platform</h3>
+          <div class="row justify-content-center align-items-baseline mb-3">
+            <div class="col-md-6 mb-3">
+              <input type="text" id="elink" class="form-control" placeholder="Provide the link" required="" />
+            </div>
+            <div class="col-md-2">
+              <button type="button" class="btn btn-default">Extract Data</button>
+            </div>
+            <span class="g-title text-center"><i>Please provide the Amazon, ebay, flipkart links only to extract product data</i></span>
+          </div>
+          <div class="row justify-content-center">
+            <h4 class="mb-4 text-center">Product Information</h4>
+            <div class="row justify-content-center">
+              <div class="col-md-10">
+                <div id="adminplatform" class="mb-3 adminplatform">
+                  <div class="platform-wrapper" id="adminplatformBlock-1">
+                    <label for="platform-1" class="required mb-3">Online Selling Platforms (links)</label>
+                    <div class="row">
+                      <div class="col-md-6">
+                        <div class="platform-section" id="adminplatformSection-1">
+                          <div class="d-flex storelink-section">
+                            <input type="text" id="platform-1" class="form-control me-4" placeholder="add more link same product" required="" />
+                            <button type="button" class="btn danger remove-btn">Remove</button>
+                          </div>
+                        </div>
+                      </div>
+                      <div class="col-md-2">
+                        <input type="text" id="platformprice-1" class="form-control me-4" placeholder="Price" required="" />
+                      </div>
+                      <div class="col-md-4">
+                        <input type="text" id="couponcode-1" class="form-control me-4" placeholder="Coupon Code" required="" />
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row ms-1 mt-2">
+                  <button type="button" class="btn addPlatformBtn mt-2" id="addPlatformBtn">+ Add Platform Link</button>
+                  <span class="hint mt-2 mb-3">Add up to 20 Platform Links you operate under.</span>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-10 mb-3">
+              <label for="affiliatedlink" class="required mb-2">Affiliated Link</label>
+              <input type="text" id="affiliatedlink" class="form-control mb-3" placeholder="Product Title" required="" />
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="ptitle" class="required mb-2">Product Title</label>
+              <input type="text" id="ptitle" class="form-control mb-3" placeholder="Product Title" required="" />
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="upload-video" class="required mb-2">Upload Image</label>
+              <div class="input-group">
+                <input type="file" class="form-control" id="upload-video" />
+                <button type="button" class="btn btn-outline-danger" id="remove-video">Remove</button>
+              </div>
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="pdesc" class="required mb-2">Product Description</label>
+              <textarea class="form-control" id="pdesc" rows="3"></textarea>
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="pricerange" class="required mb-2">Price</label>
+              <input type="text" id="pricerange" class="form-control mb-3" placeholder="Price" required="" />
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="soldby" class="required mb-2">Sold By</label>
+              <input type="text" id="soldby" class="form-control mb-3" placeholder="Sold By" required="" />
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="prating" class="required mb-2">Rating</label>
+              <input type="text" id="prating" class="form-control mb-3" placeholder="Rating" required="" />
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="ntests" class="required mb-2">No.of tests done</label>
+              <input type="text" id="ntests" class="form-control mb-3" placeholder="No.of tests done" required="" />
+            </div>
+            <div class="col-md-5 mb-3">
+              <label for="pkeywords" class="required mb-2">Keywords</label>
+              <textarea class="form-control" id="pkeywords" rows="2"></textarea>
+            </div>
+          </div>
+          <div class="col-md-12 text-center my-4">
+            <button type="button" class="btn btn-default">Add Product</button>
+          </div>
+        </form> #}
+      </div>
+      <!-- Profile -->
+      {# <div class="view" id="profile">
+        <div class="container">
+          <h2 class="mb-5 text-center">Merchant Details</h2>
+          <form action="">
+            <div class="row">
+              <div class="mb-4">
+                <h4>Business Details</h4>
+              </div>
+              <div class="col-md-6">
+                <label for="blname" class="required mb-2">Legal Business Name</label>
+                <input type="text" id="blname" class="form-control mb-3" placeholder="Legal Business Name" required="" />
+              </div>
+              <div class="col-md-6 brand-section" id="brandSection-1">
+                <div id="brandContainer">
+                  <div class="row brand-section" id="brandSection-1">
+                    <div class="col-md-8">
+                      <label for="Bnames-1" class="required mb-2">Brand Name(s)</label>
+                      <input type="text" id="Bnames-1" class="form-control mb-3" placeholder="Brand Name(s)" required="" />
+                    </div>
+                    <div class="col-md-4">
+                      <button type="button" class="btn danger mt-4 remove-btn">Remove</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <button type="button" class="btn addBrandBtn mt-2 ms-2" id="addBrandBtn">+ Add Brand</button>
+                  <span class="hint mt-2 mb-3">Add up to 3 brands you operate under.</span>
+                </div>
+              </div>
+              <div class="col-md-12 mb-3">
+                <label for="stlink" class="required mb-2">Store Link (primary marketplace URL)</label>
+                <input type="text" id="stlink" class="form-control me-4" placeholder="Store Link" required="" />
+              </div>
+              <div class="col-md-12">
+                <div id="adminPlatformContainer" class="mb-3">
+                  <div class="adminplatform-section">
+                    <label class="required mb-2">Online Selling Platforms (links)</label>
+                    <div class="d-flex storelink-section">
+                      <input type="text" class="form-control me-4" placeholder="Platform Link" required="" />
+                      <button type="button" class="btn danger remove-btn">Remove</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="row ms-1 mt-2">
+                  <button type="button" class="btn adminaddPlatformBtn mt-2" id="adminaddPlatformBtn">+ Add Platform Link</button>
+                  <span class="hint mt-2 mb-3">Add up to 20 Platform Links you operate under.</span>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div id="socialContainer" class="mb-3">
+                  <div class="social-section item" id="socialSection-1">
+                    <div class="row">
+                      <div class="col-md-4">
+                        <label class="mb-2">Platform Name</label>
+                        <input type="text" id="socialPlatform-1" name="socialPlatform[]" class="form-control mb-2" placeholder="Facebook, Instagram, YouTube..." required="" />
+                      </div>
+                      <div class="col-md-6">
+                        <label class="mb-2">Page/Profile Link</label>
+                        <input type="url" id="socialLink-1" name="socialLink[]" class="form-control mb-2" placeholder="https://facebook.com/yourpage" required="" />
+                      </div>
+                      <div class="col-md-2">
+                        <button type="button" class="btn danger remove-btn mt-4">Remove</button>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <div class="row">
+                  <button type="button" class="btn addSocialBtn mt-2 ms-2" id="addSocialBtn">+ Add Social</button>
+                  <span class="hint mt-2 mb-5">Add your Facebook Page, Instagram Profile, YouTube Channel, Pinterest, etc.</span>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <label for="w-link" class="required mb-2">Own Website Link</label>
+                <input type="text" id="w-link" class="form-control mb-3" placeholder="https://yourbrand.com" required="" />
+              </div>
+              <div class="col-md-6">
+                <label for="whatsapplink" class="required mb-2">WhatsApp Business Link</label>
+                <input type="text" id="whatsapplink" class="form-control mb-3" placeholder="https://wa.me/" required="" />
+              </div>
+            </div>
+            <div class="row mt-4">
+              <h4 class="mb-4">Personal Details</h4>
+              <div class="col-md-6 mb-4">
+                <label class="required mb-2">First Name</label>
+                <input type="text" name="firstname" id="firstname" class="w-100" value="John" required="" />
+              </div>
+              <div class="col-md-6 mb-4">
+                <label class="required mb-2">Last Name</label>
+                <input type="text" name="lastname" id="lastname" class="w-100" value="Doe" required="" />
+              </div>
+              <div class="col-md-6 mb-4">
+                <label class="required mb-2">Phone Number</label>
+                <div class="row">
+                  <div class="col-md-8">
+                    <input type="text" name="phonename" id="phonename" class="w-100" value="+1 123 456 7890" required="" />
+                  </div>
+                  <div class="col-md-4">
+                    <button type="button" class="btn btn-default post-btn">Send OTP</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <label class="required mb-2">Verify OTP</label>
+                <div class="row">
+                  <div class="col-md-8">
+                    <input type="text" name="verifyotp" id="verifyotp" class="w-100" value="OTP" required="" />
+                  </div>
+                  <div class="col-md-4">
+                    <button type="button" class="btn btn-default post-btn">Verify</button>
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6 mb-4">
+                <label class="required mb-2">Email</label>
+                <input type="text" name="email" id="email" class="w-100" value="name@gmail.com" required="" />
+              </div>
+              <div class="col-md-6 mb-4">
+                <label class="required mb-2">Address</label>
+                <input type="text" name="address" id="address" class="w-100" value="123 Main St" required="" />
+              </div>
+              <div class="col-md-6 mb-4">
+                <label class="required mb-2">City</label>
+                <input type="text" name="city" id="city" class="w-100" value="New York" required="" />
+              </div>
+              <div class="col-md-6 mb-4">
+                <label class="required mb-2">State</label>
+                <input type="text" name="state" id="state" class="w-100" value="NY" required="" />
+              </div>
+              <div class="col-md-6 mb-4">
+                <label class="required mb-2">Zip</label>
+                <input type="text" name="zip" id="zip" class="w-100" value="10001" required="" />
+              </div>
+            </div>
+            <div class="col-md-12 text-center my-4">
+              <button type="button" class="btn btn-default">Submit</button>
+            </div>
+          </form>
+        </div>
+      </div>
+      <!-- Performance -->
+      <div class="view" id="performance">
+        <div class="container">
+          <div class="row justify-content-between">
+            <div class="col-md-5 bg-white performancemetric-section">
+              <h2>Product Performance</h2>
+              <div class="row mt-5 text-center">
+                <div class="col-md-12 mb-4">
+                  <h6>Most click product</h6>
+                  <div class="carddarkgreen-text">Samsung S22 ultra</div>
+                </div>
+                <div class="col-md-12 mb-4">
+                  <h6>Most buy now product</h6>
+                  <div class="cardyellow-text">LG 139 cm (55 inches) UR75 Series 4K Ultra HD Smart LED TV 55UR75006LC</div>
+                </div>
+                <div class="col-md-12 mb-4">
+                  <h6>Products that need improvement</h6>
+                  <div class="cardblue-text">POCO C75 5G, Enchanted Green (4GB, 64GB)</div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-5 bg-white trendingvideo-section">
+              <h2>Media performance</h2>
+              <div class="row">
+                <div class="col-md-6 mb-3 text-center">
+                  <h6>Most viewed video</h6>
+                  <video controls="">
+                    <source src="./assets/images/samplevideo.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="col-md-6 mb-3 text-center">
+                  <h6>Most Liked video</h6>
+                  <video controls="">
+                    <source src="./assets/images/samplevideo.mp4" type="video/mp4" />
+                  </video>
+                </div>
+                <div class="col-md-6 mb-3 text-center">
+                  <h6>Most Commented Video</h6>
+                  <video controls="">
+                    <source src="./assets/images/samplevideo.mp4" type="video/mp4" />
+                  </video>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div> #}
+    </section>
+  </main>
+</div>
+{% else %}
+  <p>You don’t have permission to see this data.</p>
+{% endif %}

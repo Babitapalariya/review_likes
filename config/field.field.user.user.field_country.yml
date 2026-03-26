@@ -1,0 +1,22 @@
+uuid: 180c733f-2b57-4deb-8f47-515f5269ccd0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_country
+  module:
+    - country
+    - user
+id: user.user.field_country
+field_name: field_country
+entity_type: user
+bundle: user
+label: Country
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  selectable_countries: {  }
+field_type: country

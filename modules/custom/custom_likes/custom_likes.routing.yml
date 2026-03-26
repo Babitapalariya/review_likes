@@ -1,0 +1,27 @@
+custom_likes.toggle:
+  path: '/custom-likes/toggle/{nid}'
+  defaults:
+    _controller: '\Drupal\custom_likes\Controller\LikeController::toggle'
+  requirements:
+    _permission: 'access content'
+  methods: [POST]
+
+# LikeController.routing.yml
+custom_likes.comment_submit:
+  path: '/custom-comments/submit'
+  defaults:
+    _controller: '\Drupal\custom_likes\Controller\LikeController::submitComment'
+    _title: 'Submit Comment'
+  requirements:
+    _access: 'TRUE'
+  methods: [POST]
+
+# shareController.routing.yml
+custom_likes.share:
+  path: '/custom-likes/share/{nid}'
+  defaults:
+    _controller: '\Drupal\custom_likes\Controller\LikeController::recordShare'
+  requirements:
+    _permission: 'access content'
+  methods: [POST]
+

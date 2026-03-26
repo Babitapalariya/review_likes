@@ -1,0 +1,25 @@
+<header class="">{{ page.header }}</header>
+
+{% if 'merchant' in user.roles %}
+<div class="app" data-app="review-likes-dashboard">
+  <!-- Sidebar -->
+  {{ page.sidebar }}
+  <!-- Main Content -->
+  <main>
+    <section id="contentArea">
+      <!-- Add Product Form -->
+      <div class="view" id="add-products" style="display:block;">{{ page.content }}</div>
+    </section>
+  </main>
+</div>
+{% else %}
+  <p>You don’t have permission to see this data.</p>
+{% endif %}
+
+{# <div id="extractConfirmModal" class="custom-modal" style="display:none;">
+  <div class="modal-content">
+    <p>Are you sure you want to extract product data?</p>
+    <button type="button" id="confirmExtract" class="btn btn-primary">Yes</button>
+    <button type="button" id="cancelExtract" class="btn btn-secondary">Cancel</button>
+  </div>
+</div> #}

@@ -1,0 +1,20 @@
+uuid: bedd3780-73bd-4dc8-8ae9-b97ddfe66a34
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_zip
+  module:
+    - user
+id: user.user.field_zip
+field_name: field_zip
+entity_type: user
+bundle: user
+label: Zip
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

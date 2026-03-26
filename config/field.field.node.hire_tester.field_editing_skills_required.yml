@@ -1,0 +1,21 @@
+uuid: e0cf9126-c010-4fa8-af1d-f40065738a0b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_editing_skills_required
+    - node.type.hire_tester
+  module:
+    - options
+id: node.hire_tester.field_editing_skills_required
+field_name: field_editing_skills_required
+entity_type: node
+bundle: hire_tester
+label: 'Editing Skills Required'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,19 @@
+uuid: b62283e0-43c7-44eb-b251-5d586cdd966b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_legal_business_name
+    - node.type.discount
+id: node.discount.field_legal_business_name
+field_name: field_legal_business_name
+entity_type: node
+bundle: discount
+label: 'Amount Saved'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

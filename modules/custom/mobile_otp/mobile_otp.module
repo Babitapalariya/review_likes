@@ -1,0 +1,179 @@
+<?php
+
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Url;
+use Drupal\user\UserInterface;
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function mobile_otp_help($route_name, \Drupal\Core\Routing\RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    case 'help.page.mobile_otp':
+      return '<p>' . t('Provides mobile number OTP verification functionality.') . '</p>';
+  }
+}
+
+/**
+ * Implements hook_library_info_build().
+ */
+function mobile_otp_library_info_build() {
+  $libraries = [];
+  $libraries['mobile_otp'] = [
+    'version' => '1.0',
+    'js' => [
+      'js/mobile_otp.js' => [],
+    ],
+    'dependencies' => [
+      'core/jquery',
+      'core/drupal',
+    ],
+  ];
+  return $libraries;
+}
+
+/**
+ * Utility function to add mobile OTP fields to any form.
+ */
+function mobile_otp_add_to_form(&$form, FormStateInterface $form_state, $form_id, $mobile_field_name = 'field_phone') {
+  // Add mobile number field if it doesn't exist
+  if (!isset($form[$mobile_field_name])) {
+    $form[$mobile_field_name] = [
+      '#type' => 'tel',
+      '#title' => t('Mobile Number'),
+      '#required' => TRUE,
+      '#description' => t('We will send an OTP to this number for verification.'),
+    ];
+  }
+  
+  // Add OTP field container (hidden by default)
+  $form['otp_field_container'] = [
+    '#type' => 'container',
+    '#attributes' => ['class' => ['otp-field-container'], 'style' => 'display:none;'],
+  ];
+  
+  $form['otp_field_container']['otp_code'] = [
+    '#type' => 'textfield',
+    '#title' => t('OTP Code'),
+    '#description' => t('Enter the OTP sent to your mobile.'),
+    '#size' => 6,
+    '#maxlength' => 6,
+    '#attributes' => ['placeholder' => '000000'],
+  ];
+  
+  $form['profile-completion-form'] = [
+    '#type' => 'hidden',
+    '#value' => $form_id,
+  ];
+  
+  // Add Generate OTP button
+  $form['generate_otp'] = [
+    '#type' => 'button',
+    '#value' => t('Generate OTP'),
+    '#attributes' => ['class' => ['generate-otp-btn']],
+    '#limit_validation_errors' => [[$mobile_field_name]],
+  ];
+  
+  // Add validation and submit handlers
+  $form['#validate'][] = 'mobile_otp_form_validate';
+  $form['#submit'][] = 'mobile_otp_form_submit';
+  
+  // Add JavaScript
+  $form['#attached']['library'][] = 'mobile_otp/mobile_otp';
+}
+
+/**
+ * Form validation handler for OTP.
+ */
+function mobile_otp_form_validate(&$form, FormStateInterface $form_state) {
+  $form_id = $form_state->getValue('profile-completion-form');
+  $mobile_number = $form_state->getValue('field_phone');
+  $otp_code = $form_state->getValue('otp_code');
+  
+  $otp_service = \Drupal::service('mobile_otp.service');
+  
+  // If OTP field is visible, validate it
+  if (!empty($otp_code)) {
+    if (!$otp_service->verifyOtp($mobile_number, $otp_code, $form_id)) {
+      $form_state->setErrorByName('otp_code', t('Invalid OTP or OTP has expired.'));
+    }
+  }
+}
+
+/**
+ * Form submit handler for OTP.
+ */
+function mobile_otp_form_submit(&$form, FormStateInterface $form_state) {
+  $form_id = $form_state->getValue('profile-completion-form');
+  $mobile_number = $form_state->getValue('field_phone');
+  $otp_code = $form_state->getValue('otp_code');
+  
+  if (!empty($otp_code)) {
+    // OTP was verified, you can perform additional actions here
+    \Drupal::messenger()->addStatus(t('Mobile number verified successfully.'));
+  }
+}
+function mobile_otp_page_attachments(array &$attachments) {
+  $attachments['#attached']['library'][] = 'mobile_otp/otp_verification';
+}
+// /**
+//  * Implements hook_page_attachments_alter().
+//  */
+// function mobile_otp_page_attachments_alter(array &$attachments) {
+//   $route = \Drupal::routeMatch()->getRouteName();
+  
+//   // Only show on registration complete page or OTP verification page
+//   if ($route == 'user.register' || $route == 'mmobile_otp.form') {
+//     $tempstore = \Drupal::service('tempstore.private')->get('mobile_otp');
+//     $email = $tempstore->get('pending_email');
+    
+//     //if ($email) {
+//       // Add our libraries
+//       $attachments['#attached']['library'][] = 'mobile_otp/otp-verification';
+//       $attachments['#attached']['library'][] = 'core/drupal.dialog.ajax';
+      
+//       // Add settings for JS
+//       $attachments['#attached']['drupalSettings']['otpVerification'] = [
+//         'email' => $email,
+//         'expires' => \Drupal::time()->getRequestTime() + 3600, // 1 hour expiry
+//       ];
+      
+//       // Add the modal HTML via a theme hook
+//     //}
+//   }
+// }
+// function mobile_otp_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+//   if ($form_id == 'profile-completion-form') {
+//     $form['#attached']['library'][] = 'mobile_otp/otp_verification';
+//   }
+// }
+
+// In mobile_otp.module file
+function mobile_otp_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'profile-completion-form') { // Replace with your actual form ID
+    $form['#attached']['library'][] = 'mobile_otp/otp-verification';
+  }
+}
+
+
+/**
+ * Implements hook_user_login().
+ */
+function mobile_otp_user_login(UserInterface $account) {
+  // Only redirect if profile completion is required.
+  if ($account->hasRole('merchant') || $account->hasRole('game_changer')|| $account->hasRole('tester')) {
+    $current_request = \Drupal::service('request_stack')->getCurrentRequest();
+
+    // Avoid overriding if a destination is already set.
+    if (!$current_request->query->get('destination')) {
+      // Build the URL to your route.
+      $url = Url::fromRoute('role_based_registration.profile_completion', [
+        'user' => $account->id(),
+      ], ['absolute' => TRUE])->toString();
+
+      // Set it as the destination.
+      $current_request->query->set('destination', $url);
+    }
+  }
+}

@@ -1,0 +1,22 @@
+uuid: 847abdc6-a786-4e00-ab34-30d587ce2c8c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.admin_support
+id: node.admin_support.promote
+field_name: promote
+entity_type: node
+bundle: admin_support
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,24 @@
+uuid: 9ba15784-f7e3-4606-8ae8-ba1c72acd40f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_prices
+    - filter.format.full_html
+    - node.type.hire_tester
+  module:
+    - text
+id: node.hire_tester.field_prices
+field_name: field_prices
+entity_type: node
+bundle: hire_tester
+label: 'Testing Type Need Other'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+field_type: text_long

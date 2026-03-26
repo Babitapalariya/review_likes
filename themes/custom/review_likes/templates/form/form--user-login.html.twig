@@ -1,0 +1,23 @@
+  <div class="container-fluid">
+            <div class="row">
+               <div class="col-sm-6 leftsection">
+                  <a href="/home" class="logo">ReviewLikes</a>
+                  <div class="image-section text-center">
+                     <img src="{{url('<front>')}}/themes/custom/review_likes/images/login/login.svg" alt="login image" class="w-50">
+                  </div>
+               </div>
+               <div class="col-sm-6 rightsection">
+                  <div class="formsection">
+                     <form{{ attributes }}>
+                        <h2 class="text-center mb-5">Sign In</h2>
+                        {{ children }}
+                     </form>
+                     <div class="signuplink">Or Sign Up Using</div>
+                     <a href="{{url('<front>')}}/user/register" class="signup">Sign Up</a>
+                  </div>
+               </div>
+            </div>
+         </div>
+
+  
+ 

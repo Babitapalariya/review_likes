@@ -1,0 +1,19 @@
+uuid: bc27ceb5-c6b1-4dff-847e-34f8e00ddea9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_buyer_username
+    - node.type.rebuttal
+id: node.rebuttal.field_buyer_username
+field_name: field_buyer_username
+entity_type: node
+bundle: rebuttal
+label: 'Buyer Username'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

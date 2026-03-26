@@ -1,0 +1,25 @@
+uuid: 9358a7f8-1567-4f18-8338-9c4f218835c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.sign-in
+  module:
+    - system
+  theme:
+    - review_likes
+id: review_likes_signin_2
+theme: review_likes
+region: country_and_sign_in
+weight: 0
+provider: null
+plugin: 'system_menu_block:sign-in'
+settings:
+  id: 'system_menu_block:sign-in'
+  label: 'sign in '
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

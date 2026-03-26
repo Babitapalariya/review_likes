@@ -1,0 +1,88 @@
+input.search1{
+    max-width: 296px;
+}
+
+td.action {
+    background-color: black;
+}
+
+
+
+div#ajax-wrapper {
+    margin-bottom: 1rem !important;
+    flex: 0 0 auto;
+    width: 41.66666667%;
+}
+
+h5.required::after
+ {
+    content: " *";
+    color: red;
+    font-weight: bold;
+}
+
+span.fieldset-legend.js-form-required.form-required::after {
+    content: " *";
+    color: red;
+    font-weight: bold;
+}
+
+
+
+
+
+
+.toggle-wrapper {
+  position: relative;
+}
+
+.toggle-wrapper label {
+  display: inline-block;
+  position: relative;
+}
+
+.toggle-wrapper .affiliateToggle {
+  opacity: 0;
+  position: absolute;
+}
+
+.toggle-wrapper .slider {
+  position: relative;
+  display: inline-block;
+  width: 60px;
+  height: 34px;
+  background-color: #ccc;
+  border-radius: 34px;
+  transition: .4s;
+  cursor: pointer;
+}
+
+.toggle-wrapper .slider:before {
+  position: absolute;
+  content: "";
+  height: 26px;
+  width: 26px;
+  left: 4px;
+  bottom: 4px;
+  background-color: white;
+  border-radius: 50%;
+  transition: .4s;
+}
+
+.toggle-wrapper .affiliateToggle:checked + .slider {
+  background-color: #2196F3;
+}
+
+.toggle-wrapper .affiliateToggle:checked + .slider:before {
+  transform: translateX(26px);
+}
+
+
+.agree-terms {
+    margin-top: -26px;
+    margin-left: 23px;
+}
+
+#productDetailsSection {
+  display: none;
+}

@@ -1,0 +1,21 @@
+uuid: e8938de6-69f6-44d1-bedd-e8aab4a7da31
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_gender_preference
+    - node.type.hire_tester
+  module:
+    - options
+id: node.hire_tester.field_gender_preference
+field_name: field_gender_preference
+entity_type: node
+bundle: hire_tester
+label: 'Gender Preference'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

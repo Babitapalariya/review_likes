@@ -1,0 +1,69 @@
+
+{% set element_id = element['#id'] ?? '' %}
+{% set element_name = element['#name'] ?? '' %}
+
+{% if element_id == 'edit-search' %}
+{# Customize the 'edit-search' input #}
+{% set updated_attributes = attributes.setAttribute('placeholder', 'Search product here') %}
+{% set updated_attributes = updated_attributes.addClass('form-control') %}
+<input{{ updated_attributes }} />
+{{ children }}
+{% elseif element_id == 'role-based-register-form' %}
+ {% set updated_attributes = updated_attributes.addClass('form-control mb-3') %}
+ {% elseif "edit-role-fields-user-details-first-name" in id or "edit-role-fields-user-details-last-name" in id %}
+ <input{{ attributes.removeAttribute('class') }} class="form-control mb-3" />
+ {{ children }}
+{% elseif element_id == 'edit-combine' %}
+  <input{{ attributes.addClass('form-control').setAttribute('placeholder', 'Search products...') }} />
+  {{ children }}
+  {% elseif element_id == 'edit-flat-product-link' %}
+  <input{{ attributes.addClass('form-control')}} />
+  {{ children }}
+  {% elseif element_id == 'edit-bundle-amount-before' %}
+  <input{{ attributes.addClass('form-control')}} />
+  {{ children }}
+  {% elseif element_id == 'edit-flat-amount-before' %}
+  <input{{ attributes.addClass('form-control')}} />
+  {{ children }}
+  {% elseif element_id == 'edit-bundle-product-link' %}
+  <input{{ attributes.addClass('form-control')}} />
+  {{ children }}
+  {% elseif element_id == 'edit-bundle-now' %}
+  <input{{ attributes.addClass('form-control')}} />
+  {{ children }}
+  {% elseif element_id == 'edit-bundle-amount-saved' %}
+  <input{{ attributes.addClass('form-control')}} />
+  {{ children }}
+  {% elseif element_id == 'edit-bundle-expiry-date' %}
+  <input{{ attributes.addClass('form-control')}} />
+  {{ children }}
+  {% elseif element_id == 'edit-flat-amount-saved' %}
+  <input{{ attributes.addClass('form-control')}} />
+  {{ children }}
+  {% elseif element_id == 'edit-flat-now' %}
+  <input{{ attributes.addClass('form-control')}} />
+  {{ children }}
+  {% elseif element_id == 'edit-coupon-code' %}
+  <input{{ attributes.addClass('form-control')}} />
+  {{ children }}
+  {% elseif element_id == 'edit-coupon-expiry-date' %}
+  <input{{ attributes.addClass('form-control')}} />
+  {{ children }}
+  {% elseif element_id == 'edit-coupon-amount-saved' %}
+  <input{{ attributes.addClass('form-control')}} />
+  {{ children }}
+  {% elseif element_id == 'edit-coupon-now' %}
+  <input{{ attributes.addClass('form-control')}} />
+  {{ children }}
+  {% elseif element_id == 'edit-coupon-amount-before' %}
+  <input{{ attributes.addClass('form-control')}} />
+  {{ children }}
+  {% elseif element_id == 'edit-coupon-product-link' %}
+  <input{{ attributes.addClass('form-control')}} />
+  {{ children }}
+  
+{% else %}
+{# {{ dump(element['#id']) }} #}
+<input{{ attributes }} />
+{{ children }}
+{% endif %}

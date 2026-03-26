@@ -1,0 +1,21 @@
+uuid: 13006095-56de-4dfd-9778-d514ba867604
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.field_editing_software
+field_name: field_editing_software
+entity_type: node
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

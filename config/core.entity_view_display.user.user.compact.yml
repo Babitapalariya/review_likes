@@ -1,0 +1,52 @@
+uuid: a14cf613-0127-498c-81cc-c91d56c887c9
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.user.compact
+    - field.field.user.user.field_address
+    - field.field.user.user.field_checkbox
+    - field.field.user.user.field_country
+    - field.field.user.user.field_first_name
+    - field.field.user.user.field_language
+    - field.field.user.user.field_last_name
+    - field.field.user.user.field_mobile_number
+    - field.field.user.user.field_phone_number
+    - field.field.user.user.field_state
+    - field.field.user.user.field_zip
+    - field.field.user.user.user_picture
+    - image.style.thumbnail
+  module:
+    - svg_image
+    - user
+_core:
+  default_config_hash: 00zr_RBdTjPjBGITD3h4c1ESQZimjdVCcHGt1trLqIY
+id: user.user.compact
+targetEntityType: user
+bundle: user
+mode: compact
+content:
+  user_picture:
+    type: image
+    label: hidden
+    settings:
+      image_link: content
+      image_style: thumbnail
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  blog__personal_blog_link: true
+  field_address: true
+  field_checkbox: true
+  field_country: true
+  field_first_name: true
+  field_language: true
+  field_last_name: true
+  field_mobile_number: true
+  field_phone_number: true
+  field_state: true
+  field_zip: true
+  member_for: true

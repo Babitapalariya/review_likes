@@ -1,0 +1,22 @@
+uuid: e6baace5-81ce-446c-9f66-93bc5e9d7833
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_country
+    - node.type.tester_account
+  module:
+    - country
+id: node.tester_account.field_country
+field_name: field_country
+entity_type: node
+bundle: tester_account
+label: 'Country of Tax Residence'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  selectable_countries: {  }
+field_type: country

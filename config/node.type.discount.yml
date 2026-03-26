@@ -1,0 +1,17 @@
+uuid: f9cd8373-d771-4b42-9b0d-bfc1c447df21
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Discount
+type: discount
+description: null
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: true

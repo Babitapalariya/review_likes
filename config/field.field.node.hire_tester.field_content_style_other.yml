@@ -1,0 +1,19 @@
+uuid: e1643e7f-6c88-4fcc-a389-991e77291eca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_content_style_other
+    - node.type.hire_tester
+id: node.hire_tester.field_content_style_other
+field_name: field_content_style_other
+entity_type: node
+bundle: hire_tester
+label: 'Content Style Other'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -1,0 +1,21 @@
+uuid: 776c797d-4d19-4dc3-b278-c886824da95a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_order_datetime
+    - node.type.gift
+id: node.gift.field_order_datetime
+field_name: field_order_datetime
+entity_type: node
+bundle: gift
+label: 'Order Datetime'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1758710728
+default_value_callback: ''
+settings: {  }
+field_type: timestamp

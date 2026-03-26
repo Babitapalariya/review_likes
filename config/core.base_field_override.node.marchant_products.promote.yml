@@ -1,0 +1,22 @@
+uuid: 9899e939-cec8-4a72-abd2-d60ee01c7d0b
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.marchant_products
+id: node.marchant_products.promote
+field_name: promote
+entity_type: node
+bundle: marchant_products
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

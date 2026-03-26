@@ -1,0 +1,21 @@
+uuid: 943fddde-7842-4eea-b916-ae3cbd5aef24
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_physical_abilities
+    - node.type.hire_tester
+  module:
+    - options
+id: node.hire_tester.field_physical_abilities
+field_name: field_physical_abilities
+entity_type: node
+bundle: hire_tester
+label: 'Physical Abilities '
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

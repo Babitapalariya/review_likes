@@ -1,0 +1,21 @@
+uuid: 595b90f0-be2b-41a4-9b2c-dc8d5718cebb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_expiry_date
+    - node.type.discount
+  module:
+    - datetime
+id: node.discount.field_expiry_date
+field_name: field_expiry_date
+entity_type: node
+bundle: discount
+label: 'Expiry Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

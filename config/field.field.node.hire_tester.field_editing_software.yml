@@ -1,0 +1,19 @@
+uuid: fe708f44-f407-46b1-89e1-092843014979
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_editing_software
+    - node.type.hire_tester
+id: node.hire_tester.field_editing_software
+field_name: field_editing_software
+entity_type: node
+bundle: hire_tester
+label: 'Editing Skills Software'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

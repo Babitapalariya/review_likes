@@ -1,0 +1,17 @@
+uuid: a0bde9e4-924a-4680-b9bd-291ac1d42527
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Marchant Products'
+type: marchant_products
+description: null
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: true

@@ -1,0 +1,19 @@
+uuid: e4d3b62f-2c6f-4ca9-8412-a54a0d2d19aa
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_specific_regions
+    - node.type.hire_tester
+id: node.hire_tester.field_specific_regions
+field_name: field_specific_regions
+entity_type: node
+bundle: hire_tester
+label: 'Location  Specific Regions'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

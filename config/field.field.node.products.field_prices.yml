@@ -1,0 +1,22 @@
+uuid: 44b14f9f-1474-4936-8c85-d1b19bb82fd5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_prices
+    - node.type.products
+  module:
+    - text
+id: node.products.field_prices
+field_name: field_prices
+entity_type: node
+bundle: products
+label: prices
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

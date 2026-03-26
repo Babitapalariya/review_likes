@@ -1,0 +1,29 @@
+uuid: c2decf5a-2161-4ffe-8370-33a813ac34da
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_tester_type_needed
+    - node.type.hire_tester
+    - taxonomy.vocabulary.tester_type_needed
+id: node.hire_tester.field_tester_type_needed
+field_name: field_tester_type_needed
+entity_type: node
+bundle: hire_tester
+label: 'Tester Type Needed'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tester_type_needed: tester_type_needed
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

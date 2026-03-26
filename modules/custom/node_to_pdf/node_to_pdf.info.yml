@@ -1,0 +1,7 @@
+name: Node to PDF Converter
+type: module
+description: Provides a "Download as PDF" feature for nodes using a Twig template.
+core_version_requirement:  ^10 || ^11
+package: Custom
+dependencies:
+  - node

@@ -1,0 +1,14 @@
+uuid: f2579ef4-7c23-456f-abde-9ed5f464e3d0
+langcode: en
+status: true
+dependencies:
+  config:
+    - user.role.game_changer
+  module:
+    - user
+id: user_add_role_action.game_changer
+label: 'Add the Game changer role to the selected user(s)'
+type: user
+plugin: user_add_role_action
+configuration:
+  rid: game_changer

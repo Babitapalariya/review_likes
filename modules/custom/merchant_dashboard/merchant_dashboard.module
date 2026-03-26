@@ -1,0 +1,192 @@
+<?php
+
+/**
+ * @file
+ * Contains merchant_dashboard.form.inc.
+ */
+
+use Drupal\Core\Form\FormStateInterface;
+
+/**
+ * Implements hook_form_alter().
+ */
+function merchant_dashboard_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  if ($form_id == 'merchant_dashboard_hire_tester_form') {
+    // Load dynamic options for radio buttons
+    _merchant_dashboard_set_dynamic_radio_options($form);
+  }
+}
+
+/**
+ * Set dynamic radio options from field configurations.
+ */
+function _merchant_dashboard_set_dynamic_radio_options(&$form) {
+  // Gender Preference from field
+  $gender_options = _merchant_dashboard_get_field_options('field_gender_preference');
+  if (!empty($gender_options)) {
+    $form['section_2']['gender_preference']['#options'] = $gender_options;
+  }
+
+  // Age Range from field
+  $age_options = _merchant_dashboard_get_field_options('field_age_range');
+  if (!empty($age_options)) {
+    $form['section_2']['age_range']['#options'] = $age_options;
+  }
+
+  // Location Preferences from field
+  $location_options = _merchant_dashboard_get_field_options('field_location_preferences');
+  if (!empty($location_options)) {
+    $form['section_5']['location_preferences']['#options'] = $location_options;
+  }
+
+  // Safety Gear from field
+  $safety_options = _merchant_dashboard_get_field_options('field_safety_gear_needed');
+  if (!empty($safety_options)) {
+    $form['section_5']['safety_gear_needed']['#options'] = $safety_options;
+  }
+
+  // Licenses from field
+  $license_options = _merchant_dashboard_get_field_options('field_licenses_certifications');
+  if (!empty($license_options)) {
+    $form['section_5']['licenses_certifications']['#options'] = $license_options;
+  }
+
+  // Platform Preferences from field
+  $platform_options = _merchant_dashboard_get_field_options('field_platform_preferences');
+  if (!empty($platform_options)) {
+    $form['section_6']['platform_preferences']['#options'] = $platform_options;
+  }
+
+  // Follower Count from field
+  $follower_options = _merchant_dashboard_get_field_options('field_follower_count');
+  if (!empty($follower_options)) {
+    $form['section_6']['follower_count']['#options'] = $follower_options;
+  }
+
+  // Content Style from field
+  $content_options = _merchant_dashboard_get_field_options('field_content_style');
+  if (!empty($content_options)) {
+    $form['section_6']['content_style']['#options'] = $content_options;
+  }
+
+  // Payment Structure from field
+  $payment_options = _merchant_dashboard_get_field_options('field_payment_structure');
+  if (!empty($payment_options)) {
+    $form['section_7']['payment_structure']['#options'] = $payment_options;
+  }
+
+  // Budget Flexibility from field
+  $budget_options = _merchant_dashboard_get_field_options('field_budget_flexibility');
+  if (!empty($budget_options)) {
+    $form['section_7']['budget_flexibility']['#options'] = $budget_options;
+  }
+
+  // Urgency from field
+  $urgency_options = _merchant_dashboard_get_field_options('field_urgency');
+  if (!empty($urgency_options)) {
+    $form['section_7']['urgency']['#options'] = $urgency_options;
+  }
+}
+
+/**
+ * Get field options safely with fallback.
+ */
+function _merchant_dashboard_get_field_options($field_name) {
+  try {
+    $field_config = \Drupal::entityTypeManager()
+      ->getStorage('field_config')
+      ->load('node.hire_tester.' . $field_name);
+    
+    if ($field_config) {
+      $allowed_values = $field_config->getSetting('allowed_values');
+      if (!empty($allowed_values) && is_array($allowed_values)) {
+        return $allowed_values;
+      }
+    }
+  } catch (\Exception $e) {
+    \Drupal::logger('merchant_dashboard')->error('Error loading field options for @field: @error', [
+      '@field' => $field_name,
+      '@error' => $e->getMessage(),
+    ]);
+  }
+
+  // Return fallback options if field doesn't exist
+  return _merchant_dashboard_get_fallback_options($field_name);
+}
+
+/**
+ * Provide fallback options if fields don't exist.
+ */
+function _merchant_dashboard_get_fallback_options($field_name) {
+  $fallbacks = [
+    'field_gender_preference' => [
+      'no_preference' => 'No Preference',
+      'male' => 'Male',
+      'female' => 'Female',
+      'non_binary' => 'Non-binary',
+      'other' => 'Other',
+    ],
+    'field_age_range' => [
+      '18-24' => '18-24',
+      '25-34' => '25-34',
+      '35-44' => '35-44',
+      '45-54' => '45-54',
+      '55+' => '55+',
+      'no_preference' => 'No Preference',
+    ],
+    'field_location_preferences' => [
+      'indoor' => 'Indoor',
+      'outdoor' => 'Outdoor',
+      'both' => 'Both Indoor & Outdoor',
+    ],
+    'field_safety_gear_needed' => [
+      'helmet' => 'Helmet',
+      'gloves' => 'Gloves',
+      'protective_clothing' => 'Protective Clothing',
+      'other' => 'Other',
+      'none' => 'No Safety Gear Required',
+    ],
+    'field_licenses_certifications' => [
+      'drivers_license' => 'Driver\'s License',
+      'commercial_license' => 'Commercial License (CDL)',
+      'drone_pilot' => 'Drone Pilot',
+      'other' => 'Other',
+      'none' => 'No Licenses Required',
+    ],
+    'field_platform_preferences' => [
+      'youtube' => 'YouTube',
+      'tiktok' => 'TikTok',
+      'instagram' => 'Instagram',
+      'facebook' => 'Facebook',
+      'other' => 'Other',
+    ],
+    'field_follower_count' => [
+      'micro_influencer' => 'Micro-Influencer (1K-10K)',
+      'mid_tier' => 'Mid-Tier (10K-100K)',
+      'macro' => 'Macro (100K+)',
+      'no_preference' => 'No Preference',
+    ],
+    'field_content_style' => [
+      'professional_reviews' => 'Professional Reviews',
+      'casual_ugc' => 'Casual/UGC',
+      'cinematic' => 'Cinematic',
+      'tutorials' => 'Tutorials',
+      'other' => 'Other',
+    ],
+    'field_payment_structure' => [
+      'per_video' => 'Per Video (Fixed rate) - 15 to 58 sec',
+      'other_structure' => 'Other Payment Structure',
+    ],
+    'field_budget_flexibility' => [
+      'strict_budget' => 'Strict Budget',
+      'flexible' => 'Flexible (Pay for quality)',
+    ],
+    'field_urgency' => [
+      'asap' => 'ASAP',
+      'within_1_week' => 'Within 1 Week',
+      'flexible' => 'Flexible',
+    ],
+  ];
+
+  return $fallbacks[$field_name] ?? [];
+}

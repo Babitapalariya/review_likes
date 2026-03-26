@@ -1,0 +1,6 @@
+like_ajax:
+  version: 1.x
+  js:
+    js/like_ajax.js: {}
+  dependencies:
+    - core/jquery

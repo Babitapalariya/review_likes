@@ -1,0 +1,68 @@
+uuid: 2d6b1842-c1ca-41f3-a921-71cd5e6ff928
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.platform_link.field_affliate_link
+    - field.field.paragraph.platform_link.field_coupon_code
+    - field.field.paragraph.platform_link.field_coupon_expiry_date
+    - field.field.paragraph.platform_link.field_platform_link
+    - field.field.paragraph.platform_link.field_platform_price
+    - field.field.paragraph.platform_link.field_rating
+    - paragraphs.paragraphs_type.platform_link
+  module:
+    - datetime
+id: paragraph.platform_link.default
+targetEntityType: paragraph
+bundle: platform_link
+mode: default
+content:
+  field_affliate_link:
+    type: string_textfield
+    weight: 5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_coupon_code:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_coupon_expiry_date:
+    type: datetime_default
+    weight: 4
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_platform_link:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_platform_price:
+    type: string_textfield
+    weight: 1
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_rating:
+    type: string_textfield
+    weight: 3
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

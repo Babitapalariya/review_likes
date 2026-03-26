@@ -1,0 +1,22 @@
+{#
+/**
+ * @file
+ * Default theme implementation of an image.
+ *
+ * Available variables:
+ * - attributes: HTML attributes for the img tag.
+ * - style_name: (optional) The name of the image style applied.
+ *
+ * @see template_preprocess_image()
+ *
+ * @ingroup themeable
+ */
+#}
+ 
+{% if style_name == 'col_md_5' %}
+<div class="col-md-5">
+  <img{{ attributes.addClass('w-100') }} />
+ </div>
+{% else %}
+<img{{ attributes }} />
+{% endif %}

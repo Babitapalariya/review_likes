@@ -1,0 +1,90 @@
+<header class="">{{ page.header }}</header>
+
+{% if 'merchant' in user.roles %}
+	<div class="app" data-app="review-likes-dashboard">
+		<!-- Sidebar -->
+		{{ page.sidebar }}
+		<!-- Main Content -->
+		<main>
+			<section id="contentArea">
+				<!-- Add Product Form -->
+				<div class="view" id="add-products" style="display:block;">
+					<div class="container mt-5">
+						{# <ul class="nav nav-tabs" id="profileTabs" role="tablist">
+							<li class="nav-item" role="presentation">
+								<button class="nav-link active" id="details-tab" data-bs-toggle="tab" data-bs-target="#details" type="button" role="tab" aria-controls="details" aria-selected="true">
+									My Details
+								</button>
+							</li>
+							{# <li class="nav-item" role="presentation">
+								<button class="nav-link" id="legal-info-tab" data-bs-toggle="tab" data-bs-target="#legal-info" type="button" role="tab" aria-controls="legal-info" aria-selected="false" tabindex="-1">
+									My Legal Business Information
+								</button>
+							</li> 
+						</ul> #}
+						<div class="tab-content mt-4" id="profileTabsContent">
+							<div class="tab-pane fade show active" id="details" role="tabpanel" aria-labelledby="details-tab">
+								<div class="container">
+									{{ page.content }}
+								</div>
+							</div>
+							{# <div class="tab-pane fade" id="legal-info" role="tabpanel" aria-labelledby="legal-info-tab">
+								<h2 class="mb-4 text-center">My Legal Business Information</h2>
+								<div class="table-responsive">
+									<table class="table table-bordered text-center align-middle">
+										<thead class="table-light">
+											<tr>
+												<th>Legal Business Name</th>
+												<th>Store Link(s)</th>
+												<th>Brand Name</th>
+												<th>Action</th>
+											</tr>
+										</thead>
+										<tbody id="legalInfoTable">
+											<tr>
+												<td>ABC Traders Pvt Ltd</td>
+												<td>
+													<ul class="list-unstyled mb-0">
+														<li><a href="#" target="_blank">https://amazon.in/abctraders</a></li>
+														<li><a href="#" target="_blank">https://flipkart.com/abctraders</a></li>
+													</ul>
+												</td>
+												<td>ABC Lifestyle</td>
+												<td>
+													<button class="btn btn-sm btn-warning me-2">Edit</button>
+													<button class="btn btn-sm btn-danger">Delete</button>
+												</td>
+											</tr>
+										</tbody>
+									</table>
+								</div>
+							</div> #}
+						</div>
+					</div>
+				</div>
+			</section>
+		</main>
+	</div>
+{% else %}
+	<p>You don't have permission to see this data.</p>
+{% endif %}
+
+<!-- Include Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
+<script>
+// If you still need custom JavaScript for additional functionality
+document.addEventListener('DOMContentLoaded', function() {
+    // Bootstrap handles the tab functionality automatically
+    // You can add custom JavaScript here if needed
+    
+    // Example: Custom tab change event listener
+    const tabEls = document.querySelectorAll('button[data-bs-toggle="tab"]');
+    tabEls.forEach(tabEl => {
+        tabEl.addEventListener('shown.bs.tab', function (event) {
+            // This fires when a tab is shown
+            console.log('Tab changed:', event.target.getAttribute('data-bs-target'));
+        });
+    });
+});
+</script>

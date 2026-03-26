@@ -1,0 +1,27 @@
+uuid: 70cbd963-5e6b-4c88-bca9-d612fac767e7
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_location_preferences
+field_name: field_location_preferences
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: indoor
+      label: Indoor
+    -
+      value: outdoor_specific_regions
+      label: 'Outdoor Specific Regions:'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 5
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

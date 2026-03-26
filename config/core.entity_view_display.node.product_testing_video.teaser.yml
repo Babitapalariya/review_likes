@@ -1,0 +1,32 @@
+uuid: f8024bf4-e4c6-48bd-bd7e-9422bab9e461
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.product_testing_video.field_challenges
+    - field.field.node.product_testing_video.field_external_id
+    - field.field.node.product_testing_video.field_product_url
+    - field.field.node.product_testing_video.field_product_variation
+    - field.field.node.product_testing_video.field_terms_and_conditions
+    - field.field.node.product_testing_video.field_testified_video
+    - node.type.product_testing_video
+  module:
+    - user
+id: node.product_testing_video.teaser
+targetEntityType: node
+bundle: product_testing_video
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_challenges: true
+  field_external_id: true
+  field_product_url: true
+  field_product_variation: true
+  field_terms_and_conditions: true
+  field_testified_video: true

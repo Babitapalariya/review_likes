@@ -1,0 +1,10 @@
+interactions.like_ajax:
+  path: '/interaction/ajax/like/{nid}'
+  defaults:
+    _controller: '\Drupal\interactions\Controller\InteractionController::ajaxLike'
+    _title: 'AJAX Like'
+  requirements:
+    _permission: 'access content'
+    nid: \d+
+  options:
+    _format: 'json'

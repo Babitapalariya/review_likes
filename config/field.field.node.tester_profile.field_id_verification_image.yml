@@ -1,0 +1,38 @@
+uuid: ce06232c-4865-4c7c-acdf-98da2db85efc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_id_verification_image
+    - node.type.tester_profile
+  module:
+    - image
+id: node.tester_profile.field_id_verification_image
+field_name: field_id_verification_image
+entity_type: node
+bundle: tester_profile
+label: 'ID Verification (image)'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg webp'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

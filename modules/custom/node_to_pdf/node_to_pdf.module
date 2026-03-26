@@ -1,0 +1,35 @@
+<?php
+use Drupal\Core\Url;
+use Drupal\Core\Link;
+
+/**
+ * Implements hook_theme().
+ */
+function node_to_pdf_theme($existing, $type, $theme, $path) {
+  return [
+    'node_to_pdf_template' => [
+      'variables' => [
+        'title' => NULL,
+        'fields' => [],
+      ],
+      'template' => 'pdf-template',
+    ],
+  ];
+}
+
+  
+  function node_to_pdf_form_node_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+    $node = $form_state->getFormObject()->getEntity();
+    
+    if ($node && !$node->isNew()) {
+      $url = Url::fromRoute('node_to_pdf.download_pdf', ['node' => $node->id()]);
+      $form['actions']['download_pdf'] = [
+        '#type' => 'link',
+        '#title' => t('Download as PDF'),
+        '#url' => $url,
+        '#attributes' => ['class' => ['button']],
+      ];
+    }
+  }
+  
+  

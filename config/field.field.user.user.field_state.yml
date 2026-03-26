@@ -1,0 +1,20 @@
+uuid: edb9aa4f-0d84-4fc0-a277-de89bf50842d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.user.field_state
+  module:
+    - user
+id: user.user.field_state
+field_name: field_state
+entity_type: user
+bundle: user
+label: State
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

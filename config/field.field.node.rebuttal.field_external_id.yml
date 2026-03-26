@@ -1,0 +1,19 @@
+uuid: 1093352c-3e1b-41f7-a05f-fd0c5a784a54
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_external_id
+    - node.type.rebuttal
+id: node.rebuttal.field_external_id
+field_name: field_external_id
+entity_type: node
+bundle: rebuttal
+label: 'Order Id'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

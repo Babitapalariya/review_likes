@@ -1,0 +1,138 @@
+uuid: 92dfa4f6-f671-4d05-89ba-d6944293e8a7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.scam_buyers.body
+    - field.field.node.scam_buyers.field_brand_name
+    - field.field.node.scam_buyers.field_comment_text
+    - field.field.node.scam_buyers.field_external_id
+    - field.field.node.scam_buyers.field_order_datetime
+    - field.field.node.scam_buyers.field_product_url
+    - field.field.node.scam_buyers.field_sold_bys
+    - field.field.node.scam_buyers.field_telephone
+    - node.type.scam_buyers
+  module:
+    - path
+    - telephone
+    - text
+id: node.scam_buyers.default
+targetEntityType: node
+bundle: scam_buyers
+mode: default
+content:
+  body:
+    type: text_textarea_with_summary
+    weight: 121
+    region: content
+    settings:
+      rows: 9
+      summary_rows: 3
+      placeholder: ''
+      show_summary: false
+    third_party_settings: {  }
+  created:
+    type: datetime_timestamp
+    weight: 10
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_brand_name:
+    type: string_textfield
+    weight: 122
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_comment_text:
+    type: string_textfield
+    weight: 122
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_external_id:
+    type: string_textfield
+    weight: 19
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_order_datetime:
+    type: datetime_timestamp
+    weight: 125
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_product_url:
+    type: string_textfield
+    weight: 18
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_sold_bys:
+    type: string_textfield
+    weight: 14
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_telephone:
+    type: telephone_default
+    weight: 124
+    region: content
+    settings:
+      placeholder: ''
+    third_party_settings: {  }
+  path:
+    type: path
+    weight: 30
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  promote:
+    type: boolean_checkbox
+    weight: 15
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 120
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  sticky:
+    type: boolean_checkbox
+    weight: 16
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: -5
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 5
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden: {  }

@@ -1,0 +1,153 @@
+{#
+/**
+* @file
+* Default theme implementation for a 'form' element.
+*
+* Available variables
+* - attributes: A list of HTML attributes for the wrapper element.
+* - children: The child elements of the form.
+*
+* @see template_preprocess_form()
+*
+* @ingroup themeable
+*/
+#}
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-sm-7 contentsection">
+      <form {{ attributes }}>
+        {{ element.form_build_id }}
+        {{ element.form_token }}
+        {{ element.form_id }}
+
+        <h2 class="text-center mb-5">Sign Up</h2>
+        <div class="row">
+         
+          <div class="col-md-6">
+            {% set name = element.account.name['#children'] %}
+            {{ name|trim|raw }}
+            {% set input_name = element.account.name['#input'] %}
+          </div>
+          <div class="col-md-6">
+            {% set lastname = element.field_last_name['#children'] %}
+            {{ lastname|trim|raw }}
+          </div>
+          <div class="col-md-6">
+            {% set mail = element.account.mail['#children'] %}
+            {{ mail|trim|raw }}
+          </div>
+          <div class="col-md-6">
+            {% set number = element.field_phone_number['#children'] %}
+            {{ number|trim|raw }}
+          </div>
+          <div class="col-md-12">
+            {# Use Drupal's roles element but style it as a select #}
+            {{ element.account.roles }}
+            {# Custom select that will update the hidden checkboxes #}
+            <select id="custom-role-select" name="select_user_role" class="form-control mb-3 form-select"required>
+              <option value="" selected="selected">Select Role</option>
+              {% for key, option in element.account.roles['#options'] %}
+                {% if key not in ['administrator', 'content_editor'] %}
+                  <option value="{{ key }}">{{ option }}</option>
+                {% endif %}
+              {% endfor %}
+            </select>
+          </div>
+          <div class="col-md-12">
+            {% set pass = element.account.pass['#children'] %}
+            {{ pass|trim|raw }}
+          </div>
+          <div class="termspolicy">
+            {% set call = element.field_checkbox['#children'] %}
+							{{ call|trim|raw }}
+							{% set input_call = element.field_checkbox['#input'] %}
+							{{ input_call|raw }}
+            I accept the <a href="#">Terms of Use & Privacy Policy</a>
+          </div>
+          <div class="col-md-12 text-center mt-2">
+            {{ element.actions }}
+            <input type="hidden" name="form_build_id" value="{{ element['#build_id'] }}" />
+            <input data-drupal-selector="edit-user-register-form" type="hidden" name="form_id" value="{{ element['#form_id'] }}" />
+          </div>
+          
+          <div class="signin mt-3">
+            Already have an account? <a href="{{ url('<front>') }}/user/login">Login here.</a>
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="col-sm-5 logosection">
+      <a href="/home" class="logo">ReviewLikes</a>
+      <div class="image-section text-center">
+        <img src="{{ url('<front>') }}/themes/custom/review_likes/images/signup/signup.svg" alt="sign up image" class="w-50" />
+      </div>
+    </div>
+  </div>
+
+  {# Add this CSS to your theme to make checkboxes look like a dropdown #}
+  <style>
+    .form-composite {
+      display: none;
+    }
+  </style>
+
+  <script>
+    document.getElementById('custom-role-select').addEventListener('change', function (e) {
+      // Uncheck all role checkboxes first
+      document.querySelectorAll('input[name^="roles["]').forEach((checkbox) => {
+        checkbox.checked = false
+      })
+    
+      // Check the selected role
+      if (e.target.value) {
+        document.querySelector(`input[name="roles[${e.target.value}]"]`).checked = true
+      }
+    })
+  </script>
+
+  <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const phoneInput = document.getElementById('edit-field-phone-number-0-value');
+            const errorMessage = document.getElementById('error-message');
+            const successMessage = document.getElementById('success-message');
+            
+            // Function to validate phone number
+            function validatePhoneNumber() {
+                // Remove any non-digit characters
+                let phoneNumber = phoneInput.value.replace(/\D/g, '');
+                
+                // Update the input value with only digits
+                phoneInput.value = phoneNumber;
+                
+                // Check if the phone number is exactly 10 digits
+                if (phoneNumber.length === 10) {
+                    phoneInput.classList.remove('error');
+                    errorMessage.style.display = 'none';
+                    successMessage.style.display = 'block';
+                    return true;
+                } else {
+                    phoneInput.classList.add('error');
+                    // errorMessage.style.display = 'block';
+                    // successMessage.style.display = 'none';
+                    return false;
+                }
+            }
+            
+            // Validate on input
+            phoneInput.addEventListener('input', validatePhoneNumber);
+            
+            // Validate on blur
+            phoneInput.addEventListener('blur', validatePhoneNumber);
+            
+            // Validate on form submission (example)
+            document.querySelector('form')?.addEventListener('submit', function(e) {
+                if (!validatePhoneNumber()) {
+                    e.preventDefault();
+                    phoneInput.focus();
+                }
+            });
+        });
+    </script>
+
+    
+</div>

@@ -1,0 +1,19 @@
+{#
+/**
+ * @file
+ * Default theme implementation for an 'input' #type form element.
+ *
+ * Available variables:
+ * - attributes: A list of HTML attributes for the input element.
+ * - children: Optional additional rendered elements.
+ *
+ * @see template_preprocess_input()
+ *
+ * @ingroup themeable
+ */
+#}
+ <form class="form-inline my-2 my-lg-0 d-flex">
+                        <input class="form-control" type="search" placeholder="Search Prodcuts Here..." aria-label="Search">
+                        <button class="btn btn-default" type="submit">Search</button>
+                     </form>
+

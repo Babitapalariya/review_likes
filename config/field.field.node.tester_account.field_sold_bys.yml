@@ -1,0 +1,19 @@
+uuid: c194f9c1-c14a-4ff1-b5b3-72ae0dfcf895
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_sold_bys
+    - node.type.tester_account
+id: node.tester_account.field_sold_bys
+field_name: field_sold_bys
+entity_type: node
+bundle: tester_account
+label: 'Account Number'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

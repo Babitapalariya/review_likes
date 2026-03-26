@@ -1,0 +1,9 @@
+uuid: 5ace8bc4-20f6-4ab5-bc6f-c053ed1b3126
+langcode: en
+status: true
+dependencies: {  }
+name: Currency
+vid: currency
+description: null
+weight: 0
+new_revision: false

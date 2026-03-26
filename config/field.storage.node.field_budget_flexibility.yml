@@ -1,0 +1,27 @@
+uuid: 25b3e07d-07b4-4b5c-ba7c-2f7fc1a77ff6
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_budget_flexibility
+field_name: field_budget_flexibility
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: strict_budget
+      label: 'Strict Budget'
+    -
+      value: flexible
+      label: Flexible
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 4
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

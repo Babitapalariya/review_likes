@@ -1,0 +1,57 @@
+uuid: 1607e902-f02f-4db1-a922-3ad8d56f1ebe
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.tester_profile.body
+    - field.field.node.tester_profile.field_blog_url
+    - field.field.node.tester_profile.field_country
+    - field.field.node.tester_profile.field_external_id
+    - field.field.node.tester_profile.field_filter
+    - field.field.node.tester_profile.field_id_verification_image
+    - field.field.node.tester_profile.field_image
+    - field.field.node.tester_profile.field_language
+    - field.field.node.tester_profile.field_licenses_other
+    - field.field.node.tester_profile.field_platform_other
+    - field.field.node.tester_profile.field_specific_regions
+    - field.field.node.tester_profile.field_sports_specification
+    - field.field.node.tester_profile.field_store_link
+    - field.field.node.tester_profile.field_testing_type_other
+    - field.field.node.tester_profile.field_youtube_channel
+    - node.type.tester_profile
+  module:
+    - user
+id: node.tester_profile.full
+targetEntityType: node
+bundle: tester_profile
+mode: full
+content:
+  field_filter:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  body: true
+  field_blog_url: true
+  field_country: true
+  field_external_id: true
+  field_id_verification_image: true
+  field_image: true
+  field_language: true
+  field_licenses_other: true
+  field_platform_other: true
+  field_specific_regions: true
+  field_sports_specification: true
+  field_store_link: true
+  field_testing_type_other: true
+  field_youtube_channel: true

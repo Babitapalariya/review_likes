@@ -1,0 +1,19 @@
+uuid: 9c47c48e-028d-4975-8676-1b16c1f73854
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_buyer_username
+    - node.type.discount
+id: node.discount.field_buyer_username
+field_name: field_buyer_username
+entity_type: node
+bundle: discount
+label: Before
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

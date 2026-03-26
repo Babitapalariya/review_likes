@@ -1,0 +1,15 @@
+registration_form:
+  version: 1.x
+  css:
+   theme:
+    css/merchantregistration.css: {}
+    css/bootstrap-icons.css: {}
+    css/bootstrap.min.css: {}
+  js:
+    js/registration.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+    - core/once
+    - core/jquery.once 

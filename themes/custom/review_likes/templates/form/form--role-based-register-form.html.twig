@@ -1,0 +1,29 @@
+{#
+/**
+ * @file
+ * Theme override for a comment form.
+ *
+ * Variables:
+ * - attributes: HTML attributes for the <form> tag.
+ * - children: All form fields and buttons.
+ * - form_id: The actual ID of the form (must be passed from preprocess).
+ */
+#}
+<div class="col-sm-7 contentsection">
+    <form{{ attributes.removeAttribute('class') }}>
+      <h2 class="text-center mb-5">Sign Up</h2>
+                     <div class="row">
+
+    {{ children }}
+    <div class="termspolicy">I accept the <a href="#">Terms of Use & Privacy Policy</a></div>
+    <div class="signin mt-3">Already have an account? <a href="{{url('<front>')}}/user/login">Login here.</a></div>
+    </div>
+  </form>
+ </div>
+ <div class="col-sm-5 logosection">
+                  <span class="logo">ReviewLikes</span>
+                  <div class="image-section text-center">
+                     <img src="{{url('<front>')}}/themes/custom/review_likes/images/signup/signup.svg" alt="sign up image" class="w-50">
+                  </div>
+               </div>
+               

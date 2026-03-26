@@ -1,0 +1,88 @@
+role_based_registration.profile_completion:
+  path: '/user/{user}/complete-profile'
+  defaults:
+    _title: 'Complete Your Profile'
+    _form: '\Drupal\role_based_registration\Form\ProfileCompletionForm'
+  requirements:
+    _custom_access: '\Drupal\role_based_registration\Form\ProfileCompletionForm::access'
+  options:
+    _admin_route: FALSE
+
+role_based_registration.business_form:
+  path: 'merchant/business-registration'
+  defaults:
+    _title: 'Business Registration'
+    _form: '\Drupal\role_based_registration\Form\BusinessRegistrationForm'
+  requirements:
+    _custom_access: '\Drupal\role_based_registration\Form\BusinessRegistrationForm::access'
+
+role_based_registration.user_list:
+  path: '/marchant-dashboard'
+  defaults:
+    _controller: '\Drupal\role_based_registration\Controller\UserListController::userListPage'
+    _title: 'User List'
+  requirements:
+    _permission: 'access content'
+
+# role_based_registration.product_form:
+#   path: '/product/create'
+#   defaults:
+#     _title: 'Import Product'
+#     _form: '\Drupal\role_based_registration\Form\ProductForm'
+#   requirements:
+#     # Replace the _custom_access line with a simple permission check.
+#     # Use 'administer nodes' or create a custom permission in your module.
+#       _custom_access: '\Drupal\role_based_registration\Form\ProductForm::access'
+#     # OR, if you want anyone to access it (not recommended for admin tasks):
+#     # _access: 'TRUE'
+
+role_based_registration.product_form:
+  path: '/product/create'
+  defaults:
+    _form: '\Drupal\role_based_registration\Form\ProductForm'
+    _title: 'Create Product'
+  requirements:
+    _role: 'merchant'
+    _permission: 'create product content'
+    _custom_access: '\Drupal\role_based_registration\Form\ProductForm::access'
+  options:
+    _admin_route: FALSE
+
+
+
+
+role_based_registration.product_edit_form:
+  path: '/product/{nid}/edit'
+  defaults:
+    _form: '\Drupal\role_based_registration\Form\ProductEditForm'
+    _title: 'Edit Product'
+  requirements:
+    _permission: 'access content'
+    _custom_access: '\Drupal\role_based_registration\Form\ProductEditForm::access'
+  options:
+    parameters:
+      nid:
+        type: integer
+
+
+role_based_registration.delete_node:
+  path: '/product/delete-node/{node}'
+  defaults:
+    _controller: '\Drupal\role_based_registration\Controller\DeleteController::unpublishNode'
+  requirements:
+    _permission: 'access content'
+    _entity_access: 'node.delete'
+  options:
+    _admin_route: TRUE
+    parameters:
+      node:
+        type: entity:node
+
+
+role_based_registration.extract_product:
+  path: '/extract-product'
+  defaults:
+    _controller: '\Drupal\role_based_registration\Controller\ProductController::extractProduct'
+    _title: 'Extract Product'
+  requirements:
+    _permission: 'access content'

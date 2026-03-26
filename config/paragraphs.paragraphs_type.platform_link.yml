@@ -1,0 +1,10 @@
+uuid: 504b06b0-5d80-449b-81cf-5326d331cdad
+langcode: en
+status: true
+dependencies: {  }
+id: platform_link
+label: 'Platform Link'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

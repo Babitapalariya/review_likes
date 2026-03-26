@@ -1,0 +1,116 @@
+<?php
+/**
+ * Implements hook_schema().
+ */
+// function otp_verification_schema() {
+//   $schema['otp_verification'] = [
+//     'description' => 'Stores OTP codes for email verification.',
+//     'fields' => [
+//       'id' => [
+//         'type' => 'serial',
+//         'not null' => TRUE,
+//         'description' => 'Primary key',
+//       ],
+//       'email' => [
+//         'type' => 'varchar',
+//         'length' => 255,
+//         'not null' => TRUE,
+//         'description' => 'User email address',
+//       ],
+//       'otp_code' => [
+//         'type' => 'varchar',
+//         'length' => 6,
+//         'not null' => TRUE,
+//         'description' => '6-digit OTP',
+//       ],
+//       'created' => [
+//         'type' => 'int',
+//         'not null' => TRUE,
+//         'default' => 0,
+//         'description' => 'Timestamp when OTP was created',
+//       ],
+//       'expires' => [
+//         'type' => 'int',
+//         'not null' => TRUE,
+//         'default' => 0,
+//         'description' => 'Timestamp when OTP expires',
+//       ],
+//       'verified' => [
+//         'type' => 'int',
+//         'size' => 'tiny',
+//         'not null' => TRUE,
+//         'default' => 0,
+//         'description' => 'Whether OTP was verified (1) or not (0)',
+//       ],
+//       'attempts' => [
+//         'type' => 'int',
+//         'size' => 'small',
+//         'not null' => TRUE,
+//         'default' => 0,
+//         'description' => 'Number of failed attempts',
+//       ],
+//     ],
+//     'primary key' => ['id'],
+//     'indexes' => [
+//       'email' => ['email'],
+//     ],
+//   ];
+//   return $schema;
+// }
+
+
+function otp_verification_install() {
+  $schema = [
+    'description' => 'Stores OTP verification data',
+    'fields' => [
+      'id' => [
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+        'description' => 'Primary key',
+      ],
+      'email' => [
+        'type' => 'varchar',
+        'length' => 255,
+        'not null' => TRUE,
+        'description' => 'User email',
+      ],
+      'otp_code' => [
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+        'description' => 'OTP code',
+      ],
+      'created' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'Timestamp when OTP was created',
+      ],
+      'expires' => [
+        'type' => 'int',
+        'not null' => TRUE,
+        'description' => 'Timestamp when OTP expires',
+      ],
+      'verified' => [
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Whether OTP was verified',
+      ],
+      'attempts' => [
+        'type' => 'int',
+        'size' => 'small',
+        'not null' => TRUE,
+        'default' => 0,
+        'description' => 'Number of failed attempts',
+      ],
+    ],
+    'primary key' => ['id'],
+    'indexes' => [
+      'email' => ['email'],
+    ],
+  ];
+
+  \Drupal::database()->schema()->createTable('otp_verification', $schema);
+}

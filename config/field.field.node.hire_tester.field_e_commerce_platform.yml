@@ -1,0 +1,29 @@
+uuid: dc0d7291-8c96-4e99-b74c-2b31dd7121e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_e_commerce_platform
+    - node.type.hire_tester
+    - taxonomy.vocabulary.product_category
+id: node.hire_tester.field_e_commerce_platform
+field_name: field_e_commerce_platform
+entity_type: node
+bundle: hire_tester
+label: 'Product Category'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      product_category: product_category
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

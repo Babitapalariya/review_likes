@@ -1,0 +1,21 @@
+uuid: 6be6b416-1fc9-4415-803c-3f5b8e3360f2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_safety_gear_needed
+    - node.type.hire_tester
+  module:
+    - options
+id: node.hire_tester.field_safety_gear_needed
+field_name: field_safety_gear_needed
+entity_type: node
+bundle: hire_tester
+label: 'Safety Gear Needed'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

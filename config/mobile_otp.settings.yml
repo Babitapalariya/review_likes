@@ -1,0 +1,10 @@
+_core:
+  default_config_hash: 00I49T98rlZykfhoTbKpHOAkPsr-Y-1V5grOV-vUoPM
+default_country_code: '+91'
+otp_expiry: 300
+max_attempts: 3
+sms_gateway: log
+sms_template: 'Your verification code is: @otp. Valid for 5 minutes.'
+twilio_account_sid: ''
+twilio_auth_token: ''
+twilio_phone_number: ''

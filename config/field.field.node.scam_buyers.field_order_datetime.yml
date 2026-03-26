@@ -1,0 +1,21 @@
+uuid: 2c9f1f3b-4cc0-4a10-b08e-0d3e298bfcc8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_order_datetime
+    - node.type.scam_buyers
+id: node.scam_buyers.field_order_datetime
+field_name: field_order_datetime
+entity_type: node
+bundle: scam_buyers
+label: 'Order Date & Time'
+description: ''
+required: false
+translatable: false
+default_value:
+  -
+    value: 1758710728
+default_value_callback: ''
+settings: {  }
+field_type: timestamp

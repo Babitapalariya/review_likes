@@ -1,0 +1,29 @@
+uuid: 6d67ce34-2573-4e36-8196-4bf4ecdecc45
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_filter
+    - node.type.discount
+    - taxonomy.vocabulary.discount_type
+id: node.discount.field_filter
+field_name: field_filter
+entity_type: node
+bundle: discount
+label: filter
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      discount_type: discount_type
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: categories
+field_type: entity_reference

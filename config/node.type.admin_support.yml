@@ -1,0 +1,17 @@
+uuid: 53fa044e-7af6-462e-a30e-5adcac3aa5fb
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Admin Support'
+type: admin_support
+description: null
+help: null
+new_revision: false
+preview_mode: 1
+display_submitted: true

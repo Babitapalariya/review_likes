@@ -1,0 +1,21 @@
+uuid: 8c263236-e4ce-4287-9b2e-88a6ac3d815e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_platform_preferences
+    - node.type.hire_tester
+  module:
+    - options
+id: node.hire_tester.field_platform_preferences
+field_name: field_platform_preferences
+entity_type: node
+bundle: hire_tester
+label: 'Platform Preferences'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

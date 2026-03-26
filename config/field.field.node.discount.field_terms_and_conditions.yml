@@ -1,0 +1,21 @@
+uuid: 7e71f37f-3f53-4877-aab0-e9a1c1a3eb63
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_terms_and_conditions
+    - node.type.discount
+id: node.discount.field_terms_and_conditions
+field_name: field_terms_and_conditions
+entity_type: node
+bundle: discount
+label: 'Multi Use'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

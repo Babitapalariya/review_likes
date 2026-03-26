@@ -1,0 +1,24 @@
+uuid: adae5c6e-e423-493f-a364-7241e42ce5d8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.scam_buyers
+  module:
+    - text
+id: node.scam_buyers.body
+field_name: body
+entity_type: node
+bundle: scam_buyers
+label: 'Describe Briefly'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

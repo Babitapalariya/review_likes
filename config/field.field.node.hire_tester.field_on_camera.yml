@@ -1,0 +1,21 @@
+uuid: e575ef06-7d76-41fb-9730-5650d7640119
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_on_camera
+    - node.type.hire_tester
+  module:
+    - options
+id: node.hire_tester.field_on_camera
+field_name: field_on_camera
+entity_type: node
+bundle: hire_tester
+label: 'On-Camera '
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,18 @@
+uuid: d3c53cd8-cc2a-4170-973f-f14d778bed1c
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: Advertising
+type: advertising
+description: null
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

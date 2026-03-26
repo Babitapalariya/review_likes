@@ -1,0 +1,27 @@
+uuid: be8ced8e-c89d-46e9-b81a-cce9606f9415
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_editing_skills_required
+field_name: field_editing_skills_required
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: 'yes'
+      label: 'Yes'
+    -
+      value: no_raw_footage_only
+      label: 'No (Raw Footage Only)'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 5
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,24 @@
+uuid: 8c879eca-0a4e-4656-8b55-bd5957145582
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.body
+    - node.type.tester_profile
+  module:
+    - text
+id: node.tester_profile.body
+field_name: body
+entity_type: node
+bundle: tester_profile
+label: Body
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  display_summary: true
+  required_summary: false
+  allowed_formats: {  }
+field_type: text_with_summary

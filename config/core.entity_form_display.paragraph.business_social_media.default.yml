@@ -1,0 +1,32 @@
+uuid: 2bdd2993-08c6-4a36-a970-263b19ae472a
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.business_social_media.field_coupon_code
+    - field.field.paragraph.business_social_media.field_platform_link
+    - paragraphs.paragraphs_type.business_social_media
+id: paragraph.business_social_media.default
+targetEntityType: paragraph
+bundle: business_social_media
+mode: default
+content:
+  field_coupon_code:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_platform_link:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

@@ -1,0 +1,12 @@
+/* css/otp-verification.css */
+#otp-verification-modal .modal-dialog {
+  max-width: 400px;
+  margin: 1.75rem auto;
+}
+
+#otp-input {
+  letter-spacing: 2px;
+  font-size: 1.5rem;
+  text-align: center;
+  padding: 10px;
+}

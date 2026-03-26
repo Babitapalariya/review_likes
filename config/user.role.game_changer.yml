@@ -1,0 +1,14 @@
+uuid: 2f8e2785-1c08-4eb5-8554-d95476e9a997
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.marchant_products
+  module:
+    - node
+id: game_changer
+label: 'Game Changer'
+weight: 5
+is_admin: null
+permissions:
+  - 'delete any marchant_products content'

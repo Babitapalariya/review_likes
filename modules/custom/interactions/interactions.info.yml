@@ -1,0 +1,6 @@
+name: 'Interactions'
+type: module
+core_version_requirement: ^10
+package: Custom
+dependencies:
+  - node

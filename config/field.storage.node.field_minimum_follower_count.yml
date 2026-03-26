@@ -1,0 +1,33 @@
+uuid: db9bc681-8dc3-4052-adb5-a5e9265647be
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_minimum_follower_count
+field_name: field_minimum_follower_count
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: micro_influencer_1k_10k
+      label: 'Micro-Influencer (1K-10K)'
+    -
+      value: mid_tier_10k_100k
+      label: 'Mid-Tier (10K-100K)'
+    -
+      value: macro_100k
+      label: 'Macro (100K+)'
+    -
+      value: no_preference
+      label: 'No Preference'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 10
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

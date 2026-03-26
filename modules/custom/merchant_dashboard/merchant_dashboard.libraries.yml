@@ -1,0 +1,17 @@
+tabs-styling:
+  version: 1.0
+  css:
+    component:
+      css/tabs.css: {}
+      
+tabs:
+  version: 1.0
+  css:
+    component:
+      css/tabs.css: {}
+  js:
+    js/tabs.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.once

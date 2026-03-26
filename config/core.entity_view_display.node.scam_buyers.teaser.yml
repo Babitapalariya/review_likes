@@ -1,0 +1,44 @@
+uuid: 4924a90d-7a9b-4269-bdd0-f2a0872b7ba8
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.scam_buyers.body
+    - field.field.node.scam_buyers.field_brand_name
+    - field.field.node.scam_buyers.field_comment_text
+    - field.field.node.scam_buyers.field_external_id
+    - field.field.node.scam_buyers.field_order_datetime
+    - field.field.node.scam_buyers.field_product_url
+    - field.field.node.scam_buyers.field_sold_bys
+    - field.field.node.scam_buyers.field_telephone
+    - node.type.scam_buyers
+  module:
+    - text
+    - user
+id: node.scam_buyers.teaser
+targetEntityType: node
+bundle: scam_buyers
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_brand_name: true
+  field_comment_text: true
+  field_external_id: true
+  field_order_datetime: true
+  field_product_url: true
+  field_sold_bys: true
+  field_telephone: true

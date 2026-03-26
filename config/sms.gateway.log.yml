@@ -1,0 +1,15 @@
+uuid: cdf73ae4-43d0-4b97-b6e3-29fd495b8faa
+langcode: en
+status: true
+dependencies: {  }
+_core:
+  default_config_hash: le2gIhFCyt1jrKujOan6ubyihxxvgvPVPOBJIXY_KxA
+id: log
+label: Logger
+plugin: log
+settings: {  }
+skip_queue: null
+incoming_push_path: null
+reports_push_path: null
+retention_duration_incoming: null
+retention_duration_outgoing: null

@@ -1,0 +1,77 @@
+<?php
+
+/**
+ * @file
+ * Install, update and uninstall functions for the mobile_otp module.
+ */
+
+use Drupal\Core\Database\Database;
+
+/**
+ * Implements hook_schema().
+ */
+function mobile_otp_schema() {
+  $schema['mobile_otp_verification'] = [
+    'description' => 'Stores OTP verification data.',
+    'fields' => [
+      'id' => [
+        'description' => 'Primary key: Unique ID.',
+        'type' => 'serial',
+        'unsigned' => TRUE,
+        'not null' => TRUE,
+      ],
+      'mobile_number' => [
+        'description' => 'The mobile number to verify.',
+        'type' => 'varchar',
+        'length' => 20,
+        'not null' => TRUE,
+      ],
+      'otp_code' => [
+        'description' => 'The OTP code.',
+        'type' => 'varchar',
+        'length' => 10,
+        'not null' => TRUE,
+      ],
+      'form_id' => [
+        'description' => 'The form ID this OTP is for.',
+        'type' => 'varchar',
+        'length' => 50,
+        'not null' => TRUE,
+        'default' => 'default',
+      ],
+      'created' => [
+        'description' => 'The timestamp when the OTP was created.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'expires' => [
+        'description' => 'The timestamp when the OTP expires.',
+        'type' => 'int',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'verified' => [
+        'description' => 'Whether the OTP has been verified.',
+        'type' => 'int',
+        'size' => 'tiny',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+      'attempts' => [
+        'description' => 'Number of verification attempts.',
+        'type' => 'int',
+        'size' => 'small',
+        'not null' => TRUE,
+        'default' => 0,
+      ],
+    ],
+    'primary key' => ['id'],
+    'indexes' => [
+      'mobile_number_form' => ['mobile_number', 'form_id'],
+      'expires' => ['expires'],
+    ],
+  ];
+
+  return $schema;
+}

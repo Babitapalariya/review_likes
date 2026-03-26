@@ -1,0 +1,56 @@
+# tester_dashboard.routing.yml
+tester_dashboard.dashboard:
+  path: '/tester/dashboard'
+  defaults:
+    _title: 'Tester Dashboard'
+    _form: '\Drupal\tester_dashboard\Form\TesterProfileForm'
+  requirements:
+    _permission: 'access tester dashboard'
+    _role: 'tester'
+
+tester_dashboard.delete_node:
+  path: '/tester/delete-profile/{node}'
+  defaults:
+    _controller: '\Drupal\tester_dashboard\Controller\DeleteController::unpublishNode'
+  requirements:
+    _permission: 'access content'
+    _entity_access: 'node.delete'
+  options:
+    parameters:
+      node:
+        type: entity:node    
+
+
+tester_dashboard.tester_edit_form:
+  path: '/tester/{nid}/edit'
+  defaults:
+    _form: '\Drupal\tester_dashboard\Form\TesterProfileEditForm'
+    _title: 'Edit Tester Profile'
+  requirements:
+    _permission: 'access content'
+    _custom_access: '\Drupal\tester_dashboard\Form\TesterProfileEditForm::access'
+  options:
+    parameters:
+      nid:
+        type: integer        
+
+tester_dashboard.tester_account:
+  path: '/tester/account'
+  defaults:
+    _title: 'Tester Dashboard'
+    _form: '\Drupal\tester_dashboard\Form\TesterAccountForm'
+  requirements:
+    _permission: 'access tester dashboard'
+    _role: 'tester'
+
+tester_dashboard.delete_account:
+  path: '/tester/delete-account/{node}'
+  defaults:
+    _controller: '\Drupal\tester_dashboard\Controller\DeleteController::unpublishNode'
+  requirements:
+    _permission: 'access content'
+    _entity_access: 'node.delete'
+  options:
+    parameters:
+      node:
+        type: entity:node      

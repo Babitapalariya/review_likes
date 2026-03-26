@@ -1,0 +1,33 @@
+uuid: 4efeb29e-5f9d-4a5a-bb84-f2353dac235f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_lighting_needs
+field_name: field_lighting_needs
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: natural_light
+      label: 'Natural Light'
+    -
+      value: studio_lighting
+      label: 'Studio Lighting'
+    -
+      value: low_light_capable
+      label: 'Low-Light Capable'
+    -
+      value: no_preference
+      label: 'No Preference'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 8
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,27 @@
+<div class="collapse navbar-collapse" id="menuitems">
+  <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+    {% for item in content['#items'] %}
+      {% set current = url('<current>')['#markup'] %}
+      {% set url = item.url %}
+      {% set active_class = (current == url) ? 'active' : '' %}
+      
+      {# Check if the item should be a dropdown based on is_expanded #}
+      {% if item.is_expanded %}
+        <li class="nav-item dropdown {{ active_class }}">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            {{ item.title }}
+          </a>
+          <ul class="dropdown-menu">
+            {% for child_key, child in item.below %}
+              <li><a class="dropdown-item" href="{{ child.url }}">{{ child.title }}</a></li>
+            {% endfor %}
+          </ul>
+        </li>
+      {% else %}
+        <li class="nav-item {{ active_class }}">
+          <a class="nav-link" href="{{ item.url }}">{{ item.title }}</a>
+        </li>
+      {% endif %}
+    {% endfor %}
+  </ul>
+</div>

@@ -1,0 +1,22 @@
+uuid: fec3c687-0f7e-4a78-bc92-c0745caa7ca5
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - review_likes
+_core:
+  default_config_hash: erQSEZF2XUjNmgTl0uNRBzmg18ZGXwUcw2FhApoeuHk
+id: review_likes_content
+theme: review_likes
+region: content
+weight: -20
+provider: null
+plugin: system_main_block
+settings:
+  id: system_main_block
+  label: 'Main page content'
+  label_display: '0'
+  provider: system
+visibility: {  }

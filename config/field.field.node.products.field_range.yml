@@ -1,0 +1,35 @@
+uuid: 7b65bde7-8c50-407e-9bf4-ec93871053e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_range
+    - node.type.products
+  module:
+    - range
+id: node.products.field_range
+field_name: field_range
+entity_type: node
+bundle: products
+label: range
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  min: null
+  max: null
+  field:
+    prefix: ''
+    suffix: ''
+  from:
+    prefix: ''
+    suffix: ''
+  to:
+    prefix: ''
+    suffix: ''
+  combined:
+    prefix: ''
+    suffix: ''
+field_type: range_integer

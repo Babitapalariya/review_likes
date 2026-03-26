@@ -1,0 +1,21 @@
+uuid: 05135e1a-9b8e-4d35-af6d-94caf71b1946
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_minimum_follower_count
+    - node.type.hire_tester
+  module:
+    - options
+id: node.hire_tester.field_minimum_follower_count
+field_name: field_minimum_follower_count
+entity_type: node
+bundle: hire_tester
+label: 'Minimum Follower Count'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

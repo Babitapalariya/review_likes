@@ -1,0 +1,649 @@
+/* Created on 29-01-2025 */
+/* This is style sheet for Home page */
+
+body {
+	background-color: #fbfbfc;
+	padding: 0;
+	margin: 0;
+}
+
+.salesinfo-section .container-fluid {
+	padding: 2rem 2rem;
+}
+
+.salescardsection {
+	justify-content: space-evenly;
+}
+
+.salescardsection .card {
+	text-align: center;
+	border: transparent;
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.salescardsection .card .card-body {
+	padding: 0.5rem;
+}
+
+.salescardsection .card-title {
+	font-size: 2rem;
+}
+
+.salescardsection .card-subtitle {
+	font-family: "Arima", serif;
+	font-size: 1.1rem;
+	color: #434343;
+	margin-top: 0.5rem;
+}
+
+.cardgreen-text {
+	color: #c3c13e;
+}
+
+.purple-text {
+	color: #a667d2;
+}
+
+.carddarkgreen-text {
+	color: #4aa553;
+}
+
+.cardblue-text {
+	color: #5c8ecf;
+}
+
+.cardyellow-text {
+	color: #e3b51f;
+}
+
+.salescardsection>div {
+	width: 19%;
+}
+
+.navbar-toggler:focus {
+	box-shadow: none;
+}
+
+.products-section{
+	padding: 1.5rem 1.5rem;
+}
+
+.products-section .filtersection {
+	height: 700px;
+	overflow-y: scroll;
+	position: relative;
+	background-color: #ffffff;
+	border: 1px solid #e1d3d3;
+	width: 16.66666667%;
+}
+
+
+.products-section .filtersection h4 {
+	font-family: "Arima", serif;
+	font-size: 1.5rem;
+	font-weight: 600;
+	color: #434343;
+	margin-top: 1rem;
+	padding-left: 1rem;
+	margin-bottom: 2rem;
+}
+
+.products-section .filtersection .filter h5 {
+	font-family: "Arima", serif;
+	font-size: 1.1rem;
+	text-transform: uppercase;
+	font-weight: 600;
+	color: #000000;
+	margin-top: 1rem;
+	padding-left: 1rem;
+}
+
+.products-section .filtersection .filter .cardyellow-text {
+	font-family: "Arima", serif;
+	font-size: 1rem;
+	text-transform: uppercase;
+	font-weight: 600;
+	color: #f5a229;
+	margin-top: 1rem;
+	padding-left: 1rem;
+}
+
+.filtersection .bestfreelancer, .filtersection .bestgameshaker{
+	width: 100%;
+    padding-left: 1rem;
+}
+
+.filtersection .bestfreelancer .header, .filtersection .bestgameshaker .header{
+	font-size: 1.15rem;
+}
+
+.categories .checkboxsection {
+	padding-left: 1rem;
+}
+
+.categories .form-check {
+	margin-bottom: 0.75rem;
+}
+
+.categories .form-check-input {
+	border: 1px solid #434343;
+}
+
+.postbodysection {
+	padding: 0 1rem;
+}
+
+.postbodysection .form-inline {
+	border: 1px solid #d2d2d2;
+	border-radius: 7px;
+	margin: 0 0.25rem;
+}
+
+.postbodysection .form-control {
+	font-family: "Arima", serif;
+	border: none;
+	border-radius: 7px;
+	border-top-right-radius: 0;
+	border-bottom-right-radius: 0;
+}
+
+.postbodysection .btn-default {
+	border-top-left-radius: 0;
+	border-bottom-left-radius: 0;
+}
+
+.postbodysection .sort-dropdown {
+	width: 75%;
+	height: 45px;
+}
+
+.sortsection {
+	width: 35%;
+	margin-left: 2rem;
+	display: flex;
+	align-items: center;
+}
+
+.postsection {
+	padding: 1rem 0 2rem;
+	font-family: "Arima", serif;
+}
+
+.postsection h4 {
+	font-size: 1.25rem;
+	padding: 0 0.25rem 1rem;
+}
+
+.postsection .row {
+	padding: 0 1rem;
+	align-items: center;
+}
+
+.postsection .row .card img {
+	border-radius: 5px;
+}
+
+.postsection .row .card .product-title {
+	padding: 1.5rem 1rem 0.5rem;
+	font-size: 1.25rem;
+	font-weight: bold;
+	word-break: break-all;
+}
+
+.postsection .row .card .product-description {
+	padding: 0.25rem 1rem;
+	font-size: 1.1rem;
+}
+
+.postsection .btn-close{
+	font-size: 14px;
+}
+
+.slidecontainer {
+	width: 100%;
+	padding-left: 1rem;
+}
+
+
+.filtersection .slider {
+	-webkit-appearance: none;
+	width: 70%;
+	height: 17px;
+	background: #d3d3d3;
+	border-radius: 7px;
+	outline: none;
+	opacity: 0.9;
+	-webkit-transition: .2s;
+	transition: opacity .2s;
+}
+
+.filtersection .slider:hover {
+	opacity: 1;
+}
+
+.filtersection .slider::-webkit-slider-thumb {
+	-webkit-appearance: none;
+	appearance: none;
+	width: 25px;
+	height: 25px;
+	border-radius: 50%;
+	background: #e89821;
+	cursor: pointer;
+}
+
+.rangevalue {
+	padding-left: 1rem;
+	font-weight: 500;
+	color: #000000;
+}
+
+.filtersection .slider::-moz-range-thumb {
+	width: 25px;
+	height: 25px;
+	background: #e89821;
+	cursor: pointer;
+}
+
+.ratingsection .row {
+	width: 100%;
+	padding: 0.5rem 0.75rem 0;
+	align-items: flex-start;
+	justify-content: space-between;
+}
+
+.ratingsection .icon-section {
+	padding: 0.1rem 0;
+	text-align: center;
+}
+
+.rlrating {
+	font-size: 1rem;
+	font-weight: 500;
+}
+
+.rlratingvalue {
+	font-size: 1.5rem;
+	font-weight: bold;
+	line-height: 1.75;
+}
+
+#categorydropdown, #categorydropdown .vscomp-wrapper{
+	height: 100%;
+	max-width: 300px;
+}
+
+.post-btn {
+	font-family: "Arimo", serif;
+	border-radius: 5px !important;
+}
+
+.challenge-btn{
+	background-color: #F56929;
+	color: #ffffff;
+	padding: 0.25rem 2.5rem;
+}
+
+.postbodysection .card-footer {
+	background-color: transparent;
+}
+
+.iconsection span {
+	font-size: 0.9rem;
+}
+
+.pricesection {
+	background-color: #469b4e;
+	color: #fff;
+	padding: 1rem 0.5rem;
+	text-align: center;
+	border-radius: 10px;
+	line-height: 1.5;
+}
+
+.pricesection p {
+	margin-bottom: 0;
+}
+
+.advertising-section {
+	font-family: "Arima", serif;
+	background-color: #ffffff;
+	height: 700px;
+	border: 1px solid #e1d3d3;
+	padding: 0;
+}
+
+.advertisement h6{
+	font-weight: 600;
+}
+
+.advertising-section hr {
+	color: #9f9b9b;
+}
+
+.products-section .advertising-section h4 {
+	font-family: "Arima", serif;
+	font-size: 1.5rem;
+	font-weight: 600;
+	color: #434343;
+	margin-top: 1rem;
+	margin-bottom: 1rem;
+	text-align: center;
+}
+
+.advertising-section .advertisement {
+	padding: 1rem 2rem;
+}
+
+.commentbox {
+	margin: 0;
+	border: 1px solid #b5b0b0;
+	border-radius: 7px;
+	width: 100%;
+}
+
+.comment-view-section .cmnt{
+    border: 1px solid #d6cfcf;
+    padding: 1rem 0.5rem;
+}
+
+.trend-img{
+	height: 150px;
+	object-fit: scale-down;
+}
+
+.advertisement .prod-link{
+	text-decoration: none;
+	color: #434343;
+}
+
+
+/****** TABLET LANDSCAPE STYLES START **********/
+@media only screen and (min-width: 768px) and (max-width: 1280px) and (orientation: landscape) {
+	.salescardsection .card-subtitle {
+		font-size: 0.9rem;
+	}
+
+	.price {
+		width: 40%;
+	}
+
+	.slidecontainer .col-md-5, .slidecontainer .col-md-7{
+		width: 100%;
+	}
+}
+
+/****** TABLET LANDSCAPE STYLES END **********/
+/****** TABLET PORTRAIT STYLES START **********/
+/* @media only screen and (min-width: 1110px) and (max-width: 1160px) {
+  .price{
+    width: 40%;
+  }
+} */
+@media only screen and (min-width: 768px) and (max-width: 1200px) and (orientation: portrait) {
+	.salescardsection>div {
+		width: 30%;
+		margin-bottom: 2rem;
+	}
+
+	.products-section .filtersection {
+		height: 470px;
+		width: 30%;
+		margin-bottom: 2rem;
+		padding: 2rem 0.5rem;
+	}
+
+	.salescardsection .card-subtitle {
+		font-size: 1rem;
+	}
+
+	.products-section .container-fluid {
+		padding: 2rem 2rem;
+	}
+
+	.product-text {
+		width: 100%;
+	}
+
+	.d-flex.search-section {
+		flex-direction: column;
+	}
+
+	.postsection .row .card .product-title {
+		padding: 1.5rem 0 0.5rem;
+	}
+
+	.postbodysection .form-inline {
+		width: 80%;
+		margin: 2rem auto;
+	}
+
+	#categorydropdown, #categorydropdown .vscomp-wrapper{
+		height: 100%;
+	}
+	.postbodysection > .row > .col-md-4{
+		margin-bottom: 0!important;
+	}
+	.sortsection {
+		margin-left: 0;
+		margin: 2rem auto;
+		width: 70%;
+	}
+
+	.sortsection span {
+		width: 37%;
+	}
+
+	.postbodysection {
+		padding: 0 1.5rem;
+		width: 70%;
+	}
+
+	.postsection .row {
+		padding: 0;
+		justify-content: flex-start;
+	}
+
+	.card-body .price {
+		margin: 1rem auto;
+		width: 50%;
+	}
+
+	.ratingsection .icon-section {
+		width: 25%;
+		margin: 1rem auto;
+	}
+
+	.post-btn {
+		margin: 1rem;
+	}
+
+	.advertising-section {
+		margin: 2rem 0 6rem;
+		width: 40%;
+		height: 100%;
+	}
+	.commentbox {
+		width: 95%;
+	}
+
+	.slidecontainer .col-md-5, .slidecontainer .col-md-7{
+		width: 100%;
+	}
+}
+
+/****** TABLET PORTRAIT STYLES END **********/
+/****** MOBILE LANDSCAPE STYLES START **********/
+@media only screen and (max-width: 992px) and (orientation: landscape) {
+	.salescardsection>div {
+		width: 30%;
+		margin-bottom: 2rem;
+	}
+
+	.products-section .filtersection {
+		height: 100%;
+		width: 30%;
+		margin-bottom: 2rem;
+		padding: 2rem 0.5rem;
+	}
+
+	.salescardsection .card-subtitle {
+		font-size: 1rem;
+	}
+
+	.products-section .container-fluid {
+		padding: 2rem 2rem;
+	}
+
+	.sortsection span {
+		width: 37%;
+	}
+
+	.d-flex.search-section {
+		flex-direction: column;
+	}
+
+	.postbodysection .form-inline {
+		width: 100%;
+		margin: 2rem auto;
+	}
+
+	#categorydropdown, #categorydropdown .vscomp-wrapper{
+		height: 100%;
+	}
+	.postbodysection > .row > .col-md-4{
+		margin-bottom: 0!important;
+	}
+	.sortsection {
+		margin-left: 0;
+		margin: 2rem auto;
+		width: 70%;
+	}
+
+	.postbodysection > .row{
+		margin-bottom: 1rem !important;
+	}
+
+	.postbodysection {
+		padding: 0 1.5rem;
+		width: 70%;
+	}
+
+	.postsection .row {
+		padding: 0;
+		justify-content: flex-start;
+	}
+
+	.socialmedia-icons {
+		display: flex;
+		justify-content: space-evenly;
+		width: 83.33333333%;
+	}
+
+	.postsection .row .card img {
+		margin: 0.5rem auto;
+	}
+
+	.card-body .price {
+		margin: 1rem auto;
+		width: 50%;
+	}
+
+	.ratingsection .icon-section {
+		width: 25%;
+		margin: 1rem auto;
+	}
+
+	.post-btn {
+		margin: 1rem;
+	}
+
+	.advertising-section {
+		margin: 2rem 0 6rem;
+		width: 40%;
+		height: 100%;
+	}
+
+	.slidecontainer .col-md-5, .slidecontainer .col-md-7{
+		width: 100%;
+	}
+}
+
+/****** MOBILE LANDSCAPE STYLES END **********/
+/****** MOBILE PORTRAIT STYLES START **********/
+@media only screen and (min-width: 250px) and (max-width:767px) and (orientation:portrait) {
+	.salescardsection>div {
+		width: 100%;
+		margin-bottom: 2rem;
+	}
+
+	.products-section .filtersection {
+		height: 100%;
+		width: 100%;
+		margin-bottom: 2rem;
+		padding: 2rem 0.5rem;
+	}
+
+	.d-flex.search-section {
+		flex-direction: column;
+	}
+
+	.postbodysection .form-inline {
+		width: 100%;
+		margin: 2rem auto;
+	}
+
+	.sortsection {
+		margin-left: 0;
+		margin: 2rem auto 0.5rem;
+		width: 100%;
+	}
+
+	.postbodysection {
+		padding: 0 1rem;
+	}
+
+	.postbodysection > .row{
+		margin-bottom: 1rem !important;
+	}
+
+	.sortsection span {
+		width: 37%;
+	}
+
+	.postsection .row {
+		padding: 0;
+	}
+
+	.postsection .row .card img {
+		margin: 0.5rem auto;
+	}
+
+	.card-body .col-md-2.text-center {
+		display: flex;
+		justify-content: space-around;
+		margin: 1rem auto;
+	}
+
+	.ratingsection .icon-section {
+		width: 25%;
+		margin: 1rem auto;
+	}
+
+	.post-btn {
+		margin: 1rem;
+	}
+
+	.advertising-section {
+		margin: 2rem 0 6rem;
+	}
+
+	.slidecontainer{
+		margin-top: 1rem;
+	}
+
+	.postbodysection .form-inline{
+		margin-top: 2rem;
+	}
+}
+
+/****** MOBILE PORTRAIT STYLES END **********/

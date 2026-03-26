@@ -1,0 +1,21 @@
+uuid: a9263d5c-785e-4ce6-b33a-2bf56bdb98a4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_telephone
+    - node.type.gift
+  module:
+    - telephone
+id: node.gift.field_telephone
+field_name: field_telephone
+entity_type: node
+bundle: gift
+label: 'Telephone '
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: telephone

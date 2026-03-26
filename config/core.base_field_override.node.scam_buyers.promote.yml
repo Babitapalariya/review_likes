@@ -1,0 +1,22 @@
+uuid: af659632-85f0-41b5-8e56-689a9755e527
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.scam_buyers
+id: node.scam_buyers.promote
+field_name: promote
+entity_type: node
+bundle: scam_buyers
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

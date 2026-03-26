@@ -1,0 +1,21 @@
+uuid: d76bc35f-5d4d-4662-9f43-ec076ca95321
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rating
+    - node.type.marchant_products
+  module:
+    - options
+id: node.marchant_products.field_rating
+field_name: field_rating
+entity_type: node
+bundle: marchant_products
+label: Rating
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

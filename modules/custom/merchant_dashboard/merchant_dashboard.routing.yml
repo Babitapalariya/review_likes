@@ -1,0 +1,133 @@
+merchant_dashboard.dashboard:
+  path: '/merchant/dashboard'
+  defaults:
+    _title: 'Merchant Dashboard'
+    _controller: '\Drupal\merchant_dashboard\Controller\MerchantDashboardController::dashboard'
+  requirements:
+    _permission: 'access merchant dashboard'
+
+merchant_dashboard.rebuttal:
+  path: '/merchant/rebuttal'
+  defaults:
+    _title: 'Rebuttal'
+    _form: '\Drupal\merchant_dashboard\Form\RebuttalForm'
+  requirements:
+    _permission: 'access merchant dashboard'
+merchant_dashboard.gifts:
+  path: '/merchant/gift'
+  defaults:
+    _title: 'Gifts'
+    _form: '\Drupal\merchant_dashboard\Form\GiftForm'
+  requirements:
+    _permission: 'access merchant dashboard'
+
+
+merchant_dashboard.claims_gifts:
+  path: '/merchant/claims-gifts'
+  defaults:
+    _title: 'Claims & Gifts'
+    _controller: '\Drupal\merchant_dashboard\Controller\ClaimsGiftsController::combinedForms'
+  requirements:
+    _permission: 'access merchant dashboard'    
+
+
+merchant_dashboard.rebuttal_edit:
+  path: '/claims-gifts/{nid}/edit'
+  defaults:
+    _form: '\Drupal\merchant_dashboard\Form\RebuttalEditForm'
+    _title: 'Edit Claims-Gifts'
+  requirements:
+    _custom_access: '\Drupal\merchant_dashboard\Form\RebuttalEditForm::access'  
+
+
+
+
+merchant_dashboard.delete_node:
+  path: '/claims-gifts/delete-node/{node}'
+  defaults:
+    _controller: '\Drupal\merchant_dashboard\Controller\ClaimsGiftsNodeDeleteController::unpublishNode'
+  requirements:
+    _permission: 'access content'
+    _entity_access: 'node.delete'
+  options:
+    _admin_route: TRUE
+    parameters:
+      node:
+        type: entity:node
+merchant_dashboard.product_testing_video_form:
+  path: '/merchant/product-testing-video'
+  defaults:
+    _form: '\Drupal\merchant_dashboard\Form\ProductTestingVideoForm'
+    _title: 'Submit Product Testing Video'
+  requirements:
+    _permission: 'access merchant dashboard'   
+
+merchant_dashboard.discount_form:
+  path: '/merchant-dashboard/discount'
+  defaults:
+    _form: '\Drupal\merchant_dashboard\Form\DiscountForm'
+    _title: 'Create Discount'
+  requirements:
+    _permission: 'access merchant dashboard' 
+        
+merchant_dashboard.admin_support:
+  path: '/merchant/admin-support'
+  defaults:
+    _form: '\Drupal\merchant_dashboard\Form\AdminSupportForm'
+    _title: 'Admin Support'
+  requirements:
+    _permission: 'access merchant dashboard' 
+
+merchant_dashboard.scam_buyers:
+  path: '/merchant/scam-buyers'
+  defaults:
+    _form: '\Drupal\merchant_dashboard\Form\ScamBuyersForm'
+    _title: 'Scam Buyers'
+  requirements:
+    _permission: 'access merchant dashboard' 
+
+
+merchant_dashboard.discount_edit:
+  path: '/merchant/{node}/edit-discount'
+  defaults:
+    _title: 'Edit Discount'
+    _form: '\Drupal\merchant_dashboard\Form\DiscountEditForm'
+  requirements:
+    _custom_access: '\Drupal\merchant_dashboard\Form\DiscountEditForm::access'
+    _entity_access: 'node.update'
+  options:
+    parameters:
+      node:
+        type: entity:node
+
+merchant_dashboard.delete_discount:
+  path: '/merchant/delete-node/{node}'
+  defaults:
+    _controller: '\Drupal\merchant_dashboard\Controller\ClaimsGiftsNodeDeleteController::unpublishNode'
+  requirements:
+    _permission: 'access content'
+    _entity_access: 'node.delete'
+  options:
+    parameters:
+      node:
+        type: entity:node
+
+merchant_dashboard.hire_tester:
+  path: '/merchant/hire-tester'
+  defaults:
+    _title: 'Hire a Tester'
+    _form: '\Drupal\merchant_dashboard\Form\HireTesterForm'
+  requirements:
+    _permission: 'access merchant dashboard'         
+# marchant_dashboard.rebuttal_edit_form:
+#  path: '/rebuttal/{nid}/edit'
+#  defaults:
+#     _form: '\Drupal\marchant_dashboard\Form\RebuttalEditForm'
+#     _title: 'Edit Rebuttal'
+#  requirements:
+#     _permission: 'access content'
+#     _custom_access: '\Drupal\marchant_dashboard\Controller\RebuttalEditController::access'
+#  options:
+#     parameters:
+#       nid:
+#         type: integer

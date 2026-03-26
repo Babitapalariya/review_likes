@@ -1,0 +1,9 @@
+uuid: ee7fdd57-d4b9-4952-9154-e76f577bd497
+langcode: en
+status: true
+dependencies: {  }
+name: 'E-commerce Platform'
+vid: e_commerce_platform
+description: null
+weight: 0
+new_revision: false

@@ -1,0 +1,129 @@
+uuid: fa495e51-b475-43c7-8108-3a96f9946b8e
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.rebuttal.body
+    - field.field.node.rebuttal.field_buyer_username
+    - field.field.node.rebuttal.field_comment_text
+    - field.field.node.rebuttal.field_e_commerce_platform
+    - field.field.node.rebuttal.field_email
+    - field.field.node.rebuttal.field_external_id
+    - field.field.node.rebuttal.field_image
+    - field.field.node.rebuttal.field_order_datetime
+    - field.field.node.rebuttal.field_product_url
+    - field.field.node.rebuttal.field_telephone
+    - node.type.rebuttal
+  module:
+    - mobile_number
+    - svg_image
+    - text
+    - user
+id: node.rebuttal.default
+targetEntityType: node
+bundle: rebuttal
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_buyer_username:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_comment_text:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 117
+    region: content
+  field_e_commerce_platform:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 116
+    region: content
+  field_email:
+    type: basic_string
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 113
+    region: content
+  field_external_id:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 112
+    region: content
+  field_image:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_order_datetime:
+    type: timestamp
+    label: above
+    settings:
+      date_format: html_datetime
+      custom_date_format: ''
+      timezone: Asia/Kolkata
+      tooltip:
+        date_format: html_datetime
+        custom_date_format: ''
+      time_diff:
+        enabled: false
+        future_format: '@interval hence'
+        past_format: '@interval ago'
+        granularity: 2
+        refresh: 60
+        description: ''
+    third_party_settings: {  }
+    weight: 115
+    region: content
+  field_product_url:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 111
+    region: content
+  field_telephone:
+    type: mobile_number_international
+    label: above
+    settings:
+      as_link: false
+    third_party_settings: {  }
+    weight: 114
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

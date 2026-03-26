@@ -1,0 +1,53 @@
+uuid: c4494213-266c-456a-a9a1-1202b4360ce1
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.marchant_products.body
+    - field.field.node.marchant_products.field_external_id
+    - field.field.node.marchant_products.field_image
+    - field.field.node.marchant_products.field_legal_business_name
+    - field.field.node.marchant_products.field_platform_link
+    - field.field.node.marchant_products.field_price
+    - field.field.node.marchant_products.field_prices
+    - field.field.node.marchant_products.field_product_url
+    - field.field.node.marchant_products.field_product_variation
+    - field.field.node.marchant_products.field_rating
+    - field.field.node.marchant_products.field_sold_bys
+    - field.field.node.marchant_products.field_testified_video
+    - field.field.node.marchant_products.field_tests_done
+    - node.type.marchant_products
+  module:
+    - text
+    - user
+id: node.marchant_products.full
+targetEntityType: node
+bundle: marchant_products
+mode: full
+content:
+  field_prices:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  body: true
+  field_external_id: true
+  field_image: true
+  field_legal_business_name: true
+  field_platform_link: true
+  field_price: true
+  field_product_url: true
+  field_product_variation: true
+  field_rating: true
+  field_sold_bys: true
+  field_testified_video: true
+  field_tests_done: true

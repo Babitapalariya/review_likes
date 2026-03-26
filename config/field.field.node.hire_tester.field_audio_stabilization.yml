@@ -1,0 +1,21 @@
+uuid: dbabe3cb-6a8d-41f3-9d50-fce40baaa04d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_audio_stabilization
+    - node.type.hire_tester
+  module:
+    - options
+id: node.hire_tester.field_audio_stabilization
+field_name: field_audio_stabilization
+entity_type: node
+bundle: hire_tester
+label: 'Audio / Stabilization'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

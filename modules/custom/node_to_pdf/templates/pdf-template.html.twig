@@ -1,0 +1,11 @@
+
+
+
+<h1>{{ title }}</h1>
+
+{% for field_name, rendered in fields %}
+  <div style="margin-bottom: 20px;">
+    <strong> {{ rendered|raw }}</strong><br>
+   
+  </div>
+{% endfor %}
