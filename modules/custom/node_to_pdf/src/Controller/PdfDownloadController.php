@@ -37,8 +37,6 @@ class PdfDownloadController extends ControllerBase {
     );
   }
 
-
-
   public function download(Node $node): Response {
     $fields_rendered = [];
 
