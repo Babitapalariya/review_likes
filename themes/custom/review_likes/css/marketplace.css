@@ -1,0 +1,29 @@
+body {
+	font-family: "Arima", serif;
+	overflow-x: hidden;
+}
+
+.container-fluid {
+    padding: 0 3rem;
+}
+
+#marketplacesection h2{
+	text-decoration: underline;
+}
+
+#marketplacesection .card img{
+	height: 250px;
+	object-fit: cover;
+}
+
+.small-label{
+	font-weight: 600;
+}
+
+.marketbadge{
+	font-size: 1rem;
+}
+
+.challenge-card{
+	background-color: #f8fbff;
+}

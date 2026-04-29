@@ -1,0 +1,19 @@
+<?php
+
+function product_interactions_schema() {
+  return [
+    'product_interactions' => [
+      'fields' => [
+        'id'      => ['type' => 'serial', 'unsigned' => TRUE, 'not null' => TRUE],
+        'nid'     => ['type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE],
+        'uid'     => ['type' => 'int', 'unsigned' => TRUE, 'not null' => TRUE],
+        'type'    => ['type' => 'varchar', 'length' => 32, 'not null' => TRUE],
+        'created' => ['type' => 'int', 'not null' => TRUE],
+      ],
+      'primary key' => ['id'],
+      'indexes' => [
+        'nid_type' => ['nid', 'type'],
+      ],
+    ],
+  ];
+}

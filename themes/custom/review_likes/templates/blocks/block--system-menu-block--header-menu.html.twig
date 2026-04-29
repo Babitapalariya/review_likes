@@ -1,27 +1,40 @@
-<div class="collapse navbar-collapse" id="menuitems">
-  <ul class="navbar-nav m-auto mb-2 mb-lg-0">
-    {% for item in content['#items'] %}
-      {% set current = url('<current>')['#markup'] %}
-      {% set url = item.url %}
-      {% set active_class = (current == url) ? 'active' : '' %}
-      
-      {# Check if the item should be a dropdown based on is_expanded #}
-      {% if item.is_expanded %}
-        <li class="nav-item dropdown {{ active_class }}">
-          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-            {{ item.title }}
-          </a>
-          <ul class="dropdown-menu">
-            {% for child_key, child in item.below %}
-              <li><a class="dropdown-item" href="{{ child.url }}">{{ child.title }}</a></li>
-            {% endfor %}
-          </ul>
-        </li>
-      {% else %}
-        <li class="nav-item {{ active_class }}">
-          <a class="nav-link" href="{{ item.url }}">{{ item.title }}</a>
-        </li>
-      {% endif %}
-    {% endfor %}
-  </ul>
-</div>
+{#
+/**
+ * @file
+ * Default theme implementation to display a block.
+ *
+ * Available variables:
+ * - plugin_id: The ID of the block implementation.
+ * - label: The configured label of the block if visible.
+ * - configuration: A list of the block's configuration values.
+ *   - label: The configured label for the block.
+ *   - label_display: The display settings for the label.
+ *   - provider: The module or other provider that provided this block plugin.
+ *   - Block plugin specific settings will also be stored here.
+ * - in_preview: Whether the plugin is being rendered in preview mode.
+ * - content: The content of this block.
+ * - attributes: array of HTML attributes populated by modules, intended to
+ *   be added to the main container tag of this template.
+ *   - id: A valid HTML ID and guaranteed unique.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ *
+ * @see template_preprocess_block()
+ *
+ * @ingroup themeable
+ */
+#}
+
+  {{ title_prefix }}
+  {% if label %}
+    <h2{{ title_attributes }}>{{ label }}</h2>
+  {% endif %}
+  {{ title_suffix }}
+  {% block content %}
+    {{ content }}
+  {% endblock %}
+

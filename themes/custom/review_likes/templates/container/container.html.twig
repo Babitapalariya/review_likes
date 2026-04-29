@@ -1,4 +1,4 @@
-{#
+    {#
 /**
  * @file
  * Default theme implementation of a container used to wrap child elements.
@@ -38,9 +38,14 @@
 <div class="termscondition mt-3 mb-3">
 {{ children }}
 </div>
-{% else %}
-<div{{ attributes }}>
+{% elseif element['#id'] == 'edit-field-checkbox-wrapper' %}
+<span>
 {{ children }}
-</div>
+</span>
+
+{% else %}
+ 
+{{ children }}
+ 
 
 {% endif %}

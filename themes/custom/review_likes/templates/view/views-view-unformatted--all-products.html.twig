@@ -20,21 +20,87 @@
                 <th scope="col">Product id</th>
                 <th scope="col">Product Name</th>
                 <th scope="col">Description</th>
+                <th scope="col">marketplace Links</th>
+                <th scope="col">Price</th>
+                <th scope="col">Rating</th>
+                <th scope="col">Coupon</th>
                 <th scope="col">Actions</th>
               </tr>
             </thead>
             <tbody>
               {% for row in rows %}
                 {% set entity = row.content['#row']._entity %}
-                <tr>
-                  <td>{{ entity.field_legal_business_name.value|raw }}</td>
-                  <td>{{ entity.title.value|raw|slice(0, 30) }}</td>
-                  <td>{{ entity.body.value|raw }}</td>
-                  <td>
-                    <a href="{{ path('role_based_registration.product_edit_form', { nid: entity.nid.value }) }}" class="btn btn-sm btn-primary me-2"><i class="bi bi-pencil"></i> Edit</a>
-                    <a href="#" class="btn btn-sm btn-danger delete-product" data-nid="{{ entity.nid.value }}"><i class="bi bi-trash"></i> Delete</a>
-                  </td>
-                </tr>
+
+
+
+                    <tr>
+  <td>{{ entity.field_legal_business_name.value|raw }}</td>
+  <td>{{ entity.title.value|raw|slice(0, 30) }}</td>
+  <td>{{ entity.body.value|raw|slice(0, 100) }}.....</td>
+
+  {# ✅ Marketplace Links Column #}
+  <td>
+    {% for item in entity.field_platform_link %}
+      {% set paragraph = item.entity %}
+      {% if paragraph.field_online_selling_platforms is not empty %}
+        {% set platform = paragraph.field_online_selling_platforms.0 %}
+        
+        <div>
+          <a href="{{ platform.uri }}" target="_blank">
+            {{ platform.title }}
+          </a>
+        </div>
+      {% endif %}
+    {% endfor %}
+  </td>
+
+  {# ✅ Price Column #}
+  <td>
+    {% for item in entity.field_platform_link %}
+      {% set paragraph = item.entity %}
+      
+      <div>
+        ₹{{ paragraph.field_platform_price.value }}
+      </div>
+    {% endfor %}
+  </td>
+
+  {# ✅ Rating Column #}
+  <td>
+    {% for item in entity.field_platform_link %}
+      {% set paragraph = item.entity %}
+      
+      <div>
+        ⭐{{ paragraph.field_rating.value }}
+      </div>
+    {% endfor %}
+  </td>
+
+  <td>
+    {% for item in entity.field_platform_link %}
+      {% set paragraph = item.entity %}
+      
+      <div>
+        {{ paragraph.field_coupon_code.value }}
+      </div>
+    {% endfor %}
+  </td>
+
+
+  <td>
+    <a href="#" class="btn btn-sm btn-success m-2">
+      <i class="bi bi-eye"></i> View
+    </a>
+
+    <a href="{{ path('role_based_registration.product_edit_form', { nid: entity.nid.value }) }}" class="btn btn-sm btn-primary m-2">
+      <i class="bi bi-pencil"></i> Edit
+    </a>
+
+    <a href="#" class="btn btn-sm btn-danger delete-product m-2" data-nid="{{ entity.nid.value }}">
+      <i class="bi bi-trash"></i> Delete
+    </a>
+  </td>
+</tr>
               {% endfor %}
             </tbody>
           </table>

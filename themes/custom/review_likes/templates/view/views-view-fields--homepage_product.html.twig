@@ -1,0 +1,130 @@
+{#
+/**
+ * @file
+ * Default view template to display all the fields in a row.
+ *
+ * Available variables:
+ * - view: The view in use.
+ * - fields: A list of fields, each one contains:
+ *   - content: The output of the field.
+ *   - raw: The raw data for the field, if it exists. This is NOT output safe.
+ *   - class: The safe class ID to use.
+ *   - handler: The Views field handler controlling this field.
+ *   - inline: Whether or not the field should be inline.
+ *   - wrapper_element: An HTML element for a wrapper.
+ *   - wrapper_attributes: List of attributes for wrapper element.
+ *   - separator: An optional separator that may appear before a field.
+ *   - label: The field's label text.
+ *   - label_element: An HTML element for a label wrapper.
+ *   - label_attributes: List of attributes for label wrapper.
+ *   - label_suffix: Colon after the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ *   - has_label_colon: A boolean indicating whether to display a colon after
+ *     the label.
+ *   - element_type: An HTML element for the field content.
+ *   - element_attributes: List of attributes for HTML element for field content.
+ * - row: The raw result from the query, with all data it fetched.
+ *
+ * @see template_preprocess_views_view_fields()
+ *
+ * @ingroup themeable
+ */
+#}
+ 
+
+
+                  
+
+
+
+                       <div class="card" id="myCard">
+                           <h5 class="card-title pt-2">  <button type="button" class="btn-close float-end" aria-label="Close" onclick="closeCard()"></button></h5>
+                           <div class="card-body">
+                              <div class="row">
+
+
+                                    {{fields.field_image.content}}
+                                <!--  <div class="col-md-5">
+                                    <img src="{{fields.field_image_0.content|render|striptags|trim}}" alt="camera" class="w-100">
+                                 </div>
+                                 <div class="col-md-5">
+                                    <img src="{{fields.field_image_1.content|render|striptags|trim}}" alt="camera" class="w-100">
+                                 </div> -->
+                                 <div class="col-md-2 text-center socialmedia-icons">
+                                    <div class="iconsection mt-2">
+                                       <a href="javascript:void(0)" title="Likes" class="like-btn"><img src="{{ url('<front>') }}themes/custom/review_likes/images/like.svg" alt="rating"></a><br>
+                                       <span>1100</span>
+                                    </div>
+                                    <div class="iconsection mt-2">
+                                       <a href="javascript:void(0)" title="Comments"><img src="{{ url('<front>') }}themes/custom/review_likes/images/comment.svg" alt="rating"></a><br>
+                                       <span>400</span>
+                                    </div>
+                                    <div class="iconsection mt-2">
+                                       <a href="javascript:void(0)" title="Share"><img src="{{ url('<front>') }}themes/custom/review_likes/images/share.svg" alt="rating"></a><br>
+                                       <span>120</span>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="row">
+                                 <div class="col-md-8 product-text">
+                                    <h4 class="product-title">{{fields.title.content}}</h4>
+                                    <p class="product-description">
+                                       {{fields.body.content}}
+                                       <a href="{{fields.view_node.content|render|striptags|trim}}" class="btn btn-link p-0" id="toggleBtn">Read More</a>
+                                    </p
+                                    >
+                                 </div>
+                                 <div class="col-md-4 price">
+                                    <div class="pricesection">
+                                       <h6>Price</h6>
+                                       <p>&#8377;21,499 - 23,000</p>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                           {#{<div class="card-footer">
+                              <div class="ratingsection">
+                                 <div class="row">
+                                    <div class="col-md-1 icon-section">
+                                       <a href="javascript:void(0)" title="Rating"><img src="./assets/images/rating.svg" alt="rating" class="mb-2"></a><br>
+                                       <span>4.9</span>
+                                    </div>
+                                    <div class="col-md-1 icon-section">
+                                       <a href="javascript:void(0)" title="No. of tests done"><img src="./assets/images/nooftests.svg" alt="no.of tests done" class="mb-2"></a><br>
+                                       <span>1200</span>
+                                    </div>
+                                    <div class="col-md-1 icon-section">
+                                       <a href="javascript:void(0)" title="Value Efficiency Rating"><img src="./assets/images/valueefficiencyrating.svg" alt="Value Efficiency Rating" class="mb-2"></a><br>
+                                       <span>4.8</span>
+                                    </div>
+                                    <div class="col-md-1 icon-section">
+                                       <a href="javascript:void(0)" title="Tester Rating"><img src="./assets/images/testerrating.svg" alt="Tester Rating" class="mb-2"></a><br>
+                                       <span>4.9</span>
+                                    </div>
+                                    <div class="col-md-3 text-center">
+                                       <span class="rlrating">RL Trust Rating</span><br>
+                                       <span class="cardyellow-text rlratingvalue">4.9</span>
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                       <button type="button" class="btn btn-default post-btn">Compare & Buy</button>
+                                    </div>
+                                 </div>
+                                 <div class="mt-4">
+                                    <button type="button" class="btn btn-default challenge-btn post-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Challenge</button>
+                                 </div>
+                              </div>
+                              <div class="my-4">
+                                 <div class="input-group commentbox">
+                                    <input type="text" class="form-control" id="comment" placeholder="Write a comment...">
+                                    <button class="btn btn-default" type="submit">
+                                    <i class="bi bi-send"></i>
+                                    </button>
+                                 </div>
+                                 <div class="comment-view-section my-3">
+                                    <div class="cmnt">It's a good product</div>
+                                 </div>
+                              </div>
+                           </div>}#}
+                           <a href="{{fields.view_node.content|render|striptags|trim}}" class="card-overlay" aria-label="View Product"></a>
+                        </div>

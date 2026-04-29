@@ -1,0 +1,386 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8" />
+      <title>Review Likes — Rebuttals / Detail View</title>
+      <link rel="icon" type="image/x-icon" href="assets/images/favicon.png" />
+      <script src="assets/js/popper.min.js" type="text/javascript"></script>
+      <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+      <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Arimo:ital,wght@0,400..700;1,400..700&family=Kaushan+Script&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+      <link rel="stylesheet" type="text/css" href="assets/css/common.css"/>
+      <!-- FIXED PATH (removed leading /) -->
+      <link rel="stylesheet" href="assets/css/merchantdashboard.css" />
+      <link rel="stylesheet" href="assets/css/rebuttaldetailview.css" />
+   </head>
+   <body>
+      <!-- Menu start here-->
+      <header>
+         <nav class="navbar navbar-expand-lg main-navbar">
+            <div class="container-fluid">
+               <a class="navbar-brand logo" href="#">ReviewLikes</a>
+               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuitems" aria-controls="menuitems" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="menuitems">
+                  <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                     <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Merchant</a></li>
+                     <li class="nav-item"><a class="nav-link" href="#">Freelance</a></li>
+                     <li class="nav-item"><a class="nav-link" href="#">Market Place</a></li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Settings</a>
+                        <ul class="dropdown-menu">
+                           <li><a class="dropdown-item" href="#">Account Settings</a></li>
+                           <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                     </li>
+                  </ul>
+                  <div class="d-flex">
+                     <select class="form-select">
+                        <option value="India">India</option>
+                        <option value="US" selected>US</option>
+                        <option value="UK">UK</option>
+                     </select>
+                     <select class="form-select">
+                        <option selected>English</option>
+                        <option value="Spanish">Spanish</option>
+                     </select>
+                     <button type="button" class="btn btn-default">Sign in</button>
+                  </div>
+               </div>
+            </div>
+         </nav>
+      </header>
+      <!-- Menu end here-->
+      <div class="container py-4" id="rebuttaldetailview">
+         <div class="mb-3">
+            <a href="merchantdashboard.html#all-products" class="btn btn-secondary" id="backToMenu" data-back-to="all-products">Back to Menu</a>
+         </div>
+         <h2 class="text-center mb-4 text-decoration-underline">Rebuttals / Detail View</h2>
+         <div class="page-wrapper">
+            <!-- HEADER -->
+            <div class="page-header">
+               <div>
+                  <h1>
+                     Wrong size claim on 20x4 tire
+                     <span class="pill-live ms-3">● Live</span>
+                  </h1>
+                  <div class="subtle">
+                     <span class="market-tag">Amazon</span>
+                     <span class="market-tag">Flipkart</span>
+                     | Product: <strong>20x4 Fat Bike Tire Set</strong>
+                  </div>
+               </div>
+               <div class="d-flex gap-2">
+                  <button class="btn"> Edit</button>
+                  <button class="btn btn-warning">Pause</button>
+                  <button class="btn btn-danger" data-bs-toggle="modal"
+                     data-bs-target="#deleteRequestModal">Request Delete</button>
+               </div>
+            </div>
+            <!-- PAUSE BAR -->
+            <div class="pause-bar">
+               <div>
+                  <h4><strong>PAUSE / UNPUBLISH WINDOW</strong></h4>
+                  <p>Temporarily hide this rebuttal across all platforms while you adjust content or gather more evidence.</p>
+               </div>
+               <div class="pause-actions">
+                  <label><input type="radio" name="pause"> 24h</label>
+                  <label><input type="radio" name="pause"> 48h</label>
+                  <label><input type="radio" name="pause"> 72h</label>
+                  <button class="btn-apply">Apply Pause</button>
+               </div>
+            </div>
+            <!-- STATS GRID -->
+            <div class="stats-grid">
+               <!-- VIEWS -->
+               <div class="card stat-card">
+                  <div class="stat-title">Views</div>
+                  <div class="stat-value">2,145</div>
+                  <p class="stat-sub">All platforms combined</p>
+               </div>
+               <!-- USERS -->
+               <div class="card stat-card">
+                  <div class="stat-title">Unique Users</div>
+                  <div class="stat-value">1,320</div>
+                  <p class="stat-sub">Signed-in & tracked visitors</p>
+               </div>
+               <!-- AUDIENCE ACTIONS -->
+               <div class="card stat-card">
+                  <div class="stat-title">Audience Actions</div>
+                  <p><strong>Comments:</strong> <span class="green">84</span></p>
+                  <p><strong>Video Evidence:</strong> <span class="blue">12</span></p>
+                  <p><strong>Shares:</strong> <span class="cyan">56</span></p>
+               </div>
+               <!-- POLL SUPPORT -->
+               <div class="card stat-card">
+                  <div class="stat-title">Poll Support</div>
+                  <div class="bar-row">
+                     <span>Merchant</span>
+                     <span>68%</span>
+                  </div>
+                  <div class="bar"><span style="width:68%" class="bar-green"></span></div>
+                  <div class="bar-row">
+                     <span>User</span>
+                     <span>25%</span>
+                  </div>
+                  <div class="bar"><span style="width:25%" class="bar-blue"></span></div>
+                  <div class="bar-row">
+                     <span>Neutral</span>
+                     <span>7%</span>
+                  </div>
+                  <div class="bar"><span style="width:7%" class="bar-gray"></span></div>
+               </div>
+               <!-- HELPFULNESS -->
+               <div class="card stat-card">
+                  <div class="stat-title">Helpfulness</div>
+                  <div class="bar-row">
+                     <span>Useful</span>
+                     <span>73%</span>
+                  </div>
+                  <div class="bar"><span style="width:73%" class="bar-green"></span></div>
+                  <div class="bar-row">
+                     <span>Useless</span>
+                     <span>27%</span>
+                  </div>
+                  <div class="bar"><span style="width:27%" class="bar-red"></span></div>
+                  <p class="stat-sub">Last Activity: <strong>2025-12-10</strong></p>
+               </div>
+            </div>
+            <!-- TABS + ACTION -->
+            <div class="tab-header d-flex justify-content-between align-items-center">
+               <ul class="nav nav-tabs" id="evidenceTabs" role="tablist">
+                  <li class="nav-item">
+                     <button class="nav-link active" data-bs-toggle="tab" data-bs-target="#tab-comments">
+                     Comments (1)
+                     </button>
+                  </li>
+                  <li class="nav-item">
+                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-video">
+                     Video Evidence (12)
+                     </button>
+                  </li>
+                  <li class="nav-item">
+                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-attachments">
+                     Attachments
+                     </button>
+                  </li>
+                  <li class="nav-item">
+                     <button class="nav-link" data-bs-toggle="tab" data-bs-target="#tab-prevstatements">
+                     My Previous Statement & Evidance
+                     </button>
+                  </li>
+               </ul>
+               <button
+                  class="btn btn-primary"
+                  data-bs-toggle="modal"
+                  data-bs-target="#addEvidenceModal">
+               + Add Evidence
+               </button>
+            </div>
+            <!-- MAIN GRID -->
+            <div class="main-grid">
+               <div class="tab-content mt-3" id="evidenceTabsContent">
+                  <!-- COMMENTS TAB -->
+                  <div class="tab-pane fade show active" id="tab-comments">
+                     <div class="card">
+                        <div class="comment-item">
+                           <div class="comment-top">
+                              <span class="meta">Amazon · Dec 10, 2025 · 09:32 PM</span>
+                           </div>
+                           <p>
+                              Customer claimed tire was 20x4 but actually ordered 20x3.5 according to order screenshot.
+                           </p>
+                           <div class="comment-actions">
+                              <a href="#">Pin</a>
+                              <a href="#" class="danger">Remove</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- VIDEO TAB -->
+                  <div class="tab-pane fade" id="tab-video">
+                     <div class="card">
+                        <div class="comment-item">
+                           <div class="comment-top">
+                              <span class="meta">Flipkart · Dec 09, 2025 · 02:11 PM</span>
+                           </div>
+                           <p>
+                              Merchant shows measuring tape around tire to confirm exact width and diameter.
+                           </p>
+                           <div class="comment-actions">
+                              <a href="#">View</a>
+                              <a href="#" class="danger">Remove</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- ATTACHMENTS TAB -->
+                  <div class="tab-pane fade" id="tab-attachments">
+                     <div class="card">
+                        <p class="text-muted mb-0">
+                           No attachments uploaded yet.
+                        </p>
+                     </div>
+                  </div>
+                  <div class="tab-pane fade" id="tab-prevstatements">
+                     <div class="card">
+                        <div class="comment-item">
+                           <div class="comment-top">
+                              <span class="meta">Flipkart · Dec 09, 2025 · 02:11 PM</span>
+                           </div>
+                           <p>
+                              Merchant shows measuring tape around tire to confirm exact width and diameter.
+                           </p>
+                           <div class="comment-actions">
+                              <a href="#">View</a>
+                              <a href="#" class="danger">Remove</a>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+               <div>
+                  <!-- RIGHT : REBUTTAL INFO -->
+                  <div class="card">
+                     <h5 class="text-decoration-underline">Rebuttal Info</h5>
+                     <div class="info-row">
+                        <span><strong>ID</strong></span>
+                        <strong>RB-20X4-001</strong>
+                     </div>
+                     <div class="info-row">
+                        <span><strong>Created</strong></span>
+                        <strong>2025-12-08 · 14:22</strong>
+                     </div>
+                     <div class="info-row">
+                        <span><strong>Last Activity</strong></span>
+                        <strong>2025-12-10 · 21:05</strong>
+                     </div>
+                     <div class="info-row">
+                        <span><strong>Platform</strong></span>
+                        <strong>Amazon (US)</strong>
+                     </div>
+                     <div class="info-row">
+                        <span><strong>Visibility</strong></span>
+                        <strong>Public (Global)</strong>
+                     </div>
+                     <label class="mt-2">Notes</label>
+                     <textarea rows="4" placeholder="Add internal notes for your team..."></textarea>
+                  </div>
+                  <!-- SHARE REBUTTAL -->
+                  <div class="card share-card">
+                     <h5 class="text-decoration-underline">Share Rebuttal</h5>
+                     <p class="card-desc">
+                        Share this rebuttal performance across your social platforms or copy the public link.
+                     </p>
+                     <div class="share-grid">
+                        <button class="share-btn"><i class="bi bi-link-45deg"></i> Copy Link</button>
+                        <button class="share-btn fb"><i class="bi bi-facebook"></i> Share to Facebook</button>
+                        <button class="share-btn x"><i class="bi bi-twitter-x"></i> Share to X</button>
+                        <button class="share-btn ig"><i class="bi bi-instagram"></i> Share to Instagram</button>
+                        <button class="share-btn wa full"><i class="bi bi-whatsapp"></i> Share to WhatsApp</button>
+                     </div>
+                     <label class="mt-2">Public Rebuttal URL</label>
+                     <div class="copy-field">
+                        <input type="text" readonly value="https://gamechanger.app/rebuttal/RB-20X4-001">
+                        <button class="copy-mini">Copy</button>
+                     </div>
+                  </div>
+                  <!-- DANGER ZONE -->
+                  <div class="card danger-card">
+                     <h5 class="text-decoration-underline">Danger Zone</h5>
+                     <p class="card-desc">
+                        Unpublishing hides this rebuttal from all users. Deleting will permanently remove all stats, evidence, and history.
+                     </p>
+                     <div class="danger-actions">
+                        <button class="btn-unpublish">
+                        <i class="bi bi-slash-circle"></i> Unpublish Rebuttal
+                        </button>
+                        <button class="btn-delete">
+                        <i class="bi bi-trash"></i> Delete Permanently
+                        </button>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- Request Delete Modal -->
+      <div class="modal fade" id="deleteRequestModal" tabindex="-1" aria-hidden="true">
+         <div class="modal-dialog modal-dialog-centered modal-md">
+            <div class="modal-content">
+               <div class="modal-header">
+                  <h5 class="modal-title">Request Delete</h5>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+               </div>
+               <div class="modal-body">
+                  <div class="mb-3">
+                     <label class="form-label fw-semibold">
+                     Describe Reason <span class="text-danger">*</span>
+                     </label>
+                     <textarea
+                        class="form-control"
+                        rows="4"
+                        placeholder="Explain why this product should be deleted..."
+                        required></textarea>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button
+                     type="button"
+                     class="btn btn-secondary"
+                     data-bs-dismiss="modal">
+                  Cancel
+                  </button>
+                  <button type="button" class="btn btn-default">
+                  Submit Request
+                  </button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <div class="modal fade" id="addEvidenceModal" tabindex="-1">
+      <div class="modal-dialog modal-dialog-centered">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title">Add Supporting Evidence</h5>
+               <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+               <div class="mb-3">
+                  <label class="form-label fw-semibold required">
+                  Upload Supporting Evidence
+                  </label>
+                  <input type="file" multiple="">
+                  <div class="my-3">
+                     <label class="form-label fw-semibold">
+                     Rebuttal Statement
+                     </label>
+                     <textarea
+                        class="form-control"
+                        rows="3"
+                        placeholder="Briefly describe what this evidence proves...">
+                     </textarea>
+                  </div>
+               </div>
+               <div class="modal-footer">
+                  <button class="btn btn-secondary" data-bs-dismiss="modal">
+                  Cancel
+                  </button>
+                  <button class="btn btn-default">
+                  Upload Evidence
+                  </button>
+               </div>
+            </div>
+         </div>
+      </div>
+      <!-- jQuery -->
+      <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+      <script src="assets/js/common.js"></script>
+      <script src="assets/js/custom.js"></script>
+   </body>
+</html>

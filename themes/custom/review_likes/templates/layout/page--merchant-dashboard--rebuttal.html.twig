@@ -1,0 +1,39 @@
+<header class="">{{ page.header }}</header>
+
+{% if 'merchant' or 'administrator' in user.roles %}
+<div class="app" data-app="review-likes-dashboard">
+  <!-- Sidebar -->
+  {{ page.sidebar }}
+  <!-- Main Content -->
+  <main>
+    <section id="contentArea">
+      <div class="view" id="create-rebuttal" style="display: block;">
+                  <div class="page-wrapper">
+                     <!-- Page Header -->
+                     <div class="page-header text-center mt-3">
+                        <h1 class="text-decoration-underline">Create Rebuttal</h1>
+                        <p class="text-success">
+                           (Add reviews from other marketplaces and create a single, clear rebuttal.)
+                        </p>
+                     </div>
+       {{ page.content }}</div> 
+    </div>
+    </section>
+  </main>
+</div>
+{% else %}
+  <p>You don’t have permission to see this data.</p>
+{% endif %}
+
+{# <div id="extractConfirmModal" class="custom-modal" style="display:none;">
+  <div class="modal-content">
+    <p>Are you sure you want to extract product data?</p>
+    <button type="button" id="confirmExtract" class="btn btn-primary">Yes</button>
+    <button type="button" id="cancelExtract" class="btn btn-secondary">Cancel</button>
+  </div>
+</div> #}
+
+
+
+
+ 

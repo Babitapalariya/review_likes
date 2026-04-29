@@ -6,6 +6,12 @@
  */
 
 use Drupal\Core\Form\FormStateInterface;
+use Drupal\node\Entity\Node;
+use Drupal\file\Entity\File;
+
+
+
+
 
 /**
  * Implements hook_form_alter().
@@ -190,3 +196,230 @@ function _merchant_dashboard_get_fallback_options($field_name) {
 
   return $fallbacks[$field_name] ?? [];
 }
+
+
+
+
+
+
+
+/**
+ * Implements hook_ENTITY_TYPE_view() for node entities.
+ */
+function merchant_dashboard_node_view(array &$build, \Drupal\Core\Entity\EntityInterface $entity, \Drupal\Core\Entity\Display\EntityViewDisplayInterface $display, $view_mode) {
+
+  // Only run on marchant_products full view mode.
+  if ($entity->getEntityTypeId() !== 'node' || $entity->bundle() !== 'marchant_products' || $view_mode !== 'full') {
+    return;
+  }
+
+  $product_id = $entity->id();
+
+  // Query all published seller_rebuttal nodes that reference this product.
+  $nids = \Drupal::entityQuery('node')
+    ->condition('type', 'seller_rebuttal')
+    ->condition('status', 1)
+    ->condition('field_select_product', $product_id)
+    ->accessCheck(FALSE)
+    ->sort('created', 'DESC')
+    ->execute();
+
+  if (empty($nids)) {
+    $build['rebuttals'] = [
+      '#theme'    => 'item_list',
+      '#items'    => [],
+      '#empty'    => t('No rebuttals found for this product.'),
+    ];
+    return;
+  }
+
+  $rebuttals_data = [];
+
+  foreach (Node::loadMultiple($nids) as $rebuttal) {
+
+    // ── Paragraphs (review evidence) ──────────────────────────────────────
+    $reviews = [];
+    if ($rebuttal->hasField('field_rebuttal_para') && !$rebuttal->get('field_rebuttal_para')->isEmpty()) {
+      foreach ($rebuttal->get('field_rebuttal_para') as $para_item) {
+        $para = $para_item->entity;
+        if (!$para) { continue; }
+
+        // Screenshot
+        $screenshot_url = NULL;
+        if ($para->hasField('field_review_screenshot') && !$para->get('field_review_screenshot')->isEmpty()) {
+          $file = $para->get('field_review_screenshot')->entity;
+          if ($file) {
+            $screenshot_url = \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+          }
+        }
+
+        // E-commerce platform label
+        $platform_label = '';
+        if ($para->hasField('field_e_commerce_platform') && !$para->get('field_e_commerce_platform')->isEmpty()) {
+          $term = $para->get('field_e_commerce_platform')->entity;
+          if ($term) {
+            $platform_label = $term->getName();
+          }
+        }
+
+        // Product link
+        $product_link = '';
+        if ($para->hasField('field_product_link') && !$para->get('field_product_link')->isEmpty()) {
+          $link_item  = $para->get('field_product_link')->first();
+          $product_link = $link_item ? $link_item->get('uri')->getValue() : '';
+        }
+
+        // Review date
+        $review_date = '';
+        if ($para->hasField('field_review_date') && !$para->get('field_review_date')->isEmpty()) {
+          $raw_date    = $para->get('field_review_date')->value;
+          $review_date = $raw_date ? (new \DateTime($raw_date))->format('M d, Y H:i') : '';
+        }
+
+        $reviews[] = [
+          'screenshot'       => $screenshot_url,
+          'platform'         => $platform_label,
+          'product_link'     => $product_link,
+          'buyer_username'   => $para->hasField('field_buyer_username')   ? $para->get('field_buyer_username')->value   : '',
+          'buyer_email'      => $para->hasField('field_buyer_email')      ? $para->get('field_buyer_email')->value      : '',
+          'buyer_phone'      => $para->hasField('field_buyer_phone')      ? $para->get('field_buyer_phone')->value      : '',
+          'order_id'         => $para->hasField('field_order_id')         ? $para->get('field_order_id')->value         : '',
+          'review_date'      => $review_date,
+          'street_address'   => $para->hasField('field_street_address')   ? $para->get('field_street_address')->value   : '',
+          'apartment'        => $para->hasField('field_apartment_suite_etc') ? $para->get('field_apartment_suite_etc')->value : '',
+          'city'             => $para->hasField('field_city')             ? $para->get('field_city')->value             : '',
+          'state'            => $para->hasField('field_state_province')   ? $para->get('field_state_province')->value   : '',
+          'zip'              => $para->hasField('field_zip_postal_code')  ? $para->get('field_zip_postal_code')->value  : '',
+        ];
+      }
+    }
+
+    // ── Supporting evidence files ─────────────────────────────────────────
+    $evidence_files = [];
+    if ($rebuttal->hasField('field_upload_supporting_evidence') && !$rebuttal->get('field_upload_supporting_evidence')->isEmpty()) {
+      foreach ($rebuttal->get('field_upload_supporting_evidence') as $file_item) {
+        $file = $file_item->entity;
+        if (!$file) { continue; }
+        $uri      = $file->getFileUri();
+        $url      = \Drupal::service('file_url_generator')->generateAbsoluteString($uri);
+        $mime     = $file->getMimeType();
+        $is_image = strpos($mime, 'image/') === 0;
+        $is_video = strpos($mime, 'video/') === 0;
+        $evidence_files[] = [
+          'url'      => $url,
+          'name'     => $file->getFilename(),
+          'mime'     => $mime,
+          'is_image' => $is_image,
+          'is_video' => $is_video,
+        ];
+      }
+    }
+
+    $rebuttals_data[] = [
+      'id'                 => $rebuttal->id(),
+      'title'              => $rebuttal->getTitle(),
+      'summary'            => $rebuttal->hasField('field_rebuttal_summary')   ? $rebuttal->get('field_rebuttal_summary')->value   : '',
+      'statement'          => $rebuttal->hasField('field_rebuttal_statement') ? $rebuttal->get('field_rebuttal_statement')->value : '',
+      'created'            => \Drupal::service('date.formatter')->format($rebuttal->getCreatedTime(), 'medium'),
+      'reviews'            => $reviews,
+      'evidence_files'     => $evidence_files,
+    ];
+  }
+
+  $build['#rebuttals'] = $rebuttals_data;
+
+
+
+
+
+  // Pass debate counts for the first rebuttal (or per rebuttal).
+if (!empty($rebuttals_data)) {
+  $first_rebuttal_id = $rebuttals_data[0]['id'];
+  $debate_form_class = new \Drupal\merchant_dashboard\Form\DebateCommentForm();
+
+  foreach ($rebuttals_data as &$rebuttal_item) {
+  $counts = $debate_form_class->getTrustCounts((int) $rebuttal_item['id'], (int) $product_id);
+  $rebuttal_item['debate_counts'] = $counts;
+
+  // Load first 10 debate comments.
+  $comment_nids = \Drupal::entityQuery('node')
+    ->condition('type', 'rebuttal_debate')
+    ->condition('status', 1)
+    ->condition('field_debate_rebuttal', $rebuttal_item['id'])
+    ->sort('created', 'DESC')
+    ->range(0, 10)
+    ->accessCheck(FALSE)
+    ->execute();
+
+  $rebuttal_item['debate_comments'] = [];
+  $rebuttal_item['debate_has_more'] = FALSE;
+  $rebuttal_item['debate_total']    = $counts['total'];
+
+  foreach (\Drupal\node\Entity\Node::loadMultiple($comment_nids) as $cn) {
+    $rebuttal_item['debate_comments'][] = $debate_form_class->renderCommentCard($cn);
+  }
+
+  if ($counts['total'] > 10) {
+    $rebuttal_item['debate_has_more'] = TRUE;
+  }
+}
+unset($rebuttal_item);
+
+  $build['#rebuttals'] = $rebuttals_data;
+}
+
+// Attach debate form for each rebuttal.
+foreach ($rebuttals_data as $r) {
+  $form = \Drupal::formBuilder()->getForm(
+    '\Drupal\merchant_dashboard\Form\DebateCommentForm',
+    $r['id'],
+    $product_id
+  );
+
+  $current_user = \Drupal::currentUser();
+
+    $build['#user_logged_in'] = !$current_user->isAnonymous();
+
+    $debate_forms = [];
+    if (!$current_user->isAnonymous()) {
+      foreach ($rebuttals_data as $r) {
+        $debate_forms[$r['id']] = \Drupal::formBuilder()->getForm(
+          '\Drupal\merchant_dashboard\Form\DebateCommentForm',
+          (int) $r['id'],
+          (int) $product_id
+        );
+      }
+    }
+  $build['#debate_forms'] = $debate_forms;
+  #$build['debate_form_' . $r['id']] = $form;
+}
+
+
+// Inside merchant_dashboard_node_view() after $build['#debate_forms'] line
+
+\Drupal::logger('merchant_dashboard')->debug('Building claim forms for rebuttals count: @c', [
+  '@c' => count($rebuttals_data),
+]);
+
+$claim_forms = [];
+foreach ($rebuttals_data as $r) {
+  \Drupal::logger('merchant_dashboard')->debug('Building claim form for rebuttal: @id', [
+    '@id' => $r['id'],
+  ]);
+  $claim_forms[$r['id']] = \Drupal::formBuilder()->getForm(
+    '\Drupal\merchant_dashboard\Form\ClaimBuyerForm',
+    (int) $product_id,
+    (int) $r['id']
+  );
+}
+$build['#claim_forms'] = $claim_forms;
+
+\Drupal::logger('merchant_dashboard')->debug('Claim forms built: @keys', [
+  '@keys' => implode(', ', array_keys($claim_forms)),
+]);
+
+
+}
+
+
+

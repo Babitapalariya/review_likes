@@ -1,0 +1,88 @@
+/* Page Title */
+.winloseDetails h2 {
+  font-size: 2rem;
+  font-family: "Arima", serif;
+  font-weight: 600;
+  color: #000;
+  text-decoration: underline;
+  margin-bottom: 2rem;
+}
+
+.winloseDetails table thead th{
+    background: #ffa92a;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  padding: 12px;
+}
+
+ .status-table th, .status-table td {
+            text-align: center;
+            vertical-align: middle;
+        }
+
+        /* Badge-like backgrounds for status labels */
+        .status-table .active {
+            background-color: #d4edda;
+			font-size: 0.85rem;
+            color: #155724;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+        .status-table .win {
+            background-color: #28a745;
+			font-size: 0.85rem;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+        .status-table .loss {
+            background-color: #dc3545;
+			font-size: 0.85rem;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+        .status-table .respond-needed {
+            background-color: #ffc107;
+			font-size: 0.85rem;
+            color: #856404;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+        .status-table .under-admin {
+            background-color: #6f42c1;
+			font-size: 0.85rem;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-weight: bold;
+        }
+
+        .status-btn {
+            padding: 6px 12px;
+            border-radius: 15px;
+            font-weight: bold;
+            color: white;
+            text-decoration: none;
+        }
+        .status-btn.active {
+            background-color: #6c757d;
+        }
+        .status-btn.win {
+            background-color: #28a745;
+        }
+        .status-btn.loss {
+            background-color: #dc3545;
+        }
+        .status-btn.pending {
+            background-color: #ffc107;
+        }
+        .status-btn.review {
+            background-color: #6f42c1;
+        }

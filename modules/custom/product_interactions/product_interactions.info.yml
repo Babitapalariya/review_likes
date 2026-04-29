@@ -1,0 +1,7 @@
+name: Product Interactions
+type: module
+description: Likes, shares, ratings for marchant_products
+core_version_requirement: ^10
+package: Custom
+dependencies:
+  - drupal:node

@@ -6,20 +6,17 @@ global-styling:
       https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css: {}
       https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Arimo:ital,wght@0,400..700;1,400..700&family=Kaushan+Script&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap: {}
       css/bootstrap-icons.css: {}
-      css/virtual-select.min.css: {}
       css/common.css: {}
-      css/home.css: {}
       css/custom.css: {}
-      css/merchantregistration.css: {}
-      css/merchantdashboard.css: {}
-      css/testerdashboard.css: {}
+      
+      #css/merchantregistration.css: {}
+      #css/merchantdashboard.css: {}
+      #css/testerdashboard.css: {}
       
 
   js:
     js/popper.min.js: {}
     js/bootstrap.min.js: {}
-    js/virtual-select.min.js: {}
-    js/custom-virtual-select.js: {}
     js/common.js: {}
     # js/price-slider.js: {}
     # js/prevent-empty.js: {}
@@ -62,3 +59,33 @@ signup-styling:
   dependencies:
     - core/jquery
     - core/drupal
+
+home-css:
+  css:
+    theme:
+      css/virtual-select.min.css: {}
+      css/home.css: {}
+  js:
+    js/popper.min.js: {}
+    js/bootstrap.min.js: {}
+    js/virtual-select.min.js: {}
+    js/custom-virtual-select.js: {}
+
+
+
+
+merchant-css:
+  css:
+    theme:
+      css/merchantdashboard.css: {}
+  js:
+    js/custom.js: {}
+    # js/price-slider.js: {}
+    # js/prevent-empty.js: {}
+
+product-description-css:
+  css:
+    theme:
+      css/productDescription.css: {}
+      css/productDescriptionNew.css: {}
+  

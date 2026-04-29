@@ -226,3 +226,71 @@ document.addEventListener('DOMContentLoaded', function () {
     }
   };
 })(Drupal, once);
+
+
+
+(function ($, Drupal) {
+  Drupal.behaviors.affiliateToggle = {
+    attach: function (context) {
+
+      // Initial state
+      $('.affiliate-toggle', context).each(function () {
+        let checkbox = $(this);
+        let row = checkbox.closest('.row'); // parent row
+        let input = row.find('.affiliate-input');
+
+        input.prop('disabled', !checkbox.is(':checked'));
+      });
+
+      // On change
+      $(document).off('change.affiliateToggle').on('change.affiliateToggle', '.affiliate-toggle', function () {
+        let checkbox = $(this);
+        let row = checkbox.closest('.row');
+        let input = row.find('.affiliate-input');
+
+        input.prop('disabled', !this.checked);
+      });
+
+    }
+  };
+})(jQuery, Drupal);
+
+
+
+(function ($, Drupal, drupalSettings) {
+  'use strict';
+
+  Drupal.behaviors.productSuccessModal = {
+    attach: function (context, settings) {
+
+      if (settings.showProductSuccessModal) {
+        var modalEl = document.getElementById('productSuccessModal');
+        if (modalEl) {
+          var modal = new bootstrap.Modal(modalEl);
+          modal.show();
+
+          // ✅ Reload page when modal is closed by any method
+          modalEl.addEventListener('hidden.bs.modal', function () {
+            window.location.reload();
+          }, { once: true });
+        }
+        delete drupalSettings.showProductSuccessModal;
+      }
+
+      // "Go to All Products" — hide modal (reload will follow from hidden.bs.modal)
+      $(context).find('[data-view="all-products"]').once('product-modal').on('click', function () {
+        var modalEl = document.getElementById('productSuccessModal');
+        if (modalEl) {
+          bootstrap.Modal.getInstance(modalEl)?.hide();
+        }
+      });
+
+      // "Add Next Product" — reload immediately
+      $(context).find('[data-view="add-products"]').once('product-modal').on('click', function () {
+        window.location.reload();
+      });
+
+    }
+  };
+
+})(jQuery, Drupal, drupalSettings);

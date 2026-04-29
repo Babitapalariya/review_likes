@@ -86,3 +86,36 @@ span.fieldset-legend.js-form-required.form-required::after {
 #productDetailsSection {
   display: none;
 }
+
+.nav-btn {
+  text-decoration: none;
+}
+
+em.placeholder {
+    font-weight: bold;
+    background: white;
+    color: #044d04;
+}
+
+/* Like button active state */
+.like-btn.active {
+  filter: invert(27%) sepia(100%) saturate(500%) hue-rotate(180deg);
+  cursor: pointer;
+}
+
+/* Share button already shared state */
+.share-btn.already-shared {
+  opacity: 0.5;
+  cursor: default;
+}
+
+.like-btn,
+.share-btn {
+  cursor: pointer;
+  transition: transform 0.2s ease;
+}
+
+.like-btn:hover,
+.share-btn:hover {
+  transform: scale(1.2);
+}

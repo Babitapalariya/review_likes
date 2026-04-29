@@ -1,0 +1,54 @@
+<header class="">{{ page.header }}</header>
+
+{% if 'merchant' or 'administrator' in user.roles %}
+<div class="app" data-app="review-likes-dashboard">
+  <!-- Sidebar -->
+  {{ page.sidebar }}
+  <!-- Main Content -->
+  <main>
+    <section id="contentArea">
+      <!-- Add Product Form -->
+      <div class="view" id="add-products" style="display:block;">{{ page.content }}</div>
+    </section>
+  </main>
+</div>
+{% else %}
+  <p>You don’t have permission to see this data.</p>
+{% endif %}
+
+{# <div id="extractConfirmModal" class="custom-modal" style="display:none;">
+  <div class="modal-content">
+    <p>Are you sure you want to extract product data?</p>
+    <button type="button" id="confirmExtract" class="btn btn-primary">Yes</button>
+    <button type="button" id="cancelExtract" class="btn btn-secondary">Cancel</button>
+  </div>
+</div> #}
+
+
+
+
+<div class="modal fade" id="productSuccessModal" tabindex="-1" aria-hidden="true">
+                     <div class="modal-dialog modal-lg modal-dialog-centered">
+                        <div class="modal-content">
+                           <div class="modal-header border-0">
+                              <h5 class="modal-title fw-semibold">Thank You</h5>
+                              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                           </div>
+                           <div class="modal-body text-center px-5">
+                              <h4 class="fw-semibold text-success mb-3">
+                                 Product Details Submitted Successfully
+                              </h4>
+                              <p class="mb-4">
+                                 To make changes or delete this product,
+                                 please visit <strong>All Products</strong>.
+                              </p>
+                              <div class="d-flex justify-content-center gap-3 mb-4 action-links">
+                                <a href="{{ url('<front>')}}merchant-dashboard/all-products" class="btn btn-default px-4 nav-btn" data-bs-dismiss="modal" data-view="all-products"> Go to All Products</a>
+                                <a href="{{ path('role_based_registration.product_form') }}" class="btn btn-success px-4 nav-btn active" data-view="add-products" data-bs-dismiss="modal">  Add Next Product</a>
+
+                              </div>
+                              <hr>
+                           </div>
+                        </div>
+                     </div>
+                  </div>

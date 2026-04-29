@@ -1,0 +1,634 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a node.
+ *
+ * Available variables:
+ * - node: The node entity with limited access to object properties and methods.
+ *   Only method names starting with "get", "has", or "is" and a few common
+ *   methods such as "id", "label", and "bundle" are available. For example:
+ *   - node.getCreatedTime() will return the node creation timestamp.
+ *   - node.hasField('field_example') returns TRUE if the node bundle includes
+ *     field_example. (This does not indicate the presence of a value in this
+ *     field.)
+ *   - node.isPublished() will return whether the node is published or not.
+ *   Calling other methods, such as node.delete(), will result in an exception.
+ *   See \Drupal\node\Entity\Node for a full list of public properties and
+ *   methods for the node object.
+ * - label: (optional) The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - author_picture: The node author user entity, rendered using the "compact"
+ *   view mode.
+ * - metadata: Metadata for this node.
+ * - date: (optional) Themed creation date field.
+ * - author_name: (optional) Themed author name field.
+ * - url: Direct URL of the current node.
+ * - display_submitted: Whether submission information should be displayed.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - node: The current template type (also known as a "theming hook").
+ *   - node--type-[type]: The current node type. For example, if the node is an
+ *     "Article" it would result in "node--type-article". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - node--view-mode-[view_mode]: The View Mode of the node; for example, a
+ *     teaser would result in: "node--view-mode-teaser", and
+ *     full: "node--view-mode-full".
+ *   The following are controlled through the node publishing options.
+ *   - node--promoted: Appears on nodes promoted to the front page.
+ *   - node--sticky: Appears on nodes ordered above other non-sticky nodes in
+ *     teaser listings.
+ *   - node--unpublished: Appears on unpublished nodes visible only to site
+ *     admins.
+ * - title_attributes: Same as attributes, except applied to the main title
+ *   tag that appears in the template.
+ * - content_attributes: Same as attributes, except applied to the main
+ *   content tag that appears in the template.
+ * - author_attributes: Same as attributes, except applied to the author of
+ *   the node tag that appears in the template.
+ * - title_prefix: Additional output populated by modules, intended to be
+ *   displayed in front of the main title tag that appears in the template.
+ * - title_suffix: Additional output populated by modules, intended to be
+ *   displayed after the main title tag that appears in the template.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - teaser: Flag for the teaser state. Will be true if view_mode is 'teaser'.
+ * - page: Flag for the full page state. Will be true if view_mode is 'full'.
+ *
+ * @see template_preprocess_node()
+ *
+ * @ingroup themeable
+ */
+#}
+
+
+
+{% set counts = interaction_counts %}
+
+
+
+<section class="products-section" id="products-section">
+  <div class="container">
+    <div class="row justify-content-around">
+      <div class="container py-5">
+        <div class="row">
+          <!-- Thumbnails -->
+          <div class="col-md-2 col-12 mb-4">
+            <div class="d-flex flex-md-column thumbnail-section flex-row gap-3">
+              {% for i in 0..2 %}
+                {% if content.field_image[i] %}
+                  {% set image_item = content.field_image[i]['#item'] %}
+                  {% set file_url = file_url(image_item.entity.fileUri) %}
+                  <img
+                    src="{{ file_url }}"
+                    class="img-fluid thumb-img {% if loop.first %}active{% endif %}"
+                    data-large="{{ file_url }}"
+                    alt="{{ image_item.alt ?? 'Thumbnail ' ~ i }}"
+                  >
+                {% endif %}
+              {% endfor %}
+            </div>
+            <div class="mt-4">
+              <button class="btn btn-dark w-100" data-bs-toggle="modal" data-bs-target="#moreImagesModal">More +</button>
+            </div>
+          </div>
+
+          <!-- Main Image -->
+          <div class="col-md-9 col-12 text-center">
+            <div class="main-img-wrapper position-relative">
+              {% set image_item = content.field_image[0]['#item'] %}
+              {% set file_url = file_url(image_item.entity.fileUri) %}
+              <img src="{{ file_url }}" id="mainImage" class="img-fluid main-img" alt="Main Product">
+            </div>
+          </div>
+
+          <!-- Social Icons -->
+          <div class="col-md-1 col-12 text-center socialmedia-icons">
+            <div class="row">
+              {# LIKE BUTTON #}
+              <div class="iconsection col-md-6 my-3">
+                <img src="{{ url('<front>') }}themes/custom/review_likes/images/product_details/like.svg"
+                     class="like-btn {% if already_liked %}active{% endif %}"
+                     data-nid="{{ node.id() }}"
+                     alt="Likes"
+                     style="cursor:pointer;">
+                <br>
+                <span class="like-count">{{ counts.like ?? 0 }}</span>
+              </div>
+
+              {# COMMENT #}
+              <div class="iconsection col-md-6 my-3">
+                <a href="#comment-section">
+                  <img src="{{ url('<front>') }}themes/custom/review_likes/images/product_details/comment.svg" alt="Comments">
+                </a>
+                <br>
+                <span class="comment-count">{{ counts.comment ?? 0 }}</span>
+              </div>
+
+              {# SHARE BUTTON #}
+              <div class="iconsection col-md-6 my-3">
+                <img src="{{ url('<front>') }}themes/custom/review_likes/images/product_details/share.svg"
+                     class="share-btn"
+                     data-nid="{{ node.id() }}"
+                     alt="Shares"
+                     style="cursor:pointer;">
+                <br>
+                <span class="share-count">{{ counts.share ?? 0 }}</span>
+              </div>
+
+              <div class="iconsection col-md-6 my-3">
+                <img src="{{ url('<front>') }}themes/custom/review_likes/images/product_details/rating.svg" alt="ratings"><br>
+                <span>120</span>
+              </div>
+              <div class="iconsection col-md-6 my-3">
+                <img src="{{ url('<front>') }}themes/custom/review_likes/images/product_details/testerrating.svg" alt="test rating"><br>
+                <span>120</span>
+              </div>
+              <div class="iconsection col-md-6 my-3">
+                <img src="{{ url('<front>') }}themes/custom/review_likes/images/product_details/nooftests.svg" alt="no.of tests"><br>
+                <span>120</span>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="product-description-info">
+  <div class="container">
+    <h2 class="product-title">{{ label }}</h2>
+    <p class="product-description"></p>
+    <div id="shortDesc">
+      {{ content.body }}
+    </div>
+    <button class="btn btn-link p-0" id="toggleBtn" onclick="toggleDescription()">Read More</button>
+    <p></p>
+    <div class="row">
+      <div class="col-md-3">
+        <div class="seller-info">
+          <p><strong>Sold By:</strong><a href="javascript:void(0)">XYZ Company USA</a></p>
+          <p><strong>Visit:</strong>
+            <span class="social-links">
+              <a href="javascript:void(0)"><i class="bi bi-instagram"></i></a>
+              <a href="javascript:void(0)"><i class="bi bi-facebook"></i></a>
+            </span>
+          </p>
+        </div>
+      </div>
+      <div class="col-md-9">
+        <div class="row align-items-center">
+          <div class="col-md-4 text-center">
+            <button class="btn btn-default" data-bs-toggle="modal" data-bs-target="#buyModal">Buy now</button>
+          </div>
+          <div class="col-md-8 text-center">
+            <div class="price-range-box">
+              <div>Price Range</div>
+              <small>₹21,499 - 23,000</small>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="rl-marketplaces-section mb-4">
+  <div class="container">
+    <div class="rl-section-head">
+      <div>
+        <h2 class="rl-section-title">Prices from all marketplaces</h2>
+        <p class="rl-section-sub">Compare prices and choose the best offer before buying.</p>
+      </div>
+      <button class="rl-small-btn"><i class="bi bi-receipt-cutoff"></i> View all coupons</button>
+    </div>
+    <div class="rl-market-grid">
+      {% for item in content.field_platform_link %}
+        {% if item['#paragraph'] is defined %}
+          {% set paragraph = item['#paragraph'] %}
+          <div class="rl-market-card">
+            <div class="rl-market-top">
+              <div class="rl-market-name">
+                {{ paragraph.field_online_selling_platforms.entity.title }}
+              </div>
+              <div class="rl-market-rating">
+                {{ paragraph.field_rating.value }}
+                <i class="bi bi-star-fill text-warning"></i>
+              </div>
+            </div>
+            <div class="rl-price">
+              {{ paragraph.field_platform_price.value }}
+            </div>
+            <div class="rl-market-meta">
+              <div>
+                <i class="bi bi-tag-fill"></i> Coupon:
+                <strong>{{ paragraph.field_coupon_code.value }}</strong>
+              </div>
+              <div>
+                <i class="bi bi-tag-fill"></i> Expiry:
+                <strong>{{ paragraph.field_coupon_expiry_date.value }}</strong>
+              </div>
+              <div><i class="bi bi-person-check-fill"></i> Seller Rating: 4.7/5</div>
+              <div><i class="bi bi-truck"></i> Delivery: 2 days</div>
+            </div>
+            <a href="{{ paragraph.field_online_selling_platforms.uri }}"
+               class="btn btn-default w-100 mt-3">
+              Buy from {{ paragraph.field_online_selling_platforms.title }}
+            </a>
+          </div>
+        {% endif %}
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+
+{# ══════════════════════════════════════════════════════════════════════════ #}
+{# TRUTH CHECK / REBUTTAL + DEBATE SECTION                                   #}
+{# ══════════════════════════════════════════════════════════════════════════ #}
+
+<section class="truthchecksection mb-5">
+  <div class="container">
+    <div class="row justify-content-between">
+      <div class="col-md-9">
+
+        {% if _rebuttals is defined and _rebuttals is not empty %}
+
+          {% for rebuttal in _rebuttals %}
+
+            {# ── ROW 1: STATS ───────────────────────────────────────────── #}
+            <div class="card debate-trust-section" style="margin-bottom:20px;">
+              <div class="grid-2">
+
+                {# Trust Snapshot #}
+                <div style="background:#fff;border:1px solid #e8e8e4;border-radius:18px;padding:20px;">
+                  <div style="font-weight:700;font-size:16px;margin-bottom:16px;">Trust Snapshot</div>
+                  <div style="display:flex;flex-direction:column;gap:12px;">
+                    <div>
+                      <div style="display:flex;justify-content:space-between;font-size:13px;">
+                        <span>Agree with seller</span>
+                        <strong class="trust-seller-pct">{{ rebuttal.debate_counts.seller_pct ?? 0 }}%</strong>
+                      </div>
+                      <div class="progress-track">
+                        <div class="progress-fill fill-emerald trust-seller-bar" style="width:{{ rebuttal.debate_counts.seller_pct ?? 0 }}%"></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div style="display:flex;justify-content:space-between;font-size:13px;">
+                        <span>Agree with buyer</span>
+                        <strong class="trust-buyer-pct">{{ rebuttal.debate_counts.buyer_pct ?? 0 }}%</strong>
+                      </div>
+                      <div class="progress-track">
+                        <div class="progress-fill fill-rose trust-buyer-bar" style="width:{{ rebuttal.debate_counts.buyer_pct ?? 0 }}%"></div>
+                      </div>
+                    </div>
+                    <div>
+                      <div style="display:flex;justify-content:space-between;font-size:13px;">
+                        <span>Need more proof</span>
+                        <strong class="trust-neutral-pct">{{ rebuttal.debate_counts.neutral_pct ?? 0 }}%</strong>
+                      </div>
+                      <div class="progress-track">
+                        <div class="progress-fill fill-amber trust-neutral-bar" style="width:{{ rebuttal.debate_counts.neutral_pct ?? 0 }}%"></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {# Debate Overview #}
+                <div style="background:#fff;border:1px solid #e8e8e4;border-radius:18px;padding:20px;">
+                  <div style="font-weight:700;font-size:16px;margin-bottom:16px;">Truth Check — Debate Overview</div>
+                  <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:14px;">
+                    <div class="stat-box">
+                      <div class="stat-label">Total</div>
+                      <div class="stat-num trust-total">{{ rebuttal.debate_counts.total ?? 0 }}</div>
+                    </div>
+                    <div class="stat-box">
+                      <div class="stat-label">Support Seller</div>
+                      <div class="stat-num" style="color:#1fa055;">{{ rebuttal.debate_counts.seller ?? 0 }}</div>
+                    </div>
+                    <div class="stat-box">
+                      <div class="stat-label">Support Buyer</div>
+                      <div class="stat-num" style="color:#e84040;">{{ rebuttal.debate_counts.buyer ?? 0 }}</div>
+                    </div>
+                  </div>
+                  <div style="background:#fafaf9;border:1px solid #e8e8e4;border-radius:14px;padding:14px;font-size:13px;line-height:2;">
+                    <div><strong style="color:#1fa055;">Green</strong> = Seller / Owner</div>
+                    <div><strong style="color:#e84040;">Red</strong> = Previous Buyer</div>
+                    <div><strong style="color:#d49800;">Yellow</strong> = Visitor / Audience</div>
+                  </div>
+                </div>
+
+              </div>
+            </div>
+
+            {# ── ROW 2: OWNER SECTION ────────────────────────────────────── #}
+            <div class="card" style="margin-bottom:20px;">
+              <div class="flex items-center justify-between" style="flex-wrap:wrap;gap:12px;margin-bottom:20px;">
+                <div>
+                  <div class="section-label">Product owner main rebuttal section</div>
+                  <div class="section-title">Owner starts the debate here</div>
+                </div>
+                <span class="badge badge-emerald" style="font-size:12px;padding:7px 18px;">Owner block visible clearly</span>
+              </div>
+
+              {# Buyer Screenshots + Owner Media #}
+              <div class="grid-owner">
+                <div class="card-emerald" style="border-radius:var(--radius-lg);padding:20px;">
+                  <div class="font-bold" style="margin-bottom:14px;">Attached Buyer Screenshots</div>
+                  <div class="grid-3" style="gap:12px;">
+                    {% if rebuttal.reviews is not empty %}
+                      {% for review in rebuttal.reviews %}
+                        <div class="screenshot-card">
+                          <div class="screenshot-header">
+                            {% if review.buyer_username %}
+                              <span class="screenshot-name">{{ review.buyer_username }}</span>
+                            {% endif %}
+                            {% if review.platform %}
+                              <span class="screenshot-market">{{ review.platform }}</span>
+                            {% endif %}
+                          </div>
+                          <div class="media-placeholder" style="height:120px;">
+                            {% if review.screenshot %}
+                              <div class="review-screenshot">
+                                <img src="{{ review.screenshot }}" alt="Review screenshot" />
+                              </div>
+                            {% endif %}
+                          </div>
+                        </div>
+                      {% endfor %}
+                    {% endif %}
+                  </div>
+                </div>
+
+                <div class="card-emerald" style="border-radius:var(--radius-lg);padding:20px;">
+                  <div class="font-bold" style="margin-bottom:12px;">Owner Media Proof</div>
+                  <div style="display:flex;flex-direction:column;gap:12px;">
+                    {% if rebuttal.evidence_files is not empty %}
+                      {% for file in rebuttal.evidence_files %}
+                        {% if file.is_image %}
+                          <div class="media-placeholder" style="height:120px;padding:0;overflow:hidden;">
+                            <img src="{{ file.url }}" alt="{{ file.name }}" style="width:100%;height:100%;object-fit:cover;border-radius:10px;">
+                          </div>
+                        {% elseif file.is_video %}
+                          <video controls style="width:100%;border-radius:10px;">
+                            <source src="{{ file.url }}" type="{{ file.mime }}">
+                          </video>
+                        {% else %}
+                          <a href="{{ file.url }}" target="_blank" class="btn btn-outline btn-sm">📄 {{ file.name }}</a>
+                        {% endif %}
+                      {% endfor %}
+                    {% else %}
+                      <div class="media-placeholder" style="height:120px;">No media uploaded</div>
+                    {% endif %}
+                  </div>
+                </div>
+              </div>
+
+              {# Owner Statement #}
+              <div class="card-emerald mt-5" style="border-radius:var(--radius-lg);padding:20px;">
+                <div style="display:flex;align-items:flex-start;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:14px;">
+                  <div>
+                    <div class="font-bold" style="font-size:16px;">Owner Statement</div>
+                    <div style="font-size:13px;color:var(--neutral-600);margin-top:3px;">Main rebuttal statement from product owner</div>
+                  </div>
+                  <span class="badge badge-solid-emerald">Product Owner</span>
+                </div>
+                <div class="owner-statement">
+                  {{ rebuttal.statement|raw }}
+                </div>
+              </div>
+
+              {# CTA bar #}
+              <div class="cta-bar">
+                <div class="cta-bar-text">If you see attached screenshots related to you, claim your presence and prove your statement.</div>
+                <div class="cta-bar-actions">
+                  <button class="btn btn-outline">Reply to Owner Statement</button>
+                  <button class="btn btn-outline">Share Debate</button>
+                </div>
+              </div>
+
+            </div>{# end owner card #}
+
+
+            {# ── ROW 3: COMMENTARY INPUT FORM ────────────────────────────── #}
+            <div class="debate-section" id="debate-section-{{ rebuttal.id }}">
+
+              {% if _user_logged_in %}
+                    {# Logged-in: show the debate input form #}
+                    {% if _debate_forms[rebuttal.id] is defined %}
+                      <div style="margin-top:16px;">
+                        {{ _debate_forms[rebuttal.id] }}
+                      </div>
+                    {% endif %}
+                  {% else %}
+                    {# Anonymous only: show login notice #}
+                    <div class="card" style="margin-top:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+                      <div style="font-size:14px;color:#6b6b63;">
+                        🔒 <strong>Want to participate in this debate?</strong> Login to post your statement.
+                      </div>
+                      <a href="/user/login?destination={{ url('<current>') }}" class="btn btn-dark">
+                        Login to Participate
+                      </a>
+                    </div>
+                  {% endif %}
+
+              {# ── ROW 4+: COMMENTS LIST — visible to everyone ────────────── #}
+              <div id="debate-comments-list-{{ rebuttal.id }}" class="debate-comments-list" style="margin-top:16px;">
+                {% if rebuttal.debate_comments is not empty %}
+                  {% for comment_html in rebuttal.debate_comments %}
+                    {{ comment_html|raw }}
+                  {% endfor %}
+                {% else %}
+                  <div class="debate-no-comments" style="text-align:center;padding:32px;color:#8a8a82;font-size:14px;background:#fff;border-radius:18px;border:1px solid #e8e8e4;">
+                    No statements yet. Be the first to speak.
+                  </div>
+                {% endif %}
+              </div>
+
+              {# Load More #}
+              {% if rebuttal.debate_has_more %}
+                <div class="debate-load-more-wrap" style="text-align:center;margin-top:16px;">
+                  <button id="debate-load-more-{{ rebuttal.id }}"
+                          class="btn btn-outline debate-load-more-btn"
+                          data-rebuttal-id="{{ rebuttal.id }}"
+                          data-offset="10">
+                    Load More Comments ({{ rebuttal.debate_total }} total)
+                  </button>
+                </div>
+              {% endif %}
+
+            </div>{# end .debate-section #}
+
+          {% endfor %}{# end for rebuttal in _rebuttals #}
+
+        {% else %}
+          <p style="color:#8a8a82;font-size:14px;">No rebuttals have been submitted for this product.</p>
+        {% endif %}
+
+      </div>{# end col-md-9 #}
+
+      <div class="col-md-3 mt-3">
+        {# Trending Products #}
+        <div class="advertising-section mt-5 mb-5">
+          <h5>Trending Products</h5>
+          <hr>
+          {{ drupal_view('homepage_product', 'block_2') }}
+        </div>
+
+        <!-- NEW: Debate Sidebar -->
+
+                   {# Success notice shown after claim submitted #}
+  <div id="claim-success-notice"></div>
+
+  {% for rebuttal in _rebuttals %}
+
+    {# ── Claim comment card ──────────────────────────────────────────── #}
+    <div class="rl-sidebar-card product-details-card mb-3">
+      <h6>Are you the original buyer?</h6>
+      <p class="small text-muted">Claim your review identity, get a verified badge, and reply directly to the seller with new proof.</p>
+      <button type="button"
+        class="btn btn-default w-100 mb-2 claim-btn"
+        data-bs-toggle="modal"
+        data-bs-target="#claimBuyerModal-{{ rebuttal.id }}"
+        data-rebuttal="{{ rebuttal.id }}">
+        Yes, claim my comment
+      </button>
+
+      {# Success notice appears here after claim submitted #}
+      <div id="claim-success-notice-{{ rebuttal.id }}"></div>
+            <a href="/user/login" class="btn btn-outline-secondary w-100">I used this product before</a>
+    </div>
+
+    {# ── Be part of debate ───────────────────────────────────────────── #}
+    <div class="rl-sidebar-card product-details-card mb-3">
+      <h6>Be part of this debate</h6>
+      <div class="d-grid gap-2">
+        <a href="#debate-section-{{ rebuttal.id }}" class="btn btn-outline-success btn-sm sidebar-support-btn" data-support="seller" data-rebuttal="{{ rebuttal.id }}">I support seller</a>
+        <a href="#debate-section-{{ rebuttal.id }}" class="btn btn-outline-danger btn-sm sidebar-support-btn" data-support="buyer" data-rebuttal="{{ rebuttal.id }}">I support original buyer</a>
+        <a href="#debate-section-{{ rebuttal.id }}" class="btn btn-outline-warning btn-sm sidebar-support-btn" data-support="neutral" data-rebuttal="{{ rebuttal.id }}">I need more proof</a>
+        <a href="#debate-section-{{ rebuttal.id }}" class="btn btn-outline-secondary btn-sm">Add my comment</a>
+      </div>
+      <p class="rl-tiny-note mt-2">Keep participation simple and identity-based.</p>
+    </div>
+
+    {# ── Quick trust actions ──────────────────────────────────────────── #}
+    <div class="rl-sidebar-card product-details-card mb-3">
+      <h6>Quick Trust Actions</h6>
+      <div class="d-grid gap-2">
+        <a href="#debate-section-{{ rebuttal.id }}" class="btn btn-outline-success btn-sm sidebar-support-btn" data-support="seller" data-rebuttal="{{ rebuttal.id }}">Vote trust seller</a>
+        <a href="#debate-section-{{ rebuttal.id }}" class="btn btn-outline-danger btn-sm sidebar-support-btn" data-support="buyer" data-rebuttal="{{ rebuttal.id }}">Vote trust buyer</a>
+        <a href="#debate-section-{{ rebuttal.id }}" class="btn btn-outline-secondary btn-sm sidebar-support-btn" data-support="neutral" data-rebuttal="{{ rebuttal.id }}">Mark as unclear</a>
+      </div>
+    </div>
+
+    {# ── Claim Modal ──────────────────────────────────────────────────── #}
+    <div class="modal fade" id="claimBuyerModal-{{ rebuttal.id }}" tabindex="-1" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content" style="border-radius:18px;">
+          <div class="modal-header" style="border-bottom:1px solid #e8e8e4;">
+            <h5 class="modal-title" style="font-weight:700;">Claim Your Buyer Identity</h5>
+            <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+          </div>
+          <div class="modal-body">
+          <div class="modal-body">
+  {% if _user_logged_in %}
+    {% if _claim_forms is not empty and _claim_forms[rebuttal.id] is defined %}
+      {{ _claim_forms[rebuttal.id] }}
+    {% else %}
+      <p style="color:red;font-size:13px;">Debug: claim form not found for rebuttal {{ rebuttal.id }}. Keys available: {{ _claim_forms|keys|join(', ') }}</p>
+    {% endif %}
+  {% else %}
+    <div style="text-align:center;padding:20px;">
+      <p style="font-size:14px;color:#6b6b63;margin-bottom:16px;">You must be logged in to claim your buyer identity.</p>
+      <a href="/user/login?destination={{ url('<current>') }}" class="btn btn-dark">Login to Claim</a>
+    </div>
+  {% endif %}
+</div>
+        </div>
+      </div>
+    </div>
+
+  {% endfor %}
+
+
+
+<!-- END Debate Sidebar -->
+
+
+
+
+
+      </div>
+
+    </div>
+  </div>
+</section>
+
+
+
+
+
+
+{# ── Image Modal ───────────────────────────────────────────────────────── #}
+<div class="modal fade" id="moreImagesModal" tabindex="-1" aria-labelledby="moreImagesLabel" aria-hidden="true">
+  <div class="modal-dialog modal-md modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="moreImagesLabel">All Product Images</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="moreImagesCarousel" class="carousel slide" data-bs-ride="carousel">
+          <div class="carousel-inner">
+            {% set images = node.field_image %}
+            {% for i, image in images %}
+              <div class="carousel-item {% if i == 0 %}active{% endif %}">
+                {% set file_url = file_url(image.entity.fileUri) %}
+                <img src="{{ file_url }}" class="d-block w-100" alt="{{ image.alt ?? 'Product Image' }}">
+              </div>
+            {% endfor %}
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#moreImagesCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#moreImagesCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+{# ── Buy Modal ─────────────────────────────────────────────────────────── #}
+
+
+<div class="modal fade" id="buyModal" tabindex="-1" aria-labelledby="buyModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h2 class="modal-title fs-5" id="buyModalLabel">Buy the product using below links</h2>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div class="row">
+          <div class="my-4">
+            <div><strong>Amazon:</strong> <a href="javascript:void(0)">www.amazon.com</a></div>
+            <div><strong>eBay:</strong> <a href="javascript:void(0)">www.ebay.com</a></div>
+            <div><strong>Flipkart:</strong> <a href="javascript:void(0)">www.flipkart.com</a></div>
+            <div><strong>Myntra:</strong> <a href="javascript:void(0)">www.myntra.com</a></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

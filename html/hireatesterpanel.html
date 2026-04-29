@@ -1,0 +1,1486 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8" />
+      <title>Review Likes — Hire a tester Full Flow</title>
+      <link rel="icon" type="image/x-icon" href="assets/images/favicon.png" />
+      <script src="assets/js/popper.min.js" type="text/javascript"></script>
+      <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+      <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Arimo:ital,wght@0,400..700;1,400..700&family=Kaushan+Script&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+      <link rel="stylesheet" type="text/css" href="assets/css/common.css"/>
+      <link rel="stylesheet" href="assets/css/hireatesterpanel.css" />
+   </head>
+   <body>
+      <!-- Menu start here-->
+      <header>
+         <nav class="navbar navbar-expand-lg main-navbar">
+            <div class="container-fluid">
+               <a class="navbar-brand logo" href="#">ReviewLikes</a>
+               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuitems" aria-controls="menuitems" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="menuitems">
+                  <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                     <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Merchant</a></li>
+                     <li class="nav-item"><a class="nav-link" href="#">Freelance</a></li>
+                     <li class="nav-item"><a class="nav-link" href="#">Market Place</a></li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Settings</a>
+                        <ul class="dropdown-menu">
+                           <li><a class="dropdown-item" href="#">Account Settings</a></li>
+                           <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                     </li>
+                  </ul>
+                  <div class="d-flex">
+                     <select class="form-select">
+                        <option value="India">India</option>
+                        <option value="US" selected>US</option>
+                        <option value="UK">UK</option>
+                     </select>
+                     <select class="form-select">
+                        <option selected>English</option>
+                        <option value="Spanish">Spanish</option>
+                     </select>
+                     <button type="button" class="btn btn-default">Sign in</button>
+                  </div>
+               </div>
+            </div>
+         </nav>
+      </header>
+      <!-- Menu end here-->
+      <div class="app">
+         <!-- SIDEBAR --> 
+         <aside class="sidebar">
+            <div class="brand">
+               <div>
+                  <h1>Merchant Portal</h1>
+                  <p>Hire a Tester — full flow</p>
+               </div>
+            </div>
+            <div class="nav" id="nav"> 
+               <button class="active" data-page="dashboard"> 
+               <span class="left">Dashboard</span>
+               <span class="pill">Overview</span> 
+               </button> 
+               <button data-page="create"> 
+               <span class="left">Create Request</span> <span class="pill">New</span> 
+               </button> 
+               <button data-page="requests"> 
+               <span class="left">My Requests</span> 
+               <span class="pill warn" id="pillPending">Pending 28</span> </button> 
+               <button data-page="quotations"> 
+               <span class="left">Quotations</span> 
+               <span class="pill" id="pillQuotes">17</span> 
+               </button> 
+               <button data-page="approval"> 
+               <span class="left">Waiting Approval</span> <span class="pill warn" id="pillApprove">9</span> </button> 
+               <button data-page="hired"> 
+               <span class="left">Hired Testers</span> 
+               <span class="pill good">Active</span> 
+               </button> 
+               <button data-page="messages"> 
+               <span class="left">Messages</span> 
+               <span class="pill">All</span> 
+               </button> 
+               <button data-page="submissions"> 
+               <span class="left">Submissions</span> 
+               <span class="pill warn">Review</span> 
+               </button> 
+               <button data-page="payments"> 
+               <span class="left">Payments</span> 
+               <span class="pill">History</span> 
+               </button> 
+               <button data-page="settings">
+               <span class="left">Settings</span> 
+               <span class="pill">Rules</span> 
+               </button> 
+            </div>
+            <div class="footer-note">
+               <div class="tiny">Tip:</div>
+               <div class="tiny">“Create Request” = your requirements. After you publish, testers can view & submit quotes.</div>
+            </div>
+         </aside>
+         <!-- MAIN --> 
+         <main class="main">
+            <!-- DASHBOARD --> 
+            <section class="page" id="page-dashboard">
+               <div class="topbar">
+                  <div class="title">
+                     <h2>Dashboard</h2>
+                     <p>See views, applicants, hires, overdue deliveries, and approvals in one place.</p>
+                  </div>
+                  <div class="actions"> 
+                     <button class="btn" onclick="go('create')">Create New Request</button> <button class="btn primary" onclick="go('requests')">Open My Requests</button> 
+                  </div>
+               </div>
+               <div class="kpis mb-5">
+                  <div class="kpi">
+                     <div class="n" id="kpiTotalTesters">142</div>
+                     <div class="l">Total testers in network</div>
+                     <div class="t">quality & verified profiles</div>
+                  </div>
+                  <div class="kpi">
+                     <div class="n">28</div>
+                     <div class="l">Pending tasks</div>
+                     <div class="t">waiting on tester action</div>
+                  </div>
+                  <div class="kpi">
+                     <div class="n">17</div>
+                     <div class="l">New quotations</div>
+                     <div class="t">need review & hire</div>
+                  </div>
+                  <div class="kpi">
+                     <div class="n">9</div>
+                     <div class="l">Waiting approval</div>
+                     <div class="t">submitted videos to approve</div>
+                  </div>
+               </div>
+               <div class="grid">
+                  <div class="card">
+                     <div class="hd">
+                        <div>
+                           <h3>Active / Recent Hires</h3>
+                           <div class="sub">Track work progress, days left, and delivery status.</div>
+                        </div>
+                        <button class="btn" onclick="go('hired')">View all</button> 
+                     </div>
+                     <div class="bd">
+                        <table class="table">
+                           <thead>
+                              <tr>
+                                 <th>Tester</th>
+                                 <th>Product</th>
+                                 <th>Hired</th>
+                                 <th>Days Left</th>
+                                 <th>Status</th>
+                                 <th>Approval</th>
+                                 <th>Action</th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>
+                                    <strong>John Doe</strong>
+                                    <div class="tiny">Independent Creator</div>
+                                 </td>
+                                 <td>
+                                    Electric Scooter X1
+                                    <div class="tiny muted">Durability + Off-road</div>
+                                 </td>
+                                 <td>2025-08-15</td>
+                                 <td>10 Days Left</td>
+                                 <td><span class="badge b-overdue"><span class="dot"></span>Delivery Overdue</span></td>
+                                 <td><span class="badge b-approved"><span 
+                                    class="dot"></span>Approved</span></td>
+                                 <td><button class="btn" onclick="openTask('TSK-1001')">Open</button></td>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <strong>Jane Smith</strong>
+                                    <div class="tiny">Skilled Expert</div>
+                                 </td>
+                                 <td>
+                                    Smartwatch Z Pro
+                                    <div class="tiny muted">Unboxing + Tutorial</div>
+                                 </td>
+                                 <td>2025-08-20</td>
+                                 <td>5 Days Left</td>
+                                 <td><span class="badge b-submitted"><span 
+                                    class="dot"></span>Submitted</span></td>
+                                 <td><span class="badge b-pending"><span 
+                                    class="dot"></span>Pending</span></td>
+                                 <td><button class="btn" onclick="openTask('TSK-1002')">Open</button></td>
+                              </tr>
+                           </tbody>
+                        </table>
+                        <div class="divider"></div>
+                        <div class="row"> 
+                           <span class="chip">Suggested: set “Auto Reminder” for overdue tasks</span> <span class="chip">Review 17 quotations → hire top 3</span> 
+                           <span class="chip">Approve 9 videos to unlock payments</span> 
+                        </div>
+                     </div>
+                  </div>
+                  <div class="right-stack">
+                     <div class="card">
+                        <div class="hd">
+                           <div>
+                              <h3>Quick Actions</h3>
+                              <div class="sub">Most used merchant tools</div>
+                           </div>
+                        </div>
+                        <div class="bd">
+                           <div class="row"> 
+                              <button class="btn primary" onclick="go('create')">+ Create Request</button> <button class="btn" onclick="go('quotations')">Review Quotes</button> <button class="btn" onclick="go('approval')">Approve Videos</button> <button class="btn" onclick="go('messages')">Open Messages</button> 
+                           </div>
+                           <div class="divider"></div>
+                           <div class="hint"> 
+                              You can pause/unpublish a request anytime (24-72 hrs or custom), and resume later. 
+                           </div>
+                        </div>
+                     </div>
+                     <div class="card">
+                        <div class="hd">
+                           <div>
+                              <h3>Latest Activity</h3>
+                              <div class="sub">Last 24 hours</div>
+                           </div>
+                        </div>
+                        <div class="bd">
+                           <div class="hint">
+                              <div>• <span class="mono">REQ-209</span> got <strong>52 views</strong> and <strong>6 quotes</strong></div>
+                              <div>• <span class="mono">TSK-1002</span> submission uploaded (needs approval)</div>
+                              <div>• <span class="mono">TSK-1001</span> overdue reminder sent</div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+            <!-- CREATE REQUEST --> 
+            <section class="page hide" id="page-create">
+               <div class="topbar">
+                  <div class="title">
+                     <h2>Create Request (Requirements)</h2>
+                     <p>Fill your requirements → Save draft → Publish → Testers can view & submit quotations.</p>
+                  </div>
+                  <div class="actions"> 
+                     <button class="btn" onclick="toast('Saved draft ✅')">Save Draft</button> <button class="btn primary" onclick="toast('Published ✅ Testers can now see your request')">Publish</button> 
+                  </div>
+               </div>
+               <div class="grid">
+                 <div class="card"> 
+<div class="hd"> 
+<div> 
+<h3>Hire a Tester Form</h3> 
+<div class="sub">Section 1-7 (your provided structure)</div> 
+</div> 
+<span class="badge b-draft"><span class="dot"></span>Draft</span> </div> 
+<div class="bd"> 
+<!-- Section 1 -->
+<div class="chip">Section 1 — Product &amp; Testing Details</div> <div class="divider"></div> 
+<div class="split"> 
+<div class="field"> 
+<label>Product Category</label> 
+<select> 
+<option>E-mobility (e-bikes/scooters)</option> 
+<option>Automotive</option> 
+<option>Consumer Electronics</option> 
+<option>Apparel/Fashion</option> 
+<option>Home/Tools</option> 
+<option>Outdoor/Sports</option> 
+<option>Beauty/Cosmetics</option> 
+<option>Health/Fitness</option> 
+<option>Other</option> 
+</select> 
+</div> 
+<div class="field"> 
+<label>Testing Type</label> 
+<select> 
+<option>Durability/Stress Testing</option> 
+<option>Usability Review</option> 
+<option>Benchmark</option> 
+<option>Competitor</option> 
+<option>Safety Testing</option> 
+<option>Unboxing/Setup</option> 
+<option>Tutorial/Demo</option> 
+<option>Lifestyle/UGC</option> 
+<option>Ad Creative</option> 
+<option>Other</option> 
+</select> 
+</div> 
+</div> 
+<div class="split"> 
+<div class="field"> 
+<label>Tester Type Needed</label> 
+<select> 
+<option>Independent Creator</option> 
+<option>Professional Lab/Company</option> 
+<option>Skilled Expert (mechanic/athlete)</option> <option>Everyday User</option>
+<option>Celebrity/Influencer</option> 
+<option>Other</option> 
+</select> 
+</div> 
+<div class="field"> 
+<label>Specification (what exactly to test)</label> 
+<input type="text" placeholder="Example: 12x3.00-6.5 tubeless tire traction + puncture resistance"> 
+</div> 
+</div> 
+<div class="field"> 
+<label>Product Name &amp; Model (Mandatory)</label> 
+<input type="text" placeholder="Example: Electric Scooter X1 / Tire Model 12x3.00-6.5"> 
+</div> 
+<div class="field"> 
+<label>Key Features (what testers must highlight)</label> 
+<textarea placeholder="Example: anti-puncture layer, grip on wet road, max PSI, easy mounting, ride comfort..."></textarea> 
+</div> 
+<div class="field"> 
+<label>Upload Product Images/Files</label> 
+<input type="text" placeholder="(UI placeholder) Upload button / file picker here"> </div> 
+<!-- Section 2 --> 
+<div class="divider"></div> 
+<div class="chip">Section 2 — Tester Demographics</div> 
+<div class="divider"></div> 
+<div class="split"> 
+<div class="field"> 
+<label>Gender Preference</label> 
+<select> 
+<option>No Preference</option> 
+<option>Male</option> 
+<option>Female</option> 
+<option>Non-binary</option> 
+<option>Other</option> 
+</select> 
+</div>
+<div class="field"> 
+<label>Age Range</label> 
+<select> 
+<option>No Preference</option> 
+<option>18-24</option> 
+<option>25-34</option> 
+<option>35-44</option> 
+<option>45-54</option> 
+<option>55+</option> 
+</select> 
+</div> 
+</div> 
+<div class="split"> 
+<div class="field"> 
+<label>Height Range</label> 
+<input type="text" placeholder="Example: 5'4 to 6'2"> 
+</div> 
+<div class="field"> 
+<label>Weight Range</label> 
+<input type="text" placeholder="Example: 120–220 lbs"> </div> 
+</div> 
+<div class="split"> 
+<div class="field"> 
+<label>Shoe Size</label> 
+<input type="text" placeholder="Example: US 8–12"> 
+</div> 
+<div class="field"> 
+<label>Languages Spoken On-Camera</label> 
+<input type="text" placeholder="English, Spanish, Other…"> </div> 
+</div> 
+<!-- Section 3 --> 
+<div class="divider"></div> 
+<div class="chip">Section 3 — Skills &amp; Capabilities</div> <div class="divider"></div> 
+<div class="field"> 
+<label>Physical Abilities Required</label> 
+<div class="checks"> 
+<label class="check"><input type="checkbox" checked=""> Driving</label>
+<label class="check"><input type="checkbox"> Off-Roading</label> <label class="check"><input type="checkbox" checked=""> Bicycling</label> <label class="check"><input type="checkbox"> Heavy Lifting</label> <label class="check"><input type="checkbox"> Endurance</label> <label class="check"><input type="checkbox" checked=""> Technical Skills</label> </div> 
+</div> 
+<div class="split"> 
+<div class="field"> 
+<label>On-Camera Preferences</label> 
+<select> 
+<option>Face Visible</option> 
+<option>Voiceover Only</option> 
+<option>Scripted Dialogue</option> 
+<option>No Speaking</option> 
+</select> 
+</div> 
+<div class="field"> 
+<label>Editing Skills Required?</label> 
+<select> 
+<option>Yes</option> 
+<option>No (Raw Footage Only)</option> 
+</select> 
+</div> 
+</div> 
+<div class="field"> 
+<label>If Yes, Software (Optional)</label> 
+<input type="text" placeholder="Premiere Pro / CapCut / Final Cut…"> </div> 
+<!-- Section 4 --> 
+<div class="divider"></div> 
+<div class="chip">Section 4 — Equipment &amp; Production Quality</div> <div class="divider"></div> 
+<div class="field"> 
+<label>Camera Requirements</label> 
+<div class="checks"> 
+<label class="check"><input type="checkbox" checked=""> Smartphone</label> <label class="check"><input type="checkbox"> DSLR/Mirrorless</label> <label class="check"><input type="checkbox"> 4K Resolution</label> <label class="check"><input type="checkbox"> 60 FPS</label>
+</div> 
+</div> 
+<div class="split"> 
+<div class="field"> 
+<label>Smartphone Specs (if required)</label> 
+<input type="text" placeholder="iPhone 13+ / Samsung S22+ …"> </div> 
+<div class="field"> 
+<label>Audio / Stabilization</label> 
+<input type="text" placeholder="Lavalier mic, gimbal, tripod…"> </div> 
+</div> 
+<div class="field"> 
+<label>Lighting Needs</label> 
+<select> 
+<option>No Preference</option> 
+<option>Natural Light</option> 
+<option>Studio Lighting</option> 
+<option>Low-Light Capable</option> 
+</select> 
+</div> 
+<!-- Section 5 --> 
+<div class="divider"></div> 
+<div class="chip">Section 5 — Logistics &amp; Safety</div> 
+<div class="divider"></div> 
+<div class="split"> 
+<div class="field"> 
+<label>Location Preferences</label> 
+<select> 
+<option>Outdoor</option> 
+<option>Indoor</option> 
+<option>Specific Regions</option> 
+</select> 
+</div> 
+<div class="field"> 
+<label>Specific Regions (if needed)</label> 
+<input type="text" placeholder="Example: California / New York / Europe…"> </div> 
+</div>
+<div class="split"> 
+<div class="field"> 
+<label>Safety Gear Needed</label> 
+<input type="text" placeholder="Helmet, gloves, protective clothing…"> </div> 
+<div class="field"> 
+<label>Licenses/Certifications Required</label> 
+<input type="text" placeholder="Driver’s license / CDL / Drone pilot…"> </div> 
+</div> 
+<!-- Section 6 --> 
+<div class="divider"></div> 
+<div class="chip">Section 6 — Social Media &amp; Audience</div> 
+<div class="divider"></div> 
+<div class="split"> 
+<div class="field"> 
+<label>Platform Preferences</label> 
+<input type="text" placeholder="YouTube, TikTok, Instagram…"> 
+</div> 
+<div class="field"> 
+<label>Minimum Follower Count</label> 
+<select> 
+<option>No Preference</option> 
+<option>Micro (1K–10K)</option> 
+<option>Mid (10K–100K)</option> 
+<option>Macro (100K+)</option> 
+</select> 
+</div> 
+</div> 
+<div class="field"> 
+<label>Content Style</label> 
+<input type="text" placeholder="Professional reviews / Casual UGC / Cinematic / Tutorials…"> 
+</div> 
+<!-- Section 7 --> 
+<div class="divider"></div> 
+<div class="chip">Section 7 — Budget &amp; Timeline</div> 
+<div class="divider"></div> 
+<div class="split">
+<div class="field"> 
+<label>Payment Structure</label> 
+<select> 
+<option>Per Video (Fixed rate)</option> 
+<option>Hourly</option> 
+<option>Per Deliverable (video + photos + raw files)</option> </select> 
+</div> 
+<div class="field"> 
+<label>Video length (15–58 sec)</label> 
+<input type="text" placeholder="Example: 30 sec (vertical)"> </div> 
+</div> 
+<div class="split"> 
+<div class="field"> 
+<label>Beginner Tester ($ range)</label> 
+<div class="row"> 
+<input type="number" placeholder="Min" style="flex:1"> <input type="number" placeholder="Max" style="flex:1"> </div> 
+</div> 
+<div class="field"> 
+<label>Pro Tester ($ range)</label> 
+<div class="row"> 
+<input type="number" placeholder="Min" style="flex:1"> <input type="number" placeholder="Max" style="flex:1"> </div> 
+</div> 
+</div> 
+<div class="split"> 
+<div class="field"> 
+<label>Influencer 50K+ ($ range)</label> 
+<div class="row"> 
+<input type="number" placeholder="Min" style="flex:1"> <input type="number" placeholder="Max" style="flex:1"> </div> 
+</div> 
+<div class="field"> 
+<label>Urgency</label> 
+<select> 
+<option>ASAP</option> 
+<option>Within 1 Week</option>
+<option>Flexible</option> 
+</select> 
+</div> 
+</div> 
+<div class="field"> 
+<label>Special Requests</label> 
+<textarea placeholder="Example: show tire close-up, include speed test, no competitor brand names, add captions..."></textarea> 
+</div> 
+</div> 
+</div>
+                  <div class="right-stack">
+                     <div class="card">
+                        <div class="hd">
+                           <div>
+                              <h3>Request Status Controls</h3>
+                              <div class="sub">Live / Draft / Paused / Unpublished</div>
+                           </div>
+                        </div>
+                        <div class="bd">
+                           <div class="row"> 
+                              <span class="badge b-draft"><span class="dot"></span>Draft</span> 
+                              <span class="badge b-live"><span class="dot"></span>Live</span> 
+                              <span class="badge b-paused"><span class="dot"></span>Paused</span> <span class="badge b-expired"><span class="dot"></span>Expired</span> 
+                           </div>
+                           <div class="divider"></div>
+                           <div class="field">
+                              <label>Pause/Unpublish for (hours)</label> 
+                              <select>
+                                 <option>24</option>
+                                 <option>48</option>
+                                 <option>72</option>
+                                 <option>Custom</option>
+                              </select>
+                           </div>
+                           <button class="btn" onclick="toast('Request paused for selected duration ⏸️')">Pause</button> 
+                           <button class="btn primary" onclick="toast('Request resumed ▶️')">Resume</button> <button class="btn danger" onclick="toast('Request unpublished (hidden from testers)')">Unpublish</button> 
+                        </div>
+                     </div>
+                     <div class="card">
+                        <div class="hd">
+                           <div>
+                              <h3>What testers see</h3>
+                              <div class="sub">This is your “public brief”</div>
+                           </div>
+                        </div>
+                        <div class="bd">
+                           <div class="hint"> 
+                              <strong>Title:</strong> “Electric Scooter Tire Durability Test (12x3.00-6.5)”<br/> <strong>Deliverables:</strong> 1 vertical video (30s), 3 photos, raw footage optional<br/> 
+                              <strong>Must include:</strong> puncture demo + wet grip + ride comfort<br/> <strong>Deadline:</strong> 7 days after product delivery 
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+            <!-- MY REQUESTS --> 
+            <section class="page hide" id="page-requests">
+               <div class="topbar">
+                  <div class="title">
+                     <h2>My Requests</h2>
+                     <p>Each request shows: views, applicants, hired count, pending tasks, submissions, and status.</p>
+                  </div>
+                  <div class="actions"> 
+                     <button class="btn" onclick="go('create')">+ New Request</button> 
+                  </div>
+               </div>
+               <div class="card">
+                  <div class="hd">
+                     <div>
+                        <h3>Requests List</h3>
+                        <div class="sub">Click “Open” to see request performance + applicants + hire.</div>
+                     </div>
+                     <div class="row"> 
+                        <span class="pill">Live 2</span>
+                        <span class="pill warn">Paused 1</span> 
+                        <span class="pill">Draft 3</span> 
+                     </div>
+                  </div>
+                  <div class="bd">
+                     <div class="search"> 
+                        <input type="text" placeholder="Search requests by product, category, request ID..." /> <button class="btn">Filter</button> 
+                     </div>
+                     <table class="table">
+                        <thead>
+                           <tr>
+                              <th>Request</th>
+                              <th>Product</th>
+                              <th>Status</th>
+                              <th>Views</th>
+                              <th>Applicants</th>
+                              <th>Hired</th>
+                              <th>Pending</th>
+                              <th>Submissions</th>
+                              <th></th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>
+                                 <strong>REQ-209</strong>
+                                 <div class="tiny muted">E-mobility • 
+                                    Durability
+                                 </div>
+                              </td>
+                              <td>Electric Scooter X1 Tire</td>
+                              <td><span class="badge b-live"><span class="dot"></span>Live</span></td>
+                              <td>532</td>
+                              <td>17</td>
+                              <td>4</td>
+                              <td>2</td>
+                              <td>1</td>
+                              <td><button class="btn" onclick="openRequest('REQ-209')">Open</button></td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <strong>REQ-203</strong>
+                                 <div class="tiny muted">Electronics • 
+                                    Tutorial
+                                 </div>
+                              </td>
+                              <td>Smartwatch Z Pro</td>
+                              <td><span class="badge b-live"><span class="dot"></span>Live</span></td>
+                              <td>184</td>
+                              <td>9</td>
+                              <td>2</td>
+                              <td>1</td>
+                              <td>2</td>
+                              <td><button class="btn" onclick="openRequest('REQ-203')">Open</button></td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <strong>REQ-197</strong>
+                                 <div class="tiny muted">Outdoor • UGC</div>
+                              </td>
+                              <td>Camping Lantern L2</td>
+                              <td><span class="badge b-paused"><span 
+                                 class="dot"></span>Paused</span></td>
+                              <td>76</td>
+                              <td>3</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td>0</td>
+                              <td><button class="btn" onclick="openRequest('REQ-197')">Open</button></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </section>
+            <!-- QUOTATIONS --> 
+            <section class="page hide" id="page-quotations">
+               <div class="topbar">
+                  <div class="title">
+                     <h2>Quotations (Applicants)</h2>
+                     <p>Compare offers → chat → hire → convert to a task.</p>
+                  </div>
+                  <div class="actions"> 
+                     <button class="btn" onclick="toast('Bulk action: request revisions sent ✉️')">Request Revisions</button> 
+                     <button class="btn primary" onclick="toast('Top candidates shortlisted')">Shortlist</button> 
+                  </div>
+               </div>
+               <div class="card">
+                  <div class="hd">
+                     <div>
+                        <h3>New Quotations (17)</h3>
+                        <div class="sub">Each quote contains price, timeline, deliverables, audience, and portfolio.</div>
+                     </div>
+                  </div>
+                  <div class="bd">
+                     <table class="table">
+                        <thead>
+                           <tr>
+                              <th>Tester</th>
+                              <th>Request</th>
+                              <th>Offer</th>
+                              <th>Delivery</th>
+                              <th>Quality</th>
+                              <th>Notes</th>
+                              <th></th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>
+                                 <strong>Alex Rivera</strong>
+                                 <div class="tiny muted">TikTok • 22K</div>
+                              </td>
+                              <td>
+                                 REQ-209
+                                 <div class="tiny muted">Scooter tire durability</div>
+                              </td>
+                              <td>
+                                 $95
+                                 <div class="tiny muted">1x 30s + 3 photos</div>
+                              </td>
+                              <td>7 days</td>
+                              <td><span class="badge b-approved"><span class="dot"></span>High</span></td>
+                              <td class="muted">Has gimbal + lav mic</td>
+                              <td> 
+                                 <button class="btn" onclick="openTask('QUOTE-5001')">Chat</button> 
+                                 <button class="btn primary" onclick="toast('Hired Task created: TSK-1011')">Hire</button> 
+                              </td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <strong>Mei Chen</strong>
+                                 <div class="tiny muted">YouTube • 8K</div>
+                              </td>
+                              <td>
+                                 REQ-203
+                                 <div class="tiny muted">Smartwatch tutorial</div>
+                              </td>
+                              <td>
+                                 $70
+                                 <div class="tiny muted">1x 45s</div>
+                              </td>
+                              <td>5 days</td>
+                              <td><span class="badge b-pending"><span 
+                                 class="dot"></span>Medium</span></td>
+                              <td class="muted">Voiceover only</td>
+                              <td> 
+                                 <button class="btn" onclick="openTask('QUOTE-5002')">Chat</button> 
+                                 <button class="btn primary" onclick="toast('Hired ✅ Task created: TSK-1012')">Hire</button> 
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </section>
+            <!-- WAITING APPROVAL --> 
+            <section class="page hide" id="page-approval">
+               <div class="topbar">
+                  <div class="title">
+                     <h2>Waiting for Approval</h2>
+                     <p>Approve or request changes. Approval unlocks payment (or final milestone).</p>
+                  </div>
+                  <div class="actions"> 
+                     <button class="btn" onclick="toast('Bulk: requested edits on selected submissions ✍️')">Request Changes</button> 
+                     <button class="btn primary" onclick="toast('Bulk: approved selected submissions ✅')">Approve Selected</button> 
+                  </div>
+               </div>
+               <div class="card">
+                  <div class="hd">
+                     <div>
+                        <h3>Submissions Needing Approval (9)</h3>
+                        <div class="sub">Open any task to review video, captions, and raw footage.</div>
+                     </div>
+                  </div>
+                  <div class="bd">
+                     <table class="table">
+                        <thead>
+                           <tr>
+                              <th>Task</th>
+                              <th>Tester</th>
+                              <th>Product</th>
+                              <th>Submitted</th>
+                              <th>Status</th>
+                              <th></th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td><strong>TSK-1002</strong></td>
+                              <td>Jane Smith</td>
+                              <td>Smartwatch Z Pro</td>
+                              <td>2025-08-25</td>
+                              <td><span class="badge b-submitted"><span 
+                                 class="dot"></span>Submitted</span></td>
+                              <td> 
+                                 <button class="btn" onclick="openTask('TSK-1002')">Open</button> 
+                                 <button class="btn primary" onclick="toast('Approved ✅ Payment queued')">Approve</button> 
+                                 <button class="btn" onclick="toast('Requested edits ✍️')">Request 
+                                 Changes</button> 
+                              </td>
+                           </tr>
+                           <tr>
+                              <td><strong>TSK-1011</strong></td>
+                              <td>Alex Rivera</td>
+                              <td>Electric Scooter X1 Tire</td>
+                              <td>2025-08-26</td>
+                              <td><span class="badge b-submitted"><span 
+                                 class="dot"></span>Submitted</span></td>
+                              <td> 
+                                 <button class="btn" onclick="openTask('TSK-1011')">Open</button> 
+                                 <button class="btn primary" onclick="toast('Approved ✅ Payment queued')">Approve</button> 
+                                 <button class="btn" onclick="toast('Requested edits ✍️')">Request 
+                                 Changes</button> 
+                              </td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </section>
+            <!-- HIRED TESTERS --> 
+            <section class="page hide" id="page-hired">
+               <div class="topbar">
+                  <div class="title">
+                     <h2>Hired Testers (Tasks)</h2>
+                     <p>Each hire becomes a task: shipping → deadline → milestones → submission → approval.</p>
+                  </div>
+                  <div class="actions"> 
+                     <button class="btn" onclick="toast('Auto reminders enabled ��')">Enable Auto Reminders</button> 
+                     <button class="btn primary" onclick="toast('Exported CSV ✅')">Export</button>
+                  </div>
+               </div>
+               <div class="card">
+                  <div class="hd">
+                     <div>
+                        <h3>All Tasks</h3>
+                        <div class="sub">Open for full communication, evidence, progress, and files.</div>
+                     </div>
+                  </div>
+                  <div class="bd">
+                     <table class="table">
+                        <thead>
+                           <tr>
+                              <th>Task</th>
+                              <th>Tester</th>
+                              <th>Request</th>
+                              <th>Deadline</th>
+                              <th>Status</th>
+                              <th>Progress</th>
+                              <th></th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>
+                                 <strong>TSK-1001</strong>
+                                 <div class="tiny muted">REQ-209</div>
+                              </td>
+                              <td>
+                                 John Doe
+                                 <div class="tiny muted">Creator</div>
+                              </td>
+                              <td>Electric Scooter X1</td>
+                              <td>2025-08-29</td>
+                              <td><span class="badge b-overdue"><span 
+                                 class="dot"></span>Overdue</span></td>
+                              <td class="muted">Shipping ✅ • Testing ✅ • Edit ⏳</td>
+                              <td><button class="btn" onclick="openTask('TSK-1001')">Open</button></td>
+                           </tr>
+                           <tr>
+                              <td>
+                                 <strong>TSK-1002</strong>
+                                 <div class="tiny muted">REQ-203</div>
+                              </td>
+                              <td>
+                                 Jane Smith
+                                 <div class="tiny muted">Expert</div>
+                              </td>
+                              <td>Smartwatch Z Pro</td>
+                              <td>2025-08-28</td>
+                              <td><span class="badge b-submitted"><span 
+                                 class="dot"></span>Submitted</span></td>
+                              <td class="muted">Shipping ✅ • Filming ✅ • Upload ✅</td>
+                              <td><button class="btn" onclick="openTask('TSK-1002')">Open</button></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </section>
+            <!-- MESSAGES --> 
+            <section class="page hide" id="page-messages">
+               <div class="topbar">
+                  <div class="title">
+                     <h2>Messages</h2>
+                     <p>All communication in one inbox: quotations + active tasks + submissions + disputes.</p>
+                  </div>
+                  <div class="actions"> 
+                     <button class="btn" onclick="toast('Created template reply ✅')">Template Replies</button> 
+                     <button class="btn primary" onclick="toast('Unread cleared ✅')">Mark all read</button> 
+                  </div>
+               </div>
+               <div class="grid">
+                  <div class="card">
+                     <div class="hd">
+                        <div>
+                           <h3>Conversations</h3>
+                           <div class="sub">Select a task or quotation to view messages.</div>
+                        </div>
+                     </div>
+                     <div class="bd">
+                        <div class="search"> 
+                           <input type="text" placeholder="Search by tester, task, product..." /> 
+                           <button class="btn">Search</button> 
+                        </div>
+                        <table class="table">
+                           <thead>
+                              <tr>
+                                 <th>Thread</th>
+                                 <th>Type</th>
+                                 <th>Last Msg</th>
+                                 <th></th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>
+                                    <strong>TSK-1001 — John Doe</strong>
+                                    <div class="tiny muted">Electric Scooter X1</div>
+                                 </td>
+                                 <td><span class="badge b-overdue"><span class="dot"></span>Task</span></td>
+                                 <td class="muted">“I need 1 extra day for editing…”</td>
+                                 <td><button class="btn" onclick="openTask('TSK-1001')">Open</button></td>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <strong>QUOTE-5001 — Alex Rivera</strong>
+                                    <div class="tiny 
+                                       muted">REQ-209</div>
+                                 </td>
+                                 <td><span class="badge b-pending"><span 
+                                    class="dot"></span>Quote</span></td>
+                                 <td class="muted">“Can you confirm tire PSI label?”</td>
+                                 <td><button class="btn" onclick="openTask('QUOTE-5001')">Open</button></td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+                  <div class="card" id="taskDetailCard">
+                  <div class="hd"> 
+                     <div class="mb-5"> 
+                     <h3 id="taskTitle">Open a thread</h3> 
+                     <div class="sub" id="taskSub">Select left to view chat, progress, and files.</div> </div> 
+                     <button class="btn" onclick="toast('Shared link copied ��')">Share</button> </div> 
+                     <div class="bd">
+                      <div class="row"> 
+                        <span class="badge b-live w-25"><span class="dot"></span><span 
+                        id="taskStatus">Live</span></span> 
+                        <span class="pill w-25" id="taskMeta">—</span> 
+                        </div> 
+                        <div class="divider"></div>
+                        <div class="chat" id="chat">
+                           <div class="msg">
+                              <div class="avatar">M</div>
+                              <div class="bubble me">
+                                 <div 
+                                    class="meta"><span>Merchant</span><span>•</span><span>Today</span></div>
+                                 <div class="text">Please confirm your filming location and if face will be 
+                                    visible.
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="msg">
+                              <div class="avatar">T</div>
+                              <div class="bubble">
+                                 <div 
+                                    class="meta"><span>Tester</span><span>•</span><span>Today</span></div>
+                                 <div class="text">Yes, outdoor parking lot. Face visible. I will use lav mic + gimbal.</div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="composer"> 
+                           <input type="text" id="msgInput" placeholder="Write a message..." /> 
+                           <button class="btn" onclick="sendMsg()">Send</button> 
+                           <button class="btn primary" onclick="toast('File upload opened ��')">Attach</button> 
+                        </div>
+                        <div class="divider"></div>
+                        <div class="split">
+                           <div>
+                              <div class="tiny">Progress</div>
+                              <div class="hint">Shipping ✅ • Testing ✅ • Editing ⏳ • Upload ⏳</div>
+                           </div>
+                           <div>
+                              <div class="tiny">Controls</div>
+                              <div class="row"> 
+                                 <button class="btn" onclick="toast('Task paused 48h ⏸️')">Pause 48h</button> <button class="btn" onclick="toast('Deadline extended by 2 days ��')">Extend</button> 
+                                 <button class="btn danger" onclick="toast('Task cancelled (policy check)')">Cancel</button> 
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+            <!-- SUBMISSIONS -->
+            <section class="page hide" id="page-submissions">
+               <div class="topbar">
+                  <div class="title">
+                     <h2>Submissions</h2>
+                     <p>Review deliverables (video + photos + raw). Approve, request changes, or reject with reasons.</p>
+                  </div>
+                  <div class="actions"> 
+                     <button class="btn" onclick="toast('Rubric opened ✅')">Scoring Rubric</button> <button class="btn primary" onclick="toast('Approved ✅ Payment queued')">Approve</button> 
+                  </div>
+               </div>
+               <div class="grid mb-5">
+                  <div class="card">
+                     <div class="hd">
+                        <div>
+                           <h3>Submission Queue</h3>
+                           <div class="sub">Open any submission to review files & captions.</div>
+                        </div>
+                     </div>
+                     <div class="bd">
+                        <table class="table">
+                           <thead>
+                              <tr>
+                                 <th>Task</th>
+                                 <th>Tester</th>
+                                 <th>Deliverables</th>
+                                 <th>Status</th>
+                                 <th></th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>
+                                    <strong>TSK-1002</strong>
+                                    <div class="tiny muted">Smartwatch Z Pro</div>
+                                 </td>
+                                 <td>Jane Smith</td>
+                                 <td class="muted">1 video • 3 photos • raw optional</td>
+                                 <td><span class="badge b-submitted"><span 
+                                    class="dot"></span>Submitted</span></td>
+                                 <td><button class="btn" onclick="openTask('TSK-1002')">Open</button></td>
+                              </tr>
+                              <tr>
+                                 <td>
+                                    <strong>TSK-1011</strong>
+                                    <div class="tiny muted">Electric Scooter X1 Tire</div>
+                                 </td>
+                                 <td>Alex Rivera</td>
+                                 <td class="muted">1 video • 3 photos</td>
+                                 <td><span class="badge b-submitted"><span 
+                                    class="dot"></span>Submitted</span></td>
+                                 <td><button class="btn" onclick="openTask('TSK-1011')">Open</button></td>
+                              </tr>
+                           </tbody>
+                        </table>
+                     </div>
+                  </div>
+                  <div class="card">
+                     <div class="hd">
+                        <div>
+                           <h3>Submission Review</h3>
+                           <div class="sub">Preview area (replace with your player / file viewer)</div>
+                        </div>
+                     </div>
+                     <div class="bd">
+                        <div class="hint">
+                           <strong>Preview:</strong> (Video player placeholder)<br/> 
+                           <div class="divider"></div>
+                           <strong>Files:</strong><br/> 
+                           • video_final.mp4 (30s, vertical)<br/> 
+                           • photo_1.jpg, photo_2.jpg, photo_3.jpg<br/> 
+                           • captions.srt (optional) 
+                        </div>
+                        <div class="divider"></div>
+                        <div class="field"> 
+                           <label>Merchant feedback (visible to tester)</label> 
+                           <textarea placeholder="Example: Please add close-up of tire tread & show PSI marking..."></textarea> 
+                        </div>
+                        <div class="row pb-5"> 
+                           <button class="btn primary" onclick="toast('Approved ✅ Payment queued')">Approve</button> 
+                           <button class="btn" onclick="toast('Requested changes ✍️ Deadline updated')">Request Changes</button>
+                           <button class="btn danger" onclick="toast('Rejected ❌ Reason recorded')">Reject</button> 
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+            <!-- PAYMENTS --> 
+            <section class="page hide" id="page-payments">
+               <div class="topbar mt-5">
+                  <div class="title">
+                     <h2>Payments</h2>
+                     <p>Track payouts, invoices, and payment milestones (locked until approval).</p>
+                  </div>
+                  <div class="actions"> 
+                     <button class="btn" onclick="toast('Invoices downloaded ✅')">Download Invoices</button> 
+                     <button class="btn primary" onclick="toast('Payout method updated ✅')">Payout Settings</button> 
+                  </div>
+               </div>
+               <div class="card mb-5">
+                  <div class="hd">
+                     <div>
+                        <h3>Payment History</h3>
+                        <div class="sub">Approved tasks automatically move to “Queued for payout”.</div>
+                     </div>
+                  </div>
+                  <div class="bd">
+                     <table class="table">
+                        <thead>
+                           <tr>
+                              <th>Date</th>
+                              <th>Task</th>
+                              <th>Tester</th>
+                              <th>Amount</th>
+                              <th>Status</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>2025-08-26</td>
+                              <td><strong>TSK-1002</strong></td>
+                              <td>Jane Smith</td>
+                              <td>$70</td>
+                              <td><span class="badge b-pending"><span 
+                                 class="dot"></span>Queued</span></td>
+                           </tr>
+                           <tr>
+                              <td>2025-08-18</td>
+                              <td><strong>TSK-0999</strong></td>
+                              <td>Chris Hall</td>
+                              <td>$90</td>
+                              <td><span class="badge b-approved"><span class="dot"></span>Paid</span></td>
+                           </tr>
+                           <tr>
+                              <td>2025-08-26</td>
+                              <td><strong>TSK-1002</strong></td>
+                              <td>Jane Smith</td>
+                              <td>$70</td>
+                              <td><span class="badge b-pending"><span 
+                                 class="dot"></span>Queued</span></td>
+                           </tr>
+                           <tr>
+                              <td>2025-08-18</td>
+                              <td><strong>TSK-0999</strong></td>
+                              <td>Chris Hall</td>
+                              <td>$90</td>
+                              <td><span class="badge b-approved"><span class="dot"></span>Paid</span></td>
+                           </tr>
+                           <tr>
+                              <td>2025-08-26</td>
+                              <td><strong>TSK-1002</strong></td>
+                              <td>Jane Smith</td>
+                              <td>$70</td>
+                              <td><span class="badge b-pending"><span 
+                                 class="dot"></span>Queued</span></td>
+                           </tr>
+                           <tr>
+                              <td>2025-08-18</td>
+                              <td><strong>TSK-0999</strong></td>
+                              <td>Chris Hall</td>
+                              <td>$90</td>
+                              <td><span class="badge b-approved"><span class="dot"></span>Paid</span></td>
+                           </tr>
+                           <tr>
+                              <td>2025-08-26</td>
+                              <td><strong>TSK-1002</strong></td>
+                              <td>Jane Smith</td>
+                              <td>$70</td>
+                              <td><span class="badge b-pending"><span 
+                                 class="dot"></span>Queued</span></td>
+                           </tr>
+                           <tr>
+                              <td>2025-08-18</td>
+                              <td><strong>TSK-0999</strong></td>
+                              <td>Chris Hall</td>
+                              <td>$90</td>
+                              <td><span class="badge b-approved"><span class="dot"></span>Paid</span></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </section>
+            <!-- SETTINGS --> 
+            <section class="page hide" id="page-settings">
+               <div class="topbar">
+                  <div class="title mt-5">
+                     <h2>Settings</h2>
+                     <p>Default requirements, templates, and policy rules for every testing request.</p>
+                  </div>
+                  <div class="actions mt-3"> 
+                     <button class="btn" onclick="toast('Defaults saved ✅')">Save</button> 
+                  </div>
+               </div>
+               <div class="grid">
+                  <div class="card">
+                     <div class="hd">
+                        <div>
+                           <h3>Default Templates</h3>
+                           <div class="sub">Auto-fill your common requirements</div>
+                        </div>
+                     </div>
+                     <div class="bd">
+                        <div class="field"> 
+                           <label>Default deliverables</label> 
+                           <input type="text" value="1 vertical video (15–58s), 3 photos, optional raw footage" /> 
+                        </div>
+                        <div class="field"> 
+                           <label>Default approval rules</label> 
+                           <textarea>Must show product clearly, no competitor logos, no unsafe actions, include captions, stable audio.</textarea> 
+                        </div>
+                        <div class="field"> 
+                           <label>Auto reminder timing</label> 
+                           <input type="text" value="Reminder at Day 3 + Day 6, overdue reminder at Day 8" /> 
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card">
+                     <div class="hd">
+                        <div>
+                           <h3>Safety & Compliance</h3>
+                           <div class="sub">Reduce risk for merchants + testers</div>
+                        </div>
+                     </div>
+                     <div class="bd">
+                        <div class="checks"> 
+                           <label class="check"><input type="checkbox" checked> Require safety gear when riding/driving</label> 
+                           <label class="check"><input type="checkbox" checked> Require disclosure: “Product provided for testing”</label> 
+                           <label class="check"><input type="checkbox"> Allow off-road high-speed tests</label> 
+                        </div>
+                        <div class="divider"></div>
+                        <div class="hint"> 
+                           Add your own policy flags here (ex: “no stunts”, “max speed cap”, “indoor only”). 
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+            <!-- REQUEST DETAIL (overlay-like page) --> 
+            <section class="page hide" id="page-requestDetail">
+               <div class="topbar">
+                  <div class="title">
+                     <h2 id="reqTitle">Request Detail</h2>
+                     <p id="reqSub">Performance + Applicants + Hires + Status controls.</p>
+                  </div>
+                  <div class="actions"> 
+                     <button class="btn" onclick="go('requests')">Back</button> 
+                     <button class="btn" onclick="toast('Request edited ✍️')">Edit</button> 
+                     <button class="btn primary" onclick="toast('Request shared ��')">Share</button> 
+                  </div>
+               </div>
+               <div class="kpis">
+                  <div class="kpi">
+                     <div class="n" id="reqViews">532</div>
+                     <div class="l">Views</div>
+                     <div class="t">who saw your brief</div>
+                  </div>
+                  <div class="kpi">
+                     <div class="n" id="reqApplicants">17</div>
+                     <div 
+                        class="l">Applicants</div>
+                     <div class="t">submitted quotes</div>
+                  </div>
+                  <div class="kpi">
+                     <div class="n" id="reqHired">4</div>
+                     <div class="l">Hired</div>
+                     <div class="t">active tasks</div>
+                  </div>
+                  <div class="kpi">
+                     <div class="n" id="reqSubmissions">1</div>
+                     <div 
+                        class="l">Submissions</div>
+                     <div class="t">awaiting review</div>
+                  </div>
+               </div>
+               <div class="grid">
+                  <div class="card">
+                     <div class="hd">
+                        <div>
+                           <h3>Applicants & Hiring</h3>
+                           <div class="sub">View quotes → chat → hire → create task.</div>
+                        </div>
+                        <button class="btn" onclick="go('quotations')">Go to Quotations</button> 
+                     </div>
+                     <div class="bd">
+                        <table class="table">
+                           <thead>
+                              <tr>
+                                 <th>Tester</th>
+                                 <th>Offer</th>
+                                 <th>Delivery</th>
+                                 <th>Followers</th>
+                                 <th></th>
+                              </tr>
+                           </thead>
+                           <tbody>
+                              <tr>
+                                 <td>
+                                    <strong>Alex Rivera</strong>
+                                    <div class="tiny muted">TikTok</div>
+                                 </td>
+                                 <td>
+                                    $95
+                                    <div class="tiny muted">1x 30s + 3 photos</div>
+                                 </td>
+                                 <td>7 days</td>
+                                 <td>22K</td>
+                                 <td> 
+                                    <button class="btn" onclick="openTask('QUOTE-5001')">Chat</button> <button class="btn primary" onclick="toast('Hired ✅ Task created')">Hire</button> 
+                                 </td>
+                              </tr>
+                           </tbody>
+                        </table>
+                        <div class="divider"></div>
+                        <div class="row"> 
+                           <span class="chip">�� You can hide low-quality applicants (filters)</span> <span class="chip">⭐ Shortlist top 5 to speed up hiring</span> 
+                        </div>
+                     </div>
+                  </div>
+                  <div class="right-stack">
+                     <div class="card">
+                        <div class="hd">
+                           <div>
+                              <h3>Status & Timing</h3>
+                              <div class="sub">Pause/unpublish anytime</div>
+                           </div>
+                        </div>
+                        <div class="bd">
+                           <div class="row"> 
+                              <span class="badge b-live"><span class="dot"></span>Live</span> <span class="pill">Created: 2025-08-12</span> 
+                              <span class="pill">Expires: 2025-09-12</span> 
+                           </div>
+                           <div class="divider"></div>
+                           <div class="field">
+                              <label>Pause duration</label> 
+                              <select>
+                                 <option>24 hours</option>
+                                 <option>48 hours</option>
+                                 <option>72 hours</option>
+                                 <option>Custom</option>
+                              </select>
+                           </div>
+                           <div class="row"> 
+                              <button class="btn" onclick="toast('Paused ⏸️')">Pause</button> 
+                              <button class="btn primary" onclick="toast('Resumed ▶️')">Resume</button>
+                              <button class="btn danger" onclick="toast('Unpublished ��')">Unpublish</button> 
+                           </div>
+                        </div>
+                     </div>
+                     <div class="card">
+                        <div class="hd">
+                           <div>
+                              <h3>Request Summary</h3>
+                              <div class="sub">Your brief at a glance</div>
+                           </div>
+                        </div>
+                        <div class="bd">
+                           <div class="hint"> 
+                              <strong>Category:</strong> E-mobility<br/> 
+                              <strong>Testing:</strong> Durability/Stress<br/> 
+                              <strong>Camera:</strong> Smartphone + 4K optional<br/> 
+                              <strong>Deliverables:</strong> 1 video + 3 photos<br/> 
+                              <strong>Safety:</strong> helmet + gloves required 
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+            <!-- TASK DETAIL (overlay-like page) --> 
+            <section class="page hide" id="page-taskDetail">
+               <div class="topbar">
+                  <div class="title">
+                     <h2 id="tskTitle">Task Detail</h2>
+                     <p id="tskSub">Full communication, milestones, evidence, submissions, and approvals.</p>
+                  </div>
+                  <div class="actions"> 
+                     <button class="btn" onclick="go('hired')">Back</button> 
+                     <button class="btn" onclick="toast('Evidence uploaded ��')">Add Evidence</button> <button class="btn primary" onclick="toast('Shared to social ��')">Share</button> 
+                  </div>
+               </div>
+               <div class="grid">
+                  <div class="card">
+                     <div class="hd">
+                        <div>
+                           <h3>Task Timeline</h3>
+                           <div class="sub">Shipping → Filming → Editing → Upload → Approval</div>
+                        </div>
+                        <span class="badge b-live"><span class="dot"></span>Active</span> 
+                     </div>
+                     <div class="bd">
+                        <div class="kpis" style="margin:0">
+                           <div class="kpi">
+                              <div class="n" id="tskDaysLeft">10</div>
+                              <div class="l">Days left</div>
+                              <div class="t">deadline tracking</div>
+                           </div>
+                           <div class="kpi">
+                              <div class="n" id="tskMilestone">3/5</div>
+                              <div class="l">Milestones</div>
+                              <div class="t">progress completed</div>
+                           </div>
+                           <div class="kpi">
+                              <div class="n">1</div>
+                              <div class="l">Files</div>
+                              <div class="t">submitted assets</div>
+                           </div>
+                           <div class="kpi">
+                              <div class="n">0</div>
+                              <div class="l">Change requests</div>
+                              <div class="t">revision count</div>
+                           </div>
+                        </div>
+                        <div class="divider"></div>
+                        <div class="hint"> 
+                           <strong>Milestones:</strong><br/> 
+                           ✅ Shipping confirmed<br/> 
+                           ✅ Filming started<br/> 
+                           ✅ Testing completed<br/> 
+                           ⏳ Editing in progress<br/> 
+                           ⏳ Upload submission 
+                        </div>
+                        <div class="divider"></div>
+                        <div class="row"> 
+                           <button class="btn" onclick="toast('Deadline extended ��')">Extend deadline</button>
+                           <button class="btn" onclick="toast('Paused 24h ⏸️')">Pause 24h</button> <button class="btn danger" onclick="toast('Task escalated to support ')">Escalate</button> 
+                        </div>
+                     </div>
+                  </div>
+                  <div class="card">
+                     <div class="hd">
+                        <div>
+                           <h3>Task Chat</h3>
+                           <div class="sub">All communication + file notes.</div>
+                        </div>
+                        <button class="btn" onclick="go('messages')">Open inbox</button> 
+                     </div>
+                     <div class="bd">
+                        <div class="chat" id="chat2">
+                           <div class="msg">
+                              <div class="avatar">T</div>
+                              <div class="bubble">
+                                 <div 
+                                    class="meta"><span>Tester</span><span>•</span><span>Yesterday</span></div>
+                                 <div class="text">I finished the puncture test. Starting edit now. Can I add captions?</div>
+                              </div>
+                           </div>
+                           <div class="msg">
+                              <div class="avatar">M</div>
+                              <div class="bubble me">
+                                 <div 
+                                    class="meta"><span>Merchant</span><span>•</span><span>Yesterday</span></div>
+                                 <div class="text">Yes captions are required. Please also show tire size marking for 2 seconds.</div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="composer"> 
+                           <input type="text" id="msgInput2" placeholder="Write a message..." /> 
+                           <button class="btn" onclick="sendMsg2()">Send</button> 
+                           <button class="btn primary" onclick="toast('Attachment added ��')">Attach</button> 
+                        </div>
+                        <div class="divider"></div>
+                        <div class="row"> 
+                           <button class="btn primary" onclick="toast('Submission opened ��')">View Submission</button> 
+                           <button class="btn" onclick="toast('Requested changes ✍️')">Request 
+                           Changes</button> 
+                           <button class="btn" onclick="toast('Approved ✅ Payment unlocked')">Approve</button> 
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </section>
+            <!-- Toast --> 
+            <div id="toast" class="hide" style=" 
+               position:fixed; left:50%; bottom:20px; transform:translateX(-50%); 
+               background: rgba(16,31,59,.92); 
+               border:1px solid rgba(255,255,255,.10); 
+               color: rgba(232,240,255,.95); 
+               padding:10px 12px; 
+               border-radius:14px; 
+               box-shadow: var(--shadow); 
+               font-size:12px; 
+               z-index:9999; 
+               "> 
+               Saved 
+            </div>
+         </main>
+      </div>
+      <!-- jQuery -->
+      <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+      <script src="assets/js/common.js"></script>
+      <script src="assets/js/hireatesterpanel.js"></script>
+   </body>
+</html>

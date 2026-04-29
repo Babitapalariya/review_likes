@@ -1,0 +1,98 @@
+body {
+	background: #fbfbfc;
+}
+
+.gamechangerregistrationform {
+	width: 70%;
+}
+
+.gamechangerregistrationform label {
+	font-weight: 500;
+	margin-bottom: 0.25rem;
+}
+
+.gamechangerregistrationform label.required::after {
+	content: " *";
+	color: red;
+	font-weight: bold;
+}
+
+.margin-top-2 {
+	margin-top: 2rem;
+}
+
+.gamechangerregistrationform .card {
+	padding: 2rem;
+	margin-bottom: 3rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.btn,
+button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 10px 14px;
+	border-radius: 10px;
+	border: 1px solid transparent;
+	color: white;
+	font-weight: 600;
+	cursor: pointer;
+	transition: transform .05s ease, opacity .2s ease;
+}
+
+  .hidden { display:none; }
+    .required::after {
+        content: "*";
+        color: red;
+        margin-left: 3px;
+    }
+
+.hint {
+	color: #5abd62;
+}
+
+#guestNewUserFields h5{
+	text-decoration: underline;
+}
+
+.headingsection h2{
+	color: #ffa92a;
+	text-align: center;
+	margin-bottom: 1.5rem;
+}
+
+.headingsection h6{
+	color: #5c5c5c;
+	max-width: 80%;
+	margin: auto;
+	font-size: 1.1rem;
+	line-height: 1.5;
+	text-align: center;
+	margin-bottom: 2rem;
+}
+
+.gamechangerregistrationform h4{
+	text-decoration: underline;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1200px) and (orientation: portrait) {
+	.gamechangerregistrationform {
+		width: 100%;
+	}
+
+}
+
+
+@media only screen and (max-width: 992px) and (orientation: landscape) {
+	.gamechangerregistrationform {
+		width: 90%;
+	}
+}
+
+@media only screen and (min-width: 250px) and (max-width:767px) and (orientation:portrait) {
+	.gamechangerregistrationform {
+		width: 100%;
+	}
+}

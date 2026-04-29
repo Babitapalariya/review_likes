@@ -1,0 +1,63 @@
+
+.acceptOffer-section h2 {
+  font-family: "Arima", serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 2rem;
+  text-decoration: underline;
+}
+
+.acceptOffer-section .product-details-table thead th {
+  background: #ffa92a;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  padding: 12px;
+}
+
+.acceptOffer-section .product-details-table tbody td {
+  font-size: 0.95rem;
+  padding: 0.75rem;
+  color: #555;
+  text-align: center;
+}
+
+.acceptOffer-section h2 {
+  font-family: "Arima", serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 2rem;
+  text-decoration: underline;
+}
+
+.accsuccessmsg{
+  background-color: #beffbe;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  color: #008000;
+  font-size: 14px;
+  font-weight: 600;
+  margin: 2rem auto;
+}
+
+#confirmDeliveryModal h6{
+  font-size: 1.25rem;
+}
+
+#confirmDeliveryModal .modal-body{
+  font-size: 1.25rem;
+  font-weight: bold;
+}
+
+#confirmDeliveryModal .modal-body .text-warning{
+  background-color: #fdffbc;
+  padding: 1rem;
+  border-radius: 5px;
+}
+
+.accepttable .confirmDelivery{
+  cursor: pointer;
+}

@@ -35,14 +35,14 @@
  */
 #}
 {% set heading_id = attributes.id ~ '-menu'|clean_id %}
-<aside aria-label="Sidebar">
+ <aside aria-label="Sidebar" id="Sidebar" class="Sidebar">
   {# Label. If not displayed, we still provide it for screen readers. #}
   {% if not configuration.label_display %}
     {% set title_attributes = title_attributes.addClass('visually-hidden') %}
   {% endif %}
   {{ title_prefix }}
   <div class="brand ms-2">
-  <h1{{ title_attributes.setAttribute('id', heading_id) }}>{{ configuration.label }}</h1>
+  <h1>{{ configuration.label }}</h1>
             </div>
   {{ title_suffix }}
 

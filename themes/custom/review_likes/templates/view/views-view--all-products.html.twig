@@ -43,7 +43,7 @@
   {{ header }}
 {% endif %}
 <div class="d-flex justify-content-between align-items-center mb-4 mt-4">
-  <button type="button" class="btn btn-success" id="addProductFromAllBtn"><a href="/product/create">+Add A Products</a></button>
+  <button type="button" class="btn btn-success" id="addProductFromAllBtn"><a class="btn btn-success" href="{{ path('role_based_registration.product_form') }}">+Add A Products</a></button>
    
     <div class="input-group" style="max-width: 300px;">{{ exposed }}</div>
 </div>

@@ -1,0 +1,18 @@
+/* Page Title */
+.rebuttalSection h2 {
+  font-size: 2rem;
+  font-family: "Arima", serif;
+  font-weight: 600;
+  color: #000;
+  text-decoration: underline;
+  margin-bottom: 2rem;
+}
+
+.rebuttalSection table thead th{
+    background: #ffa92a;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  padding: 12px;
+}

@@ -1,0 +1,83 @@
+body {
+	background: #fbfbfc;
+}
+
+.merchantregistrationform {
+	width: 70%;
+}
+
+.merchantregistrationform label {
+	font-weight: 500;
+}
+
+.merchantregistrationform label.required::after {
+	content: " *";
+	color: red;
+	font-weight: bold;
+}
+
+.margin-top-2 {
+	margin-top: 2rem;
+}
+
+.merchantregistrationform .card {
+	padding: 2rem;
+	margin-bottom: 3rem;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+}
+
+.btn,
+button {
+	display: inline-flex;
+	align-items: center;
+	justify-content: center;
+	gap: 8px;
+	padding: 10px 14px;
+	border-radius: 10px;
+	border: 1px solid transparent;
+	color: white;
+	font-weight: 600;
+	cursor: pointer;
+	transition: transform .05s ease, opacity .2s ease;
+}
+
+.btn.danger {
+	background: transparent;
+	color: #ff6b6b;
+	border-color: #ff6b6b;
+}
+
+.addBrandBtn,
+.addBrandBtn:hover,
+.addPlatformBtn,
+.addPlatformBtn:hover,
+.addSocialBtn,
+.addSocialBtn:hover {
+	background: #ffa92a;
+	color: #fff;
+	width: auto;
+}
+
+.hint {
+	color: #5abd62;
+}
+
+@media only screen and (min-width: 768px) and (max-width: 1200px) and (orientation: portrait) {
+	.merchantregistrationform {
+		width: 100%;
+	}
+
+}
+
+
+@media only screen and (max-width: 992px) and (orientation: landscape) {
+	.merchantregistrationform {
+		width: 90%;
+	}
+}
+
+@media only screen and (min-width: 250px) and (max-width:767px) and (orientation:portrait) {
+	.merchantregistrationform {
+		width: 100%;
+	}
+}

@@ -1,0 +1,164 @@
+/* Created on 15-02-2025 */
+/* This is style sheet for sign in page */
+
+body {
+	background-color: #fbfbfc;
+	padding: 0;
+	margin: 0;
+}
+
+.btn-default {
+	height: 40px;
+	--bs-btn-color: #ffffff;
+	--bs-btn-bg: #ffa92a;
+	--bs-btn-border-color: #ffa92a;
+	--bs-btn-hover-color: #ffffff;
+	--bs-btn-hover-bg: #e5a13c;
+	--bs-btn-hover-border-color: #ffa92a;
+	--bs-btn-focus-shadow-rgb: 217, 164, 6;
+	--bs-btn-active-color: #ffffff;
+	--bs-btn-active-bg: #ffa92a;
+	--bs-btn-active-border-color: #ffa92a;
+	--bs-btn-active-shadow: inset 0 3px 5px rgba(0, 0, 0, 0.125);
+	--bs-btn-disabled-color: #ffffff;
+	--bs-btn-disabled-bg: #ffa92a;
+	--bs-btn-disabled-border-color: #ffa92a;
+	padding: 0 15px;
+	white-space: nowrap;
+}
+
+.leftsection{
+	background-color: #e3b51f;
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	position: relative;
+}
+
+.rightsection{
+	height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+}
+
+.logo{
+	font-size: 2.5rem;
+    color: #ffffff;
+    font-family: "Kaushan Script", serif;
+    font-weight: 400;
+    font-style: normal;
+    padding: 0;
+	margin-bottom: 2rem;
+	position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.formsection{
+	width: 60%;
+	box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+	border-radius: 10px;
+	padding: 5rem 2rem;
+	text-align: center;
+}
+
+.signuplink{
+	margin: 2rem auto 1rem;
+}
+
+.signup{
+	text-transform: uppercase;
+	text-decoration: none;
+	color: #e3b51f;
+}
+
+.signup:hover{
+	text-decoration: underline;
+}
+
+/****** TABLET LANDSCAPE STYLES START **********/
+@media only screen and (min-width: 768px) and (max-width: 1280px) and (orientation: landscape) {
+	.formsection{
+		padding: 2rem;
+	}
+}
+
+/****** TABLET LANDSCAPE STYLES END **********/
+/****** TABLET PORTRAIT STYLES START **********/
+/* @media only screen and (min-width: 1110px) and (max-width: 1160px) {
+  .price{
+    width: 40%;
+  }
+} */
+@media only screen and (min-width: 768px) and (max-width: 1200px) and (orientation: portrait) {
+	.leftsection {
+		height: 100vh;
+	}
+
+	.rightsection {
+		height: 100vh;
+		margin-top: 0;
+	}
+
+	.formsection {
+		width: 90%;
+		padding: 3rem 2rem;
+		margin-bottom: 4rem;
+	}
+
+	.image-section img{
+		width: 50%!important;
+	}
+}
+
+/****** TABLET PORTRAIT STYLES END **********/
+/****** MOBILE LANDSCAPE STYLES START **********/
+@media only screen and (max-width: 992px) and (orientation: landscape) {
+	.logo {
+		font-size: 2rem;
+	}
+
+	.leftsection {
+		height: 470px;
+	}
+
+	.rightsection {
+		height: 100%;
+		margin-top: 3rem;
+	}
+
+	.formsection {
+		width: 90%;
+		padding: 1rem 2rem;
+        margin-bottom: 2rem;
+	}
+}
+
+/****** MOBILE LANDSCAPE STYLES END **********/
+/****** MOBILE PORTRAIT STYLES START **********/
+@media only screen and (min-width: 250px) and (max-width:767px) and (orientation:portrait) {
+	.logo {
+		font-size: 1.5rem;
+	}
+
+	.leftsection {
+		height: 250px;
+	}
+
+	.rightsection {
+		height: 100%;
+		margin-top: 3rem;
+	}
+
+	.formsection {
+		width: 90%;
+		padding: 3rem 2rem;
+		margin-bottom: 4rem;
+	}
+}
+
+/****** MOBILE PORTRAIT STYLES END **********/

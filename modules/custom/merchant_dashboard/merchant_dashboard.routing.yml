@@ -131,3 +131,23 @@ merchant_dashboard.hire_tester:
 #     parameters:
 #       nid:
 #         type: integer
+
+merchant_dashboard.create_rebuttal:
+  path: '/merchant-dashboard/rebuttal'
+  defaults:
+    _title: 'Rebuttal'
+    _form: '\Drupal\merchant_dashboard\Form\CreateRebuttal'
+  requirements:
+    _permission: 'access merchant dashboard'
+ 
+
+
+merchant_dashboard.debate_comments:
+  path: '/api/debate-comments/{rebuttal_id}'
+  defaults:
+    _controller: '\Drupal\merchant_dashboard\Controller\DebateController::getComments'
+    _title: 'Debate Comments'
+  requirements:
+    _access: 'TRUE'
+    rebuttal_id: '\d+'
+  methods: [GET]

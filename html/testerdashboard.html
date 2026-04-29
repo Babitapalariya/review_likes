@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8" />
+      <title>Review Likes — Tester Dashboard</title>
+      <link rel="icon" type="image/x-icon" href="assets/images/favicon.png" />
+      <script src="assets/js/popper.min.js" type="text/javascript"></script>
+      <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+      <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Arimo:ital,wght@0,400..700;1,400..700&family=Kaushan+Script&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+      <link rel="stylesheet" type="text/css" href="assets/css/common.css"/>
+      <!-- FIXED PATH (removed leading /) -->
+      <link rel="stylesheet" href="assets/css/testerdashboard.css" />
+   </head>
+   <body>
+      <!-- Menu start here-->
+      <header>
+         <nav class="navbar navbar-expand-lg main-navbar">
+            <div class="container-fluid">
+               <a class="navbar-brand logo" href="#">ReviewLikes</a>
+               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuitems" aria-controls="menuitems" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="menuitems">
+                  <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                     <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Merchant</a></li>
+                     <li class="nav-item"><a class="nav-link" href="#">Freelance</a></li>
+                     <li class="nav-item"><a class="nav-link" href="#">Market Place</a></li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Settings</a>
+                        <ul class="dropdown-menu">
+                           <li><a class="dropdown-item" href="#">Account Settings</a></li>
+                           <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                     </li>
+                  </ul>
+                  <div class="d-flex">
+                     <select class="form-select">
+                        <option value="India">India</option>
+                        <option value="US" selected>US</option>
+                        <option value="UK">UK</option>
+                     </select>
+                     <select class="form-select">
+                        <option selected>English</option>
+                        <option value="Spanish">Spanish</option>
+                     </select>
+                     <button type="button" class="btn btn-default">Sign in</button>
+                  </div>
+               </div>
+            </div>
+         </nav>
+      </header>
+      <!-- Menu end here-->
+      <div class="app testerdashboard" data-app="review-likes-dashboard">
+         <!-- Sidebar -->
+         <aside aria-label="Sidebar">
+            <div class="brand ms-2">
+               <h1>Tester Dashboard</h1>
+            </div>
+            <nav>
+               <button class="nav-btn active" data-view="testerProfile">Profile</button>
+               <button class="nav-btn" data-view="testerJobs">Jobs</button>
+               <button class="nav-btn" data-view="accountSection">Account</button>
+               <button class="nav-btn" data-view="testerPerformance">Performance</button>
+               <button class="nav-btn" data-view="ChallengeToMyWork">Challenge to my Work</button>
+               <button class="nav-btn" data-view="myCollections">My Collection</button>
+               <button class="nav-btn" data-view="testerMessages">Messages<span class="badge text-bg-danger">3</span></button>
+               <button class="nav-btn" data-view="testerRating">Rating</button>
+            </nav>
+         </aside>
+         <!-- Main Content -->
+         <main>
+            <section id="contentArea">
+               <!-- Profile -->
+               <div class="view" id="testerProfile" >
+                  <div class="container my-5">
+                     <h2 class="mb-5 text-center">Profile</h2>
+                     <form action="" class="col-md-10 m-auto">
+                        <div class="row mt-4">
+                           <div class="col-md-6 mb-4">
+                              <label for="tName" class="required mb-2">Full Name</label>
+                              <input type="text" id="tName" class="form-control" placeholder="John Doe" required>
+                           </div>
+                           <div class="col-md-6 mb-4 text-center">
+                              <label for="profilePic" class="mb-2 d-block required">Profile Picture</label>
+                              <img src="/assets/images/Merchant/tester.jpg" alt="Tester Profile" class="img-thumbnail mb-2" style="max-width: 150px;">
+                              <div class="row align-items-center">
+                                 <div class="col-md-9">
+                                    <input type="file" id="profilePic" class="form-control">
+                                 </div>
+                                 <div class="col-md-3"> <button type="submit" class="btn btn-default px-4">Upload</button></div>
+                              </div>
+                           </div>
+                           <div class="col-md-12 mb-4">
+                              <label for="bio" class="required mb-2">Bio</label>
+                              <textarea id="bio" class="form-control" rows="4" placeholder="Tell us about yourself..." required></textarea>
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label for="country" class="required mb-2">Country</label>
+                              <select class="form-select mb-3" id="Country" required>
+                                 <option selected>Select Country</option>
+                                 <option value="USA">USA</option>
+                                 <option value="India">India</option>
+                                 <option value="UK">UK</option>
+                                 <option value="Australia">Australia</option>
+                                 <option value="NewZealand">New Zealand</option>
+                                 <option value="EU">EU</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label for="portfolioLink" class="mb-2">Portfolio Link</label>
+                              <input type="url" id="portfolioLink" class="form-control" placeholder="https://yourportfolio.com">
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label for="youtubeLink" class="mb-2">YouTube Channel</label>
+                              <input type="url" id="youtubeLink" class="form-control" placeholder="https://youtube.com/youryoutubechannel">
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label for="idUpload" class="required mb-2">ID Verification (Upload)</label>
+                              <input type="file" id="idUpload" class="form-control">
+                              <span class="hinttxt">Upload Front and Back Images for Verification</span>
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label for="previousjobs" class="mb-2">Provide Previous Jobs</label>
+                              <input type="text" id="previousjobs" class="form-control" placeholder="Provide Previous Jobs">
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label for="Insta" class="mb-2">Instagram Account</label>
+                              <input type="text" id="Insta" class="form-control" placeholder="Provide Instagram Account">
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label for="Facebook" class="mb-2">Facebook Account</label>
+                              <input type="text" id="Facebook" class="form-control" placeholder="Provide Facebook Account">
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label for="Xaccount" class="mb-2">X Account</label>
+                              <input type="text" id="Xaccount" class="form-control" placeholder="Provide X Account">
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label for="blogurl" class="mb-2">Blog URL</label>
+                              <input type="text" id="blogurl" class="form-control" placeholder="Provide Blog URL">
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label for="workType" class="mb-2">Work Type</label>
+                              <select class="form-select" id="workType">
+                                 <option value="">Select</option>
+                                 <option value="solo">Solo</option>
+                                 <option value="team">Team</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label for="skills" class="mb-2">Skills</label>
+                              <input type="text" id="skills" class="form-control" placeholder="E.g. QA Testing, Selenium, Automation">
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label>Languages Known</label><br>
+                              <input type="checkbox" id=""> English  
+                              <input type="checkbox" id=""> Spanish  
+                              <input type="checkbox" id=""> French  
+                              <input type="checkbox" id=""> German  
+                              <input type="checkbox" id=""> Mandarin  
+                              <input type="checkbox" id=""> Other: <input type="text" class="inline-input">
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-12 my-5 text-center"> <button type="submit" class="btn btn-default px-4">Save</button></div>
+                        </div>
+                        <h5 class="my-3 text-center">Profile Details</h5>
+                        <div class="table-responsive">
+                           <table class="table table-bordered text-center">
+                              <thead class="table-light">
+                                 <tr>
+                                    <th>Full Name</th>
+                                    <th>Profile Picture</th>
+                                    <th>Bio</th>
+                                    <th>Country</th>
+                                    <th>Portfolio Link</th>
+                                    <th>YouTube Channel</th>
+                                    <th>ID Verification </th>
+                                    <th>Provided Previous Jobs</th>
+                                    <th>Instagram Account</th>
+                                    <th>Facebook Account</th>
+                                    <th>X Account</th>
+                                    <th>Blog URL</th>
+                                    <th>Work Type</th>
+                                    <th>Skills</th>
+                                    <th>Languages Known</th>
+                                    <th>Actions</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td>XYZ</td>
+                                    <td>
+                                       <img src="/assets/images/Merchant/tester.jpg" alt="Tester Profile" class="img-thumbnail mb-2" style="max-width: 50px;">
+                                       <div class="row align-items-center">
+                                    </td>
+                                    <td>Bio</td>
+                                    <td>Country</td>
+                                    <td>Portfolio Link</td>
+                                    <td>YouTube Channel</td>
+                                    <td>ID Verification </td>
+                                    <td>Provided Previous Jobs</td>
+                                    <td>Instagram Account</td>
+                                    <td>Facebook Account</td>
+                                    <td>X Account</td>
+                                    <td>Blog URL</td>
+                                    <td>Work Type</td>
+                                    <td>Skills</td>
+                                    <td>English, Hindi</td>
+                                    <td>
+                                    <a href="#" class="btn btn-sm btn-primary me-2">Edit</a>
+                                    <a href="#" class="btn btn-sm btn-danger delete-product mt-2"> Delete</a>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           </div>
+                     </form>
+                     </div>
+                  </div>
+                  <!-- messages -->
+                  <div class="view" id="testerMessages" style="display:none;">
+                     <div class="container">
+                        <div class="col-md-11 m-auto">
+                           <h2 class="my-5 text-center">Messages</h2>
+                           <div class="table-responsive">
+                              <table class="table table-hover align-middle table-bordered text-center">
+                                 <thead class="table-light">
+                                    <tr>
+                                       <th>S.No</th>
+                                       <th>From</th>
+                                       <th>Role</th>
+                                       <th>Subject</th>
+                                       <th>Date</th>
+                                       <th>Status</th>
+                                       <th>Actions</th>
+                                       <th>Priority</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td>1</td>
+                                       <td><i class="bi bi-person-circle me-2"></i> John Doe</td>
+                                       <td><a href="productDetails.html">Admin</a></td>
+                                       <td>Order Update</td>
+                                       <td>2025-09-06</td>
+                                       <td><span class="badge bg-warning text-dark">Unread</span></td>
+                                       <td>
+                                          <a href="#" class="btn btn-sm btn-outline-primary me-2 view-btn"
+                                             data-title="Order Update"
+                                             data-message="Your recent order #12345 has been shipped and will be delivered by tomorrow.">
+                                          <i class="bi bi-eye"></i> View
+                                          </a>
+                                          <a href="#" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Delete</a>
+                                       </td>
+                                       <td><span class="bg-danger text-white border-radius">Urgent</span></td>
+                                    </tr>
+                                    <tr>
+                                       <td>2</td>
+                                       <td><i class="bi bi-person-circle me-2"></i> Jane Smith</td>
+                                       <td><a href="productDetails.html">Tester 2</a></td>
+                                       <td>Claim Accepted</td>
+                                       <td>2025-09-05</td>
+                                       <td><span class="badge bg-success">Read</span></td>
+                                       <td>
+                                          <a href="#" class="btn btn-sm btn-outline-primary me-2 view-btn"
+                                             data-title="Claim Accepted"
+                                             data-message="Congratulations! Your claim regarding product XYZ has been accepted. You will receive a coupon soon.">
+                                          <i class="bi bi-eye"></i> View
+                                          </a>
+                                          <a href="#" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Delete</a>
+                                       </td>
+                                       <td><span class="bg-success text-white border-radius">Normal</span></td>
+                                    </tr>
+                                    <tr>
+                                       <td>3</td>
+                                       <td><i class="bi bi-person-circle me-2"></i> Support Team</td>
+                                       <td><a href="productDetails.html">Tester 11</a></td>
+                                       <td>Important Notice</td>
+                                       <td>2025-09-04</td>
+                                       <td><span class="badge bg-danger">Urgent</span></td>
+                                       <td>
+                                          <a href="#" class="btn btn-sm btn-outline-primary me-2 view-btn"
+                                             data-title="Important Notice"
+                                             data-message="Please update your account details to continue using our services without interruption.">
+                                          <i class="bi bi-eye"></i> View
+                                          </a>
+                                          <a href="#" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Delete</a>
+                                       </td>
+                                       <td><span class="bg-primary text-white border-radius">promotional</span></td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Account -->   
+                  <div class="view" id="accountSection">
+                     <div class="container mt-5">
+                        <h2 class="mb-4 text-center">Account</h2>
+                        <div class="col-md-10 m-auto">
+                           <div class="row">
+                              <ul class="nav nav-tabs mb-4" id="accountTabs" role="tablist">
+                                 <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="deposit-tab" data-bs-toggle="tab" data-bs-target="#deposit" type="button" role="tab">Deposit</button>
+                                 </li>
+                                 <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="tax-tab" data-bs-toggle="tab" data-bs-target="#taxdetails" type="button" role="tab">Tax</button>
+                                 </li>
+                                 <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="earning-tab" data-bs-toggle="tab" data-bs-target="#earning" type="button" role="tab">Earning Summary</button>
+                                 </li>
+                              </ul>
+                              <div class="tab-content" id="accountTabsContent">
+                                 <div class="tab-pane fade show active" id="deposit" role="tabpanel" aria-labelledby="deposit-tab">
+                                    <form>
+                                       <h5 class="mb-4 text-center">Bank Deatils</h5>
+                                       <div class="row mb-4">
+                                          <div class="col-md-6">
+                                             <label for="bankName" class="form-label">Bank Name</label>
+                                             <input type="text" class="form-control" id="bankName" placeholder="Enter your bank name">
+                                          </div>
+                                          <div class="col-md-6">
+                                             <label for="accountNumber" class="form-label">Account Number</label>
+                                             <input type="text" class="form-control" id="accountNumber" placeholder="Enter account number">
+                                          </div>
+                                          <div class="col-md-6 mt-3">
+                                             <label for="currency" class="form-label">Select Currency</label>
+                                             <select class="form-select" id="currency">
+                                                <option value="">Select currency</option>
+                                                <option value="USD">USD</option>
+                                                <option value="INR">INR</option>
+                                                <option value="EUR">EUR</option>
+                                             </select>
+                                          </div>
+                                          <div class="col-md-6 mt-3">
+                                             <label for="reacnumber" class="form-label">Re Enter Account Number</label>
+                                             <input type="text" class="form-control" id="reacnumber" placeholder="Re Enter Account Number">
+                                          </div>
+                                       </div>
+                                       <div class="my-5">
+                                          <button class="btn btn-default" type="submit">Save Bank Details</button>
+                                       </div>
+                                       <div class="row">
+                                          <h5 class="my-3 text-center">Saved Bank Details</h5>
+                                          <div class="table-responsive bank-details mb-5">
+                                             <table class="table table-bordered text-center">
+                                                <thead class="table-light">
+                                                   <tr>
+                                                      <th>Bank Name</th>
+                                                      <th>Acount Number</th>
+                                                      <th>Actions</th>
+                                                   </tr>
+                                                </thead>
+                                                <tbody>
+                                                   <tr>
+                                                      <td>ICICI</td>
+                                                      <td>2124124124</td>
+                                                      <td>
+                                                         <a href="#" class="btn btn-sm btn-primary me-2">Edit</a>
+                                                         <a href="#" class="btn btn-sm btn-danger delete-product"> Delete</a>
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td>SBI</td>
+                                                      <td>214124124</td>
+                                                      <td>
+                                                         <a href="#" class="btn btn-sm btn-primary me-2">Edit</a>
+                                                         <a href="#" class="btn btn-sm btn-danger delete-product"> Delete</a>
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td>SBI</td>
+                                                      <td>214124124</td>
+                                                      <td>
+                                                         <a href="#" class="btn btn-sm btn-primary me-2">Edit</a>
+                                                         <a href="#" class="btn btn-sm btn-danger delete-product"> Delete</a>
+                                                      </td>
+                                                   </tr>
+                                                   <tr>
+                                                      <td>SBI</td>
+                                                      <td>214124124</td>
+                                                      <td>
+                                                         <a href="#" class="btn btn-sm btn-primary me-2">Edit</a>
+                                                         <a href="#" class="btn btn-sm btn-danger delete-product"> Delete</a>
+                                                      </td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                          </div>
+                                       </div>
+                                    </form>
+                                 </div>
+                                 <!-- Tax Tab -->
+                                 <div class="tab-pane fade" id="taxdetails" role="tabpanel" aria-labelledby="tax-tab">
+                                    <h5 class="mb-4 text-center">Tax Information</h5>
+                                    <form id="taxForm">
+                                       <div class="row mb-3">
+                                          <div class="col-md-6">
+                                             <label for="fullName" class="form-label">Full Name</label>
+                                             <input type="text" class="form-control" id="fullName" placeholder="Enter your full name" required>
+                                          </div>
+                                          <div class="col-md-6">
+                                             <label for="taxId" class="form-label">Tax ID / PAN Number</label>
+                                             <input type="text" class="form-control" id="taxId" placeholder="Enter your tax ID or PAN number" required>
+                                          </div>
+                                       </div>
+                                       <div class="row mb-3">
+                                          <div class="col-md-6">
+                                             <label for="taxCountry" class="form-label">Country of Tax Residence</label>
+                                             <select class="form-select" id="taxCountry" required>
+                                                <option value="">Select country</option>
+                                                <option value="US">United States</option>
+                                                <option value="IN">India</option>
+                                                <option value="UK">United Kingdom</option>
+                                                <option value="CA">Canada</option>
+                                                <option value="AU">Australia</option>
+                                             </select>
+                                          </div>
+                                          <div class="col-md-6">
+                                             <label for="taxDoc" class="form-label">Upload Tax Document</label>
+                                             <input type="file" class="form-control" id="taxDoc" accept=".pdf,.jpg,.jpeg,.png" required>
+                                          </div>
+                                       </div>
+                                       <div class="form-check mb-3">
+                                          <input class="form-check-input" type="checkbox" id="certifyCheck" required>
+                                          <label class="form-check-label" for="certifyCheck">
+                                          I certify that the above information is accurate and up to date.
+                                          </label>
+                                       </div>
+                                       <div class="my-3">
+                                          <button type="submit" class="btn btn-default my-5">Submit Tax Info</button>
+                                       </div>
+                                       <div class="row">
+                                          <h5 class="my-3 text-center">Saved Tax Details</h5>
+                                          <div class="table-responsive bank-details mb-5">
+                                             <table class="table table-bordered text-center">
+                                                <thead class="table-light">
+                                                   <tr>
+                                                      <th>Full Name</th>
+                                                      <th>Tax ID / PAN Number</th>
+                                                      <th>Country of Tax Residence</th>
+                                                      <th>Uploaded Tax Document</th>
+                                                      <th>Actions</th>
+                                                   </tr>
+                                                </thead>
+                                                <tbody>
+                                                   <tr>
+                                                      <td>XYZ</td>
+                                                      <td>SADAS32423432</td>
+                                                      <td>India</td>
+                                                      <td> <a href="./assets/documents/tax-document.pdf" target="_blank" class="btn btn-sm btn-outline-secondary mb-2">
+                                                         <i class="bi bi-file-earmark-text"></i> View Tax Document
+                                                         </a>
+                                                      <td>
+                                                         <a href="#" class="btn btn-sm btn-primary me-2">Edit</a>
+                                                         <a href="#" class="btn btn-sm btn-danger delete-product"> Delete</a>
+                                                      </td>
+                                                   </tr>
+                                                </tbody>
+                                             </table>
+                                          </div>
+                                       </div>
+                                    </form>
+                                 </div>
+                                 <!-- Earning Summary Tab -->
+                                 <div class="tab-pane fade" id="earning" role="tabpanel" aria-labelledby="earning-tab">
+                                    <h5 class="my-3 text-center">Earning Summary</h5>
+                                    <div class="table-responsive">
+                                       <table class="table table-bordered text-center">
+                                          <thead class="table-light">
+                                             <tr>
+                                                <th>Date</th>
+                                                <th>Deposit</th>
+                                                <th>Pending to Deposit</th>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                             <tr>
+                                                <td>2025-10-01</td>
+                                                <td>$200</td>
+                                                <td>$50</td>
+                                             </tr>
+                                             <tr>
+                                                <td>2025-09-25</td>
+                                                <td>$150</td>
+                                                <td>$30</td>
+                                             </tr>
+                                          </tbody>
+                                       </table>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Performance Section -->
+                  <div class="view" id="testerPerformance" style="display:none;">
+                     <div class="container mt-5">
+                        <h2 class="text-center mb-4">Performance</h2>
+                        <div class="col-md-11 m-auto">
+                           <div class="table-responsive">
+                              <table class="table table-bordered text-center align-middle">
+                                 <thead class="table-light">
+                                    <tr>
+                                       <th>Date</th>
+                                       <th>Product Name</th>
+                                       <th>Video Link</th>
+                                       <th>Likes</th>
+                                       <th>Shares</th>
+                                       <th>Buy Clicks</th>
+                                       <th>Comments</th>
+                                       <th>Action</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td>2025-10-05</td>
+                                       <td>XYZ</td>
+                                       <td><a href="#">View Video</a></td>
+                                       <td>240</td>
+                                       <td>56</td>
+                                       <td>12</td>
+                                       <td>18</td>
+                                       <td><a href="#">Share</a></td>
+                                    </tr>
+                                    <!-- Additional Rows -->
+                                 </tbody>
+                              </table>
+                           </div>
+                           <!-- Pagination Section -->
+                           <nav aria-label="Page navigation" class="pagination-section">
+                              <ul class="pagination justify-content-center mt-4">
+                                 <li class="page-item disabled">
+                                    <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                 </li>
+                                 <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                 <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                 <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                 <li class="page-item">
+                                    <a class="page-link" href="#">Next</a>
+                                 </li>
+                              </ul>
+                           </nav>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Challenge to My Work Section -->
+                  <div class="view" id="ChallengeToMyWork" style="display:none;">
+                     <div class="container mt-5">
+                        <h2 class="text-center mb-4">Challenge to My Work</h2>
+                        <div class="col-md-11 m-auto">
+                           <div class="table-responsive">
+                              <table class="table table-bordered text-center align-middle">
+                                 <thead class="table-light">
+                                    <tr>
+                                       <th>Date</th>
+                                       <th>Product Name</th>
+                                       <th>Product Link</th>
+                                       <th>Provided Challenge Link</th>
+                                       <th>Comment</th>
+                                       <th>Status</th>
+                                       <th>Action</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td>2025-10-06</td>
+                                       <td>XYZ</td>
+                                       <td><a href="#">xyz</a></td>
+                                       <td><a href="#">View Challenge</a></td>
+                                       <td>This is not a good product</td>
+                                       <td><span class="badge bg-warning text-dark">Pending</span></td>
+                                       <td>
+                                          <button class="btn btn-outline-success btn-sm">Submit Statement</button>
+                                          <button class="btn btn-outline-primary btn-sm">Reply via Text</button>
+                                          <button class="btn btn-outline-secondary btn-sm">Share in Community</button>
+                                       </td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Jobs Section -->
+                  <div class="view" id="testerJobs" style="display:none;">
+                     <div class="container mt-5">
+                        <h2 class="mb-4 text-center">Jobs</h2>
+                        <div class="col-md-11 m-auto">
+                           <div class="row">
+                              <!-- Tabs -->
+                              <ul class="nav nav-tabs mb-4" id="jobTabs" role="tablist">
+                                 <li class="nav-item" role="presentation">
+                                    <button class="nav-link active" id="find-tab" data-bs-toggle="tab" data-bs-target="#findjobs" type="button" role="tab" aria-selected="true">Find Jobs</button>
+                                 <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="myjobs-tab" data-bs-toggle="tab" data-bs-target="#myjobs" type="button" role="tab" aria-selected="false">My Jobs</button>
+                                 </li>
+                                 <li class="nav-item" role="presentation">
+                                    <button class="nav-link" id="action-tab" data-bs-toggle="tab" data-bs-target="#actions" type="button" role="tab" aria-selected="false">Accept / Reject</button>
+                                 </li>
+                              </ul>
+                              <div class="tab-content" id="jobTabsContent">
+                                 <!-- Find Jobs Tab -->
+                                 <div class="tab-pane fade show active" id="findjobs" role="tabpanel" aria-labelledby="find-tab">
+                                    <div class="table-responsive">
+                                       <table class="table table-bordered text-center align-middle">
+                                          <thead class="table-light">
+                                             <tr>
+                                                <th>Job Title</th>
+                                                <th>Date Created</th>
+                                                <th>Views</th>
+                                                <th>Category</th>
+                                                <th>View</th>
+                                                <th>Status</th>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                             <tr>
+                                                <td>Product Testing - Shampoo</td>
+                                                <td>2025-10-01</td>
+                                                <td>12</td>
+                                                <td>Beauty</td>
+                                                <td>
+                                                   <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#jobModal">View More</a>
+                                                </td>
+                                                <td><span class="badge bg-success px-3 py-2">Open</span></td>
+                                             </tr>
+                                             <tr>
+                                                <td>Electronics Quality Check</td>
+                                                <td>2025-09-28</td>
+                                                <td>8</td>
+                                                <td>Gadgets</td>
+                                                <td>
+                                                   <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#jobModal">View More</a>
+                                                </td>
+                                                <td><span class="badge bg-warning text-dark px-3 py-2">Pending</span></td>
+                                             </tr>
+                                             <tr>
+                                                <td>Electronics Quality Check</td>
+                                                <td>2025-09-28</td>
+                                                <td>8</td>
+                                                <td>Gadgets</td>
+                                                <td>
+                                                   <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#jobModal">View More</a>
+                                                </td>
+                                                <td><span class="badge bg-info text-dark px-3 py-2">Assigned</span></td>
+                                             </tr>
+                                             <tr>
+                                                <td>Electronics Quality Check</td>
+                                                <td>2025-09-28</td>
+                                                <td>8</td>
+                                                <td>Gadgets</td>
+                                                <td>
+                                                   <a href="#" class="text-primary" data-bs-toggle="modal" data-bs-target="#jobModal">View More</a>
+                                                </td>
+                                                <td><span class="badge bg-secondary px-3 py-2">Closed</span></td>
+                                             </tr>
+                                          </tbody>
+                                       </table>
+                                    </div>
+                                    <!-- Pagination Section -->
+                                    <div class="row">
+                                       <nav aria-label="Page navigation" class="pagination-section">
+                                          <ul class="pagination justify-content-center mt-4">
+                                             <li class="page-item disabled">
+                                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                             </li>
+                                             <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                             <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                             <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                             <li class="page-item">
+                                                <a class="page-link" href="#">Next</a>
+                                             </li>
+                                          </ul>
+                                       </nav>
+                                    </div>
+                                 </div>
+                                 <!-- My Jobs Tab -->
+                                 <div class="tab-pane fade" id="myjobs" role="tabpanel" aria-labelledby="myjobs-tab">
+                                    <h5 class="text-center mb-4">My Jobs</h5>
+                                    <div class="table-responsive">
+                                       <table class="table table-bordered text-center align-middle">
+                                          <thead class="table-light">
+                                             <tr>
+                                                <th>Job ID</th>
+                                                <th>Start Date</th>
+                                                <th>Finish Date</th>
+                                                <th>Status</th>
+                                                <th>Submitted Before</th>
+                                                <th>Corrections Required</th>
+                                                <th>Action</th>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                             <tr>
+                                                <td>#J102</td>
+                                                <td>2025-09-28</td>
+                                                <td>2025-10-02</td>
+                                                <td>Working</td>
+                                                <td>No</td>
+                                                <td>None</td>
+                                                <td>
+                                                   <button class="btn btn-sm btn-info mb-2">Send Msg to Admin</button>
+                                                   <button class="btn btn-sm btn-warning mb-2">Request for More Time</button>
+                                                   <button class="btn btn-sm btn-success mb-2">Submit Project</button>
+                                                   <button class="btn btn-sm btn-secondary mb-2">Check Merchant Correction</button>
+                                                </td>
+                                             </tr>
+                                          </tbody>
+                                       </table>
+                                    </div>
+                                    <!-- Pagination Section -->
+                                    <div class="row">
+                                       <nav aria-label="Page navigation" class="pagination-section">
+                                          <ul class="pagination justify-content-center mt-4">
+                                             <li class="page-item disabled">
+                                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                             </li>
+                                             <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                             <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                             <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                             <li class="page-item">
+                                                <a class="page-link" href="#">Next</a>
+                                             </li>
+                                          </ul>
+                                       </nav>
+                                    </div>
+                                 </div>
+                                 <!-- Accept / Reject Tab -->
+                                 <div class="tab-pane fade" id="actions" role="tabpanel" aria-labelledby="action-tab">
+                                    <h5 class="text-center mb-4">Accept / Reject Jobs List</h5>
+                                    <div class="table-responsive mb-5">
+                                       <table class="table table-bordered text-center align-middle">
+                                          <thead class="table-light">
+                                             <tr>
+                                                <th>Job ID</th>
+                                                <th>Title</th>
+                                                <th>Status</th>
+                                                <th>Merchant</th>
+                                                <th>Action Taken</th>
+                                                <th>Change Status</th>
+                                             </tr>
+                                          </thead>
+                                          <tbody>
+                                             <tr>
+                                                <td>#J102</td>
+                                                <td>Product Testing - Shampoo</td>
+                                                <td><span class="badge bg-success">Accepted</span></td>
+                                                <td>ABC Store</td>
+                                                <td>Accept</td>
+                                                <td>
+                                                   <button class="btn btn-sm btn-danger">Delete</button>
+                                                   <button class="btn btn-sm btn-primary">Change Status</button>
+                                                </td>
+                                             </tr>
+                                             <tr>
+                                                <td>#J103</td>
+                                                <td>Freelancer Challenge - Beauty Cream</td>
+                                                <td><span class="badge bg-danger">Rejected</span></td>
+                                                <td>BeautyPro</td>
+                                                <td>Reject</td>
+                                                <td>
+                                                   <button class="btn btn-sm btn-danger">Delete</button>
+                                                   <button class="btn btn-sm btn-primary">Change Status</button>
+                                                </td>
+                                             </tr>
+                                             <tr>
+                                                <td>#J104</td>
+                                                <td>Game Shaker - Fitness App Review</td>
+                                                <td><span class="badge bg-warning text-dark">Pending</span></td>
+                                                <td>FitMax</td>
+                                                <td>Pending Review</td>
+                                                <td>
+                                                   <button class="btn btn-sm btn-danger">Delete</button>
+                                                   <button class="btn btn-sm btn-primary">Change Status</button>
+                                                </td>
+                                             </tr>
+                                             <tr>
+                                                <td>#J105</td>
+                                                <td>Product Demo - Kitchen Appliance</td>
+                                                <td><span class="badge bg-info text-dark">Correction Required</span></td>
+                                                <td>HomePlus</td>
+                                                <td>Correction Needed</td>
+                                                <td>
+                                                   <button class="btn btn-sm btn-danger">Delete</button>
+                                                   <button class="btn btn-sm btn-primary">Change Status</button>
+                                                </td>
+                                             </tr>
+                                             <tr>
+                                                <td>#J106</td>
+                                                <td>Testing - Baby Lotion</td>
+                                                <td><span class="badge bg-secondary">Deleted</span></td>
+                                                <td>SoftCare</td>
+                                                <td>Deleted by Merchant</td>
+                                                <td>
+                                                   <button class="btn btn-sm btn-success">Restore</button>
+                                                   <button class="btn btn-sm btn-primary">Change Status</button>
+                                                </td>
+                                             </tr>
+                                             <tr>
+                                                <td>#J107</td>
+                                                <td>Product Testing - Herbal Oil</td>
+                                                <td><span class="badge bg-primary">Submitted</span></td>
+                                                <td>NatureLife</td>
+                                                <td>Submitted for Review</td>
+                                                <td>
+                                                   <button class="btn btn-sm btn-danger">Delete</button>
+                                                   <button class="btn btn-sm btn-primary">Change Status</button>
+                                                </td>
+                                             </tr>
+                                             <tr>
+                                                <td>#J108</td>
+                                                <td>Game Challenge - New App Feature</td>
+                                                <td><span class="badge bg-dark">Approved</span></td>
+                                                <td>TechZone</td>
+                                                <td>Approved by Merchant</td>
+                                                <td>
+                                                   <button class="btn btn-sm btn-danger">Delete</button>
+                                                   <button class="btn btn-sm btn-primary">Change Status</button>
+                                                </td>
+                                             </tr>
+                                             <tr>
+                                                <td>#J102</td>
+                                                <td>Product Testing - Shampoo</td>
+                                                <td><span class="badge bg-success">Accepted</span></td>
+                                                <td>ABC Store</td>
+                                                <td>Accept</td>
+                                                <td>
+                                                   <button class="btn btn-sm btn-danger">Delete</button>
+                                                   <button class="btn btn-sm btn-primary">Change Status</button>
+                                                </td>
+                                             </tr>
+                                             <tr>
+                                                <td>#J103</td>
+                                                <td>Freelancer Challenge - Beauty Cream</td>
+                                                <td><span class="badge bg-danger">Rejected</span></td>
+                                                <td>BeautyPro</td>
+                                                <td>Reject</td>
+                                                <td>
+                                                   <button class="btn btn-sm btn-danger">Delete</button>
+                                                   <button class="btn btn-sm btn-primary">Change Status</button>
+                                                </td>
+                                             </tr>
+                                             <tr>
+                                                <td>#J104</td>
+                                                <td>Game Shaker - Fitness App Review</td>
+                                                <td><span class="badge bg-warning text-dark">Pending</span></td>
+                                                <td>FitMax</td>
+                                                <td>Pending Review</td>
+                                                <td>
+                                                   <button class="btn btn-sm btn-danger">Delete</button>
+                                                   <button class="btn btn-sm btn-primary">Change Status</button>
+                                                </td>
+                                             </tr>
+                                             <tr>
+                                                <td>#J105</td>
+                                                <td>Product Demo - Kitchen Appliance</td>
+                                                <td><span class="badge bg-info text-dark">Correction Required</span></td>
+                                                <td>HomePlus</td>
+                                                <td>Correction Needed</td>
+                                                <td>
+                                                   <button class="btn btn-sm btn-danger">Delete</button>
+                                                   <button class="btn btn-sm btn-primary">Change Status</button>
+                                                </td>
+                                             </tr>
+                                             <tr>
+                                                <td>#J106</td>
+                                                <td>Testing - Baby Lotion</td>
+                                                <td><span class="badge bg-secondary">Deleted</span></td>
+                                                <td>SoftCare</td>
+                                                <td>Deleted by Merchant</td>
+                                                <td>
+                                                   <button class="btn btn-sm btn-success">Restore</button>
+                                                   <button class="btn btn-sm btn-primary">Change Status</button>
+                                                </td>
+                                             </tr>
+                                          </tbody>
+                                       </table>
+                                    </div>
+                                    <!-- Pagination Section -->
+                                    <div class="row mb-5">
+                                       <nav aria-label="Page navigation" class="pagination-section">
+                                          <ul class="pagination justify-content-center mt-4">
+                                             <li class="page-item disabled">
+                                                <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                                             </li>
+                                             <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                                             <li class="page-item"><a class="page-link" href="#">2</a></li>
+                                             <li class="page-item"><a class="page-link" href="#">3</a></li>
+                                             <li class="page-item">
+                                                <a class="page-link" href="#">Next</a>
+                                             </li>
+                                          </ul>
+                                       </nav>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+      </div>
+      <!-- Job Details Modal -->
+      <div class="modal fade" id="jobModal" tabindex="-1" aria-labelledby="jobModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      <div class="modal-header">
+      <h5 class="modal-title" id="jobModalLabel">Job Details</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+      <table class="table table-bordered">
+      <tr><th>Date</th><td>2025-10-02</td></tr>
+      <tr><th>Posted By</th><td>Merchant Admin</td></tr>
+      <tr><th>Title</th><td>Product Testing</td></tr>
+      <tr><th>Category</th><td>Beauty</td></tr>
+      <tr><th>Task Details</th><td>Test the product and create a test video.</td></tr>
+      <tr><th>Requirements</th><td>Requirements</td></tr>
+      <tr><th>Price Offered</th><td>$ 15,000</td></tr>
+      <tr><th>Target Date to Submit</th><td>3 Days</td></tr>
+      <tr><th>Special Requirements</th><td>Full video from unboxing and show all things clearly</td></tr>
+      </table>
+      <div class="text-center mt-4">
+   <a href="acceptProcess.html" class="btn btn-success me-2">Accept</a>
+	  <a href="#" class="btn btn-warning me-2">Ignore</a>
+	  <a href="#" class="btn btn-danger me-2">Delete</a>
+	  <a href="#" class="btn btn-primary me-2">Send Offer</a>
+      </div>
+      </div>
+      <div class="modal-footer">
+      <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+      </div>
+      </div>
+      </div>
+      </section>
+      </main>
+      </div>
+      <!-- jQuery -->
+      <script>
+         document.addEventListener("DOMContentLoaded", function () {
+           const navButtons = document.querySelectorAll(".nav-btn");
+           const views = document.querySelectorAll(".view");
+         
+           navButtons.forEach(btn => {
+             btn.addEventListener("click", function () {
+               // Remove active class from all buttons
+               navButtons.forEach(b => b.classList.remove("active"));
+               // Hide all views
+               views.forEach(v => v.style.display = "none");
+         
+               // Activate clicked button
+               this.classList.add("active");
+         
+               // Get target view from data-view attribute
+               const viewId = this.getAttribute("data-view");
+               const targetView = document.getElementById(viewId);
+               if (targetView) {
+                 targetView.style.display = "block";
+               }
+             });
+           });
+         
+           // Set default view if none are visible
+         views.forEach(v => v.style.display = "none");
+         const defaultView = document.getElementById("testerProfile");
+         if (defaultView) {
+         defaultView.style.display = "block";
+         document.querySelector('[data-view="testerProfile"]')?.classList.add("active");
+         }
+         });
+      </script>
+      <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+      <script src="assets/js/common.js"></script>
+      <script src="assets/js/custom.js"></script>
+   </body>
+</html>

@@ -1,0 +1,35 @@
+/* Page Title */
+.productDetails h2 {
+  font-family: "Arima", serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 2rem;
+  text-decoration: underline;
+}
+
+/* Card Styling */
+
+.productDetails .product-details-table thead th {
+  background: #ffa92a;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  padding: 12px;
+}
+
+.productDetails .product-details-table tbody td {
+  font-size: 0.95rem;
+  padding: 0.75rem;
+  color: #555;
+  text-align: center;
+}
+
+.daterange-section label{
+  font-weight: 600;
+}
+
+.productDetails .btn-link{
+  cursor: pointer;
+}

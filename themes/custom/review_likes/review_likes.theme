@@ -530,6 +530,88 @@ if ($route_name == 'tester_dashboard.dashboard') {
       $variables['claims'] = [];
     }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+$current_path = \Drupal::request()->getRequestUri();
+
+      if (strpos($current_path, '/merchant-dashboard') !== FALSE) { 
+          $variables['#attached']['library'][] = 'review_likes/merchant-css'; 
+      }
+      elseif (strpos($current_path, '/merchant/') !== FALSE) { 
+          $variables['#attached']['library'][] = 'review_likes/merchant-css'; 
+      }
+       elseif (strpos($current_path, '/merchant-dashboard/') !== FALSE) { 
+          $variables['#attached']['library'][] = 'review_likes/merchant-css'; 
+      }
+      elseif (strpos($current_path, '/product/') !== FALSE) { 
+          $variables['#attached']['library'][] = 'review_likes/product-description-css'; 
+      }
+     
+      else
+    {
+       #$variables['#attached']['library'][] = 'fvtrs/css-default';
+    }
+
 }
 
 
+
+
+
+function review_likes_preprocess_node(&$variables) {
+  $node = \Drupal::routeMatch()->getParameter('node');
+   $current_path = \Drupal::request()->getRequestUri();
+  if ($node) {
+     $current_path = \Drupal::request()->getRequestUri();
+     
+    if ($node->id() == 1) {
+      $variables['#attached']['library'][] = 'review_likes/home-css';
+    }
+  }
+
+
+$rebuttal_node = $variables['node'];
+ if ($rebuttal_node->bundle() === 'marchant_products' && $variables['view_mode'] === 'full') {
+    // The hook_node_view stored rebuttals in the build array.
+    // Pass them to the Twig template as a clean variable.
+    $variables['_rebuttals'] = $variables['elements']['#rebuttals'] ?? [];
+    $variables['_product_id'] = $node->id();
+    $variables['_debate_forms']   = $variables['elements']['#debate_forms']   ?? [];
+    $variables['_claim_forms']    = $variables['elements']['#claim_forms']    ?? [];  // ← ADD
+    $variables['_user_logged_in'] = $variables['elements']['#user_logged_in'] ?? FALSE;
+  }
+
+
+
+}
+
+
+
+function review_likes_preprocess_field(&$variables) {
+  $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+}
+
+
+
+function review_likes_preprocess_views_view_fields(&$variables) {
+  $current_path = \Drupal::service('path.current')->getPath();
+  $variables['current_path'] = $current_path;
+  
+  // Add front page check
+  $variables['is_front_page'] = \Drupal::service('path.matcher')->isFrontPage();
+}
+
+
+
+
+ 

@@ -1,0 +1,6 @@
+services:
+  product_interactions.twig_extension:
+    class: Drupal\product_interactions\TwigExtension\InteractionsTwigExtension
+    public: true
+    tags:
+      - { name: twig.extension }

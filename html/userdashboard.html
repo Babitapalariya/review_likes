@@ -1,0 +1,1723 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8" />
+      <title>User Dashboard</title>
+      <link rel="icon" type="image/x-icon" href="assets/images/favicon.png" />
+      <script src="assets/js/popper.min.js" type="text/javascript"></script>
+      <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+      <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Arimo:ital,wght@0,400..700;1,400..700&family=Kaushan+Script&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+      <link rel="stylesheet" type="text/css" href="assets/css/common.css"/>
+      <link rel="stylesheet" href="assets/css/userdashboard.css" />
+   </head>
+   <body>
+      <!-- Menu start here-->
+      <header>
+         <nav class="navbar navbar-expand-lg main-navbar shadow-sm bg-white">
+            <div class="container-fluid">
+               <!-- Logo -->
+               <a class="navbar-brand logo" href="#">ReviewLikes</a>
+               <!-- Mobile Menu Toggle -->
+               <button
+                  class="navbar-toggler"
+                  type="button"
+                  data-bs-toggle="collapse"
+                  data-bs-target="#menuitems"
+                  aria-controls="menuitems"
+                  aria-expanded="false"
+                  aria-label="Toggle navigation"
+                  >
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <!-- Navbar Content -->
+               <div class="collapse navbar-collapse" id="menuitems">
+                  <!-- Menu Items -->
+                  <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                     <li class="nav-item">
+                        <a class="nav-link active" data-section="#productsSection" href="#">Products</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" data-section="#runningChallenges" href="#">Running Challenges</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" data-section="#myActivities" href="#">My Activities</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" data-section="#buyBlind" href="#">Buy Blind</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" data-section="#mySpecial" href="#">My Special</a>
+                     </li>
+                     <li class="nav-item">
+                        <a class="nav-link" data-section="#myProfile" href="#">My Profile</a>
+                     </li>
+                  </ul>
+                  <!-- Profile Dropdown-->
+                  <div class="d-flex align-items-center gap-3">
+                     <div class="dropdown">
+                        <a
+                           href="#"
+                           class="d-flex align-items-center text-decoration-none dropdown-toggle"
+                           id="userDropdown"
+                           data-bs-toggle="dropdown"
+                           aria-expanded="false"
+                           >
+                        <img
+                           src="/assets/images/profile.png"
+                           alt="User"
+                           class="rounded-circle border object-fit-contain"
+                           width="40"
+                           height="40"
+                           />
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-end shadow" aria-labelledby="userDropdown">
+                           <li>
+                              <a class="dropdown-item" href="#"><i class="bi bi-gear me-2"></i>Settings</a>
+                           </li>
+                           <li>
+                              <hr class="dropdown-divider" />
+                           </li>
+                           <li>
+                              <a class="dropdown-item text-danger" href="#"><i class="bi bi-box-arrow-right me-2"></i>Logout</a>
+                           </li>
+                        </ul>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </nav>
+      </header>
+      <!-- Category Toggle Section -->
+      <section class="category-toggle py-2">
+         <div class="container-fluid">
+            <!-- Toggle Button -->
+            <button class="btn btn-default" type="button" id="toggleCategories">
+            <i class="bi bi-list me-2"></i> Categories
+            </button>
+            <!-- Category Panel (Hidden Initially) -->
+            <div id="categoryPanel" class="card p-3">
+               <h6 class="fw-semibold mb-3">Select Categories</h6>
+               <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="catAll" checked>
+                  <label class="form-check-label" for="catAll">All</label>
+               </div>
+               <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="catChallenged">
+                  <label class="form-check-label" for="catChallenged">Challenged</label>
+               </div>
+               <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="catVideo">
+                  <label class="form-check-label" for="catVideo">With Video</label>
+               </div>
+               <div class="form-check mb-2">
+                  <input class="form-check-input" type="checkbox" id="catBuyBlind">
+                  <label class="form-check-label" for="catBuyBlind">Buy Blind</label>
+               </div>
+               <div class="text-start mt-3">
+                  <button class="btn btn-sm btn-default" id="applyCategories">Apply</button>
+               </div>
+            </div>
+         </div>
+      </section>
+      <!-- productsSection -->
+      <section class="productsSection pb-5" id="productsSection">
+         <div class="container content-section">
+            <div class="row justify-content-end my-3">
+               <div class="col-md-6 search-section ms-5">
+                  <form class="productsearch d-flex align-items-center" role="search">
+                     <div class="input-group">
+                        <input
+                           type="search"
+                           class="form-control"
+                           placeholder="Search Products Here..."
+                           id="inputSearchbox"
+                           aria-label="Search"
+                           />
+                        <button class="btn btn-primary" type="submit">
+                        <i class="bi bi-search"></i>
+                        </button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+            <div class="row justify-content-start ps-5">
+               <div class="category-tabs d-flex flex-wrap gap-2 mb-4">
+                  <button class="category-btn active">All</button>
+                  <button class="category-btn">Challenged</button>
+                  <button class="category-btn">With Video</button>
+                  <button class="category-btn">Regular</button>
+                  <button class="category-btn">Buy Blind</button>
+               </div>
+            </div>
+            <div class="row g-4 justify-content-center">
+               <div class="col-md-11">
+                  <div class="row">
+                     <div class="col-lg-4 col-md-6 mt-4">
+                        <div class="product-card card shadow-sm h-100">
+                           <div class="card-body">
+                              <div class="row g-2 mb-3">
+                                 <div class="col-12">
+                                    <img src="./assets/images/camera2.jpg" alt="camera" class="img-fluid rounded">
+                                 </div>
+                              </div>
+                              <div class="text-end my-2 Icon-section"> <img src="./assets/images/challengecardIcon.svg" alt="all" class="productIcons"></div>
+                              <h5 class="product-title mb-2">
+                                 Product 1
+                              </h5>
+                              <p class="product-description text-muted small mb-2">
+                                 <span id="shortDesc">
+                                 18MP APS-C sensor, DIGIC 4+ processor, ISO 100-6400 (expandable to 12800)
+                                 </span>
+                              </p>
+                              <div class="d-flex justify-content-between align-items-center mb-3">
+                                 <div>
+                                    <h6 class="text-secondary mb-0">Price</h6>
+                                    <p class="fw-semibold mb-0 text-dark">₹21,499 - ₹23,000</p>
+                                 </div>
+                                 <a href="productDescription.html" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">Compare & Buy</a>
+                              </div>
+                              <div class="d-flex justify-content-around text-center border-top pt-3 small">
+                                 <div>
+                                    <img src="./assets/images/rating.svg" alt="rating" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/nooftests.svg" alt="tests" width="24">
+                                    <div>1200</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                              </div>
+                              <div class="text-center mt-3">
+                                 <span class="text-success fw-semibold">RL Trust Rating: 4.9</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-6 mt-4">
+                        <div class="product-card card shadow-sm h-100">
+                           <div class="card-body">
+                              <div class="row g-2 mb-3">
+                                 <div class="col-12">
+                                    <img src="./assets/images/camera2.jpg" alt="camera" class="img-fluid rounded">
+                                 </div>
+                              </div>
+                              <div class="text-end my-2 Icon-section"> <img src="./assets/images/buyblindIcon.svg" alt="Buy Blind" class="productIcons"></div>
+                              <h5 class="product-title mb-2">
+                                 Product 2
+                              </h5>
+                              <p class="product-description text-muted small mb-2">
+                                 <span id="shortDesc">
+                                 18MP APS-C sensor, DIGIC 4+ processor, ISO 100-6400 (expandable to 12800)
+                                 </span>
+                              </p>
+                              <div class="d-flex justify-content-between align-items-center mb-3">
+                                 <div>
+                                    <h6 class="text-secondary mb-0">Price</h6>
+                                    <p class="fw-semibold mb-0 text-dark">₹21,499 - ₹23,000</p>
+                                 </div>
+                                 <a href="productDescription.html" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">Compare & Buy</a>
+                              </div>
+                              <div class="d-flex justify-content-around text-center border-top pt-3 small">
+                                 <div>
+                                    <img src="./assets/images/rating.svg" alt="rating" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/nooftests.svg" alt="tests" width="24">
+                                    <div>1200</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                              </div>
+                              <div class="text-center mt-3">
+                                 <span class="text-success fw-semibold">RL Trust Rating: 4.9</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-6 mt-4">
+                        <div class="product-card card shadow-sm h-100">
+                           <div class="card-body">
+                              <div class="row g-2 mb-3">
+                                 <div class="col-12">
+                                    <img src="./assets/images/camera2.jpg" alt="camera" class="img-fluid rounded">
+                                 </div>
+                              </div>
+                              <div class="text-end my-2 Icon-section"> <img src="./assets/images/videoIcon.svg" alt="with video" class="productIcons"></div>
+                              <h5 class="product-title mb-2">
+                                 Product 3
+                              </h5>
+                              <p class="product-description text-muted small mb-2">
+                                 <span id="shortDesc">
+                                 18MP APS-C sensor, DIGIC 4+ processor, ISO 100-6400 (expandable to 12800)
+                                 </span>
+                              </p>
+                              <div class="d-flex justify-content-between align-items-center mb-3">
+                                 <div>
+                                    <h6 class="text-secondary mb-0">Price</h6>
+                                    <p class="fw-semibold mb-0 text-dark">₹21,499 - ₹23,000</p>
+                                 </div>
+                                 <a href="productDescription.html" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">Compare & Buy</a>
+                              </div>
+                              <div class="d-flex justify-content-around text-center border-top pt-3 small">
+                                 <div>
+                                    <img src="./assets/images/rating.svg" alt="rating" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/nooftests.svg" alt="tests" width="24">
+                                    <div>1200</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                              </div>
+                              <div class="text-center mt-3">
+                                 <span class="text-success fw-semibold">RL Trust Rating: 4.9</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-6 mt-4">
+                        <div class="product-card card shadow-sm h-100">
+                           <div class="card-body">
+                              <div class="row g-2 mb-3">
+                                 <div class="col-12">
+                                    <img src="./assets/images/camera2.jpg" alt="camera" class="img-fluid rounded">
+                                 </div>
+                              </div>
+                              <div class="text-end my-2 Icon-section"> <img src="./assets/images/challengedIcon.svg" alt="challeged icons" class="productIcons"></div>
+                              <h5 class="product-title mb-2">
+                                 Product 4
+                              </h5>
+                              <p class="product-description text-muted small mb-2">
+                                 <span id="shortDesc">
+                                 18MP APS-C sensor, DIGIC 4+ processor, ISO 100-6400 (expandable to 12800)
+                                 </span>
+                              </p>
+                              <div class="d-flex justify-content-between align-items-center mb-3">
+                                 <div>
+                                    <h6 class="text-secondary mb-0">Price</h6>
+                                    <p class="fw-semibold mb-0 text-dark">₹21,499 - ₹23,000</p>
+                                 </div>
+                                 <a href="productDescription.html" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">Compare & Buy</a>
+                              </div>
+                              <div class="d-flex justify-content-around text-center border-top pt-3 small">
+                                 <div>
+                                    <img src="./assets/images/rating.svg" alt="rating" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/nooftests.svg" alt="tests" width="24">
+                                    <div>1200</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                              </div>
+                              <div class="text-center mt-3">
+                                 <span class="text-success fw-semibold">RL Trust Rating: 4.9</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-6 mt-4">
+                        <div class="product-card card shadow-sm h-100">
+                           <div class="card-body">
+                              <div class="row g-2 mb-3">
+                                 <div class="col-12">
+                                    <img src="./assets/images/camera2.jpg" alt="camera" class="img-fluid rounded">
+                                 </div>
+                              </div>
+                              <div class="text-end my-2 Icon-section"> <img src="./assets/images/allIcon.svg" alt="all" class="productIcons"></div>
+                              <h5 class="product-title mb-2">
+                                 Product 5
+                              </h5>
+                              <p class="product-description text-muted small mb-2">
+                                 <span id="shortDesc">
+                                 18MP APS-C sensor, DIGIC 4+ processor, ISO 100-6400 (expandable to 12800)
+                                 </span>
+                              </p>
+                              <div class="d-flex justify-content-between align-items-center mb-3">
+                                 <div>
+                                    <h6 class="text-secondary mb-0">Price</h6>
+                                    <p class="fw-semibold mb-0 text-dark">₹21,499 - ₹23,000</p>
+                                 </div>
+                                 <a href="productDescription.html" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">Compare & Buy</a>
+                              </div>
+                              <div class="d-flex justify-content-around text-center border-top pt-3 small">
+                                 <div>
+                                    <img src="./assets/images/rating.svg" alt="rating" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/nooftests.svg" alt="tests" width="24">
+                                    <div>1200</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                              </div>
+                              <div class="text-center mt-3">
+                                 <span class="text-success fw-semibold">RL Trust Rating: 4.9</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-6 mt-4">
+                        <div class="product-card card shadow-sm h-100">
+                           <div class="card-body">
+                              <div class="row g-2 mb-3">
+                                 <div class="col-12">
+                                    <img src="./assets/images/camera2.jpg" alt="camera" class="img-fluid rounded">
+                                 </div>
+                              </div>
+                              <div class="text-end my-2 Icon-section"> <img src="./assets/images/buyblindIcon.svg" alt="Buy Blind" class="productIcons"></div>
+                              <h5 class="product-title mb-2">
+                                 Product 6
+                              </h5>
+                              <p class="product-description text-muted small mb-2">
+                                 <span id="shortDesc">
+                                 18MP APS-C sensor, DIGIC 4+ processor, ISO 100-6400 (expandable to 12800)
+                                 </span>
+                              </p>
+                              <div class="d-flex justify-content-between align-items-center mb-3">
+                                 <div>
+                                    <h6 class="text-secondary mb-0">Price</h6>
+                                    <p class="fw-semibold mb-0 text-dark">₹21,499 - ₹23,000</p>
+                                 </div>
+                                 <a href="productDescription.html" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">Compare & Buy</a>
+                              </div>
+                              <div class="d-flex justify-content-around text-center border-top pt-3 small">
+                                 <div>
+                                    <img src="./assets/images/rating.svg" alt="rating" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/nooftests.svg" alt="tests" width="24">
+                                    <div>1200</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                              </div>
+                              <div class="text-center mt-3">
+                                 <span class="text-success fw-semibold">RL Trust Rating: 4.9</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-6 mt-4">
+                        <div class="product-card card shadow-sm h-100">
+                           <div class="card-body">
+                              <div class="row g-2 mb-3">
+                                 <div class="col-12">
+                                    <img src="./assets/images/camera2.jpg" alt="camera" class="img-fluid rounded">
+                                 </div>
+                              </div>
+                              <div class="text-end my-2 Icon-section"> <img src="./assets/images/videoIcon.svg" alt="with video" class="productIcons"></div>
+                              <h5 class="product-title mb-2">
+                                 Product 7
+                              </h5>
+                              <p class="product-description text-muted small mb-2">
+                                 <span id="shortDesc">
+                                 18MP APS-C sensor, DIGIC 4+ processor, ISO 100-6400 (expandable to 12800)
+                                 </span>
+                              </p>
+                              <div class="d-flex justify-content-between align-items-center mb-3">
+                                 <div>
+                                    <h6 class="text-secondary mb-0">Price</h6>
+                                    <p class="fw-semibold mb-0 text-dark">₹21,499 - ₹23,000</p>
+                                 </div>
+                                 <a href="productDescription.html" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">Compare & Buy</a>
+                              </div>
+                              <div class="d-flex justify-content-around text-center border-top pt-3 small">
+                                 <div>
+                                    <img src="./assets/images/rating.svg" alt="rating" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/nooftests.svg" alt="tests" width="24">
+                                    <div>1200</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                              </div>
+                              <div class="text-center mt-3">
+                                 <span class="text-success fw-semibold">RL Trust Rating: 4.9</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-6 mt-4">
+                        <div class="product-card card shadow-sm h-100">
+                           <div class="card-body">
+                              <div class="row g-2 mb-3">
+                                 <div class="col-12">
+                                    <img src="./assets/images/camera2.jpg" alt="camera" class="img-fluid rounded">
+                                 </div>
+                              </div>
+                              <div class="text-end my-2 Icon-section"> <img src="./assets/images/challengedIcon.svg" alt="challeged icons" class="productIcons"></div>
+                              <h5 class="product-title mb-2">
+                                 Product 8
+                              </h5>
+                              <p class="product-description text-muted small mb-2">
+                                 <span id="shortDesc">
+                                 18MP APS-C sensor, DIGIC 4+ processor, ISO 100-6400 (expandable to 12800)
+                                 </span>
+                              </p>
+                              <div class="d-flex justify-content-between align-items-center mb-3">
+                                 <div>
+                                    <h6 class="text-secondary mb-0">Price</h6>
+                                    <p class="fw-semibold mb-0 text-dark">₹21,499 - ₹23,000</p>
+                                 </div>
+                                 <a href="productDescription.html" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">Compare & Buy</a>
+                              </div>
+                              <div class="d-flex justify-content-around text-center border-top pt-3 small">
+                                 <div>
+                                    <img src="./assets/images/rating.svg" alt="rating" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/nooftests.svg" alt="tests" width="24">
+                                    <div>1200</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                              </div>
+                              <div class="text-center mt-3">
+                                 <span class="text-success fw-semibold">RL Trust Rating: 4.9</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section class="myActivities" id="myActivities" style="display:none;">
+         <div class="content-section container my-4">
+            <div class="row">
+               <div class="col-12">
+                  <div class="text-center mb-4">
+                     <h2 class="section-title">My Activities</h2>
+                  </div>
+                  <div class="text-end mb-5">
+                     <a href="productDescription.html" class="create-challenge-btn"> Create a Challenge</a>
+                  </div>
+                  <!-- Activities Table -->
+                  <div class="activities-table">
+                     <table class="table table-hover table-bordered text-center mb-0">
+                        <thead>
+                           <tr>
+                              <th scope="col">Activity</th>
+                              <th scope="col">Product</th>
+                              <th scope="col">Product ID</th>
+                              <th scope="col">Date</th>
+                              <th scope="col">Status</th>
+                           </tr>
+                        </thead>
+                        <tbody>
+                           <tr>
+                              <td>Camera Durability Test</td>
+                              <td>Canon EOS 1500D</td>
+                              <td>PR123</td>
+                              <td>15 Jun 2025</td>
+                              <td><span class="status-badge status-completed">Completed</span></td>
+                           </tr>
+                           <tr>
+                              <td>Smartphone Battery Challenge</td>
+                              <td>iPhone 14 Pro</td>
+                              <td>PR124</td>
+                              <td>01 Jul 2023</td>
+                              <td><span class="status-badge status-active">Active</span></td>
+                           </tr>
+                           <tr>
+                              <td>Laptop Performance Test</td>
+                              <td>Dell XPS 13</td>
+                              <td>PR125</td>
+                              <td>20 Jul 2023</td>
+                              <td><span class="status-badge status-pending">Pending</span></td>
+                           </tr>
+                           <tr>
+                              <td>Headphone Sound Quality</td>
+                              <td>Sony WH-1000XM4</td>
+                              <td>PR126</td>
+                              <td>10 May 2023</td>
+                              <td><span class="status-badge status-completed">Completed</span></td>
+                           </tr>
+                           <tr>
+                              <td>Smartwatch Fitness Tracking</td>
+                              <td>Apple Watch Series 8</td>
+                              <td>PR127</td>
+                              <td>05 Aug 2023</td>
+                              <td><span class="status-badge status-active">Active</span></td>
+                           </tr>
+                        </tbody>
+                     </table>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section class="container col-md-11 mt-5 my-special-section" id="mySpecial" style="display:none;">
+         <!-- CUSTOM TABS (NO BOOTSTRAP DEPENDENCY) -->
+         <div class="special-tab-buttons d-flex gap-3 mb-4">
+            <button class="special-tab active" data-tab="tab1">
+            Verified Buyer <span class="badge bg-success ms-1">5% OFF</span>
+            </button>
+            <button class="special-tab" data-tab="tab2">
+            Video Submitted <span class="badge bg-info ms-1">10% OFF</span>
+            </button>
+            <button class="special-tab" data-tab="tab3">
+            Jumbo Request <span class="badge bg-warning ms-1">20% OFF</span>
+            </button>
+         </div>
+         <div class="row my-5">
+            <div class="col-lg-12 col-md-12">
+               <div class="row justify-content-around">
+                  <!-- SEARCH BAR -->
+                  <div class="col-md-6">
+                     <div class="card p-3 mb-4">
+                        <div class="row g-3">
+                           <div class="col-md-6">
+                              <label class="form-label" for="searchproductname">Product Name</label>
+                              <input type="text" class="form-control" placeholder="Search product name" id="searchproductname">
+                           </div>
+                           <div class="col-md-6">
+                              <label class="form-label" for="searchbrandname">Product Brand</label>
+                              <input type="text" class="form-control" placeholder="Search brand" id="searchbrandname">
+                           </div>
+                           <div class="col-md-12 text-end">
+                              <button class="btn btn-default mt-2 px-4">Search</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Store Filter -->
+                  <div class="col-md-2 fileterSection">
+                     <div class="filter-box p-3 rounded mb-3">
+                        <h5 class="fw-semibold mb-3">Store</h5>
+                        <div class="form-check">
+                           <input class="form-check-input" type="checkbox" id="amazon1">
+                           <label class="form-check-label" for="amazon1">Amazon</label>
+                        </div>
+                        <div class="form-check">
+                           <input class="form-check-input" type="checkbox" id="flipkart1">
+                           <label class="form-check-label" for="flipkart1">Flipkart</label>
+                        </div>
+                        <div class="form-check">
+                           <input class="form-check-input" type="checkbox" id="ebay1">
+                           <label class="form-check-label" for="ebay1">Ebay</label>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Additional Filters -->
+                  <div class="col-md-3 fileterSection">
+                     <div class="filter-box p-3">
+                        <h5 class="fw-semibold mb-3">Filter Options</h5>
+                        <label class="form-label">Product Type</label>
+                        <select class="form-select mb-3">
+                           <option value="">Select</option>
+                           <option>Electronics</option>
+                           <option>Home Appliances</option>
+                           <option>Accessories</option>
+                        </select>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="special-tab-content">
+               <div class="special-pane active" id="tab1">
+                  <!-- PRODUCT GRID -->
+                  <div class="row mt-3">
+                     <div class="col-lg-4 col-md-6">
+                        <div class="special-card card shadow-sm h-100">
+                           <div class="card-body">
+                              <img src="assets/images/camera2.jpg" class="img-fluid rounded mb-3">
+                              <h5 class="product-title">Canon DSLR Camera</h5>
+                              <p class="small text-muted">Verified buyer reward.</p>
+                              <div class="d-flex justify-content-between">
+                                 <span class="discount-tag green">5% OFF</span>
+                                 <button class="btn btn-outline-primary btn-sm rounded-pill">Claim Offer</button>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- row end -->
+               </div>
+            </div>
+            <div class="special-pane" id="tab2">
+               <div class="row mt-3">
+                  <div class="col-lg-12 col-md-12">
+                     <!-- PRODUCT GRID -->
+                     <div class="row g-4">
+                        <div class="col-lg-4 col-md-6">
+                           <div class="special-card card shadow-sm h-100">
+                              <div class="card-body">
+                                 <img src="assets/images/camera2.jpg" class="img-fluid rounded mb-3">
+                                 <h5 class="product-title">Bluetooth Speaker</h5>
+                                 <p class="small text-muted">Upload a video to claim.</p>
+                                 <div class="d-flex justify-content-between">
+                                    <span class="discount-tag blue">10% OFF</span>
+                                    <button class="btn btn-outline-primary btn-sm rounded-pill">Claim Offer</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                             <div class="col-lg-4 col-md-6">
+                           <div class="special-card card shadow-sm h-100">
+                              <div class="card-body">
+                                 <img src="assets/images/camera2.jpg" class="img-fluid rounded mb-3">
+                                 <h5 class="product-title">Bluetooth Speaker</h5>
+                                 <p class="small text-muted">Upload a video to claim.</p>
+                                 <div class="d-flex justify-content-between">
+                                    <span class="discount-tag blue">10% OFF</span>
+                                    <button class="btn btn-outline-primary btn-sm rounded-pill">Claim Offer</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="special-pane" id="tab3">
+               <div class="row mt-3">
+                  <div class="col-lg-4 col-md-6">
+                     <div class="special-card card shadow-sm h-100">
+                        <div class="card-body">
+                           <img src="assets/images/camera2.jpg" class="img-fluid rounded mb-3">
+                           <h5 class="product-title">Premium Headphones</h5>
+                           <p class="small text-muted">Exclusive jumbo discount.</p>
+                           <div class="d-flex justify-content-between">
+                              <span class="discount-tag gold">20% OFF</span>
+                              <button class="btn btn-outline-primary btn-sm rounded-pill">Claim Offer</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                     <div class="col-lg-4 col-md-6">
+                     <div class="special-card card shadow-sm h-100">
+                        <div class="card-body">
+                           <img src="assets/images/camera2.jpg" class="img-fluid rounded mb-3">
+                           <h5 class="product-title">Premium Headphones</h5>
+                           <p class="small text-muted">Exclusive jumbo discount.</p>
+                           <div class="d-flex justify-content-between">
+                              <span class="discount-tag gold">20% OFF</span>
+                              <button class="btn btn-outline-primary btn-sm rounded-pill">Claim Offer</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                     <div class="col-lg-4 col-md-6">
+                     <div class="special-card card shadow-sm h-100">
+                        <div class="card-body">
+                           <img src="assets/images/camera2.jpg" class="img-fluid rounded mb-3">
+                           <h5 class="product-title">Premium Headphones</h5>
+                           <p class="small text-muted">Exclusive jumbo discount.</p>
+                           <div class="d-flex justify-content-between">
+                              <span class="discount-tag gold">20% OFF</span>
+                              <button class="btn btn-outline-primary btn-sm rounded-pill">Claim Offer</button>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section class="container col-md-11 mt-4 running-challenges" id="runningChallenges" style="display:none;">
+         <h2 class="text-center mb-3">Running Challenges</h2>
+         <div class="text-start mb-3">
+            <a href="marketplace.html" class="btn btn-default p-2 h-auto">
+            Challenge Marketplace Products
+            </a>
+         </div>
+         <!-- SINGLE SEARCH + FILTERS -->
+         <div class="rc-top p-3 mb-4">
+            <div class="row justify-content-end">
+               <!-- Single Smart Search -->
+               <div class="col-md-6 d-flex">
+                  <input type="text" id="smartSearch" class="form-control smart-search me-3"
+                     placeholder="Search by Product, Brand, User...">
+                  <button class="btn btn-default">Search</button>    
+               </div>
+            </div>
+         </div>
+         <!-- CHALLENGE LIST -->
+         <div class="row">
+            <div class="col-md-6 mb-3">
+               <div class="challenge-card card shadow-sm p-3 mb-4">
+                  <!-- Title + Time -->
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                     <h5 class="fw-bold mb-0">Nike Running Shoes</h5>
+                     <span class="badge rounded-pill bg-primary px-3 py-2">01:12:45</span>
+                  </div>
+                  <!-- Compact Challenge Block -->
+                  <div class="row gx-3 gy-3 align-items-center">
+                     <div class="col-md-5">
+                        <div class="cc-box p-2">
+                           <div class="small-label">Product Brand</div>
+                           <div class="cc-value">Nike</div>
+                           <div class="small-label mt-2">Challenge On</div>
+                           <div class="cc-value">Quality</div>
+                           <div class="small-label mt-2">Video By</div>
+                           <div class="cc-value">John Carter</div>
+                        </div>
+                     </div>
+                     <div class="col-md-2 text-center">
+                        <h4 class="vs-text">VS</h4>
+                     </div>
+                     <div class="col-md-5">
+                        <div class="cc-box p-2">
+                           <div class="small-label">Challenged By</div>
+                           <div class="cc-value">Gamechanger: Surjit</div>
+                           <div class="small-label mt-2">Counter Video</div>
+                           <div class="cc-value">Gamechanger: Surjit</div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Progress bar -->
+                  <div class="mt-3">
+                     <div class="progress col-md-4 tiny-progress mb-2">
+                        <div class="progress-bar bg-success" style="width: 72%;"></div>
+                     </div>
+                     <small class="text-muted">Green = Support • Red = Opposition</small>
+                  </div>
+                  <div class="col-md-12 text-end">
+                     <a href="productDescription.html" class="btn btn-default pt-2">View Challenge</a>
+                  </div>
+                  <!-- Footer stats -->
+                  <div class="row mt-3 gx-3 gy-2">
+                     <div class="col-md-3">
+                        <div class="cc-stat"><strong>800+</strong> involved</div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="cc-stat">230 Shares • 120 Comments</div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="cc-stat">Reason: Slips on wet floor</div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="cc-stat">Counter: Works on wet floor</div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 mb-3">
+               <div class="challenge-card card shadow-sm p-3 mb-4">
+                  <!-- Title + Time -->
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                     <h5 class="fw-bold mb-0">Canon Camera</h5>
+                     <span class="badge rounded-pill bg-primary px-3 py-2">05:55:21</span>
+                  </div>
+                  <!-- Compact Challenge Block -->
+                  <div class="row gx-3 gy-3 align-items-center">
+                     <div class="col-md-5">
+                        <div class="cc-box p-2">
+                           <div class="small-label">Product Brand</div>
+                           <div class="cc-value">Canon</div>
+                           <div class="small-label mt-2">Challenge On</div>
+                           <div class="cc-value">Price</div>
+                           <div class="small-label mt-2">Video By</div>
+                           <div class="cc-value">Marchant</div>
+                        </div>
+                     </div>
+                     <div class="col-md-2 text-center">
+                        <h4 class="vs-text">VS</h4>
+                     </div>
+                     <div class="col-md-5">
+                        <div class="cc-box p-2">
+                           <div class="small-label">Challenged By</div>
+                           <div class="cc-value">Tester: Manmohan</div>
+                           <div class="small-label mt-2">Counter Video</div>
+                           <div class="cc-value">Tester: Manmohan</div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Progress bar -->
+                  <div class="mt-3">
+                     <div class="progress col-md-4 tiny-progress mb-2">
+                        <div class="progress-bar bg-success" style="width: 72%;"></div>
+                     </div>
+                     <small class="text-muted">Green = Support • Red = Opposition</small>
+                  </div>
+                  <div class="col-md-12 text-end">
+                     <a href="productDescription.html" class="btn btn-default pt-2">View Challenge</a>
+                  </div>
+                  <!-- Footer stats -->
+                  <div class="row mt-3 gx-3 gy-2">
+                     <div class="col-md-3">
+                        <div class="cc-stat"><strong>800+</strong> involved</div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="cc-stat">230 Shares • 120 Comments</div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="cc-stat">Reason: Slips on wet floor</div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="cc-stat">Counter: Works on wet floor</div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 mb-3">
+               <div class="challenge-card card shadow-sm p-3 mb-4">
+                  <!-- Title + Time -->
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                     <h5 class="fw-bold mb-0">Nike Running Shoes</h5>
+                     <span class="badge rounded-pill bg-primary px-3 py-2">01:12:45</span>
+                  </div>
+                  <!-- Compact Challenge Block -->
+                  <div class="row gx-3 gy-3 align-items-center">
+                     <div class="col-md-5">
+                        <div class="cc-box p-2">
+                           <div class="small-label">Product Brand</div>
+                           <div class="cc-value">Nike</div>
+                           <div class="small-label mt-2">Challenge On</div>
+                           <div class="cc-value">Quality</div>
+                           <div class="small-label mt-2">Video By</div>
+                           <div class="cc-value">John Carter</div>
+                        </div>
+                     </div>
+                     <div class="col-md-2 text-center">
+                        <h4 class="vs-text">VS</h4>
+                     </div>
+                     <div class="col-md-5">
+                        <div class="cc-box p-2">
+                           <div class="small-label">Challenged By</div>
+                           <div class="cc-value">Gamechanger: Surjit</div>
+                           <div class="small-label mt-2">Counter Video</div>
+                           <div class="cc-value">Gamechanger: Surjit</div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Progress bar -->
+                  <div class="mt-3">
+                     <div class="progress col-md-4 tiny-progress mb-2">
+                        <div class="progress-bar bg-success" style="width: 72%;"></div>
+                     </div>
+                     <small class="text-muted">Green = Support • Red = Opposition</small>
+                  </div>
+                  <div class="col-md-12 text-end">
+                     <a href="productDescription.html" class="btn btn-default pt-2">View Challenge</a>
+                  </div>
+                  <!-- Footer stats -->
+                  <div class="row mt-3 gx-3 gy-2">
+                     <div class="col-md-3">
+                        <div class="cc-stat"><strong>800+</strong> involved</div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="cc-stat">230 Shares • 120 Comments</div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="cc-stat">Reason: Slips on wet floor</div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="cc-stat">Counter: Works on wet floor</div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 mb-3">
+               <div class="challenge-card card shadow-sm p-3 mb-4">
+                  <!-- Title + Time -->
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                     <h5 class="fw-bold mb-0">Canon Camera</h5>
+                     <span class="badge rounded-pill bg-primary px-3 py-2">05:55:21</span>
+                  </div>
+                  <!-- Compact Challenge Block -->
+                  <div class="row gx-3 gy-3 align-items-center">
+                     <div class="col-md-5">
+                        <div class="cc-box p-2">
+                           <div class="small-label">Product Brand</div>
+                           <div class="cc-value">Canon</div>
+                           <div class="small-label mt-2">Challenge On</div>
+                           <div class="cc-value">Price</div>
+                           <div class="small-label mt-2">Video By</div>
+                           <div class="cc-value">Marchant</div>
+                        </div>
+                     </div>
+                     <div class="col-md-2 text-center">
+                        <h4 class="vs-text">VS</h4>
+                     </div>
+                     <div class="col-md-5">
+                        <div class="cc-box p-2">
+                           <div class="small-label">Challenged By</div>
+                           <div class="cc-value">Tester: Manmohan</div>
+                           <div class="small-label mt-2">Counter Video</div>
+                           <div class="cc-value">Tester: Manmohan</div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Progress bar -->
+                  <div class="mt-3">
+                     <div class="progress col-md-4 tiny-progress mb-2">
+                        <div class="progress-bar bg-success" style="width: 72%;"></div>
+                     </div>
+                     <small class="text-muted">Green = Support • Red = Opposition</small>
+                  </div>
+                  <div class="col-md-12 text-end">
+                     <a href="productDescription.html" class="btn btn-default pt-2">View Challenge</a>
+                  </div>
+                  <!-- Footer stats -->
+                  <div class="row mt-3 gx-3 gy-2">
+                     <div class="col-md-3">
+                        <div class="cc-stat"><strong>800+</strong> involved</div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="cc-stat">230 Shares • 120 Comments</div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="cc-stat">Reason: Slips on wet floor</div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="cc-stat">Counter: Works on wet floor</div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 mb-3">
+               <div class="challenge-card card shadow-sm p-3 mb-4">
+                  <!-- Title + Time -->
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                     <h5 class="fw-bold mb-0">Nike Running Shoes</h5>
+                     <span class="badge rounded-pill bg-primary px-3 py-2">01:12:45</span>
+                  </div>
+                  <!-- Compact Challenge Block -->
+                  <div class="row gx-3 gy-3 align-items-center">
+                     <div class="col-md-5">
+                        <div class="cc-box p-2">
+                           <div class="small-label">Product Brand</div>
+                           <div class="cc-value">Nike</div>
+                           <div class="small-label mt-2">Challenge On</div>
+                           <div class="cc-value">Quality</div>
+                           <div class="small-label mt-2">Video By</div>
+                           <div class="cc-value">John Carter</div>
+                        </div>
+                     </div>
+                     <div class="col-md-2 text-center">
+                        <h4 class="vs-text">VS</h4>
+                     </div>
+                     <div class="col-md-5">
+                        <div class="cc-box p-2">
+                           <div class="small-label">Challenged By</div>
+                           <div class="cc-value">Gamechanger: Surjit</div>
+                           <div class="small-label mt-2">Counter Video</div>
+                           <div class="cc-value">Gamechanger: Surjit</div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Progress bar -->
+                  <div class="mt-3">
+                     <div class="progress col-md-4 tiny-progress mb-2">
+                        <div class="progress-bar bg-success" style="width: 72%;"></div>
+                     </div>
+                     <small class="text-muted">Green = Support • Red = Opposition</small>
+                  </div>
+                  <div class="col-md-12 text-end">
+                     <a href="productDescription.html" class="btn btn-default pt-2">View Challenge</a>
+                  </div>
+                  <!-- Footer stats -->
+                  <div class="row mt-3 gx-3 gy-2">
+                     <div class="col-md-3">
+                        <div class="cc-stat"><strong>800+</strong> involved</div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="cc-stat">230 Shares • 120 Comments</div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="cc-stat">Reason: Slips on wet floor</div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="cc-stat">Counter: Works on wet floor</div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+            <div class="col-md-6 mb-3">
+               <div class="challenge-card card shadow-sm p-3 mb-4">
+                  <!-- Title + Time -->
+                  <div class="d-flex justify-content-between align-items-center mb-3">
+                     <h5 class="fw-bold mb-0">Canon Camera</h5>
+                     <span class="badge rounded-pill bg-primary px-3 py-2">05:55:21</span>
+                  </div>
+                  <!-- Compact Challenge Block -->
+                  <div class="row gx-3 gy-3 align-items-center">
+                     <div class="col-md-5">
+                        <div class="cc-box p-2">
+                           <div class="small-label">Product Brand</div>
+                           <div class="cc-value">Canon</div>
+                           <div class="small-label mt-2">Challenge On</div>
+                           <div class="cc-value">Price</div>
+                           <div class="small-label mt-2">Video By</div>
+                           <div class="cc-value">Marchant</div>
+                        </div>
+                     </div>
+                     <div class="col-md-2 text-center">
+                        <h4 class="vs-text">VS</h4>
+                     </div>
+                     <div class="col-md-5">
+                        <div class="cc-box p-2">
+                           <div class="small-label">Challenged By</div>
+                           <div class="cc-value">Tester: Manmohan</div>
+                           <div class="small-label mt-2">Counter Video</div>
+                           <div class="cc-value">Tester: Manmohan</div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Progress bar -->
+                  <div class="mt-3">
+                     <div class="progress col-md-4 tiny-progress mb-2">
+                        <div class="progress-bar bg-success" style="width: 72%;"></div>
+                     </div>
+                     <small class="text-muted">Green = Support • Red = Opposition</small>
+                  </div>
+                  <div class="col-md-12 text-end">
+                     <a href="productDescription.html" class="btn btn-default pt-2">View Challenge</a>
+                  </div>
+                  <!-- Footer stats -->
+                  <div class="row mt-3 gx-3 gy-2">
+                     <div class="col-md-3">
+                        <div class="cc-stat"><strong>800+</strong> involved</div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="cc-stat">230 Shares • 120 Comments</div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="cc-stat">Reason: Slips on wet floor</div>
+                     </div>
+                     <div class="col-md-3">
+                        <div class="cc-stat">Counter: Works on wet floor</div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section id="buyBlind" style="display:none;">
+         <div class="container content-section mb-5">
+            <div class="row justify-content-end my-3">
+               <div class="col-md-6 search-section ms-5">
+                  <form class="productsearch d-flex align-items-center" role="search">
+                     <div class="input-group">
+                        <input
+                           type="search"
+                           class="form-control"
+                           placeholder="Search Products Here..."
+                           id="inputSearchbox"
+                           aria-label="Search"
+                           />
+                        <button class="btn btn-primary" type="submit">
+                        <i class="bi bi-search"></i>
+                        </button>
+                     </div>
+                  </form>
+               </div>
+            </div>
+            <div class="row g-4 justify-content-center">
+               <div class="col-md-11">
+                  <div class="row">
+                     <div class="col-lg-4 col-md-6 my-4">
+                        <div class="product-card card shadow-sm h-100">
+                           <div class="card-body">
+                              <div class="row g-2 mb-3">
+                                 <div class="col-12">
+                                    <img src="./assets/images/camera2.jpg" alt="camera" class="img-fluid rounded">
+                                 </div>
+                              </div>
+                              <div class="text-end my-2 Icon-section"> <img src="./assets/images/buyblindIcon.svg" alt="Buy Blind" class="productIcons"></div>
+                              <h5 class="product-title mb-2">
+                                 Product 2
+                              </h5>
+                              <p class="product-description text-muted small mb-2">
+                                 <span id="shortDesc">
+                                 18MP APS-C sensor, DIGIC 4+ processor, ISO 100-6400 (expandable to 12800)
+                                 </span>
+                              </p>
+                              <div class="d-flex justify-content-between align-items-center mb-3">
+                                 <div>
+                                    <h6 class="text-secondary mb-0">Price</h6>
+                                    <p class="fw-semibold mb-0 text-dark">₹21,499 - ₹23,000</p>
+                                 </div>
+                                 <a href="buyblinddetails.html" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">Buy now</a>
+                              </div>
+                              <div class="d-flex justify-content-around text-center border-top pt-3 small">
+                                 <div>
+                                    <img src="./assets/images/rating.svg" alt="rating" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/nooftests.svg" alt="tests" width="24">
+                                    <div>1200</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                              </div>
+                              <div class="text-center mt-3">
+                                 <span class="text-success fw-semibold">RL Trust Rating: 4.9</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-6 my-4">
+                        <div class="product-card card shadow-sm h-100">
+                           <div class="card-body">
+                              <div class="row g-2 mb-3">
+                                 <div class="col-12">
+                                    <img src="./assets/images/camera2.jpg" alt="camera" class="img-fluid rounded">
+                                 </div>
+                              </div>
+                              <div class="text-end my-2 Icon-section"> <img src="./assets/images/buyblindIcon.svg" alt="Buy Blind" class="productIcons"></div>
+                              <h5 class="product-title mb-2">
+                                 Product 2
+                              </h5>
+                              <p class="product-description text-muted small mb-2">
+                                 <span id="shortDesc">
+                                 18MP APS-C sensor, DIGIC 4+ processor, ISO 100-6400 (expandable to 12800)
+                                 </span>
+                              </p>
+                              <div class="d-flex justify-content-between align-items-center mb-3">
+                                 <div>
+                                    <h6 class="text-secondary mb-0">Price</h6>
+                                    <p class="fw-semibold mb-0 text-dark">₹21,499 - ₹23,000</p>
+                                 </div>
+                                 <a href="buyblinddetails.html" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">Buy now</a>
+                              </div>
+                              <div class="d-flex justify-content-around text-center border-top pt-3 small">
+                                 <div>
+                                    <img src="./assets/images/rating.svg" alt="rating" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/nooftests.svg" alt="tests" width="24">
+                                    <div>1200</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                              </div>
+                              <div class="text-center mt-3">
+                                 <span class="text-success fw-semibold">RL Trust Rating: 4.9</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-6 my-4">
+                        <div class="product-card card shadow-sm h-100">
+                           <div class="card-body">
+                              <div class="row g-2 mb-3">
+                                 <div class="col-12">
+                                    <img src="./assets/images/camera2.jpg" alt="camera" class="img-fluid rounded">
+                                 </div>
+                              </div>
+                              <div class="text-end my-2 Icon-section"> <img src="./assets/images/buyblindIcon.svg" alt="Buy Blind" class="productIcons"></div>
+                              <h5 class="product-title mb-2">
+                                 Product 2
+                              </h5>
+                              <p class="product-description text-muted small mb-2">
+                                 <span id="shortDesc">
+                                 18MP APS-C sensor, DIGIC 4+ processor, ISO 100-6400 (expandable to 12800)
+                                 </span>
+                              </p>
+                              <div class="d-flex justify-content-between align-items-center mb-3">
+                                 <div>
+                                    <h6 class="text-secondary mb-0">Price</h6>
+                                    <p class="fw-semibold mb-0 text-dark">₹21,499 - ₹23,000</p>
+                                 </div>
+                                 <a href="buyblinddetails.html" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">Buy now</a>
+                              </div>
+                              <div class="d-flex justify-content-around text-center border-top pt-3 small">
+                                 <div>
+                                    <img src="./assets/images/rating.svg" alt="rating" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/nooftests.svg" alt="tests" width="24">
+                                    <div>1200</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                              </div>
+                              <div class="text-center mt-3">
+                                 <span class="text-success fw-semibold">RL Trust Rating: 4.9</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-6 my-4">
+                        <div class="product-card card shadow-sm h-100">
+                           <div class="card-body">
+                              <div class="row g-2 mb-3">
+                                 <div class="col-12">
+                                    <img src="./assets/images/camera2.jpg" alt="camera" class="img-fluid rounded">
+                                 </div>
+                              </div>
+                              <div class="text-end my-2 Icon-section"> <img src="./assets/images/buyblindIcon.svg" alt="Buy Blind" class="productIcons"></div>
+                              <h5 class="product-title mb-2">
+                                 Product 2
+                              </h5>
+                              <p class="product-description text-muted small mb-2">
+                                 <span id="shortDesc">
+                                 18MP APS-C sensor, DIGIC 4+ processor, ISO 100-6400 (expandable to 12800)
+                                 </span>
+                              </p>
+                              <div class="d-flex justify-content-between align-items-center mb-3">
+                                 <div>
+                                    <h6 class="text-secondary mb-0">Price</h6>
+                                    <p class="fw-semibold mb-0 text-dark">₹21,499 - ₹23,000</p>
+                                 </div>
+                                 <a href="buyblinddetails.html" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">Buy now</a>
+                              </div>
+                              <div class="d-flex justify-content-around text-center border-top pt-3 small">
+                                 <div>
+                                    <img src="./assets/images/rating.svg" alt="rating" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/nooftests.svg" alt="tests" width="24">
+                                    <div>1200</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                              </div>
+                              <div class="text-center mt-3">
+                                 <span class="text-success fw-semibold">RL Trust Rating: 4.9</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-6 my-4">
+                        <div class="product-card card shadow-sm h-100">
+                           <div class="card-body">
+                              <div class="row g-2 mb-3">
+                                 <div class="col-12">
+                                    <img src="./assets/images/camera2.jpg" alt="camera" class="img-fluid rounded">
+                                 </div>
+                              </div>
+                              <div class="text-end my-2 Icon-section"> <img src="./assets/images/buyblindIcon.svg" alt="Buy Blind" class="productIcons"></div>
+                              <h5 class="product-title mb-2">
+                                 Product 2
+                              </h5>
+                              <p class="product-description text-muted small mb-2">
+                                 <span id="shortDesc">
+                                 18MP APS-C sensor, DIGIC 4+ processor, ISO 100-6400 (expandable to 12800)
+                                 </span>
+                              </p>
+                              <div class="d-flex justify-content-between align-items-center mb-3">
+                                 <div>
+                                    <h6 class="text-secondary mb-0">Price</h6>
+                                    <p class="fw-semibold mb-0 text-dark">₹21,499 - ₹23,000</p>
+                                 </div>
+                                 <a href="buyblinddetails.html" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">Buy now</a>
+                              </div>
+                              <div class="d-flex justify-content-around text-center border-top pt-3 small">
+                                 <div>
+                                    <img src="./assets/images/rating.svg" alt="rating" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/nooftests.svg" alt="tests" width="24">
+                                    <div>1200</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                              </div>
+                              <div class="text-center mt-3">
+                                 <span class="text-success fw-semibold">RL Trust Rating: 4.9</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                     <div class="col-lg-4 col-md-6 my-4">
+                        <div class="product-card card shadow-sm h-100">
+                           <div class="card-body">
+                              <div class="row g-2 mb-3">
+                                 <div class="col-12">
+                                    <img src="./assets/images/camera2.jpg" alt="camera" class="img-fluid rounded">
+                                 </div>
+                              </div>
+                              <div class="text-end my-2 Icon-section"> <img src="./assets/images/buyblindIcon.svg" alt="Buy Blind" class="productIcons"></div>
+                              <h5 class="product-title mb-2">
+                                 Product 2
+                              </h5>
+                              <p class="product-description text-muted small mb-2">
+                                 <span id="shortDesc">
+                                 18MP APS-C sensor, DIGIC 4+ processor, ISO 100-6400 (expandable to 12800)
+                                 </span>
+                              </p>
+                              <div class="d-flex justify-content-between align-items-center mb-3">
+                                 <div>
+                                    <h6 class="text-secondary mb-0">Price</h6>
+                                    <p class="fw-semibold mb-0 text-dark">₹21,499 - ₹23,000</p>
+                                 </div>
+                                 <a href="buyblinddetails.html" target="_blank" class="btn btn-outline-primary btn-sm rounded-pill">Buy now</a>
+                              </div>
+                              <div class="d-flex justify-content-around text-center border-top pt-3 small">
+                                 <div>
+                                    <img src="./assets/images/rating.svg" alt="rating" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/nooftests.svg" alt="tests" width="24">
+                                    <div>1200</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/valueefficiencyrating.svg" alt="efficiency" width="24">
+                                    <div>4.8</div>
+                                 </div>
+                                 <div>
+                                    <img src="./assets/images/testerrating.svg" alt="tester" width="24">
+                                    <div>4.9</div>
+                                 </div>
+                              </div>
+                              <div class="text-center mt-3">
+                                 <span class="text-success fw-semibold">RL Trust Rating: 4.9</span>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </section>
+      <section class="profile-container container col-md-10 mt-4 mb-5" id="myProfile" style="display:none;">
+         <h2 class="fw-bold mb-4">My Profile</h2>
+         <div class="card eligibility-progress-card shadow-sm p-4 mb-4">
+            <h4 class="fw-bold mb-3">Your Eligibility Status</h4>
+            <div class="eligibility-progress d-flex align-items-center justify-content-between">
+               <!-- Step 1 -->
+               <div class="progress-step completed">
+                  <div class="step-circle">
+                     <i class="bi bi-check"></i>
+                  </div>
+                  <p class="step-label">Stage 1</p>
+               </div>
+               <div class="step-line"></div>
+               <!-- Step 2 -->
+               <div class="progress-step completed">
+                  <div class="step-circle">
+                     <i class="bi bi-check"></i>
+                  </div>
+                  <p class="step-label">Stage 2</p>
+               </div>
+               <div class="step-line"></div>
+               <!-- Step 3 -->
+               <div class="progress-step pending">
+                  <div class="step-circle">
+                     <i class="bi bi-x"></i>
+                  </div>
+                  <p class="step-label">Stage 3</p>
+               </div>
+            </div>
+         </div>
+         <!-- PROFILE CARD -->
+         <div class="card profile-card shadow-sm p-4 mb-4">
+            <div class="row align-items-center">
+               <!-- Profile Image -->
+               <div class="col-md-3 text-center mb-3">
+                  <img src="assets/images/profile.png" 
+                     class="profile-image"
+                     alt="User">
+                  <h5 class="fw-bold mt-3" id="userName">John Doe</h5>
+                  <p class="text-muted small mb-1" id="userEmailText">johndoe@gmail.com</p>
+                  <p class="text-muted small" id="userPhoneText">+91 9988776655</p>
+               </div>
+               <!-- Profile Form -->
+               <div class="col-md-9">
+                  <h5 class="fw-bold mb-3">Profile Information</h5>
+                  <div class="row g-3">
+                     <div class="col-12">
+                        <label class="small fw-semibold">Full Name</label>
+                        <input id="profileName" type="text" class="form-control"
+                           placeholder="Enter your full name" value="John Doe">
+                     </div>
+                     <div class="col-md-6">
+                        <label class="small fw-semibold">Email</label>
+                        <input id="profileEmail" type="email" class="form-control"
+                           placeholder="Enter your email address" value="johndoe@gmail.com">
+                     </div>
+                     <div class="col-md-6">
+                        <label class="small fw-semibold">Phone</label>
+                        <input id="profilePhone" type="text" class="form-control"
+                           placeholder="Enter your mobile number" value="+91 9876543210">
+                     </div>
+                     <div class="col-md-12">
+                        <label class="small fw-semibold">Address</label>
+                        <textarea id="profileAddress" class="form-control" rows="2"
+                           placeholder="Enter your complete address with city, state & pincode">Hyderabad, Telangana</textarea>
+                     </div>
+                  </div>
+                  <div class="mt-4 text-end">
+                     <button class="btn btn-default px-4 h-auto py-2">Update Profile</button>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <!-- MARKETPLACE ACCOUNTS -->
+         <div class="card marketplace-card shadow-sm p-4 mb-4">
+            <h4 class="fw-bold mb-3">Marketplace Accounts</h4>
+            <p class="text-muted small">
+               Connect your accounts from Amazon, Flipkart, Meesho, Ajio, etc.  
+               This enhances your ReviewLikes trust score.
+            </p>
+            <div class="row g-3 mt-3">
+               <div class="col-md-6">
+                  <label class="small fw-semibold">Amazon Username / Email</label>
+                  <input type="text" class="form-control" placeholder="Enter your Amazon registered email" value="user@amazon.com">
+               </div>
+               <div class="col-md-6">
+                  <label class="small fw-semibold">Flipkart Username / Phone</label>
+                  <input type="text" class="form-control" placeholder="Enter your Flipkart number" value="user@flipkart.com">
+               </div>
+               <div class="col-md-6">
+                  <label class="small fw-semibold">Meesho Login</label>
+                  <input type="text" class="form-control" placeholder="Enter your Meesho account ID" value="user@meeshow.com">
+               </div>
+               <div class="col-md-6">
+                  <label class="small fw-semibold">Ajio Account</label>
+                  <input type="text" class="form-control" placeholder="Enter your Ajio registered email" value="user@ajio.com">
+               </div>
+            </div>
+            <div class="mt-4 text-end">
+               <button class="btn btn-default px-4 h-auto py-2">Save Marketplace Accounts</button>
+            </div>
+         </div>
+         <!-- 3-STEP ELIGIBILITY -->
+         <div class="card eligibility-card shadow-sm p-4 mt-4">
+            <h4 class="fw-bold mb-3">Eligibility for Maximum Discount</h4>
+            <ul class="eligibility-steps list-group list-group-flush">
+               <li class="list-group-item eligibility-step">
+                  <h6 class="fw-bold mb-1">Step 1 — Register & Complete Verification</h6>
+                  <ul class="small text-muted mb-0 ps-3">
+                     <li>Create your ReviewLikes account using mobile OTP verification.</li>
+                     <li>Provide your marketplace account details (Amazon, Flipkart, Meesho, Ajio, etc.).</li>
+                     <li>Once verified, you become an eligible ReviewLikes user.</li>
+                  </ul>
+               </li>
+               <li class="list-group-item eligibility-step">
+                  <h6 class="fw-bold mb-1">Step 2 — Participate in Challenge Conversations</h6>
+                  <ul class="small text-muted mb-0 ps-3">
+                     <li>Like and share challenges.</li>
+                     <li>Join the debate actively and express your opinion.</li>
+                     <li>Regular activity increases your trust score.</li>
+                  </ul>
+               </li>
+               <li class="list-group-item eligibility-step">
+                  <h6 class="fw-bold mb-1">Step 3 — Challenge Products & Win</h6>
+                  <ul class="small text-muted mb-0 ps-3">
+                     <li>Challenge products that need clarity or improvement.</li>
+                     <li>If your challenge wins, you earn a “Challenge Winner” badge.</li>
+                     <li>Winners unlock <strong>maximum discount tiers</strong> in Buy Blind.</li>
+                  </ul>
+               </li>
+            </ul>
+            <div class="eligibility-tip mt-4 p-3 rounded">
+               <strong class="d-block">Bonus Tip:</strong>
+               <span class="text-muted small">Higher participation = Higher trust score = Higher discounts.</span>
+            </div>
+         </div>
+      </section>
+      <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+      <script src="assets/js/common.js"></script>
+      <script src="assets/js/custom.js"></script>
+          <script src="assets/js/sidenav.js"></script>
+          <script src="assets/js/secondarytabs.js"></script>
+          
+   </body>
+</html>

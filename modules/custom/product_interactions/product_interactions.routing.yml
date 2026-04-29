@@ -1,0 +1,15 @@
+product_interactions.like:
+  path: '/api/product/like'
+  defaults:
+    _controller: '\Drupal\product_interactions\Controller\InteractionController::like'
+  methods: [POST]
+  requirements:
+    _access: 'TRUE'
+
+product_interactions.share:
+  path: '/api/product/share'
+  defaults:
+    _controller: '\Drupal\product_interactions\Controller\InteractionController::share'
+  methods: [POST]
+  requirements:
+    _access: 'TRUE'

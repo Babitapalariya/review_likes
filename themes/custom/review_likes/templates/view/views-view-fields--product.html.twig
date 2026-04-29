@@ -7,28 +7,26 @@
       {{ fields.field_images.content }}
      
       <div class="col-md-2 text-center socialmedia-icons">
-        <div class="iconsection mt-2">
-         
-          {% set likes = custom_likes_count ? custom_likes_count : 0 %}
-          <div class="interaction-buttons">
-            <a href="javascript:void(0)" data-nid="{{ fields.nid.content|striptags|trim|render }}" title="Likes"
-              class="like-btn">
-              {% if user_has_liked == true %}
-              <img src="/themes/custom/review_likes/images/like.svg" alt="rating">
-              {% else %}
-              <img src="/themes/custom/review_likes/images/unlike.svg" alt="rating">
-              {% endif %}
-              <br>
-              <span class="like-count">{{ likes }}</span>
-            </a>
-          </div>
-   
-        </div>
+
+
+          <div class="iconsection mt-2">
+            {% set likes = custom_likes_count ? custom_likes_count : 0 %}
+                                       <a href="javascript:void(0)" title="Likes" class="like-btn">
+
+                                        <img src="{{ url('<front>') }}themes/custom/review_likes/images/like.svg" alt="rating"></a><br>
+                                       <span>1100</span>
+                                    </div>
+
+
+
+
+
+        
 
        
         <div class="iconsection mt-2">
           <a href="javascript:void(0)" title="Comments">
-            <img src="/themes/custom/review_likes/images/comment.svg" alt="rating">
+            <img src="{{ url('<front>') }}themes/custom/review_likes/images/comment.svg" alt="rating">
           </a><br>
           <span class="comments-count">{{ custom_comment_count ?? 0 }}</span>
         </div>
@@ -37,7 +35,7 @@
         
         <div class="iconsection mt-2">
           <a href="javascript:void(0)" class="share-button" data-nid="{{ row.nid }}" title="Share">
-            <img src="/themes/custom/review_likes/images/share.svg" alt="rating">
+            <img src="{{ url('<front>') }}themes/custom/review_likes/images/share.svg" alt="rating">
           </a><br>
           <span id="share-count-{{ row.nid }}">{{ custom_share_count }}</span>
 
@@ -62,6 +60,7 @@
 
     <div class="row">
       <div class="col-md-8 product-text">
+        <h4 class="product-title">{{fields.title.content}}</h4>
         {{fields.body.content}}
       </div>
       <div class="col-md-4 price">
@@ -73,6 +72,48 @@
     </div>
   </div>
  
+
+
+
+<div class="card-footer">
+
+<div class="ratingsection">
+                                 <div class="row">
+                                    <div class="col-md-1 icon-section">
+                                       <a href="javascript:void(0)" title="Rating"><img src="{{ url('<front>') }}themes/custom/review_likes/images/rating.svg" alt="rating" class="mb-2"></a><br>
+                                       <span>4.9</span>
+                                    </div>
+                                    <div class="col-md-1 icon-section">
+                                       <a href="javascript:void(0)" title="No. of tests done"><img src="{{ url('<front>') }}themes/custom/review_likes/images/nooftests.svg" alt="no.of tests done" class="mb-2"></a><br>
+                                       <span>1200</span>
+                                    </div>
+                                    <div class="col-md-1 icon-section">
+                                       <a href="javascript:void(0)" title="Value Efficiency Rating"><img src="{{ url('<front>') }}themes/custom/review_likes/images/valueefficiencyrating.svg" alt="Value Efficiency Rating" class="mb-2"></a><br>
+                                       <span>4.8</span>
+                                    </div>
+                                    <div class="col-md-1 icon-section">
+                                       <a href="javascript:void(0)" title="Tester Rating"><img src="{{ url('<front>') }}themes/custom/review_likes/images/testerrating.svg" alt="Tester Rating" class="mb-2"></a><br>
+                                       <span>4.9</span>
+                                    </div>
+                                    <div class="col-md-3 text-center">
+                                       <span class="rlrating">RL Trust Rating</span><br>
+                                       <span class="cardyellow-text rlratingvalue">4.9</span>
+                                    </div>
+                                    <div class="col-md-4 text-center">
+                                       <button type="button" class="btn btn-default post-btn">Compare Buy</button>
+                                    </div>
+                                 </div>
+                                 <div class="mt-4">
+                                    <button type="button" class="btn btn-default challenge-btn post-btn" data-bs-toggle="modal" data-bs-target="#exampleModal">Challenge</button>
+                                 </div>
+                              </div>
+
+
+
+
+
+
+
   <div class="my-4">
     <div class="input-group commentbox">
       <input type="text" class="form-control" id="comment{{ fields.nid.content|striptags|trim|render }}"
@@ -87,6 +128,13 @@
       <div class="cmnt">{{ latest_comment.comment }}</div>
     </div>
   </div>
+
+</div>
+
+
+
+ <a href="{{ fields.view_node.content|striptags|trim|render }}" class="card-overlay" aria-label="View Product"></a>
+
 
 
 </div>

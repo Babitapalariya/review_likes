@@ -16,13 +16,13 @@ role_based_registration.business_form:
   requirements:
     _custom_access: '\Drupal\role_based_registration\Form\BusinessRegistrationForm::access'
 
-role_based_registration.user_list:
-  path: '/marchant-dashboard'
-  defaults:
-    _controller: '\Drupal\role_based_registration\Controller\UserListController::userListPage'
-    _title: 'User List'
-  requirements:
-    _permission: 'access content'
+# role_based_registration.user_list:
+#   path: '/marchant-dashboard'
+#   defaults:
+#     _controller: '\Drupal\role_based_registration\Controller\UserListController::userListPage'
+#     _title: 'User List'
+#   requirements:
+#     _permission: 'access content'
 
 # role_based_registration.product_form:
 #   path: '/product/create'
@@ -37,10 +37,10 @@ role_based_registration.user_list:
 #     # _access: 'TRUE'
 
 role_based_registration.product_form:
-  path: '/product/create'
+  path: '/merchant-dashboard'
   defaults:
     _form: '\Drupal\role_based_registration\Form\ProductForm'
-    _title: 'Create Product'
+    _title: 'Merchant Dashboard'
   requirements:
     _role: 'merchant'
     _permission: 'create product content'

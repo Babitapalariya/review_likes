@@ -1,0 +1,173 @@
+<?php
+
+use Drupal\Core\Entity\EntityInterface;
+
+/**
+ * Store a like for a node.
+ */
+function product_interactions_like($nid, $uid) {
+  $database = \Drupal::database();
+  
+  // Check if already liked
+  $existing = $database->select('product_interactions', 'pi')
+    ->fields('pi', ['id'])
+    ->condition('nid', $nid)
+    ->condition('uid', $uid)
+    ->condition('type', 'like')
+    ->execute()
+    ->fetchField();
+
+  if (!$existing) {
+    $database->insert('product_interactions')
+      ->fields([
+        'nid' => $nid,
+        'uid' => $uid,
+        'type' => 'like',
+        'created' => time(),
+      ])
+      ->execute();
+  }
+}
+
+/**
+ * Get counts for a node.
+ */
+function product_interactions_get_counts($nid) {
+  $database = \Drupal::database();
+  
+  $counts = [];
+  foreach (['like', 'share'] as $type) {
+    $counts[$type] = $database->select('product_interactions', 'pi')
+      ->condition('nid', $nid)
+      ->condition('type', $type)
+      ->countQuery()
+      ->execute()
+      ->fetchField();
+  }
+  
+  // Comment count from Drupal core
+  $counts['comment'] = \Drupal::entityQuery('comment')
+    ->condition('entity_id', $nid)
+    ->condition('entity_type', 'node')
+    ->condition('status', 1)
+    ->accessCheck(FALSE)
+    ->count()
+    ->execute();
+
+  return $counts;
+}
+
+
+
+
+ 
+
+
+
+function product_interactions_preprocess_node(&$variables) {
+  if ($variables['node']->getType() === 'marchant_products') {
+    $variables['#attached']['library'][] = 'product_interactions/product.interactions';
+
+    $nid = $variables['node']->id();
+    $database = \Drupal::database();
+    $current_user = \Drupal::currentUser();
+
+    // Counts
+    $counts = [];
+    foreach (['like', 'share'] as $type) {
+      $counts[$type] = (int) $database->select('product_interactions', 'pi')
+        ->condition('nid', $nid)
+        ->condition('type', $type)
+        ->countQuery()
+        ->execute()
+        ->fetchField();
+    }
+
+    $counts['comment'] = (int) \Drupal::entityQuery('comment')
+      ->condition('entity_id', $nid)
+      ->condition('entity_type', 'node')
+      ->condition('status', 1)
+      ->accessCheck(FALSE)
+      ->count()
+      ->execute();
+
+    $variables['interaction_counts'] = $counts;
+
+    // Check if current user already liked
+    $already_liked = FALSE;
+    if ($current_user->id()) {
+      $already_liked = (bool) $database->select('product_interactions', 'pi')
+        ->fields('pi', ['id'])
+        ->condition('nid', $nid)
+        ->condition('uid', $current_user->id())
+        ->condition('type', 'like')
+        ->execute()
+        ->fetchField();
+    }
+    $variables['already_liked'] = $already_liked;
+
+    // Attach library + CSRF token
+    $variables['#attached']['library'][] = 'review_likes/product.interactions';
+    $variables['#attached']['drupalSettings']['productInteractions'] = [
+      'token' => \Drupal::csrfToken()->get('product-interactions'),
+      'uid'   => $current_user->id(),
+    ];
+  }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/**
+ * Implements hook_form_alter().
+ */
+/*function product_interactions_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  \Drupal::logger('product_interactions')->debug('Form loaded: @id', ['@id' => $form_id]);
+
+  if (in_array($form_id, ['user_register_form', 'user_form'])) {
+    \Drupal::logger('product_interactions')->debug('User form found: @id', ['@id' => $form_id]);
+    $form['#validate'][] = 'product_interactions_user_form_validate_debug'; // ← registers this name
+  }
+}*/
+
+/**
+ * Debug validate handler for user form.
+ * ⚠️ Was "mymodule_user_form_validate_debug" — now fixed to match above
+ */
+function product_interactions_user_form_validate_debug(&$form, \Drupal\Core\Form\FormStateInterface $form_state) {
+  \Drupal::logger('product_interactions')->debug('=== VALIDATE DEBUG ===');
+  \Drupal::logger('product_interactions')->debug('Roles value: @roles', [
+    '@roles' => print_r($form_state->getValue('roles'), TRUE),
+  ]);
+  \Drupal::logger('product_interactions')->debug('Form errors: @errors', [
+    '@errors' => print_r($form_state->getErrors(), TRUE),
+  ]);
+  \Drupal::logger('product_interactions')->debug('All values: @values', [
+    '@values' => print_r($form_state->getValues(), TRUE),
+  ]);
+}
+
+
+function product_interactions_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+
+  if (in_array($form_id, ['user_register_form', 'user_form'])) {
+
+    // Log the form class responsible
+    $form_object = $form_state->getFormObject();
+    \Drupal::logger('product_interactions')->notice('Form class: @class', [
+      '@class' => get_class($form_object),
+    ]);
+
+    $form['#validate'][] = 'product_interactions_user_form_validate_debug';
+  }
+}

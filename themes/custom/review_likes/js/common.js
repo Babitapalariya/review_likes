@@ -1,3 +1,4 @@
+(function ($) {
   //fixed header logic
   if ($(window).width() > 992) {
       $(window).scroll(function() {
@@ -269,7 +270,7 @@ function createPlatformBlock(id) {
           <input type="text" id="platformrating-${id}" class="form-control" placeholder="Rating" required>
         </div>
         <div class="col-md-3 mb-3">
-          <label for="couponcode-${id}" class="required mb-1">Coupon Code</label>
+          <label for="couponcode-${id}" class="mb-1">Coupon Code</label>
           <input type="text" id="couponcode-${id}" class="form-control" placeholder="Coupon Code" required>
         </div>
         <div class="col-md-3 mb-3">
@@ -529,7 +530,7 @@ $("#confirmDeleteBtn").on("click", function () {
   });
 
 
-
+//Sidenav performance menu
    $(document).ready(function(){
          
             // Regular sidebar buttons (except Performance)
@@ -554,7 +555,31 @@ $("#confirmDeleteBtn").on("click", function () {
             });
          });
 
+//sidenav rebuttal and gift tab
 
+   $(document).ready(function(){
+         
+            // Regular sidebar buttons (except Performance)
+            $(".nav-btn").not(".rebuttalgifts-btn").on("click", function(){
+               $(".nav-btn").removeClass("active");
+               $(this).addClass("active");
+         
+               $(".view").hide();
+               $("#" + $(this).data("view")).show();
+            });
+         
+            // Performance dropdown links
+            $(".rebuttal-link").on("click", function(e){
+               e.preventDefault();
+         
+               $(".nav-btn").removeClass("active");
+               // Keep rebuttal highlighted
+               $(".rebuttalgifts-btn").addClass("active");
+         
+               $(".view").hide();
+               $("#" + $(this).data("view")).show();
+            });
+         });
 
 
 // Generic back-to-menu handler
@@ -650,3 +675,38 @@ document.getElementById('searchInput').addEventListener('input', function () {
     row.style.display = nameCell.includes(filter) ? '' : 'none';
   });
 });
+
+
+ document.addEventListener("DOMContentLoaded", function () {
+           const testernavButtons = document.querySelectorAll(".testerdashboard .nav-btn");
+           const testerviews = document.querySelectorAll(".testerdashboard .view");
+         
+           testernavButtons.forEach(btn => {
+             btn.addEventListener("click", function () {
+               // Remove active class from all buttons
+               testernavButtons.forEach(b => b.classList.remove("active"));
+               // Hide all views
+               testerviews.forEach(v => v.style.display = "none");
+         
+               // Activate clicked button
+               this.classList.add("active");
+         
+               // Get target view from data-view attribute
+               const viewId = this.getAttribute("data-view");
+               const targetView = document.getElementById(viewId);
+               if (targetView) {
+                 targetView.style.display = "block";
+               }
+             });
+           });
+         
+           // Set default view if none are visible
+         testerviews.forEach(v => v.style.display = "none");
+         const defaultView = document.getElementById("testerProfile");
+         if (defaultView) {
+         defaultView.style.display = "block";
+         document.querySelector('[data-view="testerProfile"]')?.classList.add("active");
+         }
+         });
+
+})(jQuery);

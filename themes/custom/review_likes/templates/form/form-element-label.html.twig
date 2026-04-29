@@ -60,8 +60,15 @@
 {% set classes = classes|merge(['agree-terms']) %}
 {% endif %}
 
+
+
 {% set description_classes = ['description', description_display == 'invisible' ? 'visually-hidden'] %}
-<div {{ attributes.addClass(classes) }}>
+
+
+
+
+
+ 
 {% set element_id = element['#id'] ?? '' %}
 
 {% set allowed_ids = [
@@ -73,6 +80,20 @@
   <label for="{{ element['#id'] }}" class="required mb-2">
     {{ element['#title'] }}
   </label>
+
+  {% elseif element['#id'] == 'edit-name' %}
+  {% elseif element['#id'] == 'edit-pass' %}
+  {% elseif element['#id'] == 'edit-mail' %}
+  {% elseif element['#id'] == 'edit-elink' %}
+  {% elseif element['#id'] == 'edit-field-phone-number-0-value' %}
+  {% elseif element['#id'] == 'edit-pass-pass1' %}
+  {% elseif element['#id'] == 'edit-pass-pass2' %}
+  {% elseif element['#id'] == 'edit-field-last-name-0-value' %}
+  {% elseif element['#id'] == 'edit-field-checkbox-value' %}
+
+ 
+
+
   {% elseif element_id == 'edit-testified-video-1' %}
   <label for="{{ element['#id'] }}" class="form-check-label">
     {{ element['#title'] }}
@@ -111,8 +132,12 @@
   <label for="{{ element['#id'] }}" class="form-check-label">
     {{ element['#title'] }}
   </label>
+
+
+
   {% else %}
-  <label for="{{ element['#id'] }}" class="required mb-2">
+
+  <label for="{{ element['#id'] }}" class="{% if required %}required {% endif %} mb-2">
    {{ element['#title'] }}
    </label>
 {% endif %}
@@ -144,4 +169,4 @@
   {% if description_display in ['after', 'invisible'] and description.content %}
     <div {{ description.attributes.addClass(description_classes) }}>{{ description.content }}</div>
   {% endif %}
-</div>
+ 

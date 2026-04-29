@@ -58,6 +58,68 @@
   </select>
 </div>
 
+{% elseif id == 'edit-field-products-target-id' %}
+
+
+
+  <select multiple
+    id="{{ id }}"
+    name="native-select"
+    class="{{ classes|join(' ') }}"
+    data-search="true"
+    data-placeholder="{{ placeholder }}"
+    {% if is_multiple %}multiple{% endif %}
+  >
+    {% for option in options %}
+      {% if option.type == 'option' %}
+        <option value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }}>{{ option.label }}</option>
+      {% elseif option.type == 'optgroup' %}
+        <optgroup label="{{ option.label }}">
+          {% for sub_option in option.options %}
+            <option value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }}>{{ sub_option.label }}</option>
+          {% endfor %}
+        </optgroup>
+      {% endif %}
+    {% endfor %}
+  </select>
+
+
+
+{% elseif id == 'edit-field-product-category-target-id' %}
+
+
+
+  {# <select multiple
+    id="{{ id }}"
+    name="native-select"
+    class="{{ classes|join(' ') }}"
+    data-search="true"
+    data-placeholder="{{ placeholder }}"
+    {% if is_multiple %}multiple{% endif %}
+  > #}
+  <select
+    id="{{ id }}"
+    name="{{ name }}{{ is_multiple ? '[]' }}"
+    class="{{ classes|join(' ') }}"
+    data-search="true"
+    data-placeholder="{{ placeholder }}"
+    {% if is_multiple %}multiple{% endif %}
+  >
+    {% for option in options %}
+      {% if option.type == 'option' %}
+        <option value="{{ option.value }}"{{ option.selected ? ' selected="selected"' }}>{{ option.label }}</option>
+      {% elseif option.type == 'optgroup' %}
+        <optgroup label="{{ option.label }}">
+          {% for sub_option in option.options %}
+            <option value="{{ sub_option.value }}"{{ sub_option.selected ? ' selected="selected"' }}>{{ sub_option.label }}</option>
+          {% endfor %}
+        </optgroup>
+      {% endif %}
+    {% endfor %}
+  </select>
+
+  
+
 {% else %}
   <select
     id="{{ id }}"

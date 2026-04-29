@@ -1,0 +1,980 @@
+<!DOCTYPE html>
+<html lang="en">
+   <head>
+      <meta charset="utf-8" />
+      <title>Review Likes — Gamechanger Dashboard</title>
+      <link rel="icon" type="image/x-icon" href="assets/images/favicon.png" />
+      <script src="assets/js/popper.min.js" type="text/javascript"></script>
+      <script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+      <link rel="stylesheet" type="text/css" href="assets/css/bootstrap.min.css"/>
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=Arima:wght@100..700&family=Arimo:ital,wght@0,400..700;1,400..700&family=Kaushan+Script&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+      <link rel="stylesheet" type="text/css" href="assets/css/common.css"/>
+      <!-- FIXED PATH (removed leading /) -->
+      <link rel="stylesheet" href="assets/css/gamechangerdashboard.css" />
+   </head>
+   <body>
+      <!-- Menu start here-->
+      <header>
+         <nav class="navbar navbar-expand-lg main-navbar">
+            <div class="container-fluid">
+               <a class="navbar-brand logo" href="#">ReviewLikes</a>
+               <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menuitems" aria-controls="menuitems" aria-expanded="false" aria-label="Toggle navigation">
+               <span class="navbar-toggler-icon"></span>
+               </button>
+               <div class="collapse navbar-collapse" id="menuitems">
+                  <ul class="navbar-nav m-auto mb-2 mb-lg-0">
+                     <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                     <li class="nav-item"><a class="nav-link active" aria-current="page" href="#">Merchant</a></li>
+                     <li class="nav-item"><a class="nav-link" href="#">Freelance</a></li>
+                     <li class="nav-item"><a class="nav-link" href="#">Market Place</a></li>
+                     <li class="nav-item dropdown">
+                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">Settings</a>
+                        <ul class="dropdown-menu">
+                           <li><a class="dropdown-item" href="#">Account Settings</a></li>
+                           <li><a class="dropdown-item" href="#">Logout</a></li>
+                        </ul>
+                     </li>
+                  </ul>
+                  <div class="d-flex">
+                     <select class="form-select" id="Countrydropdown">
+                        <option value="India">India</option>
+                        <option value="US" selected>US</option>
+                        <option value="UK">UK</option>
+                     </select>
+                     <select class="form-select" id="languagedropdown">
+                        <option selected>English</option>
+                        <option value="Spanish">Spanish</option>
+                     </select>
+                     <button type="button" class="btn btn-default">Sign in</button>
+                  </div>
+               </div>
+            </div>
+         </nav>
+      </header>
+      <!-- Menu end here-->
+      <div class="app testerdashboard" data-app="review-likes-dashboard">
+         <!-- Sidebar -->
+         <aside aria-label="Sidebar">
+            <div class="brand ms-2">
+               <h4>Gamechanger<br>Dashboard</h4>
+            </div>
+            <nav>
+               <button class="nav-btn active" data-view="homesection">Home</button>
+               <button class="nav-btn" data-view="gamechangerProfile">Profile</button>
+               <button class="nav-btn" data-view="mycases">My Cases</button>
+               <button class="nav-btn" data-view="myrewards">My Rewards</button>
+               <button class="nav-btn" data-view="reputation">Reputation</button>
+               <button class="nav-btn" data-view="g-notifications" >Notifications<span class="badge text-bg-danger">2</span></button>
+               <button class="nav-btn" data-view="helpandpolicies">Help and Policies</button>
+            </nav>
+         </aside>
+         <!-- Main Content -->
+         <main>
+            <section id="contentArea">
+               <div class="view" id="homesection">
+                  <section class="live-cases-section py-5">
+                     <div class="container">
+                        <div class="row align-items-center p-5">
+                           <!-- Left Text -->
+                           <div class="col-md-7 mb-4 mb-md-0">
+                              <h1 class="fw-bold mb-3">Challenge claims. Win rewards. Fix the internet.</h1>
+                              <p class="text-muted fs-5">
+                                 Post counter-videos with standardized methods and raw evidence. If your challenge is upheld after 30 days of weighted voting, you earn perks, credits, and platform visibility.
+                              </p>
+                              <div class="mt-5"><a href="#" class="me-3 claim-btn" data-bs-toggle="modal" data-bs-target="#fileclaimModal">File a Claim</a></div>
+                           </div>
+                           <!-- Right Cards -->
+                           <div class="col-md-5 case-section">
+                              <div class="row g-3">
+                                 <!-- Case Card -->
+                                 <div class="col-12">
+                                    <div class="case-card p-3 shadow-sm bg-white">
+                                       <div class="d-flex justify-content-between align-items-center mb-2">
+                                          <p class="mb-0 fw-semibold">Case 1 Title</p>
+                                          <span class="vote-btn px-3 py-1 rounded">Voting</span>
+                                       </div>
+                                       <p>Case 1 Description</p>
+                                       <p><span class="text-success fw-bold">300<i class="bi bi bi-caret-up-fill fs-5 plus-icon me-5"></i></span><span class="text-danger fw-bold">10<i class="bi bi bi-caret-down-fill fs-5 minus-icon"></i></span></p>
+                                       <div class="d-flex align-items-center">
+                                          <p class="evidence-label mb-0 me-3">Evidence Completeness:</p>
+                                          <div class="progress flex-grow-1">
+                                             <div class="progress-bar" style="width: 70%;"></div>
+                                          </div>
+                                          <span class="percentage ms-2 fw-bold">70%</span>
+                                       </div>
+                                       <div class="mt-3 d-flex justify-content-between">
+                                          <button class="btn btn-outline-dark btn-sm w-50 me-2">View Case</button>
+                                          <button class="btn btn-dark btn-sm w-50" data-bs-toggle="modal" data-bs-target="#fileclaimModal">Make Counter Video</button>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-12">
+                                    <div class="case-card p-3 shadow-sm bg-white">
+                                       <div class="d-flex justify-content-between align-items-center mb-2">
+                                          <p class="mb-0 fw-semibold">Case 2 Title</p>
+                                          <span class="vote-btn px-3 py-1 rounded">Under Review</span>
+                                       </div>
+                                       <p>Case 2 Description</p>
+                                       <p><span class="text-success fw-bold">300<i class="bi bi bi-caret-up-fill fs-5 plus-icon me-5"></i></span><span class="text-danger fw-bold">10<i class="bi bi bi-caret-down-fill fs-5 minus-icon"></i></span></p>
+                                       <div class="d-flex align-items-center">
+                                          <p class="evidence-label mb-0 me-3">Evidence Completeness:</p>
+                                          <div class="progress flex-grow-1">
+                                             <div class="progress-bar" style="width: 50%;"></div>
+                                          </div>
+                                          <span class="percentage ms-2 fw-bold">50%</span>
+                                       </div>
+                                       <div class="mt-3 d-flex justify-content-between">
+                                          <button class="btn btn-outline-dark btn-sm w-50 me-2">View Case</button>
+                                          <button class="btn btn-dark btn-sm w-50" data-bs-toggle="modal" data-bs-target="#fileclaimModal">Make Counter Video</button>
+                                       </div>
+                                    </div>
+                                 </div>
+                                 <div class="col-12">
+                                    <div class="case-card p-3 shadow-sm bg-white">
+                                       <div class="d-flex justify-content-between align-items-center mb-2">
+                                          <p class="mb-0 fw-semibold">Case 3 Title</p>
+                                          <span class="vote-btn px-3 py-1 rounded">Under Review</span>
+                                       </div>
+                                       <p>Case 3 Description</p>
+                                       <p><span class="text-success fw-bold">300<i class="bi bi bi-caret-up-fill fs-5 plus-icon me-5"></i></span><span class="text-danger fw-bold">10<i class="bi bi bi-caret-down-fill fs-5 minus-icon"></i></span></p>
+                                       <div class="d-flex align-items-center">
+                                          <p class="evidence-label mb-0 me-3">Evidence Completeness:</p>
+                                          <div class="progress flex-grow-1">
+                                             <div class="progress-bar" style="width: 50%;"></div>
+                                          </div>
+                                          <span class="percentage ms-2 fw-bold">50%</span>
+                                       </div>
+                                       <div class="mt-3 d-flex justify-content-between">
+                                          <button class="btn btn-outline-dark btn-sm w-50 me-2">View Case</button>
+                                          <button class="btn btn-dark btn-sm w-50" data-bs-toggle="modal" data-bs-target="#fileclaimModal">Make Counter Video</button>
+                                       </div>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                        <div class="recentvideosection">
+                           <!-- Search Bar -->
+                           <div class="row px-4 justify-content-end mb-5">
+                              <h4 class="fw-bold mb-4 text-center">Recently Created Product Videos</h4>
+                              <div class="col-md-12">
+                                 <div class="input-group w-25 ms-auto">
+                                    <input type="text" class="form-control" id="searchinput" placeholder="Search products or videos...">
+                                    <button class="btn btn-dark">Search</button>
+                                 </div>
+                              </div>
+                           </div>
+                           <!-- Cards -->
+                           <div class="row g-3 px-4 m-auto">
+                              <!-- Card Item -->
+                              <div class="col-md-3 mt-0 mb-4">
+                                 <div class="product-card bg-white shadow-sm p-3 rounded">
+                                    <div class="ratio ratio-16x9 mb-3 bg-light"><img src="./assets/images/camera.jpg" class="img-fluid thumb-img active" alt="Thumbnail 1"></div>
+                                    <h6 class="fw-semibold mb-1">Product Title</h6>
+                                    <p class="text-muted small mb-2">Uploaded 2 days ago</p>
+                                    <div class="d-flex justify-content-between">
+                                       <a class="btn btn-outline-dark btn-sm" href="#">Watch</a>
+                                       <a class="btn btn-dark btn-sm" href="#">Challenge</a>
+                                    </div>
+                                 </div>
+                              </div>
+                              <!-- Duplicate this for more -->
+                              <div class="col-md-3 mt-0 mb-4">
+                                 <div class="product-card bg-white shadow-sm p-3 rounded">
+                                    <div class="ratio ratio-16x9 mb-3 bg-light"><img src="./assets/images/camera.jpg" class="img-fluid thumb-img active" alt="Thumbnail 1"></div>
+                                    <h6 class="fw-semibold mb-1">Product Title</h6>
+                                    <p class="text-muted small mb-2">Uploaded 5 days ago</p>
+                                    <div class="d-flex justify-content-between">
+                                       <a class="btn btn-outline-dark btn-sm" href="#">Watch</a>
+                                       <a class="btn btn-dark btn-sm" href="#">Challenge</a>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-3 mt-0 mb-4">
+                                 <div class="product-card bg-white shadow-sm p-3 rounded">
+                                    <div class="ratio ratio-16x9 mb-3 bg-light"><img src="./assets/images/camera.jpg" class="img-fluid thumb-img active" alt="Thumbnail 1"></div>
+                                    <h6 class="fw-semibold mb-1">Product Title</h6>
+                                    <p class="text-muted small mb-2">Uploaded 1 week ago</p>
+                                    <div class="d-flex justify-content-between">
+                                       <a class="btn btn-outline-dark btn-sm" href="#">Watch</a>
+                                       <a class="btn btn-dark btn-sm" href="#">Challenge</a>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-3 mt-0 mb-4">
+                                 <div class="product-card bg-white shadow-sm p-3 rounded">
+                                    <div class="ratio ratio-16x9 mb-3 bg-light"><img src="./assets/images/camera.jpg" class="img-fluid thumb-img active" alt="Thumbnail 1"></div>
+                                    <h6 class="fw-semibold mb-1">Product Title</h6>
+                                    <p class="text-muted small mb-2">Uploaded 1 week ago</p>
+                                    <div class="d-flex justify-content-between">
+                                       <a class="btn btn-outline-dark btn-sm" href="#">Watch</a>
+                                       <a class="btn btn-dark btn-sm" href="#">Challenge</a>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-3 mt-0 mb-4">
+                                 <div class="product-card bg-white shadow-sm p-3 rounded">
+                                    <div class="ratio ratio-16x9 mb-3 bg-light"><img src="./assets/images/camera.jpg" class="img-fluid thumb-img active" alt="Thumbnail 1"></div>
+                                    <h6 class="fw-semibold mb-1">Product Title</h6>
+                                    <p class="text-muted small mb-2">Uploaded 1 week ago</p>
+                                    <div class="d-flex justify-content-between">
+                                       <a class="btn btn-outline-dark btn-sm" href="#">Watch</a>
+                                       <a class="btn btn-dark btn-sm" href="#">Challenge</a>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-3 mt-0 mb-4">
+                                 <div class="product-card bg-white shadow-sm p-3 rounded">
+                                    <div class="ratio ratio-16x9 mb-3 bg-light"><img src="./assets/images/camera.jpg" class="img-fluid thumb-img active" alt="Thumbnail 1"></div>
+                                    <h6 class="fw-semibold mb-1">Product Title</h6>
+                                    <p class="text-muted small mb-2">Uploaded 1 week ago</p>
+                                    <div class="d-flex justify-content-between">
+                                       <a class="btn btn-outline-dark btn-sm" href="#">Watch</a>
+                                       <a class="btn btn-dark btn-sm" href="#">Challenge</a>
+                                    </div>
+                                 </div>
+                              </div>
+                              <div class="col-md-3 mt-0 mb-4">
+                                 <div class="product-card bg-white shadow-sm p-3 rounded">
+                                    <div class="ratio ratio-16x9 mb-3 bg-light"><img src="./assets/images/camera.jpg" class="img-fluid thumb-img active" alt="Thumbnail 1"></div>
+                                    <h6 class="fw-semibold mb-1">Product Title</h6>
+                                    <p class="text-muted small mb-2">Uploaded 1 week ago</p>
+                                    <div class="d-flex justify-content-between">
+                                       <a class="btn btn-outline-dark btn-sm" href="#">Watch</a>
+                                       <a class="btn btn-dark btn-sm" href="#">Challenge</a>
+                                    </div>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </section>
+               </div>
+               <!-- Profile -->
+               <div class="view" id="gamechangerProfile" style="display:none;">
+                  <div class="container my-5">
+                     <h2 class="mb-5 text-center fw-bold">Profile</h2>
+                     <form action="" class="col-md-10 m-auto">
+                        <div class="row mt-4">
+                           <div class="col-md-6 mb-4">
+                              <label for="tName" class="required mb-2">Full Name</label>
+                              <input type="text" id="tName" class="form-control" placeholder="John Doe" value="John Doe" required>
+                           </div>
+                           <div class="col-md-6 mb-4 text-center">
+                              <label for="profilePic" class="mb-2 d-block required">Profile Picture</label>
+                              <img src="/assets/images/Merchant/tester.jpg" alt="Tester Profile" class="img-thumbnail mb-2" style="max-width: 150px;">
+                              <div class="row align-items-center">
+                                 <div class="col-md-9">
+                                    <input type="file" id="profilePic" class="form-control">
+                                 </div>
+                                 <div class="col-md-3"> <button type="submit" class="btn btn-default px-4">Upload</button></div>
+                              </div>
+                           </div>
+                           <div class="col-md-12 mb-4">
+                              <label for="bio" class="required mb-2">Bio</label>
+                              <textarea id="bio" class="form-control" rows="4" placeholder="Tell us about yourself..." value="Bio" required></textarea>
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label for="country" class="required mb-2">Country</label>
+                              <select class="form-select mb-3" id="Country" required>
+                                 <option>Select Country</option>
+                                 <option value="USA" selected>USA</option>
+                                 <option value="India">India</option>
+                                 <option value="UK">UK</option>
+                                 <option value="Australia">Australia</option>
+                                 <option value="NewZealand">New Zealand</option>
+                                 <option value="EU">EU</option>
+                              </select>
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label for="idUpload" class="required mb-2">ID Verification (Upload)</label>
+                              <input type="file" id="idUpload" class="form-control">
+                              <span class="hinttxt">Upload Front and Back Images for Verification</span>
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label for="amazID" class="mb-2">Provide Amazon User ID</label>
+                              <input type="url" id="amazID" class="form-control" placeholder="Provide Amazon User ID" value="XYZ">
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label for="walmID" class="mb-2">Provide Walmart User ID</label>
+                              <input type="url" id="walmID" class="form-control" placeholder="Provide Walmart User ID" value="XYZ">
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label for="ebayID" class="mb-2">Provide Ebay User ID</label>
+                              <input type="url" id="ebayID" class="form-control" placeholder="Provide Ebay User ID" value="XYZ">
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label for="fbID" class="mb-2">Provide Facebook ID</label>
+                              <input type="url" id="fbID" class="form-control" placeholder="Provide Facebook ID" value="XYZ">
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label for="InstaID" class="mb-2">Provide Instagram User ID</label>
+                              <input type="url" id="InstaID" class="form-control" placeholder="Provide Instagram User ID" value="XYZ">
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label for="youID" class="mb-2">Provide Youtube ID</label>
+                              <input type="url" id="youID" class="form-control" placeholder="Provide Youtube ID" value="XYZ">
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label for="blogurl" class="mb-2">Blog URL</label>
+                              <input type="text" id="blogurl" class="form-control" placeholder="Provide Blog URL" value="https://xyz.com">
+                           </div>
+                           <div class="col-md-6 mb-4">
+                              <label>Languages Known</label><br>
+                              <input type="checkbox" id="English" checked> English  
+                              <input type="checkbox" id="Spanish" checked> Spanish  
+                              <input type="checkbox" id="French"> French  
+                              <input type="checkbox" id="German"> German  
+                              <input type="checkbox" id="Mandarin"> Mandarin  
+                              <input type="checkbox" id="Other"> Other: <input type="text" class="inline-input">
+                           </div>
+                        </div>
+                        <div class="row">
+                           <div class="col-md-12 my-5 text-center"> <button type="submit" class="btn btn-default px-4">Save</button></div>
+                        </div>
+                        <h5 class="my-3 text-center">Profile Details</h5>
+                        <div class="table-responsive">
+                           <table class="table table-bordered text-center">
+                              <thead class="table-light">
+                                 <tr>
+                                    <th>Full Name</th>
+                                    <th>Profile Picture</th>
+                                    <th>Bio</th>
+                                    <th>Country</th>
+                                    <th>Amazon User ID</th>
+                                    <th>Walmart User ID</th>
+                                    <th>Ebay User ID</th>
+                                    <th>Facebook ID</th>
+                                    <th>Instagram User ID</th>
+                                    <th>Youtube ID</th>
+                                    <th>Blog URL</th>
+                                    <th>Languages Known</th>
+                                    <th>Actions</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td>XYZ</td>
+                                    <td>
+                                       <img src="/assets/images/Merchant/tester.jpg" alt="Tester Profile" class="img-thumbnail mb-2" style="max-width: 50px;">
+                                       <div class="row align-items-center">
+                                    </td>
+                                    <td>Bio</td>
+                                    <td>Country</td>
+                                    <td>ABC</td>
+                                    <td>XYZ</td>
+                                    <td>ABC</td>
+                                    <td>XYZ</td>
+                                    <td>XYZ</td>
+                                    <td>XYZ</td>
+                                    <td>XYZ</td>
+                                    <td>English, Hindi</td>
+                                    <td>
+                                    <a href="#" class="btn btn-sm btn-primary me-2">Edit</a>
+                                    <a href="#" class="btn btn-sm btn-danger delete-product mt-2"> Delete</a>
+                                    </td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                           </div>
+                     </form>
+                     </div>
+                  </div>
+                  <!-- My Cases Section -->
+                  <div class="view" id="mycases" style="display:none;">
+                     <div class="container-fluid my-5">
+                        <!-- Header Row -->
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                           <h2 class="fw-bold">My Cases</h2>
+                           <div>
+                              <button class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#fileclaimModal">New Case</button>
+                           </div>
+                        </div>
+                        <!-- Summary Cards -->
+                        <div class="row g-4 mb-4">
+                           <div class="col-md-3 col-sm-6">
+                              <div class="case-summary-card text-center">
+                                 <h6 class="text-success">Active (Voting)</h6>
+                                 <h2>3</h2>
+                              </div>
+                           </div>
+                           <div class="col-md-3 col-sm-6">
+                              <div class="case-summary-card text-center">
+                                 <h6 class="text-warning">Under Review</h6>
+                                 <h2>2</h2>
+                              </div>
+                           </div>
+                           <div class="col-md-3 col-sm-6">
+                              <div class="case-summary-card text-center">
+                                 <h6 class="text-success">Resolved (Wins)</h6>
+                                 <h2>8</h2>
+                              </div>
+                           </div>
+                            <div class="col-md-3 col-sm-6 text-center">
+                              <div class="case-summary-card">
+                                 <h6 class="text-danger">Lost</h6>
+                                 <h2>1</h2>
+                              </div>
+                           </div>
+                           <div class="col-md-3 col-sm-6 text-center">
+                              <div class="case-summary-card">
+                                 <h6 class="text-warning">Drafts</h6>
+                                 <h2>4</h2>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- Filter Tabs -->
+                        <div class="d-flex gap-2 flex-wrap mb-4">
+                           <button class="filter-btn active">All</button>
+                           <button class="filter-btn">Voting</button>
+                           <button class="filter-btn">Under Review</button>
+                           <button class="filter-btn">Resolved</button>
+                           <button class="filter-btn">Draft</button>
+                           <button class="filter-btn">Rejected</button>
+                        </div>
+                        <!-- Case Cards -->
+                        <div class="row g-4 mt-2">
+                           <div class="col-md-4">
+                              <div class="case-card p-3 shadow-sm bg-white">
+                                 <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <p class="mb-0 fw-semibold">Case 1 Title</p>
+                                    <span class="status-badge voting">Voting</span>
+                                 </div>
+                                 <p>Case 1 Description</p>
+                                 <p><span class="text-success fw-bold">300<i class="bi bi bi-caret-up-fill fs-5 plus-icon me-5"></i></span><span class="text-danger fw-bold">10<i class="bi bi bi-caret-down-fill fs-5 minus-icon"></i></span></p>
+                                 <div class="d-flex align-items-center">
+                                    <p class="evidence-label mb-0 me-3">Evidence Completeness:</p>
+                                    <div class="progress flex-grow-1">
+                                       <div class="progress-bar" style="width: 70%;"></div>
+                                    </div>
+                                    <span class="percentage ms-2 fw-bold">70%</span>
+                                 </div>
+                                 <div class="mt-3 d-flex flex-wrap gap-2">
+                                    <span class="role-badge">Role: Gamechanger</span>
+                                 </div>
+                                 <div class="mt-3 d-flex justify-content-between">
+                                    <button class="btn btn-outline-dark btn-sm w-50 me-2">Open</button>
+                                    <button class="btn btn-dark btn-sm w-50">Share</button>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="case-card p-3 shadow-sm bg-white">
+                                 <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <p class="mb-0 fw-semibold">Case 2 Title</p>
+                                    <span class="status-badge review">Under Review</span>
+                                 </div>
+                                 <p>Case 2 Description</p>
+                                 <p><span class="text-success fw-bold">300<i class="bi bi bi-caret-up-fill fs-5 plus-icon me-5"></i></span><span class="text-danger fw-bold">10<i class="bi bi bi-caret-down-fill fs-5 minus-icon"></i></span></p>
+                                 <div class="d-flex align-items-center underreview-prog">
+                                    <p class="evidence-label mb-0 me-3">Evidence Completeness:</p>
+                                    <div class="progress flex-grow-1">
+                                       <div class="progress-bar" style="width: 50%;"></div>
+                                    </div>
+                                    <span class="percentage ms-2 fw-bold">50%</span>
+                                 </div>
+                                 <div class="mt-3 d-flex flex-wrap gap-2">
+                                    <span class="role-badge">Role: Tester</span>
+                                 </div>
+                                 <div class="mt-3 d-flex justify-content-between">
+                                    <button class="btn btn-outline-dark btn-sm w-50 me-2">Open</button>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="case-card p-3 shadow-sm bg-white">
+                                 <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <p class="mb-0 fw-semibold">Case 3 Title</p>
+                                    <span class="status-badge resolved">Resolved</span>
+                                 </div>
+                                 <p>Case 3 Description</p>
+                                 <p><span class="text-success fw-bold">300<i class="bi bi bi-caret-up-fill fs-5 plus-icon me-5"></i></span><span class="text-danger fw-bold">10<i class="bi bi bi-caret-down-fill fs-5 minus-icon"></i></span> </p>
+                                 <div class="d-flex align-items-center resolved-prog">
+                                    <p class="evidence-label mb-0 me-3">Evidence Completeness:</p>
+                                    <div class="progress flex-grow-1">
+                                       <div class="progress-bar" style="width: 100%;"></div>
+                                    </div>
+                                    <span class="percentage ms-2 fw-bold">100%</span>
+                                 </div>
+                                 <div class="mt-3 d-flex flex-wrap gap-2">
+                                    <span class="role-badge">Role: Gamechanger</span>
+                                    <span><i class="bi bi-check-circle mb-2"></i> Closed</span>
+                                 </div>
+                                 <div class="mt-3 d-flex justify-content-between">
+                                    <button class="btn btn-outline-dark btn-sm w-50 me-2">Open</button>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="case-card p-3 shadow-sm bg-white">
+                                 <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <p class="mb-0 fw-semibold">Case 4 Title</p>
+                                    <span class="status-badge voting">Voting</span>
+                                 </div>
+                                 <p>Case 4 Description</p>
+                                 <p><span class="text-success fw-bold">300<i class="bi bi bi-caret-up-fill fs-5 plus-icon me-5"></i></span><span class="text-danger fw-bold">10<i class="bi bi bi-caret-down-fill fs-5 minus-icon"></i></span></p>
+                                 <div class="d-flex align-items-center">
+                                    <p class="evidence-label mb-0 me-3">Evidence Completeness:</p>
+                                    <div class="progress flex-grow-1">
+                                       <div class="progress-bar" style="width: 70%;"></div>
+                                    </div>
+                                    <span class="percentage ms-2 fw-bold">70%</span>
+                                 </div>
+                                 <div class="mt-3 d-flex flex-wrap gap-2">
+                                    <span class="role-badge">Role: Gamechanger</span>
+                                 </div>
+                                 <div class="mt-3 d-flex justify-content-between">
+                                    <button class="btn btn-outline-dark btn-sm w-50 me-2">Open</button>
+                                    <button class="btn btn-dark btn-sm w-50">Share</button>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="case-card p-3 shadow-sm bg-white">
+                                 <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <p class="mb-0 fw-semibold">Case 5 Title</p>
+                                    <span class="status-badge review">Under Review</span>
+                                 </div>
+                                 <p>Case 5 Description</p>
+                                 <p><span class="text-success fw-bold">300<i class="bi bi bi-caret-up-fill fs-5 plus-icon me-5"></i></span><span class="text-danger fw-bold">10<i class="bi bi bi-caret-down-fill fs-5 minus-icon"></i></span></p>
+                                 <div class="d-flex align-items-center underreview-prog">
+                                    <p class="evidence-label mb-0 me-3">Evidence Completeness:</p>
+                                    <div class="progress flex-grow-1">
+                                       <div class="progress-bar" style="width: 50%;"></div>
+                                    </div>
+                                    <span class="percentage ms-2 fw-bold">50%</span>
+                                 </div>
+                                 <div class="mt-3 d-flex flex-wrap gap-2">
+                                    <span class="role-badge">Role: Tester</span>
+                                 </div>
+                                 <div class="mt-3 d-flex justify-content-between">
+                                    <button class="btn btn-outline-dark btn-sm w-50 me-2">Open</button>
+                                 </div>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="case-card p-3 shadow-sm bg-white">
+                                 <div class="d-flex justify-content-between align-items-center mb-2">
+                                    <p class="mb-0 fw-semibold">Case 6 Title</p>
+                                    <span class="status-badge resolved">Resolved</span>
+                                 </div>
+                                 <p>Case 6 Description</p>
+                                 <p><span class="text-success fw-bold">300<i class="bi bi bi-caret-up-fill fs-5 plus-icon me-5"></i></span><span class="text-danger fw-bold">10<i class="bi bi bi-caret-down-fill fs-5 minus-icon"></i></span> </p>
+                                 <div class="d-flex align-items-center resolved-prog">
+                                    <p class="evidence-label mb-0 me-3">Evidence Completeness:</p>
+                                    <div class="progress flex-grow-1">
+                                       <div class="progress-bar" style="width: 100%;"></div>
+                                    </div>
+                                    <span class="percentage ms-2 fw-bold">100%</span>
+                                 </div>
+                                 <div class="mt-3 d-flex flex-wrap gap-2">
+                                    <span class="role-badge">Role: Gamechanger</span>
+                                    <span><i class="bi bi-check-circle mb-2"></i> Closed</span>
+                                 </div>
+                                 <div class="mt-3 d-flex justify-content-between">
+                                    <button class="btn btn-outline-dark btn-sm w-50 me-2">Open</button>
+                                 </div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- My Rewards Section -->
+                  <div class="view" id="myrewards" style="display:none;">
+                     <div class="container-fluid my-5">
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                           <h2 class="fw-bold">My Rewards</h2>
+                           <button class="btn btn-dark px-4 py-2">Redeem Points</button>
+                        </div>
+                        <!-- Summary Cards -->
+                        <div class="row g-4 mb-5">
+                           <div class="col-md-3">
+                              <div class="reward-summary-card">
+                                 <h6>Total Points</h6>
+                                 <h2>12,480</h2>
+                              </div>
+                           </div>
+                           <div class="col-md-3">
+                              <div class="reward-summary-card">
+                                 <h6>Available Balance</h6>
+                                 <h2>8,750</h2>
+                              </div>
+                           </div>
+                           <div class="col-md-3">
+                              <div class="reward-summary-card">
+                                 <h6>Redeemed</h6>
+                                 <h2>3,000</h2>
+                              </div>
+                           </div>
+                           <div class="col-md-3">
+                              <div class="reward-summary-card">
+                                 <h6>Pending Approvals</h6>
+                                 <h2>2</h2>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- Reward List -->
+                        <div class="row g-4">
+                           <div class="col-md-4">
+                              <div class="reward-card">
+                                 <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5>Challenge Reward</h5>
+                                    <span class="status-badge success">Approved</span>
+                                 </div>
+                                 <p class="text-muted small mb-3">For validated claim on “Challenge 1”.</p>
+                                 <div class="reward-points">+ 1,500</div>
+                                 <div class="progress my-3" style="height:6px;">
+                                    <div class="progress-bar bg-success" style="width: 100%;"></div>
+                                 </div>
+                                 <div class="text-end small text-muted">Credited on: Oct 10, 2025</div>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="reward-card">
+                                 <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5>Referral Bonus</h5>
+                                    <span class="status-badge pending">Pending</span>
+                                 </div>
+                                 <p class="text-muted small mb-3">Earned for referring a new Gamechanger.</p>
+                                 <div class="reward-points">+ 500</div>
+                                 <div class="progress my-3" style="height:6px;">
+                                    <div class="progress-bar bg-warning" style="width: 50%;"></div>
+                                 </div>
+                                 <div class="text-end small text-muted">Expected by: Nov 5, 2025</div>
+                              </div>
+                           </div>
+                           <div class="col-md-4">
+                              <div class="reward-card">
+                                 <div class="d-flex justify-content-between align-items-center mb-3">
+                                    <h5>Milestone Achievement</h5>
+                                    <span class="status-badge success">Approved</span>
+                                 </div>
+                                 <p class="text-muted small mb-3">Reached 10 successful validations.</p>
+                                 <div class="reward-points">+ 2,000</div>
+                                 <div class="progress my-3" style="height:6px;">
+                                    <div class="progress-bar bg-success" style="width: 100%;"></div>
+                                 </div>
+                                 <div class="text-end small text-muted">Credited on: Oct 20, 2025</div>
+                              </div>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- Reputation Section -->
+                  <div class="view" id="reputation" style="display:none;">
+                     <div class="container-fluid my-5">
+                        <!-- Header Row -->
+                        <div class="d-flex justify-content-between align-items-center mb-4">
+                           <h2 class="fw-bold">Reputation</h2>
+                           <button class="btn btn-dark">View Leaderboard</button>
+                        </div>
+                        <!-- Reputation Overview Cards -->
+                        <div class="row g-4 mb-4">
+                           <div class="col-md-3 col-sm-6">
+                              <div class="rep-card">
+                                 <h6>Challenges Won</h6>
+                                 <h2>18</h2>
+                                 <p class="text-muted small mb-0">Validated after voting</p>
+                              </div>
+                           </div>
+                           <div class="col-md-3 col-sm-6">
+                              <div class="rep-card">
+                                 <h6>Votes Received</h6>
+                                 <h2>2,340</h2>
+                                 <p class="text-muted small mb-0">Across all contributions</p>
+                              </div>
+                           </div>
+                           <div class="col-md-3 col-sm-6">
+                              <div class="rep-card">
+                                 <h6>Verification Accuracy</h6>
+                                 <h2>92%</h2>
+                                 <p class="text-muted small mb-0">Evidence consistency rate</p>
+                              </div>
+                           </div>
+                           <div class="col-md-3 col-sm-6">
+                              <div class="rep-card">
+                                 <h6>Challenges Lose</h6>
+                                 <h2>5</h2>
+                                 <p class="text-muted small mb-0">Validated after voting</p>
+                              </div>
+                           </div>
+                        </div>
+                        <!-- Activity Log -->
+                        <div class="bg-white p-4 rounded-4 shadow-sm">
+                           <h5 class="fw-semibold mb-4">Reputation Activity</h5>
+                           <div class="table-responsive">
+                              <table class="table align-middle text-center">
+                                 <thead class="table-light">
+                                    <tr>
+                                       <th>Date</th>
+                                       <th>Event</th>
+                                       <th>Category</th>
+                                       <th>Change</th>
+                                    </tr>
+                                 </thead>
+                                 <tbody>
+                                    <tr>
+                                       <td>Oct 31, 2025</td>
+                                       <td>Challenge 1</td>
+                                       <td><span class="rep-badge win">Win</span></td>
+                                       <td class="text-success fw-semibold">+120</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Oct 28, 2025</td>
+                                       <td>Received 40 votes on “Challenge 2”</td>
+                                       <td><span class="rep-badge vote">Community</span></td>
+                                       <td class="text-success fw-semibold">+40</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Oct 22, 2025</td>
+                                       <td>Submitted incomplete evidence</td>
+                                       <td><span class="rep-badge penalty">Lose</span></td>
+                                       <td class="text-danger fw-semibold">-20</td>
+                                    </tr>
+                                    <tr>
+                                       <td>Oct 15, 2025</td>
+                                       <td>Verified as peer reviewer in 3 cases</td>
+                                       <td><span class="rep-badge review">Review</span></td>
+                                       <td class="text-success fw-semibold">+60</td>
+                                    </tr>
+                                 </tbody>
+                              </table>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+                  <!-- notification Section -->
+                  <div class="view" id="g-notifications" style="display:none;">
+                     <div class="container col-md-10">
+                        <h2 class="my-4 text-center fw-bold">Notifications</h2>
+                        <div class="table-responsive">
+                           <table class="table table-hover align-middle table-bordered text-center">
+                              <thead class="table-light">
+                                 <tr>
+                                    <th>S.No</th>
+                                    <th>From</th>
+                                    <th>Role</th>
+                                    <th>Subject</th>
+                                    <th>Date</th>
+                                    <th>Status</th>
+                                    <th>Actions</th>
+                                    <th>Priority</th>
+                                 </tr>
+                              </thead>
+                              <tbody>
+                                 <tr>
+                                    <td>1</td>
+                                    <td><i class="bi bi-person-circle me-2"></i> John Doe</td>
+                                    <td><a href="productDetails.html">Admin</a></td>
+                                    <td>Order Update</td>
+                                    <td>2025-09-06</td>
+                                    <td><span class="badge bg-warning text-dark">Unread</span></td>
+                                    <td>
+                                       <a href="#" class="btn btn-sm btn-outline-primary me-2 view-btn"
+                                          data-title="Order Update"
+                                          data-message="Your recent order #12345 has been shipped and will be delivered by tomorrow.">
+                                       <i class="bi bi-eye"></i> View
+                                       </a>
+                                       <a href="#" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Delete</a>
+                                    </td>
+                                    <td><span class="badge bg-danger text-white border-radius">Urgent</span></td>
+                                 </tr>
+                                 <tr>
+                                    <td>2</td>
+                                    <td><i class="bi bi-person-circle me-2"></i> Jane Smith</td>
+                                    <td><a href="productDetails.html">Tester 2</a></td>
+                                    <td>Claim Accepted</td>
+                                    <td>2025-09-05</td>
+                                    <td><span class="badge bg-success">Read</span></td>
+                                    <td>
+                                       <a href="#" class="btn btn-sm btn-outline-primary me-2 view-btn"
+                                          data-title="Claim Accepted"
+                                          data-message="Congratulations! Your claim regarding product XYZ has been accepted. You will receive a coupon soon.">
+                                       <i class="bi bi-eye"></i> View
+                                       </a>
+                                       <a href="#" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Delete</a>
+                                    </td>
+                                    <td><span class="badge bg-success text-white border-radius">Normal</span></td>
+                                 </tr>
+                                 <tr>
+                                    <td>3</td>
+                                    <td><i class="bi bi-person-circle me-2"></i> Support Team</td>
+                                    <td><a href="productDetails.html">Tester 11</a></td>
+                                    <td>Important Notice</td>
+                                    <td>2025-09-04</td>
+                                    <td><span class="badge bg-danger">Urgent</span></td>
+                                    <td>
+                                       <a href="#" class="btn btn-sm btn-outline-primary me-2 view-btn"
+                                          data-title="Important Notice"
+                                          data-message="Please update your account details to continue using our services without interruption.">
+                                       <i class="bi bi-eye"></i> View
+                                       </a>
+                                       <a href="#" class="btn btn-sm btn-outline-danger"><i class="bi bi-trash"></i> Delete</a>
+                                    </td>
+                                    <td><span class="badge bg-primary text-white">promotional</span></td>
+                                 </tr>
+                              </tbody>
+                           </table>
+                        </div>
+                     </div>
+                  </div>
+                  <div class="view" id="helpandpolicies" style="display:none;">
+                     <!-- GameChanger Policies -->
+                     <div class="container py-4 col-md-10">
+                        <h2 class="fw-bold mb-4 text-center">GameChanger Policies</h2>
+                        <div class="card mb-3 shadow-sm border-0">
+                           <div class="card-body">
+                              <h5 class="fw-bold text-dark mb-2">1. Purpose</h5>
+                              <p class="text-muted mb-0">
+                                 GameChanger empowers users to <strong>challenge, verify, and improve product claims</strong> through transparent evidence and community evaluation.
+                                 Rewards and reputation are granted for <strong>genuine, verified contributions</strong>.
+                              </p>
+                           </div>
+                        </div>
+                        <div class="card mb-3 shadow-sm border-0">
+                           <div class="card-body">
+                              <h5 class="fw-bold text-dark mb-2">2. Participant Roles</h5>
+                              <ul class="text-muted mb-0">
+                                 <li><strong>Merchant:</strong> Uploads products and manages product claims.</li>
+                                 <li><strong>GameChanger:</strong> Challenges claims with standardized methods and evidence.</li>
+                                 <li><strong>Audience:</strong> Votes, comments, and supports genuine findings.</li>
+                              </ul>
+                           </div>
+                        </div>
+                        <div class="card mb-3 shadow-sm border-0">
+                           <div class="card-body">
+                              <h5 class="fw-bold text-dark mb-2">3. Claim Protocol</h5>
+                              <p class="text-muted mb-2">
+                                 Each claim passes through three stages:
+                              </p>
+                              <ul class="text-muted">
+                                 <li><strong>Under Review:</strong> Awaiting verification and moderation.</li>
+                                 <li><strong>Voting Phase:</strong> Evaluated by community with weighted votes.</li>
+                                 <li><strong>Resolved:</strong> Decision finalized and rewards released.</li>
+                              </ul>
+                           </div>
+                        </div>
+                        <div class="card mb-3 shadow-sm border-0">
+                           <div class="card-body">
+                              <h5 class="fw-bold text-dark mb-2">4. Rewards & Reputation</h5>
+                              <ul class="text-muted mb-0">
+                                 <li>Earn credits, badges, and leaderboard visibility for valid claims.</li>
+                                 <li>Reputation grows with verified challenges and positive votes.</li>
+                                 <li>Low-quality or fake claims reduce reputation and reward eligibility.</li>
+                              </ul>
+                           </div>
+                        </div>
+                        <div class="card mb-3 shadow-sm border-0">
+                           <div class="card-body">
+                              <h5 class="fw-bold text-dark mb-2">5. Moderation & Conduct</h5>
+                              <ul class="text-muted mb-0">
+                                 <li>All claims undergo moderation for accuracy and ethics.</li>
+                                 <li>False or harmful submissions may lead to suspension.</li>
+                                 <li>Each user is entitled to <strong>one appeal</strong> per moderation case.</li>
+                              </ul>
+                           </div>
+                        </div>
+                        <div class="card mb-3 shadow-sm border-0">
+                           <div class="card-body">
+                              <h5 class="fw-bold text-dark mb-2">6. Data Privacy</h5>
+                              <p class="text-muted mb-0">
+                                 GameChanger protects user privacy and uses submitted content only for <strong>verification, research, and transparency reports</strong>. Personal details remain encrypted.
+                              </p>
+                           </div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+      </div>
+      <!-- file claim Modal -->
+      <div class="modal fade" id="fileclaimModal" tabindex="-1" aria-labelledby="fileclaimModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-lg">
+      <div class="modal-content">
+      <div class="modal-header">
+      <h5 class="modal-title" id="fileclaimModalLabel">File a Claim</h5>
+      <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <p class="text-danger text-hint">Upload edited & raw videos, provide test conditions, and state your claim. Your submission goes to admin for approval.</p>
+      <div class="modal-body">
+      <div class="row">
+      <div class="col-md-6 mb-4">
+      <label for="upload-editedvideo" class="required mb-2">Upload Edited Video</label>
+      <div class="input-group">
+      <input type="file" class="form-control" id="upload-editedvideo">
+      <button type="button" class="btn btn-outline-danger" id="remove-video">Remove</button>
+      </div>
+      </div>
+      <div class="col-md-6 mb-4">
+      <label for="upload-rawvideo" class="required mb-2">Upload Raw Video</label>
+      <div class="input-group">
+      <input type="file" class="form-control" id="upload-rawvideo">
+      <button type="button" class="btn btn-outline-danger" id="remove-video">Remove</button>
+      </div>
+      </div>
+      </div>
+      <div class="col-md-12 mb-4">
+      <label for="productid" class="mb-2">Provide Product Link / Product ID</label>
+      <input type="text" class="form-control" name="productid" id="productid">
+      </div>
+      <div class="col-md-12 mb-4">
+      <label for="protocoldropdown" class="mb-2">Select Protocol</label>
+      <select class="form-select" id="protocoldropdown">
+      <option value="Protocol1" selected>Protocol 1</option>
+      <option value="Protocol2">Protocol 2</option>
+      <option value="Protocol3">Protocol 3</option>
+      <option value="Protocol4">Protocol 4</option>
+      </select>
+      </div>
+      </div>
+      <div class="modal-footer">
+      <a href="#" class="btn btn-default btn-submit me-3">Submit</a>
+      <a href="#" class="btn btn-secondary" data-bs-dismiss="modal">Close</a>
+      </div>
+      </div>
+      </div>
+      </div>
+      </section>
+      </main>
+      </div>
+      <!-- jQuery -->
+      <script>
+         document.addEventListener("DOMContentLoaded", function () {
+           const navButtons = document.querySelectorAll(".nav-btn");
+           const views = document.querySelectorAll(".view");
+         
+           navButtons.forEach(btn => {
+             btn.addEventListener("click", function () {
+               // Remove active class from all buttons
+               navButtons.forEach(b => b.classList.remove("active"));
+               // Hide all views
+               views.forEach(v => v.style.display = "none");
+         
+               // Activate clicked button
+               this.classList.add("active");
+         
+               // Get target view from data-view attribute
+               const viewId = this.getAttribute("data-view");
+               const targetView = document.getElementById(viewId);
+               if (targetView) {
+                 targetView.style.display = "block";
+               }
+             });
+           });
+         
+           // Set default view if none are visible
+         views.forEach(v => v.style.display = "none");
+         const defaultView = document.getElementById("homesection");
+         if (defaultView) {
+         defaultView.style.display = "block";
+         document.querySelector('[data-view="homesection"]')?.classList.add("active");
+         }
+         });
+      </script>
+      <script src="https://code.jquery.com/jquery-3.6.1.min.js"></script>
+      <script src="assets/js/common.js"></script>
+      <script src="assets/js/custom.js"></script>
+   </body>
+</html>

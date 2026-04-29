@@ -1,0 +1,32 @@
+/* Page Title */
+.allmediaDetails h2 {
+  font-family: "Arima", serif;
+  font-size: 2rem;
+  font-weight: 600;
+  color: #000000;
+  margin-bottom: 2rem;
+  text-decoration: underline;
+}
+
+.daterange-section label{
+  font-weight: 600;
+}
+
+
+.allmediaDetails  thead th{
+  background: #ffa92a;
+  color: #fff;
+  font-weight: 600;
+  font-size: 1rem;
+  text-align: center;
+  padding: 12px;
+}
+
+
+
+.allmediaDetails .btn-link {
+      cursor: pointer;
+      text-decoration: underline;
+      color: #3949ab;
+      font-weight: 500;
+    }
