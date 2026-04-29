@@ -1,0 +1,29 @@
+uuid: 92c43ab1-25f7-48d4-a895-66c1b87ca711
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_debate_parent
+    - node.type.rebuttal_debate
+    - node.type.seller_rebuttal
+id: node.rebuttal_debate.field_debate_parent
+field_name: field_debate_parent
+entity_type: node
+bundle: rebuttal_debate
+label: 'Parent Comment'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      seller_rebuttal: seller_rebuttal
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

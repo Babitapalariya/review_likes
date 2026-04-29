@@ -1,0 +1,19 @@
+uuid: b4a70bef-99ad-43eb-81db-8df9555573bc
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_apartment_suite_etc
+    - paragraphs.paragraphs_type.rebuttal
+id: paragraph.rebuttal.field_apartment_suite_etc
+field_name: field_apartment_suite_etc
+entity_type: paragraph
+bundle: rebuttal
+label: 'Apartment, Suite, etc.'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

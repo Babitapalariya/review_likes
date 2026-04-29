@@ -1,0 +1,26 @@
+uuid: 5e9d7707-e603-48b7-8940-7cbd79fb00cb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rebuttal_summary
+    - filter.format.basic_html
+    - filter.format.full_html
+    - node.type.seller_rebuttal
+  module:
+    - text
+id: node.seller_rebuttal.field_rebuttal_summary
+field_name: field_rebuttal_summary
+entity_type: node
+bundle: seller_rebuttal
+label: 'Rebuttal Summary'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+    - full_html
+field_type: text_long

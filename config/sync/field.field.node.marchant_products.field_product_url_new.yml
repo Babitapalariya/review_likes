@@ -1,0 +1,23 @@
+uuid: 84aa7f30-e9e0-4d7a-b56d-ad01096cd293
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_product_url_new
+    - node.type.marchant_products
+  module:
+    - link
+id: node.marchant_products.field_product_url_new
+field_name: field_product_url_new
+entity_type: node
+bundle: marchant_products
+label: 'Product URL'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

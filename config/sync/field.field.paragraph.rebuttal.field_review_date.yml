@@ -1,0 +1,21 @@
+uuid: 37f3ce5b-08cd-4875-a8a3-4b55b0b72497
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_review_date
+    - paragraphs.paragraphs_type.rebuttal
+  module:
+    - datetime
+id: paragraph.rebuttal.field_review_date
+field_name: field_review_date
+entity_type: paragraph
+bundle: rebuttal
+label: 'Review Date'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

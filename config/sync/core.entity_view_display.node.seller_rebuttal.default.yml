@@ -1,0 +1,78 @@
+uuid: c8a3b184-ea65-43c6-9a8f-7939250df5c3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.seller_rebuttal.field_rebuttal_para
+    - field.field.node.seller_rebuttal.field_rebuttal_statement
+    - field.field.node.seller_rebuttal.field_rebuttal_summary
+    - field.field.node.seller_rebuttal.field_select_product
+    - field.field.node.seller_rebuttal.field_upload_supporting_evidence
+    - node.type.seller_rebuttal
+  module:
+    - entity_reference_revisions
+    - svg_image
+    - text
+    - user
+id: node.seller_rebuttal.default
+targetEntityType: node
+bundle: seller_rebuttal
+mode: default
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_rebuttal_para:
+    type: entity_reference_revisions_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_rebuttal_statement:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_rebuttal_summary:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_select_product:
+    type: entity_reference_label
+    label: hidden
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_upload_supporting_evidence:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+      svg_attributes:
+        width: null
+        height: null
+      svg_render_as_image: true
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden: {  }

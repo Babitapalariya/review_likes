@@ -1,0 +1,37 @@
+uuid: aad30e4b-e86f-4c3a-9f0e-980ea0305f43
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rebuttal_para
+    - node.type.seller_rebuttal
+    - paragraphs.paragraphs_type.rebuttal
+  module:
+    - entity_reference_revisions
+id: node.seller_rebuttal.field_rebuttal_para
+field_name: field_rebuttal_para
+entity_type: node
+bundle: seller_rebuttal
+label: 'Rebuttal Para'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      rebuttal: rebuttal
+    negate: 0
+    target_bundles_drag_drop:
+      business_social_media:
+        weight: 4
+        enabled: false
+      platform_link:
+        weight: 5
+        enabled: false
+      rebuttal:
+        weight: 6
+        enabled: true
+field_type: entity_reference_revisions

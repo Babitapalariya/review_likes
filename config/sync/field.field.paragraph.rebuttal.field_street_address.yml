@@ -1,0 +1,19 @@
+uuid: cad0a0ed-2005-4b52-a249-ccb86d34234f
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_street_address
+    - paragraphs.paragraphs_type.rebuttal
+id: paragraph.rebuttal.field_street_address
+field_name: field_street_address
+entity_type: paragraph
+bundle: rebuttal
+label: 'Street Address'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

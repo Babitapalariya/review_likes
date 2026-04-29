@@ -1,0 +1,30 @@
+uuid: 91363b96-48fc-4189-baf0-2707cf082caa
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+    - options
+id: node.field_debate_support
+field_name: field_debate_support
+entity_type: node
+type: list_string
+settings:
+  allowed_values:
+    -
+      value: seller
+      label: 'I support Seller'
+    -
+      value: buyer
+      label: 'I support Buyer'
+    -
+      value: neutral
+      label: 'Need more proof'
+  allowed_values_function: ''
+module: options
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

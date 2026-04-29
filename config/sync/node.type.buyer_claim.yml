@@ -1,0 +1,18 @@
+uuid: 8f0b1fd5-037e-4707-96ff-8418a9cf3893
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Buyer Claim'
+type: buyer_claim
+description: null
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

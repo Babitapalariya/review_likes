@@ -1,0 +1,21 @@
+uuid: 34ed1411-db83-4151-bf5b-0b1547a25de2
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_trending_products
+    - node.type.marchant_products
+id: node.marchant_products.field_trending_products
+field_name: field_trending_products
+entity_type: node
+bundle: marchant_products
+label: 'Trending Products'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

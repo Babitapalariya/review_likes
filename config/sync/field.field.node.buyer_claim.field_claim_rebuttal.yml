@@ -1,0 +1,29 @@
+uuid: ef023dad-0a04-4e93-bd03-ec9ba1b98672
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_claim_rebuttal
+    - node.type.buyer_claim
+    - node.type.seller_rebuttal
+id: node.buyer_claim.field_claim_rebuttal
+field_name: field_claim_rebuttal
+entity_type: node
+bundle: buyer_claim
+label: 'Claim Rebuttal'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      seller_rebuttal: seller_rebuttal
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

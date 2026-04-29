@@ -1,0 +1,14 @@
+uuid: 0a58fe7f-1761-42ac-a221-13d90fa4d74c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.marchant_products
+  module:
+    - node
+id: tester
+label: Tester
+weight: 6
+is_admin: null
+permissions:
+  - 'delete any marchant_products content'

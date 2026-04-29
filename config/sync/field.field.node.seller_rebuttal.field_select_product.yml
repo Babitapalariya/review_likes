@@ -1,0 +1,29 @@
+uuid: ceedd719-140c-4958-9705-88fe5b393da4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_select_product
+    - node.type.marchant_products
+    - node.type.seller_rebuttal
+id: node.seller_rebuttal.field_select_product
+field_name: field_select_product
+entity_type: node
+bundle: seller_rebuttal
+label: 'Select product'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      marchant_products: marchant_products
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

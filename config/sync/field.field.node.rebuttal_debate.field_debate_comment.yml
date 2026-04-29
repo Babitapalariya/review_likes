@@ -1,0 +1,26 @@
+uuid: 37021c18-f8c2-4011-b551-51169af91b63
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_debate_comment
+    - filter.format.basic_html
+    - filter.format.full_html
+    - node.type.rebuttal_debate
+  module:
+    - text
+id: node.rebuttal_debate.field_debate_comment
+field_name: field_debate_comment
+entity_type: node
+bundle: rebuttal_debate
+label: 'Comment / Statement'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+    - full_html
+field_type: text_long

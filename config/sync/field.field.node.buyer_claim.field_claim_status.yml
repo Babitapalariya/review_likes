@@ -1,0 +1,21 @@
+uuid: 78051ea2-6c73-4200-be32-7fa957a6b8a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_claim_status
+    - node.type.buyer_claim
+  module:
+    - options
+id: node.buyer_claim.field_claim_status
+field_name: field_claim_status
+entity_type: node
+bundle: buyer_claim
+label: 'Claim Status'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

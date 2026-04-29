@@ -1,0 +1,82 @@
+uuid: 068c527a-3031-46e7-a710-dee058851ed5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.buyer_claim.field_claim_order_id
+    - field.field.node.buyer_claim.field_claim_product
+    - field.field.node.buyer_claim.field_claim_rebuttal
+    - field.field.node.buyer_claim.field_claim_statement
+    - field.field.node.buyer_claim.field_claim_status
+    - field.field.node.buyer_claim.field_claim_user
+    - field.field.node.buyer_claim.field_claim_username
+    - node.type.buyer_claim
+  module:
+    - options
+    - text
+    - user
+id: node.buyer_claim.default
+targetEntityType: node
+bundle: buyer_claim
+mode: default
+content:
+  field_claim_order_id:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_claim_product:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_claim_rebuttal:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_claim_statement:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_claim_status:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_claim_user:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_claim_username:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

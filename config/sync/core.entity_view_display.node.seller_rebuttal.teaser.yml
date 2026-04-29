@@ -1,0 +1,35 @@
+uuid: 1f5f1487-9a95-4492-ae36-bbd7469568e9
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.seller_rebuttal.field_rebuttal_para
+    - field.field.node.seller_rebuttal.field_rebuttal_statement
+    - field.field.node.seller_rebuttal.field_rebuttal_summary
+    - field.field.node.seller_rebuttal.field_select_product
+    - field.field.node.seller_rebuttal.field_upload_supporting_evidence
+    - node.type.seller_rebuttal
+  module:
+    - user
+id: node.seller_rebuttal.teaser
+targetEntityType: node
+bundle: seller_rebuttal
+mode: teaser
+content:
+  content_moderation_control:
+    settings: {  }
+    third_party_settings: {  }
+    weight: -20
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_rebuttal_para: true
+  field_rebuttal_statement: true
+  field_rebuttal_summary: true
+  field_select_product: true
+  field_upload_supporting_evidence: true

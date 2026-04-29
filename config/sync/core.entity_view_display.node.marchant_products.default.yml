@@ -1,0 +1,205 @@
+uuid: ed057b95-fadd-4cc6-9530-48fae4816b2b
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_display.comment.comment.default
+    - field.field.node.marchant_products.body
+    - field.field.node.marchant_products.field_advertising
+    - field.field.node.marchant_products.field_comments
+    - field.field.node.marchant_products.field_external_id
+    - field.field.node.marchant_products.field_image
+    - field.field.node.marchant_products.field_legal_business_name
+    - field.field.node.marchant_products.field_platform_link
+    - field.field.node.marchant_products.field_price
+    - field.field.node.marchant_products.field_prices
+    - field.field.node.marchant_products.field_product_url_new
+    - field.field.node.marchant_products.field_product_variation
+    - field.field.node.marchant_products.field_rating
+    - field.field.node.marchant_products.field_rating_new
+    - field.field.node.marchant_products.field_show_in_homepage
+    - field.field.node.marchant_products.field_sold_bys
+    - field.field.node.marchant_products.field_testified_video
+    - field.field.node.marchant_products.field_tests_done
+    - field.field.node.marchant_products.field_trending_products
+    - node.type.marchant_products
+  module:
+    - comment
+    - entity_reference_revisions
+    - link
+    - options
+    - svg_image
+    - text
+    - user
+id: node.marchant_products.default
+targetEntityType: node
+bundle: marchant_products
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_advertising:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 119
+    region: content
+  field_comments:
+    type: comment_default
+    label: above
+    settings:
+      view_mode: default
+      pager_id: 0
+    third_party_settings: {  }
+    weight: 121
+    region: content
+  field_external_id:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 112
+    region: content
+  field_image:
+    type: image_url
+    label: hidden
+    settings:
+      image_style: ''
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_legal_business_name:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_platform_link:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 109
+    region: content
+  field_price:
+    type: number_decimal
+    label: hidden
+    settings:
+      thousand_separator: ''
+      decimal_separator: .
+      scale: 2
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  field_prices:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_product_url_new:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 117
+    region: content
+  field_product_variation:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 114
+    region: content
+  field_rating:
+    type: list_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_rating_new:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 116
+    region: content
+  field_show_in_homepage:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 120
+    region: content
+  field_sold_bys:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_testified_video:
+    type: boolean
+    label: hidden
+    settings:
+      format: yes-no
+      format_custom_false: 'No'
+      format_custom_true: 'Yes'
+    third_party_settings: {  }
+    weight: 113
+    region: content
+  field_tests_done:
+    type: number_integer
+    label: hidden
+    settings:
+      thousand_separator: ''
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_trending_products:
+    type: boolean
+    label: hidden
+    settings:
+      format: default
+      format_custom_false: ''
+      format_custom_true: ''
+    third_party_settings: {  }
+    weight: 118
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

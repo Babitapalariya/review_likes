@@ -1,0 +1,10 @@
+uuid: 6b667454-1ea6-4c83-9d48-91c1e742983e
+langcode: en
+status: true
+dependencies: {  }
+id: rebuttal
+label: Rebuttal
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

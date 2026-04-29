@@ -1,9 +1,0 @@
-uuid: 9c8866d9-fa8f-435c-a7f4-cce37b0c6804
-langcode: en
-status: true
-dependencies: {  }
-name: 'Tester Account'
-vid: tester_account
-description: null
-weight: 0
-new_revision: false

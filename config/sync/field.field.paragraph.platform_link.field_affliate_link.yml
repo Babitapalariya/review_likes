@@ -1,0 +1,23 @@
+uuid: 57b16713-8a59-4346-abdf-be64ad13eaa7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_affliate_link
+    - paragraphs.paragraphs_type.platform_link
+  module:
+    - link
+id: paragraph.platform_link.field_affliate_link
+field_name: field_affliate_link
+entity_type: paragraph
+bundle: platform_link
+label: 'Affliate Link'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

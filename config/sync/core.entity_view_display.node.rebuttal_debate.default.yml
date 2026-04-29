@@ -1,0 +1,91 @@
+uuid: ef0b833d-1d83-4d28-9302-10d2c81c8729
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.rebuttal_debate.field_debate_comment
+    - field.field.node.rebuttal_debate.field_debate_commenter_type
+    - field.field.node.rebuttal_debate.field_debate_media
+    - field.field.node.rebuttal_debate.field_debate_parent
+    - field.field.node.rebuttal_debate.field_debate_product
+    - field.field.node.rebuttal_debate.field_debate_rebuttal
+    - field.field.node.rebuttal_debate.field_debate_speaking_to
+    - field.field.node.rebuttal_debate.field_debate_support
+    - node.type.rebuttal_debate
+  module:
+    - file
+    - options
+    - text
+    - user
+id: node.rebuttal_debate.default
+targetEntityType: node
+bundle: rebuttal_debate
+mode: default
+content:
+  field_debate_comment:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 103
+    region: content
+  field_debate_commenter_type:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 106
+    region: content
+  field_debate_media:
+    type: file_default
+    label: above
+    settings:
+      use_description_as_link_text: true
+    third_party_settings: {  }
+    weight: 107
+    region: content
+  field_debate_parent:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 108
+    region: content
+  field_debate_product:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  field_debate_rebuttal:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_debate_speaking_to:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 105
+    region: content
+  field_debate_support:
+    type: list_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 104
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden: {  }

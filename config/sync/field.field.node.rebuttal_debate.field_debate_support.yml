@@ -1,0 +1,21 @@
+uuid: f0d51759-6299-4276-aac3-acaf8f4925f8
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_debate_support
+    - node.type.rebuttal_debate
+  module:
+    - options
+id: node.rebuttal_debate.field_debate_support
+field_name: field_debate_support
+entity_type: node
+bundle: rebuttal_debate
+label: 'Support Side'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

@@ -1,0 +1,36 @@
+uuid: d588f2be-57c0-4f42-9301-366d3784c8b1
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.rebuttal_debate.field_debate_comment
+    - field.field.node.rebuttal_debate.field_debate_commenter_type
+    - field.field.node.rebuttal_debate.field_debate_media
+    - field.field.node.rebuttal_debate.field_debate_parent
+    - field.field.node.rebuttal_debate.field_debate_product
+    - field.field.node.rebuttal_debate.field_debate_rebuttal
+    - field.field.node.rebuttal_debate.field_debate_speaking_to
+    - field.field.node.rebuttal_debate.field_debate_support
+    - node.type.rebuttal_debate
+  module:
+    - user
+id: node.rebuttal_debate.teaser
+targetEntityType: node
+bundle: rebuttal_debate
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_debate_comment: true
+  field_debate_commenter_type: true
+  field_debate_media: true
+  field_debate_parent: true
+  field_debate_product: true
+  field_debate_rebuttal: true
+  field_debate_speaking_to: true
+  field_debate_support: true

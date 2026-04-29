@@ -1,0 +1,26 @@
+uuid: e9abd087-ab95-41e8-9bfa-e123096340f4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_rebuttal_statement
+    - filter.format.basic_html
+    - filter.format.full_html
+    - node.type.seller_rebuttal
+  module:
+    - text
+id: node.seller_rebuttal.field_rebuttal_statement
+field_name: field_rebuttal_statement
+entity_type: node
+bundle: seller_rebuttal
+label: 'Rebuttal Statement'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+    - full_html
+field_type: text_long

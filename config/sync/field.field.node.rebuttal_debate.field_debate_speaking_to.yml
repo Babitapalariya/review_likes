@@ -1,0 +1,19 @@
+uuid: 31dbf031-5daa-4715-92f9-04affc2d5fc3
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_debate_speaking_to
+    - node.type.rebuttal_debate
+id: node.rebuttal_debate.field_debate_speaking_to
+field_name: field_debate_speaking_to
+entity_type: node
+bundle: rebuttal_debate
+label: 'Speaking To'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

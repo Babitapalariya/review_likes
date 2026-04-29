@@ -1,0 +1,26 @@
+uuid: f787d710-8403-4f7d-9045-d3ee71cca355
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_claim_statement
+    - filter.format.basic_html
+    - filter.format.full_html
+    - node.type.buyer_claim
+  module:
+    - text
+id: node.buyer_claim.field_claim_statement
+field_name: field_claim_statement
+entity_type: node
+bundle: buyer_claim
+label: 'Claim Statement'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - basic_html
+    - full_html
+field_type: text_long

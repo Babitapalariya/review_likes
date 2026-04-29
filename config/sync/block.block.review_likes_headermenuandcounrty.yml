@@ -1,0 +1,22 @@
+uuid: acecd44a-fab3-4afc-b289-8982074a0b4b
+langcode: en
+status: true
+dependencies:
+  config:
+    - blockgroup.block_group_content.header_menu_and_counrty
+  module:
+    - blockgroup
+  theme:
+    - review_likes
+id: review_likes_headermenuandcounrty
+theme: review_likes
+region: header_menu_and_logo
+weight: -21
+provider: null
+plugin: 'block_group:header_menu_and_counrty'
+settings:
+  id: 'block_group:header_menu_and_counrty'
+  label: 'header menu and counrty '
+  label_display: '0'
+  provider: blockgroup
+visibility: {  }

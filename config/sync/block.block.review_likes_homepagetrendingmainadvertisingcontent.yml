@@ -1,0 +1,27 @@
+uuid: e16898cf-8c2e-4fb8-b947-bb5188d17b5d
+langcode: en
+status: true
+dependencies:
+  config:
+    - blockgroup.block_group_content.homepage_trending_main_advertising_content
+  module:
+    - blockgroup
+    - system
+  theme:
+    - review_likes
+id: review_likes_homepagetrendingmainadvertisingcontent
+theme: review_likes
+region: content
+weight: 0
+provider: null
+plugin: 'block_group:homepage_trending_main_advertising_content'
+settings:
+  id: 'block_group:homepage_trending_main_advertising_content'
+  label: 'homepage trending main advertising content'
+  label_display: '0'
+  provider: blockgroup
+visibility:
+  request_path:
+    id: request_path
+    negate: false
+    pages: '<front>'

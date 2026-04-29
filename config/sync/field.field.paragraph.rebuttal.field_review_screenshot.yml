@@ -1,0 +1,38 @@
+uuid: b190c735-4b3d-47e3-b56b-65e01732fe58
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_review_screenshot
+    - paragraphs.paragraphs_type.rebuttal
+  module:
+    - image
+id: paragraph.rebuttal.field_review_screenshot
+field_name: field_review_screenshot
+entity_type: paragraph
+bundle: rebuttal
+label: 'Review Screenshot'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg webp svg'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: true
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

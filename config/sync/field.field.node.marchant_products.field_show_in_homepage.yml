@@ -1,0 +1,21 @@
+uuid: 348bdeb7-0c88-4764-b17b-b737899a4164
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_show_in_homepage
+    - node.type.marchant_products
+id: node.marchant_products.field_show_in_homepage
+field_name: field_show_in_homepage
+entity_type: node
+bundle: marchant_products
+label: 'Show in Homepage'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,22 @@
+uuid: e046ad3d-9585-4405-86b8-a80f213bf9eb
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: all_products
+label: 'All products'
+type: 'canonical_entities:node'
+pattern: '/product/[node:nid]/[node:title]'
+selection_criteria:
+  4bbebd50-9461-4dce-ae1a-83041040bce1:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: 4bbebd50-9461-4dce-ae1a-83041040bce1
+    context_mapping:
+      node: node
+    bundles:
+      marchant_products: marchant_products
+selection_logic: and
+weight: -5
+relationships: {  }

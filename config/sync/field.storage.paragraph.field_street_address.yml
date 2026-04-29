@@ -1,0 +1,21 @@
+uuid: 3e954bde-9da4-4a48-9743-519b374b6096
+langcode: en
+status: true
+dependencies:
+  module:
+    - paragraphs
+id: paragraph.field_street_address
+field_name: field_street_address
+entity_type: paragraph
+type: string
+settings:
+  max_length: 255
+  case_sensitive: false
+  is_ascii: false
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

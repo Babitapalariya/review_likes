@@ -1,0 +1,21 @@
+uuid: 5fbe10ba-1e4c-4e48-bf19-11567ae1acbb
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_status
+    - paragraphs.paragraphs_type.rebuttal
+id: paragraph.rebuttal.field_status
+field_name: field_status
+entity_type: paragraph
+bundle: rebuttal
+label: Status
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

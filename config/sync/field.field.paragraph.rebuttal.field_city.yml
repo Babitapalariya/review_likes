@@ -1,0 +1,19 @@
+uuid: 1ade2f53-a72e-40dc-a6b6-a99ebb04bdb4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_city
+    - paragraphs.paragraphs_type.rebuttal
+id: paragraph.rebuttal.field_city
+field_name: field_city
+entity_type: paragraph
+bundle: rebuttal
+label: City
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

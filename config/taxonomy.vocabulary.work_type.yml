@@ -1,9 +1,0 @@
-uuid: 99ad5327-0ec4-4985-87cc-1b0ac89ccd12
-langcode: en
-status: true
-dependencies: {  }
-name: 'Work Type'
-vid: work_type
-description: null
-weight: 0
-new_revision: false

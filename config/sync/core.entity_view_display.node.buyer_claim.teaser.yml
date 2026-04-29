@@ -1,0 +1,34 @@
+uuid: f1941cf3-1025-4923-91f8-885a4dfeb354
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.buyer_claim.field_claim_order_id
+    - field.field.node.buyer_claim.field_claim_product
+    - field.field.node.buyer_claim.field_claim_rebuttal
+    - field.field.node.buyer_claim.field_claim_statement
+    - field.field.node.buyer_claim.field_claim_status
+    - field.field.node.buyer_claim.field_claim_user
+    - field.field.node.buyer_claim.field_claim_username
+    - node.type.buyer_claim
+  module:
+    - user
+id: node.buyer_claim.teaser
+targetEntityType: node
+bundle: buyer_claim
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_claim_order_id: true
+  field_claim_product: true
+  field_claim_rebuttal: true
+  field_claim_statement: true
+  field_claim_status: true
+  field_claim_user: true
+  field_claim_username: true

@@ -1,0 +1,21 @@
+uuid: a6c204d3-c83b-4989-9760-6a80387fd4b4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_debate_commenter_type
+    - node.type.rebuttal_debate
+  module:
+    - options
+id: node.rebuttal_debate.field_debate_commenter_type
+field_name: field_debate_commenter_type
+entity_type: node
+bundle: rebuttal_debate
+label: 'Commenter Type'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: list_string

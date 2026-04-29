@@ -1,0 +1,27 @@
+uuid: 01e1195b-5140-4123-a9a6-00af4dfb04ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_debate_media
+    - node.type.rebuttal_debate
+  module:
+    - file
+id: node.rebuttal_debate.field_debate_media
+field_name: field_debate_media
+entity_type: node
+bundle: rebuttal_debate
+label: 'Media Proof'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'txt png svg mp4 mp3'
+  max_filesize: ''
+  description_field: false
+field_type: file

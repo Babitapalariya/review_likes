@@ -1,0 +1,29 @@
+uuid: 6da56882-a684-4bde-9d96-b5f0f2d67a5b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_e_commerce_platform
+    - paragraphs.paragraphs_type.rebuttal
+    - taxonomy.vocabulary.e_commerce_platform
+id: paragraph.rebuttal.field_e_commerce_platform
+field_name: field_e_commerce_platform
+entity_type: paragraph
+bundle: rebuttal
+label: 'E-commerce Platform'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      e_commerce_platform: e_commerce_platform
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

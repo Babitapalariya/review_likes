@@ -1,0 +1,29 @@
+uuid: 1794bf49-d7d8-4112-834b-78b8545f400c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_claim_product
+    - node.type.buyer_claim
+    - node.type.marchant_products
+id: node.buyer_claim.field_claim_product
+field_name: field_claim_product
+entity_type: node
+bundle: buyer_claim
+label: 'Claim Product'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:node'
+  handler_settings:
+    target_bundles:
+      marchant_products: marchant_products
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

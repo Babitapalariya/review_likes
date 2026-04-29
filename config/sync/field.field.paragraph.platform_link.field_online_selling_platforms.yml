@@ -1,0 +1,23 @@
+uuid: c735b1fd-5d5e-44b6-a92b-3b0613895e1b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_online_selling_platforms
+    - paragraphs.paragraphs_type.platform_link
+  module:
+    - link
+id: paragraph.platform_link.field_online_selling_platforms
+field_name: field_online_selling_platforms
+entity_type: paragraph
+bundle: platform_link
+label: 'Online Selling Platforms'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

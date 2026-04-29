@@ -1,0 +1,23 @@
+uuid: 5292c8c6-cfc1-4f48-9f0d-7466510a26a5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_product_link
+    - paragraphs.paragraphs_type.rebuttal
+  module:
+    - link
+id: paragraph.rebuttal.field_product_link
+field_name: field_product_link
+entity_type: paragraph
+bundle: rebuttal
+label: 'Product Link'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: 1
+  link_type: 17
+field_type: link

@@ -1,0 +1,22 @@
+uuid: 57382ea9-6710-479a-902e-5531605173e4
+langcode: en
+status: true
+dependencies:
+  config:
+    - blockgroup.block_group_content.country_and_sign_in
+  module:
+    - blockgroup
+  theme:
+    - review_likes
+id: review_likes_countryandsignin
+theme: review_likes
+region: header_menu_and_counrty
+weight: -21
+provider: null
+plugin: 'block_group:country_and_sign_in'
+settings:
+  id: 'block_group:country_and_sign_in'
+  label: 'country and sign in'
+  label_display: '0'
+  provider: blockgroup
+visibility: {  }
