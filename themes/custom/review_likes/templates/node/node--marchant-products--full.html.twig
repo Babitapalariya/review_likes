@@ -427,16 +427,86 @@
                       </div>
                     {% endif %}
                   {% else %}
-                    {# Anonymous only: show login notice #}
-                    <div class="card" style="margin-top:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
-                      <div style="font-size:14px;color:#6b6b63;">
-                        🔒 <strong>Want to participate in this debate?</strong> Login to post your statement.
-                      </div>
-                      <a href="/user/login?destination={{ url('<current>') }}" class="btn btn-dark">
-                        Login to Participate
-                      </a>
-                    </div>
+                    {# Anonymous: show button that opens login popup #}
+    <div class="card" style="margin-top:16px;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;">
+      <div style="font-size:14px;color:#6b6b63;">
+        🔒 <strong>Want to participate in this debate?</strong> Login to post your statement.
+      </div>
+      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#debateLoginModal">
+        Login to Participate
+      </button>
+    </div>
                   {% endif %}
+
+
+  
+
+
+
+
+
+ {% if _claims_data[rebuttal.id] is defined and _claims_data[rebuttal.id] is not empty %}
+  <div class="claims-section" style="margin-top:20px;">
+    <h5 style="font-weight:700;margin-bottom:14px;">
+      Buyer Claims ({{ _claims_data[rebuttal.id]|length }})
+    </h5>
+
+    {% for claim in _claims_data[rebuttal.id] %}
+
+
+      <div class="claim-card" style="background:#fff;border:1px solid #e8e8e4;border-radius:16px;padding:16px;margin-bottom:12px;">
+
+        {# Status badge #}
+        {% if claim.status == 'approved' %}
+          <span style="background:#f0fdf4;color:#166534;border:1px solid #86efac;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">✅ Verified Buyer</span>
+        {% elseif claim.status == 'rejected' %}
+          <span style="background:#fff4f4;color:#a02020;border:1px solid #ffc2c2;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">❌ Rejected</span>
+        {% else %}
+          <span style="background:#fffbf0;color:#92400e;border:1px solid #fde68a;border-radius:999px;padding:3px 10px;font-size:11px;font-weight:700;">⏳ Pending</span>
+        {% endif %}
+        <span class="claim-user" style="font-size:13px;"><button type="button" class="btn btn-pill btn-pill-rose debate-audience-pill" data-value="rio">{{ claim.username }}</button>  </span>
+
+
+          <div style="margin-top:10px;display:flex;flex-direction:column;gap:6px;">
+
+
+
+        {% if claim.statement %}
+            <div style="font-size:13px;">
+              <strong>Statement:</strong> {{ claim.statement }}
+            </div>
+          {% endif %}
+
+           
+
+          <div style="font-size:13px;">
+            <strong>Product:</strong> {{ claim.product_title }}
+          </div>
+
+          <div style="font-size:13px;">
+            <strong>Rebuttal:</strong> {{ claim.rebuttal_title }}
+          </div>
+
+           <div style="font-size:11px;color:#8a8a82;margin-top:4px;">
+            Submitted: {{ claim.created }}
+          </div>
+
+
+
+ </div>
+</div>
+    {% endfor %}
+
+  </div>
+{% endif %}
+
+
+
+
+
+
+
+
 
               {# ── ROW 4+: COMMENTS LIST — visible to everyone ────────────── #}
               <div id="debate-comments-list-{{ rebuttal.id }}" class="debate-comments-list" style="margin-top:16px;">
@@ -488,10 +558,21 @@
 
   {% for rebuttal in _rebuttals %}
 
-    {# ── Claim comment card ──────────────────────────────────────────── #}
-    <div class="rl-sidebar-card product-details-card mb-3">
-      <h6>Are you the original buyer?</h6>
-      <p class="small text-muted">Claim your review identity, get a verified badge, and reply directly to the seller with new proof.</p>
+ <div class="rl-sidebar-card product-details-card mb-3">
+  <h6>Are you the original buyer?</h6>
+  <p class="small text-muted">Claim your review identity, get a verified badge, and reply directly to the seller with new proof.</p>
+
+  {% if _user_logged_in %}
+
+    {% if _claimed_rebuttals[rebuttal.id] is defined and _claimed_rebuttals[rebuttal.id] %}
+      {# This logged-in user already claimed #}
+      <div style="background:#f0fdf4;border:1px solid #86efac;border-radius:12px;padding:12px 14px;font-size:13px;color:#166534;text-align:center;margin-bottom:8px;">
+        ✅ <strong>You have already claimed this identity.</strong><br>
+        <span style="font-size:12px;color:#4a7c59;">Your claim is pending verification.</span>
+      </div>
+
+    {% else %}
+      {# Logged in but not claimed yet — show claim button #}
       <button type="button"
         class="btn btn-default w-100 mb-2 claim-btn"
         data-bs-toggle="modal"
@@ -499,11 +580,24 @@
         data-rebuttal="{{ rebuttal.id }}">
         Yes, claim my comment
       </button>
+    {% endif %}
 
-      {# Success notice appears here after claim submitted #}
-      <div id="claim-success-notice-{{ rebuttal.id }}"></div>
-            <a href="/user/login" class="btn btn-outline-secondary w-100">I used this product before</a>
-    </div>
+  {% else %}
+    {# Anonymous — show login to claim button #}
+    <button type="button"
+      class="btn btn-default w-100 mb-2"
+      data-bs-toggle="modal"
+      data-bs-target="#debateLoginModal">
+      Yes, claim my comment
+    </button>
+  {% endif %}
+
+  <div id="claim-success-notice-{{ rebuttal.id }}"></div>
+
+  <button type="button" class="btn btn-outline-secondary w-100">
+    I used this product before
+  </button>
+</div>
 
     {# ── Be part of debate ───────────────────────────────────────────── #}
     <div class="rl-sidebar-card product-details-card mb-3">
@@ -546,7 +640,10 @@
   {% else %}
     <div style="text-align:center;padding:20px;">
       <p style="font-size:14px;color:#6b6b63;margin-bottom:16px;">You must be logged in to claim your buyer identity.</p>
-      <a href="/user/login?destination={{ url('<current>') }}" class="btn btn-dark">Login to Claim</a>
+      <button type="button" class="btn btn-dark" data-bs-toggle="modal" data-bs-target="#debateLoginModal">
+        Login to Claim
+      </button>
+      
     </div>
   {% endif %}
 </div>
@@ -628,6 +725,40 @@
             <div><strong>Myntra:</strong> <a href="javascript:void(0)">www.myntra.com</a></div>
           </div>
         </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+{# ── Debate Login Modal ──────────────────────────────────────────────────── #}
+<div class="modal fade" id="debateLoginModal" tabindex="-1" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered" style="max-width:420px;">
+    <div class="modal-content" style="border-radius:18px;overflow:hidden;">
+
+      <div class="modal-header" style="border-bottom:1px solid #e8e8e4;padding:20px 24px;">
+        <div>
+          <h5 class="modal-title" style="font-weight:700;margin-bottom:2px;">Login to Participate</h5>
+          <div style="font-size:12px;color:#6b6b63;">Join the debate and post your statement</div>
+        </div>
+        <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+      </div>
+
+      <div class="modal-body" style="padding:24px;">
+
+        {# Standard Drupal login form — redirects back here after login #}
+        {{ drupal_form('Drupal\\user\\Form\\UserLoginForm') }}
+
+        <div class="debate-login-links" style="text-align:center;margin-top:16px;padding-top:16px;border-top:1px solid #e8e8e4;display:flex;flex-direction:column;gap:8px;">
+          <div>
+            <span style="font-size:13px;color:#6b6b63;">Don't have an account?</span>
+            <a href="/user/register" style="font-size:13px;font-weight:600;color:#1a1a17;margin-left:6px;text-decoration:none;">Register here</a>
+          </div>
+          <a href="/user/password" style="font-size:12px;color:#8a8a82;text-decoration:none;">Forgot your password?</a>
+        </div>
+
       </div>
     </div>
   </div>

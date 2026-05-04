@@ -151,3 +151,12 @@ merchant_dashboard.debate_comments:
     _access: 'TRUE'
     rebuttal_id: '\d+'
   methods: [GET]
+
+merchant_dashboard.user_search:
+  path: '/api/users/search'
+  defaults:
+    _controller: '\Drupal\merchant_dashboard\Controller\DebateController::searchUsers'
+    _title: 'User Search'
+  requirements:
+    _access: 'TRUE'
+  methods: [GET]

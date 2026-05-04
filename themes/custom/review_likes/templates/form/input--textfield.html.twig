@@ -61,6 +61,9 @@
   {% elseif element_id == 'edit-coupon-product-link' %}
   <input{{ attributes.addClass('form-control')}} />
   {{ children }}
+
+   {% elseif element_id == 'edit-name' %}
+     <input{{ attributes.addClass('form-control') }} placeholder="enter username" />
   
 {% else %}
 {# {{ dump(element['#id']) }} #}

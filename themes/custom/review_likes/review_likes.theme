@@ -173,7 +173,7 @@ function review_likes_form_alter(array &$form, FormStateInterface $form_state, $
   }
 }
 
-function review_likes_form_user_login_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+/*function review_likes_form_user_login_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
   // Add class and placeholder to the username field
   if (isset($form['name'])) {
     $form['name']['#title_display'] = 'invisible';
@@ -194,7 +194,7 @@ function review_likes_form_user_login_form_alter(&$form, \Drupal\Core\Form\FormS
     $form['actions']['submit']['#attributes']['class'][] = 'btn-default';
     $form['actions']['submit']['#attributes']['class'][] = 'mt-3';
   }
-}
+}*/
 
 function review_likes_preprocess_views_exposed_form(&$variables) {
   if (isset($variables['form']['field_filter_target_id'])) {
@@ -589,6 +589,8 @@ $rebuttal_node = $variables['node'];
     $variables['_debate_forms']   = $variables['elements']['#debate_forms']   ?? [];
     $variables['_claim_forms']    = $variables['elements']['#claim_forms']    ?? [];  // ← ADD
     $variables['_user_logged_in'] = $variables['elements']['#user_logged_in'] ?? FALSE;
+    $variables['_claimed_rebuttals'] = $variables['elements']['#claimed_rebuttals'] ?? [];
+    $variables['_claims_data'] = $variables['elements']['#claims_data'] ?? [];
   }
 
 
@@ -611,6 +613,27 @@ function review_likes_preprocess_views_view_fields(&$variables) {
   $variables['is_front_page'] = \Drupal::service('path.matcher')->isFrontPage();
 }
 
+
+
+
+ /**
+ * Implements hook_form_FORM_ID_alter() for user_login_form.
+ * When rendered inside the debate modal, redirect back to current page.
+ */
+function review_likes_form_user_login_form_alter(&$form, \Drupal\Core\Form\FormStateInterface $form_state, $form_id) {
+  // Get current path and set as redirect destination.
+  /*$current_path = \Drupal::service('path.current')->getPath();
+  $form['#action'] = \Drupal\Core\Url::fromRoute('user.login', [], [
+    'query' => ['destination' => $current_path],
+  ])->toString();*/
+  $current_path = \Drupal::service('path.current')->getPath();
+  $destination  = \Drupal::request()->query->get('destination', $current_path);
+
+  // Override form action to include destination.
+  $form['#action'] = \Drupal\Core\Url::fromRoute('user.login', [], [
+    'query' => ['destination' => $destination],
+  ])->toString();
+}
 
 
 

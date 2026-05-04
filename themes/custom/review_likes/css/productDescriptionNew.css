@@ -608,3 +608,57 @@
     width: 50%;
     height: 50%;
 }
+
+
+#debateLoginModal .leftsection {
+  display: none !important;
+}
+
+#debateLoginModal .rightsection {
+  width: 100% !important;
+  max-width: 100% !important;
+  flex: 0 0 100% !important;
+}
+
+#debateLoginModal .container-fluid {
+  padding: 0 !important;
+}
+
+#debateLoginModal .row {
+  margin: 0 !important;
+}
+
+#debateLoginModal h2 {
+  font-size: 18px !important;
+  margin-bottom: 20px !important;
+}
+
+#debateLoginModal .signuplink,
+#debateLoginModal .signup {
+  display: none !important;
+}
+
+/*input#edit-name {
+    width: 100%;
+    margin: 4px;
+}
+
+input#edit-pass {
+    width: 100%;
+    margin: 4px;
+}*/
+
+
+ 
+input#edit-submit--2 {
+    background: orange;
+    border: orange;
+    color: white;
+    margin: 5%;
+    border-radius: 5%;
+    padding: 2%;
+    align-content: center;
+    text-align: center;
+    margin-left: 30%;
+}
+

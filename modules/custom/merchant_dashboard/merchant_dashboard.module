@@ -414,11 +414,105 @@ foreach ($rebuttals_data as $r) {
 }
 $build['#claim_forms'] = $claim_forms;
 
+
+
+
+
 \Drupal::logger('merchant_dashboard')->debug('Claim forms built: @keys', [
   '@keys' => implode(', ', array_keys($claim_forms)),
 ]);
 
 
+
+
+// Load full claim data for each rebuttal.
+$claims_data = [];
+
+foreach ($rebuttals_data as $r) {
+  $claim_nids = \Drupal::entityQuery('node')
+    ->condition('type', 'buyer_claim')
+    ->condition('field_claim_rebuttal', $r['id'])
+    ->condition('status', 1)
+    ->accessCheck(FALSE)
+    ->sort('created', 'DESC')
+    ->execute();
+
+  if (empty($claim_nids)) { continue; }
+
+  foreach (\Drupal\node\Entity\Node::loadMultiple($claim_nids) as $claim) {
+
+    // Get product title.
+    $product_title = '';
+    if ($claim->hasField('field_claim_product') && !$claim->get('field_claim_product')->isEmpty()) {
+      $product_node  = $claim->get('field_claim_product')->entity;
+      $product_title = $product_node ? $product_node->getTitle() : '';
+    }
+
+    // Get rebuttal title.
+    $rebuttal_title = '';
+    if ($claim->hasField('field_claim_rebuttal') && !$claim->get('field_claim_rebuttal')->isEmpty()) {
+      $rebuttal_node  = $claim->get('field_claim_rebuttal')->entity;
+      $rebuttal_title = $rebuttal_node ? $rebuttal_node->getTitle() : '';
+    }
+
+    // Get claiming user info.
+    $claim_user      = $claim->getOwner();
+    $claim_username  = $claim_user ? $claim_user->getDisplayName() : 'Anonymous';
+    $claim_user_id   = $claim_user ? $claim_user->id() : 0;
+
+    $claims_data[$r['id']][] = [
+      'id'              => (int) $claim->id(),
+      'title'           => $claim->getTitle(),
+      'username'        => $claim->hasField('field_claim_username')  ? ($claim->get('field_claim_username')->value  ?? '') : '',
+      'order_id'        => $claim->hasField('field_claim_order_id')  ? ($claim->get('field_claim_order_id')->value  ?? '') : '',
+      'statement'       => $claim->hasField('field_claim_statement') ? ($claim->get('field_claim_statement')->value ?? '') : '',
+      'status'          => $claim->hasField('field_claim_status')    ? ($claim->get('field_claim_status')->value    ?? 'pending') : 'pending',
+      'product_title'   => $product_title,
+      'rebuttal_title'  => $rebuttal_title,
+      'claim_user'      => $claim_username,
+      'claim_user_id'   => $claim_user_id,
+      'created'         => \Drupal::service('date.formatter')->format($claim->getCreatedTime(), 'medium'),
+    ];
+  }
+}
+
+$build['#claims_data'] = $claims_data;
+
+$current_uid       = \Drupal::currentUser()->id();
+$claimed_rebuttals = [];
+
+foreach ($rebuttals_data as $r) {
+  if ($current_uid > 0) {
+    // Only check if THIS logged-in user has claimed.
+    $existing = \Drupal::entityQuery('node')
+      ->condition('type', 'buyer_claim')
+      ->condition('field_claim_rebuttal', $r['id'])
+      ->condition('field_claim_user', $current_uid)
+      ->accessCheck(FALSE)
+      ->execute();
+
+    if (!empty($existing)) {
+      $claimed_rebuttals[$r['id']] = TRUE;
+    }
+  }
+  // Anonymous users never show as claimed.
+}
+
+$build['#claimed_rebuttals'] = $claimed_rebuttals;
+
+
+}
+
+
+
+/**
+ * Implements hook_mail().
+ */
+function merchant_dashboard_mail($key, &$message, $params) {
+  if ($key === 'debate_mention') {
+    $message['subject'] = $params['subject'];
+    $message['body'][]  = $params['body'];
+  }
 }
 
 

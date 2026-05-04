@@ -74,11 +74,18 @@
      <input{{ attributes.addClass('form-control') }} />
     {{ children }}
     
+    {% elseif form_id == 'edit-attach-file-upload' %}
+     <input{{ attributes.addClass('form-control') }} />
 
     {% elseif form_id== 'edit-submit-all-products' %}
   <button{{ attributes.removeAttribute('value').setAttribute('type', 'submit').addClass('btn btn-default') }}>
     <i class="bi bi-search"></i>
   </button>
+
+ 
+  {% elseif form_id == 'edit-pass' %}
+     <input{{ attributes.addClass('form-control') }} placeholder="enter password" />
+
 {% else %}
 {# {{ dump(element['#id']) }} #}
   <input{{ attributes}}/>

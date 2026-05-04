@@ -190,7 +190,7 @@ class DebateCommentForm extends FormBase {
     ];
 
     // ── Submit ─────────────────────────────────────────────────────────────
-    $form['submit'] = [
+    /*$form['submit'] = [
       '#type'       => 'submit',
       '#value'      => $this->t('Post Statement'),
       '#attributes' => ['class' => ['btn', 'btn-dark', 'debate-submit-btn']],
@@ -202,7 +202,21 @@ class DebateCommentForm extends FormBase {
       ],
       '#prefix' => '<div style="margin-top:14px;">',
       '#suffix' => '</div>',
-    ];
+    ];*/
+
+$form['submit'] = [
+  '#type'       => 'submit',
+  '#value'      => $this->t('Post Statement'),
+  '#attributes' => ['class' => ['btn', 'btn-dark', 'debate-submit-btn']],
+  '#ajax'       => [
+    'callback' => '::ajaxSubmit',
+    // NO wrapper here — we handle all DOM changes via AjaxResponse commands
+    'effect'   => 'fade',
+    'progress' => ['type' => 'throbber', 'message' => ''],
+  ],
+  '#prefix' => '<div style="margin-top:14px;">',
+  '#suffix' => '</div>',
+];
 
     $form['card_close'] = ['#markup' => '</div>'];
 
@@ -213,7 +227,7 @@ class DebateCommentForm extends FormBase {
   // VALIDATE
   // ══════════════════════════════════════════════════════════════════════════
 
-  public function validateForm(array &$form, FormStateInterface $form_state): void {
+  /*public function validateForm(array &$form, FormStateInterface $form_state): void {
     if (empty(trim((string) ($form_state->getValue('comment') ?? '')))) {
       $form_state->setErrorByName('comment', $this->t('Please write a statement before posting.'));
     }
@@ -221,13 +235,21 @@ class DebateCommentForm extends FormBase {
     if (empty($support)) {
       $form_state->setErrorByName('support_choice', $this->t('Please select your position.'));
     }
+  }*/
+
+  public function validateForm(array &$form, FormStateInterface $form_state): void {
+  // Comment is NOT required — if empty, support label will be used as statement.
+  $support = $form_state->getValue('support_choice');
+  if (empty($support)) {
+    $form_state->setErrorByName('support_choice', $this->t('Please select your position.'));
   }
+}
 
   // ══════════════════════════════════════════════════════════════════════════
   // AJAX SUBMIT
   // ══════════════════════════════════════════════════════════════════════════
 
-  public function ajaxSubmit(array &$form, FormStateInterface $form_state) {
+  /*public function ajaxSubmit(array &$form, FormStateInterface $form_state) {
     $response    = new AjaxResponse();
     $rebuttal_id = (int) ($form_state->getValue('rebuttal_id') ?? 0);
     $msg_sel     = '#debate-msg-' . $rebuttal_id;
@@ -300,7 +322,119 @@ class DebateCommentForm extends FormBase {
     ));
 
     return $response;
+  }*/
+
+
+
+public function ajaxSubmit(array &$form, FormStateInterface $form_state) {
+  $response    = new AjaxResponse();
+  $rebuttal_id = (int) ($form_state->getValue('rebuttal_id') ?? 0);
+  $msg_sel     = '#debate-msg-' . $rebuttal_id;
+  $list_sel    = '#debate-comments-list-' . $rebuttal_id;
+
+  if ($form_state->hasAnyErrors()) {
+    $html = '';
+    foreach ($form_state->getErrors() as $err) {
+      $html .= '<div class="debate-error" style="background:#fff4f4;border:1px solid #ffc2c2;border-radius:12px;padding:10px 16px;font-size:13px;color:#a02020;margin-bottom:8px;">' . $err . '</div>';
+    }
+    $response->addCommand(new HtmlCommand($msg_sel, $html));
+    return $response;
   }
+
+  $response->addCommand(new HtmlCommand($msg_sel, ''));
+
+  // Read parent_id from RAW input only — not form values.
+  // $form_state->getValue('parent_id') is unreliable for hidden fields
+  // because Drupal may reset it. getUserInput() is the ground truth.
+  $raw       = $form_state->getUserInput();
+  $parent_id = (int) trim((string) ($raw['parent_id'] ?? '0'));
+
+  \Drupal::logger('merchant_dashboard')->debug(
+    'ajaxSubmit — rebuttal_id:@r  parent_id:@p  raw_parent_id_key_exists:@e',
+    [
+      '@r' => $rebuttal_id,
+      '@p' => $parent_id,
+      '@e' => array_key_exists('parent_id', $raw) ? 'YES' : 'NO',
+    ]
+  );
+
+  $node = $this->saveDebateComment($form_state);
+
+  if (!$node) {
+    $response->addCommand(new HtmlCommand($msg_sel,
+      '<div class="debate-error" style="background:#fff4f4;border:1px solid #ffc2c2;border-radius:12px;padding:10px 16px;font-size:13px;color:#a02020;">Failed to save. Please try again.</div>'
+    ));
+    return $response;
+  }
+
+  // Render card at correct depth.
+  $is_reply  = ($parent_id > 0);
+  $card_html = $this->renderCommentCard($node, $is_reply ? 1 : 0);
+
+  if ($is_reply) {
+    // ── REPLY: inject ONLY into parent's replies container ──────────────
+    $reply_sel = '#replies-' . $parent_id;
+
+    \Drupal::logger('merchant_dashboard')->debug(
+      'ajaxSubmit — injecting REPLY into @sel', ['@sel' => $reply_sel]
+    );
+
+    $response->addCommand(new RemoveCommand($reply_sel . ' .reply-empty'));
+    $response->addCommand(new AppendCommand($reply_sel, $card_html));
+    $response->addCommand(new InvokeCommand($reply_sel, 'slideDown', [300]));
+    $response->addCommand(new InvokeCommand(
+      '[data-toggle-replies="' . $parent_id . '"]',
+      'trigger',
+      ['debate:recount']
+    ));
+    // Do NOT touch the main list — return early after reply injection.
+  }
+  else {
+    // ── TOP-LEVEL: prepend ONLY to main comments list ────────────────────
+    \Drupal::logger('merchant_dashboard')->debug(
+      'ajaxSubmit — injecting TOP-LEVEL into @sel', ['@sel' => $list_sel]
+    );
+
+    $response->addCommand(new RemoveCommand($list_sel . ' .debate-no-comments'));
+    $response->addCommand(new PrependCommand($list_sel, $card_html));
+  }
+
+  // Clear textarea.
+  $response->addCommand(new InvokeCommand(
+    '#comment-textarea-' . $rebuttal_id, 'val', ['']
+  ));
+
+  // Reset parent_id hidden field back to 0.
+  $response->addCommand(new InvokeCommand(
+    '#parent-id-' . $rebuttal_id, 'val', ['0']
+  ));
+
+  // Remove reply banner from form card.
+  $response->addCommand(new RemoveCommand(
+    '#debate-form-card-' . $rebuttal_id . ' .debate-reply-banner'
+  ));
+
+  // Re-attach Drupal behaviors so new cards get JS handlers.
+  $response->addCommand(new InvokeCommand('body', 'trigger', ['debate:reattach']));
+
+  // Update trust snapshot.
+  $product_id = (int) ($form_state->getValue('product_id') ?? 0);
+  $counts     = $this->getTrustCounts($rebuttal_id, $product_id);
+  $response->addCommand(new InvokeCommand(
+    '#debate-section-' . $rebuttal_id,
+    'trigger',
+    ['updateTrust', [$counts]]
+  ));
+
+  // Success message.
+  $response->addCommand(new HtmlCommand($msg_sel,
+    '<div class="debate-success" style="background:#f0fdf4;border:1px solid #86efac;border-radius:12px;padding:10px 16px;font-size:13px;color:#166534;margin-top:8px;">✓ Your statement has been posted.</div>'
+  ));
+
+  return $response;
+}
+
+
 
   public function submitForm(array &$form, FormStateInterface $form_state): void {
     #$this->saveDebateComment($form_state);
@@ -310,7 +444,7 @@ class DebateCommentForm extends FormBase {
   // SAVE DEBATE COMMENT NODE
   // ══════════════════════════════════════════════════════════════════════════
 
-  protected function saveDebateComment(FormStateInterface $form_state): ?Node {
+  /*protected function saveDebateComment(FormStateInterface $form_state): ?Node {
     $values = $form_state->getValues();
     $raw    = $form_state->getUserInput();
 
@@ -390,9 +524,152 @@ class DebateCommentForm extends FormBase {
       \Drupal::logger('merchant_dashboard')->error('Debate save error: @e', ['@e' => $e->getMessage()]);
       return NULL;
     }
+  }*/
+
+  protected function saveDebateComment(FormStateInterface $form_state): ?Node {
+  $values = $form_state->getValues();
+  $raw    = $form_state->getUserInput();
+
+  $rebuttal_id    = (int)    ($values['rebuttal_id']    ?? 0);
+  $product_id     = (int)    ($values['product_id']     ?? 0);
+  $parent_id      = (int)    ($raw['parent_id']         ?? 0);
+  $commenter_type = (string) ($values['commenter_type'] ?? 'visitor');
+
+  // Support choice — determines fallback message too.
+  $support_raw = (string) ($values['support_choice'] ?? '');
+  switch ($support_raw) {
+    case 'seller':  $support_side = 'seller';  break;
+    case 'buyer':   $support_side = 'buyer';   break;
+    case 'neutral': $support_side = 'neutral'; break;
+    default:
+      $support_side = ($commenter_type === 'seller') ? 'seller'
+        : (($commenter_type === 'buyer') ? 'buyer' : 'neutral');
   }
 
-  // ══════════════════════════════════════════════════════════════════════════
+  // Support label messages — used as fallback if comment is empty.
+  $support_messages = [
+    'seller'  => 'I support the Owner',
+    'buyer'   => 'I support the Buyer',
+    'neutral' => 'Need more proof',
+  ];
+
+  // Comment — if empty use the support label as the statement.
+  $comment = trim((string) ($values['comment'] ?? ''));
+  if (empty($comment)) {
+    $comment = $support_messages[$support_side] ?? 'I support the Owner';
+  }
+
+  // speaking_to from hidden field written by JS pill click.
+  $speaking_to = strip_tags(trim((string) ($raw['speaking_to'] ?? 'Product Owner')));
+  $speaking_to = mb_substr($speaking_to ?: 'Product Owner', 0, 255);
+
+  // Tagged users — extract @mentions from the raw comment text.
+  $original_comment = trim((string) ($values['comment'] ?? ''));
+  $tagged_users = [];
+  if (!empty($original_comment) && preg_match_all('/@([\w\.\-]+)/', $original_comment, $matches)) {
+    $tagged_users = array_unique($matches[1]);
+  }
+
+  // Media files.
+  $media_refs = [];
+  $fids = $values['media_proof'] ?? [];
+  if (is_array($fids)) {
+    foreach (array_filter(array_map('intval', $fids)) as $fid) {
+      $file = File::load($fid);
+      if ($file) {
+        $file->setPermanent();
+        $file->save();
+        $media_refs[] = ['target_id' => $fid];
+      }
+    }
+  }
+
+  $node_data = [
+    'type'                        => 'rebuttal_debate',
+    'title'                       => mb_substr($comment, 0, 60) . (mb_strlen($comment) > 60 ? '...' : ''),
+    'status'                      => 1,
+    'field_debate_rebuttal'       => $rebuttal_id ? ['target_id' => $rebuttal_id] : NULL,
+    'field_debate_product'        => $product_id  ? ['target_id' => $product_id]  : NULL,
+    'field_debate_comment'        => $comment,
+    'field_debate_support'        => $support_side,
+    'field_debate_speaking_to'    => $speaking_to,
+    'field_debate_commenter_type' => $commenter_type,
+  ];
+
+  if ($parent_id > 0) {
+    $node_data['field_debate_parent'] = ['target_id' => $parent_id];
+  }
+  if (!empty($media_refs)) {
+    $node_data['field_debate_media'] = $media_refs;
+  }
+
+  try {
+    $node = Node::create($node_data);
+    $node->save();
+
+    foreach ($media_refs as $ref) {
+      $file = File::load($ref['target_id']);
+      if ($file) {
+        \Drupal::service('file.usage')->add($file, 'merchant_dashboard', 'node', $node->id());
+      }
+    }
+
+    // Send notifications to tagged users.
+    if (!empty($tagged_users)) {
+      $this->notifyTaggedUsers($tagged_users, $node, $comment);
+    }
+
+    return $node;
+  }
+  catch (\Exception $e) {
+    \Drupal::logger('merchant_dashboard')->error('Debate save error: @e', ['@e' => $e->getMessage()]);
+    return NULL;
+  }
+}
+
+protected function notifyTaggedUsers(array $usernames, Node $node, string $comment): void {
+  foreach ($usernames as $username) {
+    $users = \Drupal::entityTypeManager()
+      ->getStorage('user')
+      ->loadByProperties(['name' => $username]);
+
+    if (empty($users)) { continue; }
+
+    $tagged_user = reset($users);
+    $product_url = '';
+    $product_ref = $node->get('field_debate_product');
+    if (!$product_ref->isEmpty()) {
+      $product_url = \Drupal\Core\Url::fromRoute('entity.node.canonical', [
+        'node' => $product_ref->target_id,
+      ])->setAbsolute()->toString();
+    }
+
+    $tagger  = \Drupal::currentUser()->getDisplayName();
+    $excerpt = mb_substr($comment, 0, 100);
+    $subject = 'You were mentioned in a debate';
+    $body    = $tagger . ' mentioned you in a debate: "' . $excerpt . '" — View: ' . $product_url;
+
+    $params = [
+      'subject' => $subject,
+      'body'    => $body,
+    ];
+
+    \Drupal::service('plugin.manager.mail')->mail(
+      'merchant_dashboard',
+      'debate_mention',
+      $tagged_user->getEmail(),
+      $tagged_user->getPreferredLangcode(),
+      $params
+    );
+
+    \Drupal::logger('merchant_dashboard')->info(
+      'Tagged notification sent to @u for comment @c',
+      ['@u' => $username, '@c' => $node->id()]
+    );
+  }
+}
+
+ /* // ══════════════════════════════════════════════════════════════════════════
   // RENDER COMMENT CARD
   // $depth 0 = top-level comment (shows Reply button + replies container)
   // $depth 1 = reply (no reply button, no nested replies — like Instagram)
@@ -501,35 +778,266 @@ class DebateCommentForm extends FormBase {
 
     $card_margin = $depth === 1 ? 'margin-bottom:10px;' : 'margin-bottom:16px;';
 
+return '
+  <div class="debate-comment-card card ' . $t['card'] . '"
+    id="debate-comment-' . $node_id . '"
+    data-node-id="' . $node_id . '"
+    data-rebuttal="' . $rebuttal_id . '"
+    style="' . $card_margin . 'border-radius:18px;">
+
+    <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
+      <div>
+        <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px;">
+          <span class="badge ' . $t['solid'] . '">' . htmlspecialchars($t['label']) . '</span>
+          <span class="badge ' . $t['light'] . '">' . htmlspecialchars($username) . '</span>
+        </div>
+        <div style="font-size:12px;color:#6b6b63;margin-top:2px;">→ <strong>@' . htmlspecialchars($speaking_to) . '</strong></div>
+      </div>
+      <span style="font-size:11px;color:#8a8a82;white-space:nowrap;">' . $date . '</span>
+    </div>
+
+    <p style="margin:0 0 10px;font-size:14px;line-height:1.6;">' . $this->formatCommentText($comment) . '</p>
+
+    ' . $media_html . '
+
+    <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px;">
+      <span style="font-size:12px;background:rgba(0,0,0,.06);border-radius:999px;padding:4px 12px;">' . htmlspecialchars($support_label) . '</span>
+      ' . $reply_button . '
+    </div>
+
+    ' . $replies_section . '
+
+  </div>';
+  }*/
+
+
+
+
+  // ══════════════════════════════════════════════════════════════════════════
+  // RENDER COMMENT CARD — matches HTML design exactly
+  // $depth 0 = top-level (grid-reply layout + Reply button + replies container)
+  // $depth 1 = reply (compact, no nested replies, no reply button)
+  // ══════════════════════════════════════════════════════════════════════════
+
+  public function renderCommentCard(Node $node, int $depth = 0): string {
+    $commenter_type = $node->get('field_debate_commenter_type')->value ?? 'visitor';
+    $support_side   = $node->get('field_debate_support')->value        ?? 'neutral';
+    $speaking_to    = $node->get('field_debate_speaking_to')->value    ?? 'Product Owner';
+    $comment        = $node->get('field_debate_comment')->value        ?? '';
+    $user           = $node->getOwner();
+    $username       = $user ? $user->getDisplayName() : 'Anonymous';
+    $date           = \Drupal::service('date.formatter')->format($node->getCreatedTime(), 'medium');
+    $node_id        = (int) $node->id();
+
+    // Get rebuttal ID safely.
+    $rebuttal_ref = $node->get('field_debate_rebuttal');
+    $rebuttal_id  = (!$rebuttal_ref->isEmpty()) ? (int) $rebuttal_ref->target_id : 0;
+
+    // ── Color scheme per commenter type ───────────────────────────────────
+    $type_map = [
+      'seller'  => [
+        'card'      => 'card-emerald',
+        'solid'     => 'badge-solid-emerald',
+        'light'     => 'badge-emerald',
+        'direction' => 'direction-emerald',
+        'label'     => 'Product Owner',
+      ],
+      'buyer'   => [
+        'card'      => 'card-rose',
+        'solid'     => 'badge-solid-rose',
+        'light'     => 'badge-rose',
+        'direction' => 'direction-rose',
+        'label'     => 'Previous Buyer',
+      ],
+      'visitor' => [
+        'card'      => 'card-amber',
+        'solid'     => 'badge-solid-amber',
+        'light'     => 'badge-amber',
+        'direction' => 'direction-amber',
+        'label'     => 'Visitor',
+      ],
+    ];
+    $t = $type_map[$commenter_type] ?? $type_map['visitor'];
+
+    // ── Support label ──────────────────────────────────────────────────────
+    $support_labels = [
+      'seller'  => 'I support the Owner',
+      'buyer'   => 'I support the Buyer',
+      'neutral' => 'Need more proof',
+    ];
+    $support_label = $support_labels[$support_side] ?? 'Need more proof';
+
+    // ── Direction string: "Visitor → Owner", "Previous Buyer → Owner" etc.
+    // Hide direction if seller speaks to Product Owner (redundant).
+    $direction_html = '';
+    if (!($commenter_type === 'seller' && $speaking_to === 'Product Owner')) {
+      $direction_html = '<span class="comment-direction ' . $t['direction'] . '">'
+        . htmlspecialchars($t['label']) . ' → ' . htmlspecialchars($speaking_to)
+        . '</span>';
+    }
+
+    // ── Media files — rendered in right panel ──────────────────────────────
+    $media_panel_inner = '<div class="media-placeholder" style="height:120px;">No media attached</div>';
+
+    if ($node->hasField('field_debate_media') && !$node->get('field_debate_media')->isEmpty()) {
+      $media_panel_inner = '<div style="display:flex;flex-direction:column;gap:8px;">';
+      foreach ($node->get('field_debate_media') as $fi) {
+        $file = $fi->entity;
+        if (!$file) { continue; }
+        $url  = \Drupal::service('file_url_generator')->generateAbsoluteString($file->getFileUri());
+        $mime = $file->getMimeType();
+        if (strpos($mime, 'image/') === 0) {
+          $media_panel_inner .= '<a href="' . $url . '" target="_blank">'
+            . '<img src="' . $url . '" style="width:100%;max-height:140px;border-radius:10px;object-fit:cover;" alt="proof">'
+            . '</a>';
+        } elseif (strpos($mime, 'video/') === 0) {
+          $media_panel_inner .= '<video controls style="width:100%;border-radius:10px;"><source src="' . $url . '" type="' . $mime . '"></video>';
+        } else {
+          $media_panel_inner .= '<a href="' . $url . '" target="_blank" style="font-size:13px;color:#1a1a17;">📄 ' . htmlspecialchars($file->getFilename()) . '</a>';
+        }
+      }
+      $media_panel_inner .= '</div>';
+    }
+
+    // ── Right panel: media proof box (matches HTML design) ─────────────────
+    $media_panel_label = htmlspecialchars($t['label']) . ' → ' . htmlspecialchars($speaking_to) . ' media';
+    if ($commenter_type === 'seller' && $speaking_to === 'Product Owner') {
+      $media_panel_label = 'Owner media proof';
+    }
+
+    $right_panel = '<div style="background:var(--white,#fff);border:1px solid var(--neutral-200,#e8e8e4);border-radius:var(--radius-lg,14px);padding:16px;box-shadow:var(--shadow,0 1px 4px rgba(0,0,0,.08));">'
+      . '<div style="font-size:10px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--neutral-500,#8a8a82);margin-bottom:10px;">'
+      . $media_panel_label
+      . '</div>'
+      . $media_panel_inner
+      . '</div>';
+
+    // ── Replies section (depth 0 only) ─────────────────────────────────────
+    $replies_section = '';
+    $reply_button    = '';
+
+    if ($depth === 0) {
+      $reply_nids = \Drupal::entityQuery('node')
+        ->condition('type', 'rebuttal_debate')
+        ->condition('status', 1)
+        ->condition('field_debate_parent', $node_id)
+        ->sort('created', 'ASC')
+        ->accessCheck(FALSE)
+        ->execute();
+
+      $reply_count   = count($reply_nids);
+      $replies_inner = '';
+      foreach (Node::loadMultiple($reply_nids) as $rn) {
+        $replies_inner .= $this->renderCommentCard($rn, 1);
+      }
+
+      $toggle_display = $reply_count > 0 ? 'block' : 'none';
+      $toggle_label   = $reply_count > 0
+        ? '▶ View ' . $reply_count . ' ' . ($reply_count === 1 ? 'reply' : 'replies')
+        : '▶ View 0 replies';
+
+      $toggle_btn = '<button type="button"
+        class="debate-toggle-replies"
+        data-toggle-replies="' . $node_id . '"
+        style="display:' . $toggle_display . ';background:none;border:none;color:#6b6b63;font-size:12px;font-weight:600;cursor:pointer;padding:4px 0;margin-top:6px;text-align:left;">'
+        . $toggle_label . '</button>';
+
+      $replies_section = $toggle_btn . '
+        <div class="debate-replies-container" id="replies-' . $node_id . '"
+          style="display:none;margin-top:10px;padding-left:20px;border-left:3px solid rgba(0,0,0,.1);">
+          ' . ($replies_inner ?: '<span class="reply-empty"></span>') . '
+        </div>';
+
+      $reply_button = '<button type="button"
+        class="btn btn-outline debate-reply-btn"
+        data-id="' . $node_id . '"
+        data-name="' . htmlspecialchars($username) . '"
+        data-rebuttal="' . $rebuttal_id . '"
+        style="font-size:12px;">
+        Reply to this
+      </button>';
+    }
+
+    // ── Card style ─────────────────────────────────────────────────────────
+    $card_style    = $depth === 1 ? 'margin-bottom:10px;' : 'margin-bottom:16px;';
+    $border_radius = 'border-radius:var(--radius-xl,18px);';
+
+    // ── Reply card: compact, no grid, left border only ─────────────────────
+    if ($depth === 1) {
+      return '
+        <div class="debate-comment-card card ' . $t['card'] . '"
+          id="debate-comment-' . $node_id . '"
+          data-node-id="' . $node_id . '"
+          data-rebuttal="' . $rebuttal_id . '"
+          style="' . $card_style . $border_radius . '">
+
+          <div class="comment-header" style="margin-bottom:8px;">
+            <div>
+              <div class="meta-badges">
+                <span class="badge ' . $t['solid'] . '">' . htmlspecialchars($t['label']) . '</span>
+                <span class="badge ' . $t['light'] . '">' . htmlspecialchars($username) . '</span>
+              </div>
+              <div class="comment-target" style="font-size:12px;color:#6b6b63;margin-top:3px;">@' . htmlspecialchars($speaking_to) . '</div>
+            </div>
+            <div style="display:flex;flex-direction:column;align-items:flex-end;gap:4px;">
+              ' . $direction_html . '
+              <span style="font-size:11px;color:var(--neutral-500,#8a8a82);">' . $date . '</span>
+            </div>
+          </div>
+
+          <div class="comment-body">
+            <div class="comment-body-label">Statement</div>
+            <p>' . $this->formatCommentText($comment) . '</p>
+          </div>
+
+          <div class="comment-actions">
+            <span class="support-chip">' . htmlspecialchars($support_label) . '</span>
+          </div>
+
+        </div>';
+    }
+
+    // ── Top-level card: full grid-reply layout matching the HTML design ────
     return '
       <div class="debate-comment-card card ' . $t['card'] . '"
         id="debate-comment-' . $node_id . '"
         data-node-id="' . $node_id . '"
         data-rebuttal="' . $rebuttal_id . '"
-        style="' . $card_margin . 'border-radius:18px;">
+        style="' . $card_style . $border_radius . '">
 
-        <div style="display:flex;justify-content:space-between;align-items:flex-start;flex-wrap:wrap;gap:8px;margin-bottom:10px;">
+        <div class="grid-reply">
+
           <div>
-            <div style="display:flex;gap:6px;flex-wrap:wrap;margin-bottom:4px;">
-              <span class="badge ' . $t['solid'] . '">' . htmlspecialchars($t['label']) . '</span>
-              <span class="badge ' . $t['light'] . '">' . htmlspecialchars($username) . '</span>
+            <div class="comment-header">
+              <div>
+                <div class="meta-badges">
+                  <span class="badge ' . $t['solid'] . '">' . htmlspecialchars($t['label']) . '</span>
+                  <span class="badge ' . $t['light'] . '">' . htmlspecialchars($username) . '</span>
+                </div>
+                <div class="comment-target">@' . htmlspecialchars($speaking_to) . '</div>
+              </div>
+              <div style="display:flex;flex-direction:column;align-items:flex-end;gap:6px;">
+                ' . $direction_html . '
+                <span style="font-size:11px;color:var(--neutral-500,#8a8a82);">' . $date . '</span>
+              </div>
             </div>
-            <div style="font-size:12px;color:#6b6b63;margin-top:2px;">→ <strong>@' . htmlspecialchars($speaking_to) . '</strong></div>
+
+            <div class="comment-body">
+              <div class="comment-body-label">Statement</div>
+              <p>' . $this->formatCommentText($comment) . '</p>
+            </div>
+
+            <div class="comment-actions">
+              <span class="support-chip">' . htmlspecialchars($support_label) . '</span>
+              ' . $reply_button . '
+            </div>
+
+            ' . $replies_section . '
           </div>
-          <span style="font-size:11px;color:#8a8a82;white-space:nowrap;">' . $date . '</span>
+
+          ' . $right_panel . '
+
         </div>
-
-        <p style="margin:0 0 10px;font-size:14px;line-height:1.6;">' . nl2br(htmlspecialchars($comment)) . '</p>
-
-        ' . $media_html . '
-
-        <div style="display:flex;align-items:center;gap:12px;flex-wrap:wrap;margin-top:10px;">
-          <span style="font-size:12px;background:rgba(0,0,0,.06);border-radius:999px;padding:4px 12px;">' . htmlspecialchars($support_label) . '</span>
-          ' . $reply_button . '
-        </div>
-
-        ' . $replies_section . '
-
       </div>';
   }
 
@@ -563,4 +1071,39 @@ class DebateCommentForm extends FormBase {
       'neutral_pct' => $np,
     ];
   }
+
+
+protected function formatCommentText(string $comment): string {
+  $escaped = nl2br(htmlspecialchars($comment));
+
+  $formatted = preg_replace_callback(
+    '/@([\w\.\-]+)/',
+    function ($matches) {
+      $username = $matches[1];
+      $users = \Drupal::entityTypeManager()
+        ->getStorage('user')
+        ->loadByProperties(['name' => $username]);
+
+      if (!empty($users)) {
+        $user = reset($users);
+        $url  = \Drupal\Core\Url::fromRoute('entity.user.canonical', ['user' => $user->id()])->toString();
+        $style = 'color:#1a1a17;font-weight:700;background:rgba(0,0,0,.06);border-radius:999px;padding:1px 8px;text-decoration:none;font-size:13px;';
+        return '<a href="' . $url . '" class="debate-mention" style="' . $style . '">@' . htmlspecialchars($username) . '</a>';
+      }
+
+      $style = 'color:#8a8a82;font-weight:600;font-size:13px;';
+      return '<span class="debate-mention-unknown" style="' . $style . '">@' . htmlspecialchars($username) . '</span>';
+    },
+    $escaped
+  );
+
+  return $formatted;
+}
+
+
+
+
+
+
+
 }

@@ -66,4 +66,33 @@ class DebateController extends ControllerBase {
       'has_more' => $has_more,
     ]);
   }
+
+
+  public function searchUsers(Request $request): JsonResponse {
+  $query = trim($request->query->get('q', ''));
+
+  if (strlen($query) < 1) {
+    return new JsonResponse([]);
+  }
+
+  $uids = \Drupal::entityQuery('user')
+    ->condition('status', 1)
+    ->condition('name', $query . '%', 'LIKE')
+    ->accessCheck(FALSE)
+    ->range(0, 10)
+    ->execute();
+
+  $users = [];
+  foreach (\Drupal\user\Entity\User::loadMultiple($uids) as $user) {
+    // Skip anonymous user.
+    if ($user->id() == 0) { continue; }
+    $users[] = [
+      'uid'      => $user->id(),
+      'name'     => $user->getDisplayName(),
+      'initials' => mb_strtoupper(mb_substr($user->getDisplayName(), 0, 1)),
+    ];
+  }
+
+  return new JsonResponse($users);
+}
 }

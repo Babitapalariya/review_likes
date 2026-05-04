@@ -321,4 +321,236 @@ $('body').on('claim:autoclose', function (e, rebuttalId) {
   }, 2500); // closes after 2.5 seconds
 });
 
+// ── @mention autocomplete in comment textarea ─────────────────────────────
+// Shows dropdown of audience names when user types @
+var mentionTimeout;
+
+/*$(document).on('input.debate', '.debate-comment-textarea', function () {
+  var $ta       = $(this);
+  var $card     = $ta.closest('.debate-input-card');
+  var val       = $ta.val();
+  var cursorPos = this.selectionStart;
+  var textBefore = val.substring(0, cursorPos);
+
+  // Find the last @ before the cursor.
+  var atMatch = textBefore.match(/@([\w\.]*)$/);
+
+  // Remove existing dropdown.
+  $card.find('.mention-dropdown').remove();
+
+  if (!atMatch) { return; }
+
+  var query = atMatch[1].toLowerCase();
+
+  // Collect mentionable names from audience pills.
+  var names = [];
+  $card.find('.debate-audience-pill').each(function () {
+    names.push($(this).attr('data-value'));
+  });
+
+  // Filter by what user typed after @.
+  var filtered = names.filter(function (n) {
+    return n.toLowerCase().indexOf(query) === 0;
+  });
+
+  if (!filtered.length) { return; }
+
+  // Build dropdown.
+  var $drop = $('<div class="mention-dropdown" style="'
+    + 'position:absolute;z-index:9999;background:#fff;border:1px solid #d1d1cb;'
+    + 'border-radius:12px;box-shadow:0 4px 16px rgba(0,0,0,.12);'
+    + 'min-width:160px;overflow:hidden;margin-top:2px;"></div>');
+
+  filtered.forEach(function (name) {
+    $drop.append(
+      '<div class="mention-item" data-name="' + name + '" style="'
+      + 'padding:8px 14px;font-size:13px;cursor:pointer;'
+      + 'display:flex;align-items:center;gap:8px;">'
+      + '<span style="font-weight:600;">@' + name + '</span>'
+      + '</div>'
+    );
+  });
+
+  // Position below textarea.
+  $ta.css('position', 'relative');
+  $ta.after($drop);
+});*/
+
+
+
+
+
+
+
+
+// Click on mention suggestion — insert into textarea.
+/*$(document).on('click.debate', '.mention-item', function () {
+  var name   = $(this).attr('data-name');
+  var $drop  = $(this).closest('.mention-dropdown');
+  var $ta    = $drop.prev('.debate-comment-textarea');
+  var val    = $ta.val();
+  var cursor = $ta[0].selectionStart;
+
+  // Replace the partial @query with the full @name.
+  var before  = val.substring(0, cursor);
+  var after   = val.substring(cursor);
+  var newBefore = before.replace(/@([\w\.]*)$/, '@' + name + ' ');
+
+  $ta.val(newBefore + after);
+  $ta.focus();
+
+  // Move cursor after inserted mention.
+  var newPos = newBefore.length;
+  $ta[0].setSelectionRange(newPos, newPos);
+
+  $drop.remove();
+});*/
+
+// Close dropdown when clicking outside.
+$(document).on('click.debate', function (e) {
+  if (!$(e.target).closest('.mention-dropdown, .debate-comment-textarea').length) {
+    $('.mention-dropdown').remove();
+  }
+});
+
+
+
+
+
+
+
+// ── Login modal: set destination before opening ───────────────────────────
+$(document).on('show.bs.modal', '#debateLoginModal', function () {
+  // Update the login form action with current page as destination.
+  var currentPath = window.location.pathname + window.location.search;
+  var $form = $(this).find('form#user-login-form');
+  if ($form.length) {
+    var action = $form.attr('action');
+    // Replace or add destination param.
+    var newAction = drupalSettings.path.baseUrl + 'user/login?destination=' + encodeURIComponent(currentPath);
+    $form.attr('action', newAction);
+    console.log('[Debate] Login form action updated to:', newAction);
+  }
+});
+
+
+
+// ── @mention autocomplete — searches ALL registered users ────────────────
+$(document).on('input.debate', '.debate-comment-textarea', function () {
+  var $ta       = $(this);
+  var $card     = $ta.closest('.debate-input-card');
+  var val       = $ta.val();
+  var cursorPos = this.selectionStart;
+  var textBefore = val.substring(0, cursorPos);
+
+  // Find @ before cursor.
+  var atMatch = textBefore.match(/@([\w\.]*)$/);
+
+  // Remove existing dropdown.
+  $card.find('.mention-dropdown').remove();
+
+  if (!atMatch) { return; }
+
+  var query = atMatch[1];
+
+  // Need at least 1 character after @ to search.
+  if (query.length < 1) { return; }
+
+  var basePath = drupalSettings.path.baseUrl;
+
+  // Search users via API.
+  $.getJSON(basePath + 'api/users/search?q=' + encodeURIComponent(query), function (users) {
+    $card.find('.mention-dropdown').remove();
+    if (!users.length) { return; }
+
+    var $drop = $('<div class="mention-dropdown" style="'
+      + 'position:absolute;z-index:9999;background:#fff;'
+      + 'border:1px solid #d1d1cb;border-radius:12px;'
+      + 'box-shadow:0 4px 16px rgba(0,0,0,.12);'
+      + 'min-width:200px;max-height:220px;overflow-y:auto;'
+      + 'margin-top:4px;"></div>');
+
+    users.forEach(function (u) {
+      $drop.append(
+        '<div class="mention-item" data-name="' + u.name + '" style="'
+        + 'padding:8px 14px;font-size:13px;cursor:pointer;'
+        + 'display:flex;align-items:center;gap:10px;'
+        + 'border-bottom:1px solid #f5f5f3;">'
+        + '<span style="width:28px;height:28px;border-radius:50%;'
+        + 'background:#1a1a17;color:#fff;display:inline-flex;'
+        + 'align-items:center;justify-content:center;'
+        + 'font-size:12px;font-weight:700;flex-shrink:0;">'
+        + u.initials + '</span>'
+        + '<span><strong>@' + u.name + '</strong></span>'
+        + '</div>'
+      );
+    });
+
+    // Position dropdown below textarea cursor area.
+    $ta.css('position', 'relative');
+    $ta.after($drop);
+  });
+});
+
+// ── Click mention suggestion — insert into textarea ───────────────────────
+$(document).on('click.debate', '.mention-item', function (e) {
+  e.stopPropagation();
+  var name  = $(this).attr('data-name');
+  var $drop = $(this).closest('.mention-dropdown');
+  var $ta   = $drop.prev('.debate-comment-textarea');
+  var val   = $ta.val();
+  var cursor = $ta[0].selectionStart;
+
+  // Replace partial @query with full @name.
+  var before    = val.substring(0, cursor);
+  var after     = val.substring(cursor);
+  var newBefore = before.replace(/@([\w\.]*)$/, '@' + name + ' ');
+
+  $ta.val(newBefore + after);
+  $ta.focus();
+
+  var newPos = newBefore.length;
+  $ta[0].setSelectionRange(newPos, newPos);
+
+  $drop.remove();
+});
+
+// ── Close dropdown on outside click ──────────────────────────────────────
+$(document).on('click.debate', function (e) {
+  if (!$(e.target).closest('.mention-dropdown, .debate-comment-textarea').length) {
+    $('.mention-dropdown').remove();
+  }
+});
+
+// ── Close dropdown on Escape key ─────────────────────────────────────────
+$(document).on('keydown.debate', '.debate-comment-textarea', function (e) {
+  if (e.key === 'Escape') {
+    $(this).closest('.debate-input-card').find('.mention-dropdown').remove();
+  }
+  // Arrow keys to navigate dropdown.
+  if (e.key === 'ArrowDown' || e.key === 'ArrowUp') {
+    var $items = $('.mention-dropdown .mention-item');
+    if (!$items.length) { return; }
+    var $active = $('.mention-dropdown .mention-item.active');
+    var idx     = $items.index($active);
+    $items.removeClass('active').css('background', '');
+    if (e.key === 'ArrowDown') {
+      idx = (idx + 1) % $items.length;
+    } else {
+      idx = (idx - 1 + $items.length) % $items.length;
+    }
+    $items.eq(idx).addClass('active').css('background', '#f5f5f3');
+    e.preventDefault();
+  }
+  // Enter to select highlighted item.
+  if (e.key === 'Enter') {
+    var $active = $('.mention-dropdown .mention-item.active');
+    if ($active.length) {
+      e.preventDefault();
+      $active.trigger('click');
+    }
+  }
+});
+
+
 })(jQuery, Drupal);
