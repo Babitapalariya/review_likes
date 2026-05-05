@@ -321,6 +321,13 @@ $('body').on('claim:autoclose', function (e, rebuttalId) {
   }, 2500); // closes after 2.5 seconds
 });
 
+// ── Reload page after claim submitted so comment form unlocks ─────────────
+$('body').on('claim:reloadpage', function () {
+  setTimeout(function () {
+    window.location.reload();
+  }, 3200); // slightly after the 2.5s modal close animation finishes
+});
+
 // ── @mention autocomplete in comment textarea ─────────────────────────────
 // Shows dropdown of audience names when user types @
 var mentionTimeout;

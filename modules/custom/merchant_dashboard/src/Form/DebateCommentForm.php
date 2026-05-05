@@ -60,13 +60,62 @@ class DebateCommentForm extends FormBase {
     // ── Determine commenter type ───────────────────────────────────────────
     $roles        = $current_user->getRoles();
     $display_name = $current_user->getDisplayName();
+    $uid          = (int) $current_user->id();
 
     if (in_array('merchant', $roles)) {
       $commenter_type = 'seller';
-    } elseif (in_array($display_name, $buyer_names)) {
-      $commenter_type = 'buyer';
+      $is_buyer_locked = FALSE;
+    } elseif (in_array(strtolower($display_name), array_map('strtolower', $buyer_names))) {
+      // Username matches a buyer in this rebuttal.
+      // Check if this Drupal user has an approved buyer_claim for this rebuttal.
+      $approved_claims = \Drupal::entityQuery('node')
+        ->condition('type', 'buyer_claim')
+        ->condition('field_claim_rebuttal', $rebuttal_id)
+        ->condition('field_claim_user', $uid)
+        ->condition('field_claim_status', 'approved')
+        ->condition('status', 1)
+        ->accessCheck(FALSE)
+        ->execute();
+
+      if (!empty($approved_claims)) {
+        // Verified buyer — can post.
+        $commenter_type  = 'buyer';
+        $is_buyer_locked = FALSE;
+      } else {
+        // Previous buyer but NOT yet verified — lock the form.
+        $commenter_type  = 'buyer';
+        $is_buyer_locked = TRUE;
+      }
     } else {
-      $commenter_type = 'visitor';
+      $commenter_type  = 'visitor';
+      $is_buyer_locked = FALSE;
+    }
+
+    // ── If previous buyer but not yet claimed — show locked notice ─────────
+    if ($is_buyer_locked) {
+      $form['locked_notice'] = [
+        '#markup' => \Drupal\Core\Render\Markup::create('
+          <div class="debate-buyer-locked card card-rose" id="debate-form-card-' . $rebuttal_id . '" style="border-radius:18px;padding:20px;margin-top:16px;">
+            <div style="display:flex;align-items:center;gap:12px;margin-bottom:14px;">
+              <span style="font-size:28px;">🔒</span>
+              <div>
+                <div style="font-weight:700;font-size:16px;margin-bottom:2px;">Comment Section Locked</div>
+                <div style="font-size:13px;color:#6b6b63;">You appear to be a <strong>previous buyer</strong> in this rebuttal.</div>
+              </div>
+            </div>
+            <div style="background:#fff4f4;border:1px solid #ffc2c2;border-radius:14px;padding:14px 16px;font-size:13px;color:#a02020;margin-bottom:14px;">
+              As a previous buyer, you can <strong>view all comments</strong> but cannot post until you verify your identity.
+              Once verified, you will appear as a <strong>✅ Verified Buyer</strong> and your comment section will unlock.
+            </div>
+            <button type="button"
+              class="btn btn-default w-100"
+              data-bs-toggle="modal"
+              data-bs-target="#claimBuyerModal-' . $rebuttal_id . '">
+              🛡️ Claim &amp; Verify My Buyer Identity to Unlock Comments
+            </button>
+          </div>'),
+      ];
+      return $form;
     }
 
     $type_labels      = ['seller' => 'Product Owner', 'buyer' => 'Previous Buyer', 'visitor' => 'Visitor'];
@@ -859,6 +908,24 @@ return '
     ];
     $t = $type_map[$commenter_type] ?? $type_map['visitor'];
 
+    // ── Verified Buyer badge — shown for buyer comments ────────────────────
+    // Check if this comment's author has an approved buyer_claim for this rebuttal.
+    $verified_badge_html = '';
+    if ($commenter_type === 'buyer') {
+      $comment_uid = $node->getOwnerId();
+      $verified_claims = \Drupal::entityQuery('node')
+        ->condition('type', 'buyer_claim')
+        ->condition('field_claim_rebuttal', $rebuttal_id)
+        ->condition('field_claim_user', $comment_uid)
+        ->condition('field_claim_status', 'approved')
+        ->condition('status', 1)
+        ->accessCheck(FALSE)
+        ->execute();
+      if (!empty($verified_claims)) {
+        $verified_badge_html = '<span style="background:#f0fdf4;color:#166534;border:1px solid #86efac;border-radius:999px;padding:2px 10px;font-size:11px;font-weight:700;margin-left:4px;">✅ Verified Buyer</span>';
+      }
+    }
+
     // ── Support label ──────────────────────────────────────────────────────
     $support_labels = [
       'seller'  => 'I support the Owner',
@@ -976,6 +1043,7 @@ return '
               <div class="meta-badges">
                 <span class="badge ' . $t['solid'] . '">' . htmlspecialchars($t['label']) . '</span>
                 <span class="badge ' . $t['light'] . '">' . htmlspecialchars($username) . '</span>
+                ' . $verified_badge_html . '
               </div>
               <div class="comment-target" style="font-size:12px;color:#6b6b63;margin-top:3px;">@' . htmlspecialchars($speaking_to) . '</div>
             </div>
@@ -1013,6 +1081,7 @@ return '
                 <div class="meta-badges">
                   <span class="badge ' . $t['solid'] . '">' . htmlspecialchars($t['label']) . '</span>
                   <span class="badge ' . $t['light'] . '">' . htmlspecialchars($username) . '</span>
+                  ' . $verified_badge_html . '
                 </div>
                 <div class="comment-target">@' . htmlspecialchars($speaking_to) . '</div>
               </div>

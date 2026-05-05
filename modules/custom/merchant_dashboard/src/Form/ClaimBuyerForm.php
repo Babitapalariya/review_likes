@@ -166,11 +166,20 @@ class ClaimBuyerForm extends FormBase {
     </div>'
   ));
 
-  // 2. Auto-close modal after 2.5 seconds.
+  // 2. Auto-close modal after 2.5 seconds, then reload page after 3.2 seconds
+  //    so the form unlocks for the newly verified buyer.
   $response->addCommand(new InvokeCommand(
     'body',
     'trigger',
     ['claim:autoclose', [$rebuttal_id]]
+  ));
+
+  // 3. Reload the page after the modal has finished closing so the
+  //    comment form unlocks (verified buyer check runs fresh on page load).
+  $response->addCommand(new InvokeCommand(
+    'body',
+    'trigger',
+    ['claim:reloadpage']
   ));
 
   // 3. Show persistent success notice below the claim button.
@@ -206,7 +215,7 @@ class ClaimBuyerForm extends FormBase {
         'field_claim_rebuttal'  => $rebuttal_id ? ['target_id' => $rebuttal_id] : NULL,
         'field_claim_product'   => $product_id  ? ['target_id' => $product_id]  : NULL,
         'field_claim_user'      => ['target_id' => $current_uid],
-        'field_claim_status'    => 'pending',
+        'field_claim_status'    => 'approved',
       ]);
       $node->save();
 

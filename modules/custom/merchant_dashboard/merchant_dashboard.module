@@ -501,6 +501,47 @@ foreach ($rebuttals_data as $r) {
 $build['#claimed_rebuttals'] = $claimed_rebuttals;
 
 
+
+// Check current user's claim status per rebuttal.
+$current_uid         = \Drupal::currentUser()->id();
+$current_display     = \Drupal::currentUser()->getDisplayName();
+$buyer_claim_status  = []; // keyed by rebuttal_id => 'none'|'pending'|'approved'|'rejected'
+
+foreach ($rebuttals_data as $r) {
+  // Check if current user is a buyer in this rebuttal.
+  $is_buyer = FALSE;
+  foreach ($r['reviews'] as $review) {
+    if (strtolower($review['buyer_username'] ?? '') === strtolower($current_display)) {
+      $is_buyer = TRUE;
+      break;
+    }
+  }
+
+  if (!$is_buyer) {
+    $buyer_claim_status[$r['id']] = 'not_buyer'; // visitor or seller
+    continue;
+  }
+
+  // They are a buyer — check their claim status.
+  $claim_nids = \Drupal::entityQuery('node')
+    ->condition('type', 'buyer_claim')
+    ->condition('field_claim_rebuttal', $r['id'])
+    ->condition('field_claim_user', $current_uid)
+    ->accessCheck(FALSE)
+    ->execute();
+
+  if (empty($claim_nids)) {
+    $buyer_claim_status[$r['id']] = 'none'; // buyer but no claim submitted
+  } else {
+    $claim_node = Node::load(reset($claim_nids));
+    $status = $claim_node ? ($claim_node->get('field_claim_status')->value ?? 'pending') : 'pending';
+    $buyer_claim_status[$r['id']] = $status; // pending | approved | rejected
+  }
+}
+
+$build['#buyer_claim_status'] = $buyer_claim_status;
+
+
 }
 
 

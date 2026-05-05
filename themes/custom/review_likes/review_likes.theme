@@ -591,6 +591,7 @@ $rebuttal_node = $variables['node'];
     $variables['_user_logged_in'] = $variables['elements']['#user_logged_in'] ?? FALSE;
     $variables['_claimed_rebuttals'] = $variables['elements']['#claimed_rebuttals'] ?? [];
     $variables['_claims_data'] = $variables['elements']['#claims_data'] ?? [];
+    $variables['_buyer_claim_status'] = $variables['elements']['#buyer_claim_status'] ?? [];
   }
 
 

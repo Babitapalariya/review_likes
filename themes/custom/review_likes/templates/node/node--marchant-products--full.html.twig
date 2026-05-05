@@ -419,8 +419,12 @@
             {# ── ROW 3: COMMENTARY INPUT FORM ────────────────────────────── #}
             <div class="debate-section" id="debate-section-{{ rebuttal.id }}">
 
+
+
               {% if _user_logged_in %}
-                    {# Logged-in: show the debate input form #}
+                    {# Logged-in: show the debate input form.
+                       For previous buyers who haven't claimed yet, the form itself
+                       renders a locked notice with a Claim button instead of the textarea. #}
                     {% if _debate_forms[rebuttal.id] is defined %}
                       <div style="margin-top:16px;">
                         {{ _debate_forms[rebuttal.id] }}
@@ -436,7 +440,9 @@
         Login to Participate
       </button>
     </div>
-                  {% endif %}
+                  {% endif %} 
+
+
 
 
   
