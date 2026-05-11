@@ -818,7 +818,8 @@ protected function notifyTaggedUsers(array $usernames, Node $node, string $comme
       $reply_button = '<button type="button"
         class="debate-reply-btn"
         data-id="' . $node_id . '"
-        data-name="' . htmlspecialchars($username) . '"
+        data-name="' . htmlspecialchars($t['label']) . '"
+        data-username="' . htmlspecialchars($username) . '"
         data-rebuttal="' . $rebuttal_id . '"
         style="background:none;border:none;font-size:12px;font-weight:700;cursor:pointer;color:#1a1a17;padding:0;text-decoration:underline;">
         Reply
@@ -1018,7 +1019,8 @@ return '
       $reply_button = '<button type="button"
         class="btn btn-outline debate-reply-btn"
         data-id="' . $node_id . '"
-        data-name="' . htmlspecialchars($username) . '"
+        data-name="' . htmlspecialchars($t['label']) . '"
+        data-username="' . htmlspecialchars($username) . '"
         data-rebuttal="' . $rebuttal_id . '"
         style="font-size:12px;">
         Reply to this

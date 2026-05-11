@@ -59,6 +59,26 @@
         $parentField.val(parentId);
         console.log('  parent_id hidden field value after set:', $parentField.val());
 
+        // ── FIX: also set speaking_to to the person being replied to ────────
+        // When replying to a buyer/visitor comment, speaking_to must reflect
+        // that commenter's name — not stay on the default 'Product Owner'.
+        var $speakingTo = $formCard.find('.debate-speaking-to');
+        $speakingTo.val(name);
+        console.log('  speaking_to set to:', name);
+
+        // Sync audience pill UI: deactivate all, activate the matching pill.
+        // If no pill matches (e.g. replying to a visitor comment), just
+        // deactivate all — speaking_to is already set via hidden field.
+        var $pills = $formCard.find('.debate-audience-pill');
+        $pills.removeClass('debate-pill-active btn-pill-emerald').addClass('btn-pill-rose');
+        var $matchPill = $pills.filter('[data-value="' + name + '"]');
+        if ($matchPill.length) {
+          $matchPill.removeClass('btn-pill-rose').addClass('debate-pill-active btn-pill-emerald');
+          console.log('  matched audience pill for:', name);
+        } else {
+          console.log('  no matching pill for "' + name + '" — speaking_to set via hidden field only');
+        }
+
         // Show replying-to banner.
         $formCard.find('.debate-reply-banner').remove();
         $formCard.prepend(
@@ -94,7 +114,19 @@
         var rebuttalId = $(this).attr('data-rebuttal');
         console.log('[Debate] Cancel reply — rebuttalId:', rebuttalId);
         var $formCard = $('#debate-form-card-' + rebuttalId);
+        // Reset parent_id.
         $formCard.find('.debate-parent-id').val('0');
+
+        // Reset speaking_to back to Product Owner.
+        $formCard.find('.debate-speaking-to').val('Product Owner');
+
+        // Reset pill UI: deactivate all, re-activate Product Owner pill.
+        var $pills = $formCard.find('.debate-audience-pill');
+        $pills.removeClass('debate-pill-active btn-pill-emerald').addClass('btn-pill-rose');
+        $pills.filter('[data-value="Product Owner"]')
+          .removeClass('btn-pill-rose')
+          .addClass('debate-pill-active btn-pill-emerald');
+
         $formCard.find('.debate-comment-textarea').attr('placeholder', 'Write your statement here...');
         $(this).closest('.debate-reply-banner').remove();
       });
@@ -319,13 +351,6 @@ $('body').on('claim:autoclose', function (e, rebuttalId) {
       }
     }
   }, 2500); // closes after 2.5 seconds
-});
-
-// ── Reload page after claim submitted so comment form unlocks ─────────────
-$('body').on('claim:reloadpage', function () {
-  setTimeout(function () {
-    window.location.reload();
-  }, 3200); // slightly after the 2.5s modal close animation finishes
 });
 
 // ── @mention autocomplete in comment textarea ─────────────────────────────
