@@ -8,6 +8,8 @@
 use Drupal\Core\Form\FormStateInterface;
 use Drupal\node\Entity\Node;
 use Drupal\file\Entity\File;
+use Drupal\Core\Url;
+use Symfony\Component\HttpFoundation\RedirectResponse;
 
 
 
@@ -558,3 +560,34 @@ function merchant_dashboard_mail($key, &$message, $params) {
 
 
 
+
+
+
+
+function merchant_dashboard_user_login($account) {
+  if (in_array('merchant', $account->getRoles())) {
+
+    $current_request = \Drupal::service('request_stack')->getCurrentRequest();
+
+    // ✅ Set destination — Drupal will redirect AFTER session is saved
+    $url = Url::fromUri('internal:/merchant-dashboard')->toString();
+    $current_request->query->set('destination', $url);
+  }
+}
+
+/**
+ * Implements hook_form_FORM_ID_alter() — backup redirect via form submit.
+ */
+function merchant_dashboard_form_user_login_form_alter(&$form, FormStateInterface $form_state, $form_id) {
+  $form['#submit'][] = 'merchant_dashboard_login_submit';
+}
+
+function merchant_dashboard_login_submit($form, FormStateInterface &$form_state) {
+  $account = \Drupal::currentUser();
+
+  if (in_array('merchant', $account->getRoles())) {
+    $form_state->setRedirectUrl(
+      Url::fromUri('internal:/merchant-dashboard')
+    );
+  }
+}

@@ -1,20 +1,48 @@
 <header class="">{{ page.header }}</header>
 
-{% if 'merchant' or 'administrator' in user.roles %}
-<div class="app" data-app="review-likes-dashboard">
-  <!-- Sidebar -->
-  {{ page.sidebar }}
-  <!-- Main Content -->
-  <main>
-    <section id="contentArea">
-      <!-- Add Product Form -->
-      <div class="view" id="add-products" style="display:block;">{{ page.content }}</div>
-    </section>
-  </main>
-</div>
+{% if 'merchant' in user.roles or 'administrator' in user.roles %}
+
+  <div class="app" data-app="review-likes-dashboard">
+    {# Sidebar #}
+    {{ page.sidebar }}
+
+    {# Main Content #}
+    <main>
+      <section id="contentArea">
+        <div class="view" id="add-products" style="display:block;">
+          {{ page.content }}
+        </div>
+      </section>
+    </main>
+  </div>
+
 {% else %}
-  <p>You don’t have permission to see this data.</p>
+
+  {# ✅ Better Permission Denied Message #}
+  <div class="permission-denied">
+    <div class="permission-denied__icon">🔒</div>
+    <h1 class="permission-denied__title">Access Restricted</h1>
+    <p class="permission-denied__message">
+      You don't have permission to access this page. 
+      This area is only available to registered merchants.
+    </p>
+    <div class="permission-denied__actions">
+      {% if logged_in %}
+        <a href="{{ path('<front>') }}" class="btn btn--primary">Go to Homepage</a>
+        <a href="{{ path('user.page') }}" class="btn btn--secondary">My Account</a>
+      {% else %}
+        <a href="{{ path('user.login') }}" class="btn btn--primary">Sign In</a>
+        <a href="{{ path('user.register') }}" class="btn btn--secondary">Register as Merchant</a>
+      {% endif %}
+    </div>
+  </div>
+
 {% endif %}
+
+
+
+
+
 
 {# <div id="extractConfirmModal" class="custom-modal" style="display:none;">
   <div class="modal-content">
